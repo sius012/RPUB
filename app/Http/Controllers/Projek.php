@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Siswa;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class Projek extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
