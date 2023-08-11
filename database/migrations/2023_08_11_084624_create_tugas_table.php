@@ -15,14 +15,14 @@ class CreateTugasTable extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('keterangan')->nullable();
-            $table->unsignedBigInteger('id_project')->nullable();
-            $table->unsignedBigInteger('id_parent')->nullable();
-            $table->date('tanggal_awal')->nullable();
-            $table->date('tanggal_akhir')->nullable();
-            $table->string('status')->nullable();
-            $table->unsignedBigInteger('id_kategori')->nullable();
+            $table->string("nama");
+            $table->text("keterangan");
+            $table->bigInteger("id_projek");
+            $table->bigInteger("id_parent");
+            $table->date("tanggal_awal");
+            $table->date("tanggal_akhir");
+            $table->enum("status",["Belum Selesai","Sedang Dikerjakan","Selesai","Revisi","Ditunda"]);
+            $table->bigInteger("id_kategori");
             $table->timestamps();
         });
     }
