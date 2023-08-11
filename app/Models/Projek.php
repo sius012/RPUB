@@ -8,16 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Projek extends Model
 {
     use HasFactory;
-    protected $table = "projeks";
-    protected $fillable = ["nama","deskripsi","tanggal_mulai","tanggal_selesai","status","prioritas","penanggung_jawab"];
-
-    public static function getListTask($id){
-        $listTask = [];
-        $task = Tugas::where("id_projek", $id)->get();
-        foreach($task as $tx){
-            $task = new Tugas;
-            array_push($listTask,$task->getTugas($tx->id));
-        }
-        return $listTask;
-    }
+    protected $table = "projek";
+    protected $fillable = ["nama","tanggal_awal","tanggal_akhir","penanggung_jawab","jenis_projek","klien","deskripsi","status","created_at","updated_at"];
 }

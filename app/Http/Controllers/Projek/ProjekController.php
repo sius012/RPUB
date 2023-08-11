@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Projek;
 
+use App\Http\Controllers\Controller;
+use App\Models\Projek;
 use Illuminate\Http\Request;
 
-class ListProjekController extends Controller
+class ProjekController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,11 +15,11 @@ class ListProjekController extends Controller
      */
     public function index()
     {
-        return view("pages.listprojek.index");
+        return response()->json(Projek::all());
     }
 
     /**
-     * Sow the form for creating a new resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +47,7 @@ class ListProjekController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Projek::find($id));
     }
 
     /**

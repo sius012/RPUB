@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Jenis;
 
+use App\Http\Controllers\Controller;
+use App\Models\Jenis;
 use Illuminate\Http\Request;
 
-class Projek extends Controller
+class JenisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class Projek extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Jenis::all());
     }
 
     /**
@@ -45,7 +47,7 @@ class Projek extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Jenis::find($id));
     }
 
     /**
