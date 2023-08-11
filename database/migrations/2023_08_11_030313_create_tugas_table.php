@@ -16,14 +16,14 @@ class CreateTugasTable extends Migration
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
-            $table->string("deskripsi");
-            $table->enum("jenis", ["Task","Sub Task","content"])->default("Task");
-            $table->string("file_path")->nullable();
-            $table->date("dari");
-            $table->date("sampai");
-            $table->enum("status", ["Belum dimulai", "Berjalan", "Selesai", "Ditunda"])->default("Belum dimulai");
-            $table->bigInteger("id_parent")->nullable();
-            $table->bigInteger("id_projek")->nullable();
+            $table->text("keterangan");
+            $table->bigInteger("id_projek");
+            $table->bigInteger("id_parent");
+            $table->date("tanggal_awal");
+            $table->date("tanggal_akhir");
+            $table->enum("status",["Belum Selesai","Sedang Dikerjakan","Selesai","Revisi","Ditunda"]);
+            $table->bigInteger("id_kategori");
+            $table->timestamps();
         });
     }
 

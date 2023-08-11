@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Tugas;
 
+use App\Http\Controllers\Controller;
+use App\Models\Tugas;
 use Illuminate\Http\Request;
-use App\Models\Versi;
-use DB;
-class VersiController extends Controller
+
+class TugasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function index()
     {
-        $versi = new Versi;
-        if($req->has("id_tugas")){
-            $versi = $versi->where("id_tugas",$req->id_tugas);
-        }
-        if($req->has("ajax")){
-            return response()->json($versi->get());
-        }
+        return response()->json(Tugas::all());
     }
 
     /**
@@ -39,25 +34,9 @@ class VersiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
-            $countVersi = Versi::where("id_tugas",$req->id_tugas)->get()->count();
-            $versiTulisan = str_pad($countVersi+1, 3, 0, STR_PAD_LEFT);
-            $versi = new Versi;
-            $versi->id_tugas = $req->id_tugas;
-            $versi->no_versi = $countVersi+1;
-            $versi->judul = $req->judul."_v".$versiTulisan;
-            $versi->deskripsi = $req->deskripsi;
-            $versi->status = $req->status;
-            $versi->file_content = "Example.png";
-            $versi->save();
-            DB::commit();
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return response()->json($th);
-        }
+        //
     }
 
     /**
@@ -68,7 +47,7 @@ class VersiController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Tugas::find($id));
     }
 
     /**

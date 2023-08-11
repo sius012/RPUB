@@ -9,28 +9,5 @@ class Tugas extends Model
 {
     use HasFactory;
     protected $table = "tugas";
-    protected $fillable = ['id', 'nama', 'deskripsi', 'jenis', 'file_path', 'dari', 'sampai', 'status', 'id_parent', 'id_projek'];
-    public $timestamps = false;
-
-    public function getTugas($id)
-    {
-        $task = $this->rekrusifGenerate(Tugas::find($id));
-        return $task;
-    }
-
-    public function rekrusifGenerate($data)
-    {
-        $task = $data;
-        $children = [];
-        $childrens = Tugas::where("id_parent", $data->id)->get();
-        if($childrens->count()>0){
-            foreach ($childrens as $chd) {
-                array_push($children, $this->rekrusifGenerate($chd));
-             }
-        }
-        
-        $task->children = $children;
-        return $task->toArray();
-    }
-
+    protected $fillable = ["nama","keterangan","id_projek","id_parent","","tanggal_awal","tanggal_akhir","status","id_kategori","created_at","updated_at"];
 }

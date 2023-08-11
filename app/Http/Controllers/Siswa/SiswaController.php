@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Siswa;
 
+use App\Http\Controllers\Controller;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
-class ListProjekController extends Controller
+class SiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,11 +15,11 @@ class ListProjekController extends Controller
      */
     public function index()
     {
-        return view("pages.listprojek.index");
+        return response()->json(Siswa::all());
     }
 
     /**
-     * Sow the form for creating a new resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +47,7 @@ class ListProjekController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Siswa::find($id));
     }
 
     /**

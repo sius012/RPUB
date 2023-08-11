@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Penugasan;
 
+use App\Http\Controllers\Controller;
+use App\Models\Penugasan;
 use Illuminate\Http\Request;
-use App\Models\Tugas;
-use DB;
 
-class TugasController extends Controller
+class PenugasanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class TugasController extends Controller
      */
     public function index()
     {
-        
+        return response()->json(Penugasan::all());
     }
 
     /**
@@ -34,28 +34,9 @@ class TugasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-    
-
-        
-            $tugas = new Tugas();
-            $tugas->nama = $req->nama;
-            $tugas->deskripsi = $req->deskripsi;
-            $tugas->jenis = $req->jenis;
-            $tugas->dari = $req->dari;
-            $tugas->sampai = $req->sampai;
-            $tugas->status = $req->status;
-            $tugas->id_projek = $req->idProjek;
-
-            if($req->has("idParent")){
-                $tugas->id_parent = $req->idParent;
-            }
-
-            $tugas->save();
-        
-            return response()->json("success");
-        
+        //
     }
 
     /**
@@ -64,11 +45,9 @@ class TugasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $req,$id)
+    public function show($id)
     {
-        $tugas = new Tugas;
-        $tugas = $tugas->getTugas($id); 
-        return response()->json($tugas);
+        return response()->json(Penugasan::find($id));
     }
 
     /**
@@ -102,7 +81,6 @@ class TugasController extends Controller
      */
     public function destroy($id)
     {
-        Tugas::find($id)->delete();
-        return response()->json(["data"=>"OKE"]);
+        //
     }
 }

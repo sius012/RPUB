@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVersionsTable extends Migration
+class CreateVersisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,12 +16,12 @@ class CreateVersionsTable extends Migration
         Schema::create('versi', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("id_tugas");
-            $table->integer("no_versi");
-            $table->string("judul");
-            $table->string("deskripsi");
-            $table->string("file_content");
-            $table->bigInteger("id_pengisi")->nullable();
-            $table->string("status")->default("On Progress");
+            $table->bigInteger("id_nis");
+            $table->bigInteger("nomor_versi");
+            $table->string("nama");
+            $table->string("keterangan");
+            $table->string("lampiran");
+            $table->enum("status",["Belum Dimulai","Proses","Selesai","Revisi","Ditunda"]);
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateVersionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('versions');
+        Schema::dropIfExists('versi');
     }
 }

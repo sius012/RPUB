@@ -1,26 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Angkatan;
 
+use App\Http\Controllers\Controller;
+use App\Models\Angkatan;
 use Illuminate\Http\Request;
-use DB;
-use App\Models\Projek;
-use App\Models\Tugas;
 
-class ProjekController extends Controller
+class AngkatanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function index()
     {
-        if($req->has("ajax")){
-            $data = Projek::get();
-            return response()->json($data);
-        }
-        return view("pages.projek.index");
+        return response()->json(Angkatan::all());
     }
 
     /**
@@ -28,9 +23,9 @@ class ProjekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $req)
+    public function create()
     {
-        
+        //
     }
 
     /**
@@ -39,11 +34,10 @@ class ProjekController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-            $projek = Projek::create($req->input());
-            
-    }   
+        //
+    }
 
     /**
      * Display the specified resource.
@@ -51,19 +45,9 @@ class ProjekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $req,$id)
+    public function show($id)
     {
-        if($req->has("task")){
-            $task = Projek::getListTask($id);
-            return response()->json($task);
-        }else{
-            if($req->has("ajax")){
-                $projek = Projek::find($id);
-                return response()->json($projek);
-            }
-            return view("pages.projek.detail_projek", ["id"=>$id]);
-        }
-       
+        return response()->json(Angkatan::find($id));
     }
 
     /**

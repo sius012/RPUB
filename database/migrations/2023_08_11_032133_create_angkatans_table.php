@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDirektorisTable extends Migration
+class CreateAngkatansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateDirektorisTable extends Migration
      */
     public function up()
     {
-        Schema::create('direktoris', function (Blueprint $table) {
+        Schema::create('angkatan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('deskripsi');
-            $table->string("tipe");
-            $table->string("parent_id");
-            $table->string("file_content");
-            $table->unsignedBigInteger('id_kelas');
-
+            $table->bigInteger("id_angkatan");
+            $table->text("keterangan");
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateDirektorisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direktoris');
+        Schema::dropIfExists('angkatan');
     }
 }

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Assignment extends Model
+class Angkatan extends Model
 {
     use HasFactory;
-    protected $table = "assignments";
-    protected $fillable = ["nis_siswa","id_task"];
+    protected $table = "angkatan";
+    protected $fillable = ["id_angkatan","keterangan","created_at","updated_at"];
 }

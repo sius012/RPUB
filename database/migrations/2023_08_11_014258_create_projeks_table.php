@@ -13,15 +13,16 @@ class CreateProjeksTable extends Migration
      */
     public function up()
     {
-        Schema::create('projeks', function (Blueprint $table) {
+        Schema::create('projek', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
-            $table->string("deskripsi");
-            $table->date("tanggal_mulai");
-            $table->date("tanggal_selesai");
-            $table->bigInteger("penanggung_jawab")->nullable();
-            $table->enum("status", ["Berjalan","Tertunda", "Selesai"]);
-            $table->enum("prioritas", ["Tinggi","Rendah","Sedang"]);
+            $table->date("tanggal_awal");
+            $table->date("tanggal_akhir");
+            $table->string("penanggung_jawab");
+            $table->string("jenis_projek");
+            $table->string("klien");
+            $table->text("deskripsi");
+            $table->enum("status",["Belum Selesai","Sedang Dikerjakan","Selesai","Revisi","Ditunda"]);
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateProjeksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projeks');
+        Schema::dropIfExists('projek');
     }
 }
