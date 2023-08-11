@@ -1,9 +1,15 @@
 class Projek {
     constructor(){
         this.id;
-        this.projek;
-        this.keterangan;
-        this.timestamp
+        this.nama;
+        this.tanggal_awal;
+        this.tanggal_akhir;
+        this.penanggung_jawab;
+        this.jenis_projek;
+        this.klien;
+        this.deskripsi;
+        this.status;
+        this.pembuat;
     }
 
     static find(id){
@@ -21,10 +27,16 @@ class Projek {
     static parse(json){
         var projek = new Projek
 
-        jurusan.id=json["id"]
-        jurusan.projek=json["projek"]
-        jurusan.keterangan=json["keterangan"]
-        jurusan.timestamp=json["timestamp"]
+        projek.id=json["id"]
+        projek.nama=json["nama"]
+        projek.tanggal_awal=json["tanggal_awal"]
+        projek.tanggal_akhir=json["tanggal_akhir"]
+        projek.penanggung_jawab=json["penanggung_jawab"]
+        projek.jenis_projek=json["jenis_projek"]
+        projek.klien=json["klien"]
+        projek.deskripsi=json["deskripsi"]
+        projek.status=json["status"]
+        projek.pembuat=json["pembuat"]
         return projek;
     }
     static all(){

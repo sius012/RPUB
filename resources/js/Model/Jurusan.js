@@ -24,7 +24,7 @@ class Jurusan {
         jurusan.id=json["id"]
         jurusan.jurusan=json["jurusan"]
         jurusan.keterangan=json["keterangan"]
-        jurusan.timestamp=json["timestamp"]
+        jurusan.timestamp={created_at: json["created_at"], updated_at: json["updated_at"]}
         return jurusan;
     }
     static all(){
