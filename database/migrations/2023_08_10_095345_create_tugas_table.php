@@ -15,15 +15,15 @@ class CreateTugasTable extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
-            $table->string("nama");
-            $table->string("deskripsi");
-            $table->enum("jenis", ["Task","Sub Task","content"])->default("Task");
-            $table->string("file_path")->nullable();
-            $table->date("dari");
-            $table->date("sampai");
-            $table->enum("status", ["Belum dimulai", "Berjalan", "Selesai", "Ditunda"])->default("Belum dimulai");
-            $table->bigInteger("id_parent")->nullable();
-            $table->bigInteger("id_projek")->nullable();
+            $table->string('name');
+            $table->text('keterangan')->nullable();
+            $table->unsignedBigInteger('id_project')->nullable();
+            $table->unsignedBigInteger('id_parent')->nullable();
+            $table->date('tanggal_awal')->nullable();
+            $table->date('tanggal_akhir')->nullable();
+            $table->string('status')->nullable();
+            $table->unsignedBigInteger('id_kategori')->nullable();
+            $table->timestamps();
         });
     }
 
