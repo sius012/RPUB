@@ -1,6 +1,6 @@
 
 {{--  ambil dari uitabspills  --}}
-<div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view">
 <div class="row">
                 <div class="col-xl-6">
                   <h6 class="text-muted">Basic</h6>
