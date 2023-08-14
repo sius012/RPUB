@@ -18,7 +18,7 @@ class CreateProjeksTable extends Migration
             $table->string("nama");
             $table->date("tanggal_awal");
             $table->date("tanggal_akhir");
-            $table->bigInteger("penanggung_jawab");
+            $table->bigInteger("id_penanggung_jawab");
             $table->string("jenis_projek");
             $table->string("klien");
             $table->text("deskripsi");
