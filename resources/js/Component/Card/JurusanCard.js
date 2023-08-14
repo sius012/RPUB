@@ -7,15 +7,22 @@ class JurusanCard{
 
 
     load() {
-        this.elementStr = `<div class="col pb-3"><div class="card" style="width: 18 rem; height: 18 rem">
-        <div class="card-body">
-            <h5 class="card-title">${this.projek.nama}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${this.projek.jenis_projek}</h6>
-            <p class="card-text">${this.projek.deskripsi}</p>
-            <a href="#" class="card-link">Card link<a/>
-            <a href="#" class="card-link">Another link<a/>
+        this.elementStr = `<div class="row row-cols-1 row-cols-md-3 g-4">
+        <a href="">
+            <div class="col">
+            <div class="card h-100">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Nama Jurusan</h5>
+                <p class="card-text"></p>
+                <p class="card-text">
+                    <small class="text-muted">Jumlah Projek</small>
+                </p>
+          </div>
         </div>
-        </div></div>`;
+      </div></a>
+
+      </div>`;
         return this.elementStr;
         }
     }
