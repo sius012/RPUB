@@ -13,9 +13,9 @@ class TugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Tugas::all());
+        return response()->json(Tugas::byProjek($request->id_projek));
     }
 
     /**
