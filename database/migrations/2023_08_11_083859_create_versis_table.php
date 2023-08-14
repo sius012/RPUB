@@ -16,7 +16,7 @@ class CreateVersisTable extends Migration
         Schema::create('versi', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("id_tugas");
-            $table->bigInteger("id_nis");
+            $table->bigInteger("id_siswa");
             $table->bigInteger("nomor_versi");
             $table->string("nama");
             $table->string("keterangan");

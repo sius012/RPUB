@@ -18,11 +18,13 @@ class CreateProjeksTable extends Migration
             $table->string("nama");
             $table->date("tanggal_awal");
             $table->date("tanggal_akhir");
-            $table->string("penanggung_jawab");
+            $table->bigInteger("penanggung_jawab");
             $table->string("jenis_projek");
             $table->string("klien");
             $table->text("deskripsi");
             $table->enum("status",["Belum Selesai","Sedang Dikerjakan","Selesai","Revisi","Ditunda"]);
+            $table->bigInteger("id_pembuat");
+            $table->bigInteger("id_jurusan");
             $table->timestamps();
         });
     }

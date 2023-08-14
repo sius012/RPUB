@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tugas;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ class CreateTugasTable extends Migration
             $table->bigInteger("id_parent");
             $table->date("tanggal_awal");
             $table->date("tanggal_akhir");
-            $table->enum("status",["Belum Selesai","Sedang Dikerjakan","Selesai","Revisi","Ditunda"]);
+            $table->string("tugas");
             $table->bigInteger("id_kategori");
             $table->timestamps();
         });

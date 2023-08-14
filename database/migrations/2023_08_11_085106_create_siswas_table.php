@@ -23,6 +23,7 @@ class CreateSiswasTable extends Migration
             $table->enum("kelas",["1","2","3"]);
             $table->string("fotoprofil");
             $table->string("password", 60)->change();
+            $table->string("email")->unique();
             $table->timestamps();
         });
     }

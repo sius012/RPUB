@@ -15,7 +15,7 @@ class CreateJurusansTable extends Migration
     {
         Schema::create('jurusan', function (Blueprint $table) {
             $table->id();
-            $table->enum("jurusan",["PPLG","DKV","TKP","TP","KULINER"]);
+            $table->string("jurusan");
             $table->text("keterangan");
             $table->timestamps();
         });
