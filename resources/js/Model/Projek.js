@@ -10,6 +10,7 @@ class Projek {
         this.deskripsi;
         this.status;
         this.pembuat;
+        this.id_jurusan;
     }
 
     static find(id){
@@ -37,6 +38,7 @@ class Projek {
         projek.deskripsi=json["deskripsi"]
         projek.status=json["status"]
         projek.pembuat=json["pembuat"]
+        projek.id_jurusan=json["id_jurusan"]
         return projek;
     }
     static all(){
