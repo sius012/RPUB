@@ -21,10 +21,10 @@
                         <div class="card h-100">
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Nama Projek</h5>
-                            <p class="card-text">Deskripsi Projek</p>
+                            <h5 class="card-title">Nama Jurusan</h5>
+                            <p class="card-text"></p>
                             <p class="card-text">
-                                <small class="text-muted">Jenis Projek</small>
+                                <small class="text-muted">Jumlah Projek</small>
                             </p>
                       </div>
                     </div>
