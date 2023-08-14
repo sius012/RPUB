@@ -14,10 +14,10 @@
                           Tambah Projek
                         </button>
 
-                    
+
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
-                  <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="row row-cols-1 row-cols-md-3 g-4" id="projek-list-view">
                     <a href="">
                         <div class="col">
                         <div class="card h-100">
