@@ -5,7 +5,7 @@ class PagesSetup{
 
     init(){
         this.componentList.forEach(element=>{
-            element.page_setup = this
+            element.page_setup = this;
         })
     }
 
