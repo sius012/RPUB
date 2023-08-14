@@ -1,4 +1,4 @@
-class PagesSetup{
+class PageSetup{
     constructor(){
         this.componentList = [];
     }

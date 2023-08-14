@@ -7,11 +7,10 @@ class JurusanCard{
 
 
     load() {
-        this.elementStr = `<div class="row row-cols-1 row-cols-md-3 g-4">
+        this.elementStr = `
         <a href="">
             <div class="col">
             <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${this.jurusan.jurusan}</h5>
                 <p class="card-text"></p>
@@ -20,9 +19,7 @@ class JurusanCard{
                 </p>
           </div>
         </div>
-      </div></a>
-
-      </div>`;
+      </div></a>`;
         return this.elementStr;
         }
     }

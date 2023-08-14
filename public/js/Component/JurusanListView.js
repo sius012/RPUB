@@ -9,9 +9,10 @@ class JurusanListView{
 
 
 load(){
+    this.container.find(".row-jurusan").html("")
     this.jurusanList.forEach(element => {
-        var jurusanCard =new ProjekCard(element);
-        this.container.find(".row").append(jurusanCard.load())
+        var jurusanCard = new JurusanCard(element);
+        this.container.find(".row-jurusan").append(jurusanCard.load())
     });
     }
 }

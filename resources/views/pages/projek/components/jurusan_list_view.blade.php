@@ -1,5 +1,5 @@
 
-<div class="content-wrapper">
+<div class="content-wrapper" id="jurusan-list-view">
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -15,7 +15,7 @@
                         </button>
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
-                  <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="row row-cols-1 row-cols-md-3 g-4 row-jurusan">
                     <a href="">
                         <div class="col">
                         <div class="card h-100">
@@ -29,7 +29,6 @@
                       </div>
                     </div>
                   </div></a>
-
                   </div>
                 {{--  -----/card projek jurusan---  --}}
 
