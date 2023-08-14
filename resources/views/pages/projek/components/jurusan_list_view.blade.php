@@ -10,7 +10,7 @@
 
 
                   {{--  button tambah projek  --}}
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
                           Tambah Jurusan
                         </button>
 
