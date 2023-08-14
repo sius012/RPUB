@@ -46,25 +46,25 @@
     <link rel="stylesheet" href="dashboard/assets/vendor/fonts/boxicons.css" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="dashboard/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="dashboard/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="dashboard/assets/css/demo.css" />
+    <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/dashboard/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/dashboard/assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="dashboard/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="/dashboard/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="dashboard/assets/vendor/js/helpers.js"></script>
+    <script src="/dashboard/assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="dashboard/assets/js/config.js"></script>
+    <script src="/dashboard/assets/js/config.js"></script>
     {{--  css bootsrtrap  --}}
-    
+
   </head>
 
   <body>
@@ -75,7 +75,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="/index" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -145,8 +145,8 @@
           <ul class="menu-inner py-1">
 
             <!-- -----------------------Dashboard------------------- -->
-            <li class="menu-item active">
-              <a href="index" class="menu-link">
+            <li class="menu-item ">
+              <a href="/pages/dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -154,44 +154,52 @@
 
             <!-- ---------------------Layouts as a project---------------------- -->
             <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <a href="/pages/projek" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Basic">Projek</div>
+                </a>
+              </li>
+
+              <!-- ---------------------menu projek pakai drop down---------------------- -->
+            {{--  <li class="menu-item">
+                <a href="" class="menu-link menu-toggle" ">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Projek</div>
+                <div data-i18n="Layouts">Projek </div>
               </a>
 
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="projekpplg" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Without menu">PPLG</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="projekdkv1" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Without navbar">DKV 1</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="projekdkv2" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Container">DKV 2</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="projektkp" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Fluid">TKP</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="projektp" class="menu-link">
+                  <a href="" class="menu-link">
                     <div data-i18n="Blank">TP</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                    <a href="projekkuliner" class="menu-link">
+                    <a href="" class="menu-link">
                       <div data-i18n="Blank">KULINER</div>
                     </a>
                   </li>
               </ul>
-            </li>
+            </li>  --}}
 
             {{--  -----------------------setting akun---------------------- --}}
             <li class="menu-header small text-uppercase">
@@ -335,14 +343,18 @@
           <div class="content-wrapper">
 
             <!-- -----------Content------- -->
-            @yield('main-content')
+            <div class="container">
+                @yield('main-content')
+            </div>
             <!-- ----------/Content------- -->
 
 
             <div class="content-backdrop fade"></div>
           </div>
           <!-- Content wrapper -->
+
         </div>
+
         <!-- / Layout page -->
       </div>
 
@@ -354,24 +366,25 @@
 
     <!-- Core JS -->
     <!-- build:dashboard assets/vendor/js/core.js -->
-    <script src="dashboard/assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="dashboard/assets/vendor/libs/popper/popper.js"></script>
-    <script src="dashboard/assets/vendor/js/bootstrap.js"></script>
-    <script src="dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/dashboard/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="/dashboard/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/dashboard/assets/vendor/js/bootstrap.js"></script>
+    <script src="/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="dashboard/assets/vendor/js/menu.js"></script>
+    <script src="/dashboard/assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="dashboard/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="/dashboard/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="dashboard/assets/js/main.js"></script>
+    <script src="/dashboard/assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="dashboard/assets/js/dashboards-analytics.js"></script>
+    <script src="/dashboard/assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
+
+</body>
 </html>

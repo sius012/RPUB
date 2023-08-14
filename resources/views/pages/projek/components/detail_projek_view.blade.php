@@ -1,5 +1,4 @@
-@extends('layout.index')
-@section('main-content')
+
 {{--  ambil dari uitabspills  --}}
 <div class="container-xxl flex-grow-1 container-p-y">
 <div class="row">
@@ -86,4 +85,3 @@
                 </div>
               </div>
             </div>
-              @endsection
