@@ -2,6 +2,9 @@ class ProjekListView{
     constructor(container){
         this.container = container;
         this.projekList = [];
+        this.page_setup;
+        this.nama_component;
+        
     }
 
 

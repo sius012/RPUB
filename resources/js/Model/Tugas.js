@@ -9,21 +9,30 @@ class Tugas {
         this.tanggal_akhir;
         this.status;
         this.id_kategori;
+        this.created_at;
+        this.updated_at;
+        this.children = [];
+        this.indent_level;
     }
 
-    static find(id){
-        var tugas = new Tugas;
+    static byprojek(id){ //mengambil data tugas-tugas dar id projek
+        var projekList = [];
         $.ajax({
-            url: "/tugas/"+id,
+            url: "/tugas/",
             type: "GET",
+            data: {
+                id_projek: id
+            },
             async:false,
             success:function(data){
-                tugas=Tugas.parse(data)
+                data.forEach(element => {
+                    projekList.push(Tugas.rekursifParse(element,1));
+                 });
             }
         })
-        return tugas
+        return projekList
     }
-    static parse(json){
+    static parse(json){ //mengubah data json menjadi objek tugas
         var tugas = new Tugas
 
         tugas.id_tugas=json["id_tugas"]
@@ -35,21 +44,19 @@ class Tugas {
         tugas.tanggal_akhir=json["tanggal_akhir"]
         tugas.status=json["status"]
         tugas.id_kategori=json["id_kategori"]
+        tugas.created_at =json["created_at"]
+        tugas.updated_at =json["updated_at"]
         return tugas;
     }
-    static all(){
-        var tugas = [];
-        $.ajax({
-            url: "/tugas/",
-            type: "GET",
-            async:false,
-            success:function(data){
-                tugas=data.map(function(e){
-                    return Tugas.parse(e)
-                    
-                })
-            }
-        })
-        return tugas;
+    static rekursifParse(json,indentLevel){ //mirip seperti yang diatas,namun bedanya ini untuk membaca children
+        var tugas =Tugas.parse(json);
+        tugas.indent_level = indentLevel
+        json["children"].forEach(element => {
+            tugas.children.push(Tugas.rekursifParse(element, indentLevel+1));
+        });
+        return tugas
+
     }
+
 }
+       
