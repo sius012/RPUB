@@ -2,7 +2,7 @@ class Versi {
     constructor(){
         this.id_versi;
         this.tugas;
-        this.nis;
+        this.id_siswa;
         this.nomor_versi;
         this.nama;
         this.keterangan;
@@ -28,7 +28,7 @@ class Versi {
 
         tugas.id_versi=json["id_versi"]
         tugas.id_tugas=json["id_tugas"]
-        tugas.id_nis=json["id_nis"] 
+        tugas.id_siswa=json["id_siswa"] 
         tugas.nomor_versi=json["nomor_versi"]
         tugas.nama=json["nama"]
         tugas.keterangan=json["keterangan"]
