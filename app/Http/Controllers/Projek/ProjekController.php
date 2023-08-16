@@ -13,9 +13,13 @@ class ProjekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Projek::all());
+        $projek = new Projek;
+        if($request->has("id_jurusan")){
+            $projek = $projek->where("id_juruasn", $request->id_jurusan);
+        }
+        return response()->json($projek->get());
     }
 
     /**
