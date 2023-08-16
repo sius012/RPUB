@@ -28,7 +28,12 @@ Route::get('/index', function () {
     return view('layout.layout');
 });
 
-
+Route::get('/konfigurasiangkatan', function () {
+    return view('pages.konfigurasi.components.konfigurasi_jenis_view');
+});
+Route::get('/card', function () {
+    return view('pages.konfigurasi.components.index');
+});
 
 
 
@@ -44,4 +49,5 @@ Route::resource('/siswa', SiswaController::class);
 
 Route::view('/pages/projek', "pages.projek.index");
 Route::view('/pages/dashboard', "pages.dashboard.index");
+
 

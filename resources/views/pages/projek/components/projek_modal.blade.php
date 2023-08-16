@@ -80,11 +80,11 @@
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Asal jurusan</label>
-                              @foreach ( )
+
                               <select name="id_jurusan">
                                 <option value="">jurusan/option>
                               </select>
-                              @endforeach
+                              
                             </div>
                           </div>
                         </div>
