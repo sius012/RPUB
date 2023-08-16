@@ -8,12 +8,22 @@ class JurusanListView{
 
 
 load(){
+    if(this.page_setup!=undefined){
+        this.page_setup.componentList.forEach(element=>{
+            if(element.isLayout == undefined){
+                element.container.hide()
+            }
+        })
+    }
+    this.container.show
     this.container.find(".row-jurusan").html("")
     this.jurusanList.forEach(element => {
         var jurusanCard = new JurusanCard(element);
         this.container.find(".row-jurusan").append(jurusanCard.load())
     });
     }
+
+
 
 globalEventListener(){
     var ctx = this;
