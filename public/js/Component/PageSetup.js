@@ -1,4 +1,4 @@
-class PagesSetup{
+class PageSetup{
     constructor(){
         this.componentList = [];
     }
@@ -6,6 +6,7 @@ class PagesSetup{
     init(){
         this.componentList.forEach(element=>{
             element.page_setup = this;
+            element.globalEventListener()
         })
     }
 

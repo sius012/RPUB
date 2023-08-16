@@ -1,5 +1,5 @@
              <!-- Modal Untuk Tambah Projek -->
-                <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="projek-modal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -92,7 +92,7 @@
                           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                           </button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-primary" id="clear-jurusan">Save changes</button>
                         </div>
                       </div>
                     </div>
