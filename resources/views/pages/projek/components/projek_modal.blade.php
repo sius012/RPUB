@@ -15,31 +15,31 @@
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Nama Projek</label>
-                              <input type="text" id="nameBasic" class="form-control" placeholder="Masukkan Nama Projek" />
+                              <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Projek" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Tanggal Awal</label>
-                              <input type="date" id="nameBasic" class="form-control" placeholder="Masukkan Tanggal" />
+                              <input type="date" name="tanggal_awal" class="form-control" placeholder="Masukkan Tanggal" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Tanggal Akhir</label>
-                              <input type="date" id="nameBasic" class="form-control" placeholder="Masukkan Tanggal" />
+                              <input type="date" name="tanggal_akhir" class="form-control" placeholder="Masukkan Tanggal" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Nama Penanggung Jawab</label>
-                              <input type="text" id="nameBasic" class="form-control" placeholder="Masukkan Nama Penanggung Jawab" />
+                              <input type="text" name="id_penanggung_jawab" class="form-control" placeholder="Masukkan Nama Penanggung Jawab" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Jenis Projek</label>
-                              <select>
+                              <select name="jenis_projek">
                                 <option value="">kesulitan ss</option>
                                 <option>kesulitan a</option>
                                 <option>kesulitan b</option>
@@ -50,19 +50,19 @@
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Klien</label>
-                              <input type="text" id="nameBasic" class="form-control" placeholder="Masukkan Klien" />
+                              <input type="text" name="klien" class="form-control" placeholder="Masukkan Klien" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Deskripsi</label>
-                              <input type="text" id="nameBasic" class="form-control" placeholder="Masukkan deskripsi projek" />
+                              <input type="text" name="deskripsi" class="form-control" placeholder="Masukkan deskripsi projek" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Status</label>
-                              <select>
+                              <select name="status">
                                 <option value="">Belum Selesai/option>
                                 <option value="">Sedang Dikerjakan</option>
                                 <option value="">Selesai</option>
@@ -71,18 +71,18 @@
                               </select>
                             </div>
                           </div>
-                          <div class="row"> 
+                          <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Nama Pembuat</label>
-                              <input type="text" id="nameBasic" class="form-control" placeholder="Masukkan nama pembuat" />
+                              <input type="text" name="id_pembuat" class="form-control" placeholder="Masukkan nama pembuat" />
                             </div>
                           </div>
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Asal jurusan</label>
                               @foreach ( )
-                              <select>
-                                <option value="">Belum Selesai/option>
+                              <select name="id_jurusan">
+                                <option value="">jurusan/option>
                               </select>
                               @endforeach
                             </div>

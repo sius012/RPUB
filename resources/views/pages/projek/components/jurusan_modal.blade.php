@@ -15,13 +15,13 @@
                                 <div class="row">
                                   <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Jurusan</label>
-                                    <input type="text" id="nameBasic" class="form-control" placeholder="Masukkan Jurusan" />
+                                    <input type="text" name="jurusan"  class="form-control" placeholder="Masukkan Jurusan" />
                                   </div>
                                 </div>
                                 <div class="row g-2">
                                   <div class="col mb-0">
                                     <label for="emailBasic" class="form-label">Keterangan</label>
-                                    <input type="text" id="emailBasic" class="form-control" placeholder="Masukkan Keterangan"/>
+                                    <input type="text" name="keterangan" class="form-control" placeholder="Masukkan Keterangan"/>
                                   </div>
                                 </div>
                               </div>
