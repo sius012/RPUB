@@ -3,8 +3,10 @@
 use App\Http\Controllers\Angkatan\AngkatanController;
 use App\Http\Controllers\Jenis\JenisController;
 use App\Http\Controllers\Jurusan\JurusanController;
+use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Penugasan\PenugasanController;
 use App\Http\Controllers\Projek\ProjekController;
+use App\Http\Controllers\Register\RegisterController;
 use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\Tugas\TugasController;
 use App\Http\Controllers\Versi\VersiController;
@@ -26,7 +28,7 @@ Route::get('/', function () {
 });
 Route::get('/index', function () {
     return view('layout.layout');
-});
+})->middleware('auth');
 
 Route::get('/konfigurasiangkatan', function () {
     return view('pages.konfigurasi.components.konfigurasi_jenis_view');
@@ -35,8 +37,12 @@ Route::get('/card', function () {
     return view('pages.konfigurasi.components.index');
 });
 
+Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login',[LoginController::class, 'authenticate']);
+Route::post('/logout',[LoginController::class, 'logout']);
 
-
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::resource('/projek', ProjekController::class);
 Route::resource('/versi', VersiController::class);
