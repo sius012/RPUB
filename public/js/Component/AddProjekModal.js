@@ -9,7 +9,7 @@ class ProjekModal{
     globalEventListener(){
         var ctx = this;
         this.container.find("#clear-jurusan").click(function(){
-            var jLV = ctx.page_setup.getComponent("JurusanListView").container
+            var jLV = ctx.page_setup.getComponent("JurusanListView").container  
         })
     }
 }
