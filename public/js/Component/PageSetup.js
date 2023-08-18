@@ -6,7 +6,10 @@ class PageSetup{
     init(){
         this.componentList.forEach(element=>{
             element.page_setup = this;
-            element.globalEventListener()
+            if(typeof element.globalEventListener == "function"){
+                element.globalEventListener()
+            }
+            
         })
     }
 
