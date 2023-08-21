@@ -1,14 +1,14 @@
-class JurusanModal{
+class AngkatanModal{
     constructor(container){
         this.container;
         this.modal = new bootstrap.Modal(container);
         this.ProjekData;
-        this.jurusan;
+        this.angkatan;
         this.mode = "kirim";
     }
 
     load(id){
-        this.jurusan = jurusan.find(id);
+        this.angkatan = Angkatan.find(id);
         this.mode = "edit";
         this.container.find("form").find("button[type=submit]").text("Tambah Perbarui")
         this.modal.show();
@@ -17,30 +17,32 @@ class JurusanModal{
 
 
     reset(){
-        this.jurusan = jurusan.find(id);
+        this.angkatan = Angkatan.find(id);
         this.mode = "edit";
-        this.container.find("form").find("button[type=submit]").text("Tambah jurusan")
-        this.getElement("jurusan").val("");
+        this.container.find("form").find("button[type=submit]").text("Tambah angkatan")
+        this.getElement("id_angkatan").val("");
+        this.getElement("dari").val("");
+        this.getElement("sampai").val("");
         this.getElement("keterangan").val("");
     }
 
 
 
     parseFromElement(){
-        this.jurusan.jurusan = this.getElement("jurusan")
-        this.jurusan.keterangan = this.getElement("keterangan")
+        this.angkatan.id_angkatan = this.getElement("angkatan")
+        this.angkatan.keterangan = this.getElement("keterangan")
     }
 
     globalEventListener(){
         var ctx = this
 
-        //tombol tambah jurusan ditekan
+        //tombol tambah angkatan ditekan
         this.container.find("form").submit(function(e){
             e.preventDefault()
             switch (ctx.mode){
                 case "kirim":
                     this.parseFromElement();
-                    this.jurusan.simpan();
+                    this.angkatan.simpan();
                     break;
 
                 default:
