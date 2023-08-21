@@ -22,8 +22,8 @@ class CreateTugasTable extends Migration
             $table->bigInteger("id_parent");
             $table->date("tanggal_awal");
             $table->date("tanggal_akhir");
-            $table->string("tugas");
-            $table->bigInteger("id_kategori");
+            $table->enum('status',['Belum Selesai','Siap Dikerjakan','Dalam Pengerjaan','Revisi','Ditunda','Ditinjau','Selesai']);
+            $table->bigInteger("id_jenis");
             $table->timestamps();
         });
     }

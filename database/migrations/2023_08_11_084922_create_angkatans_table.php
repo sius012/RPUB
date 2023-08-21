@@ -17,6 +17,8 @@ class CreateAngkatansTable extends Migration
             $table->id();
             $table->bigInteger("id_angkatan");
             $table->text("keterangan");
+            $table->date("dari");
+            $table->date("sampai");
             $table->timestamps();
         });
     }
