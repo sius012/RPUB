@@ -56,4 +56,24 @@ class Projek {
         })
         return projek;
     }
+
+    static byJurusan(){
+        var projek = [];
+        $.ajax({
+            url: "/jurusan",
+            type: "GET",
+            data: {
+                id_jurusan:id
+            },
+            async:false,
+            success:function(data){
+                data.forEach(element => {
+                    projek.push(Projek.parse(element))
+                    
+                });
+            }
+        })
+        console.log(projek);
+        return projek;
+    }
 }
