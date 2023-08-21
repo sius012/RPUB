@@ -26,73 +26,33 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="informasiProjek" role="tabpanel">
-                        <table id="detail_projek" class="display"
-                            style="margin-left: 5em; width:80%; margin-top: 20px;">
 
-                            <tr>
-                                <td>Kode Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Aksi</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Gambar</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Jumlad Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Deskripsi</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Nama Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Jenis Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Kadaluarsa</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Satuan</td>
-                                <td></td>
-                            </tr>
-
-
-                        </table>
                     </div>
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
-                        <p>
-                            Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-                            cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice
-                            cream
-                            cheesecake fruitcake.
-                        </p>
-                        <p class="mb-0">
-                            Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-                            cotton candy liquorice caramels.
-                        </p>
+                    <table id="table" class="display"
+                                                style="margin-left: 5em; width:80%; margin-top: 20px;">
+
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th></th>
+                                                    <th>Nama</th>
+                                                    <th>Status</th>
+                                                    <th>Dari</th>
+                                                    <th>Sampai</th>
+                                                    <th>Partisipan</th>
+                                                    <th>Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+
+                                            </table>
                     </div>
+
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
-                        <p>
-                            Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
-                            cupcake gummi bears cake chocolate.
-                        </p>
-                        <p class="mb-0">
-                            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake.
-                            Sweet
-                            roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding
-                            jelly
-                            jelly-o tart brownie jelly.
-                        </p>
+
                     </div>
                 </div>
             </div>
