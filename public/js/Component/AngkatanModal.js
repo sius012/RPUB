@@ -10,7 +10,7 @@ class AngkatanModal{
     load(id){
         this.angkatan = Angkatan.find(id);
         this.mode = "edit";
-        this.container.find("form").find("button[type=submit]").text("Tambah Perbarui")
+        this.container.find("form").find("button[type=submit]").text(" Perbarui")
         this.modal.show();
     }
 
@@ -30,7 +30,10 @@ class AngkatanModal{
 
     parseFromElement(){
         this.angkatan.id_angkatan = this.getElement("angkatan")
+        this.angkatan.dari = this.getElement("dari")
+        this.angkatan.sampai = this.getElement("sampai")
         this.angkatan.keterangan = this.getElement("keterangan")
+        return angkatan;
     }
 
     globalEventListener(){
