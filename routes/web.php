@@ -28,7 +28,9 @@ Route::get('/', function () {
 });
 Route::get('/index', function () {
     return view('layout.layout');
-})->middleware('auth');
+})
+// ->middleware('auth')
+;
 
 Route::get('/konfigurasiangkatan', function () {
     return view('pages.konfigurasi.components.konfigurasi_jenis_view');
@@ -37,11 +39,15 @@ Route::get('/card', function () {
     return view('pages.konfigurasi.components.index');
 });
 
-Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login',[LoginController::class, 'index'])->name('login')
+// ->middleware('guest')
+;
 Route::post('/login',[LoginController::class, 'authenticate']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::get('/register', [RegisterController::class, 'index'])
+// ->middleware('guest')
+;
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::resource('/projek', ProjekController::class);
