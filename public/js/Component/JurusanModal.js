@@ -50,6 +50,6 @@ class JurusanModal{
     }
 
     getElement(name, type = "input"){
-        return this.container.find(`$(type)[name=$(name)]`)
+        return this.container.find(`${type}[name=${name}]`)
     }
 }

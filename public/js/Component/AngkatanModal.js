@@ -54,7 +54,7 @@ class AngkatanModal{
         })
     }
 
-    getElement(name, type = "input"){
-        return this.container.find(`$(type)[name=$(name)]`)
+    getElement(name,{type}= "input"){
+        return this.container.find(`${type}[name=${name}]`)
     }
 }

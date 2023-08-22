@@ -53,10 +53,10 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                        <a class="dropdown-item" href=""><i
                                                 class="bx bx-edit-alt me-1"></i>
                                             Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
+                                        <a class="dropdown-item" href=""><i class="bx bx-trash me-1"></i>
                                             Delete</a>
                                     </div>
                                 </div>
@@ -87,10 +87,10 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                        <a class="dropdown-item" href=""><i
                                                 class="bx bx-edit-alt me-1"></i>
                                             Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
+                                        <a class="dropdown-item" href=""><i class="bx bx-trash me-1"></i>
                                             Delete</a>
                                     </div>
                                 </div>
@@ -123,9 +123,9 @@
                                     <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu ">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+                                    <a class="dropdown-item" href=""><i class="bx bx-edit-alt me-1"></i>
                                         Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
+                                    <a class="dropdown-item" href=""><i class="bx bx-trash me-1"></i>
                                         Delete</a>
                                 </div>
                             </div>
@@ -143,22 +143,29 @@
 
         <!-- Card Pengguna-->
         <div class="row">
-            <div class="row row-cols-1 row-cols-md-3 g-4" id="projek-list-view">
-                <a href="">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Nama Projek</h5>
-                                <p class="card-text">Deskripsi Projek</p>
-                                <p class="card-text">
-                                    <small class="text-muted">Jenis Projek</small>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Nama Pengguna</h5>
+                    <p class="card-text"></p>
+                    <div class="btn-group">
+                        <button
+                          type="button"
+                          class="btn btn-primary dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          hak akses
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="">a hak akses</a> </li>
+                          <li><a class="dropdown-item" href="">b hak akses</a> </li>
+                          <li><a class="dropdown-item" href="">c hak akses</a> </li>
+                        </ul>
+                      </div>
+                  </div>
+                </div>
+              </div>
             <h1>Card pengguna </h1>
         </div>
     </div>

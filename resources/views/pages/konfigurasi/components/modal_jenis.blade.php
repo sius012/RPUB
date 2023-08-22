@@ -21,22 +21,16 @@
         <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Jurusan</label>
-              <select name="jurusan">
-                <option value="">jurusan ss</option>
-                <option>jurusan a</option>
-                <option>jurusan b</option>
-                <option>jurusan c</option>
+              <select name="jurusan" class="form-select" aria-label="Default select example">
+                <option value=""></option>
               </select>
             </div>
           </div>
         <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Tipe</label>
-              <select name="jenis_projek">
-                <option value="">folder,tugas ss</option>
-                <option>folder,tugas a</option>
-                <option>folder,tugas b</option>
-                <option>folder,tugas c</option>
+              <select name="jenis_projek" class="form-select" aria-label="Default select example">
+                <option value=""></option>
               </select>
             </div>
           </div>

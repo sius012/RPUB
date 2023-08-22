@@ -39,11 +39,8 @@
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Jenis Projek</label>
-                              <select name="jenis_projek">
-                                <option value="">kesulitan ss</option>
-                                <option>kesulitan a</option>
-                                <option>kesulitan b</option>
-                                <option>kesulitan c</option>
+                              <select name="jenis_projek" class="form-select" aria-label="Default select example">
+                                <option value=""></option>
                               </select>
                             </div>
                           </div>
@@ -62,12 +59,8 @@
                           <div class="row">
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Status</label>
-                              <select name="status">
-                                <option value="">Belum Selesai/option>
-                                <option value="">Sedang Dikerjakan</option>
-                                <option value="">Selesai</option>
-                                <option value="">Revisi</option>
-                                <option value="">Ditunda</option>
+                              <select name="status" class="form-select" aria-label="Default select example">
+                                <option value=""></option>
                               </select>
                             </div>
                           </div>
@@ -81,10 +74,10 @@
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Asal jurusan</label>
 
-                              <select name="id_jurusan">
+                              <select name="id_jurusan" class="form-select" aria-label="Default select example">
                                 <option value="">jurusan/option>
                               </select>
-                              
+
                             </div>
                           </div>
                         </div>

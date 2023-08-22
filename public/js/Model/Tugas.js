@@ -13,6 +13,9 @@ class Tugas {
         this.updated_at;
         this.children = [];
         this.indent_level;
+        this.tipe;
+        this.tugasCount;
+        this.tugasStatusArr=[];
     }
 
     static byProjek(id){ //mengambil data tugas-tugas dar id projek
@@ -35,7 +38,7 @@ class Tugas {
     static parse(json){ //mengubah data json menjadi objek tugas
         var tugas = new Tugas
 
-        tugas.id_tugas=json["id_tugas"]
+        tugas.id_tugas=json["id"]
         tugas.nama=json["nama"]
         tugas.keterangan=json["keterangan"] 
         tugas.id_projek=json["id_projek"]
@@ -46,6 +49,22 @@ class Tugas {
         tugas.id_kategori=json["id_kategori"]
         tugas.created_at =json["created_at"]
         tugas.updated_at =json["updated_at"]
+        tugas.tugasCount =json["tugasCount"]
+        if(json["tugasStatusArr"]!=undefined){
+            if(Array.isArray(json['tugasStatusArr'])){
+                for(var i in json ["tugasStatusArr"]){
+                    tugas.tugasStatusArr.push([i, json['tugasStatusArr'][i]]);
+                }
+            }else{        
+                
+                tugas.tugasStatusArr = json["tugasStatusArr"];
+        }
+
+    }else{
+
+    }
+
+
         return tugas;
     }
     static rekursifParse(json,indentLevel){ //mirip seperti yang diatas,namun bedanya ini untuk membaca children
@@ -57,6 +76,32 @@ class Tugas {
         return tugas
 
     }
+    toJson(){
+        var json = {};
+        json["id_parent"] = this.id_parent
+        json["id_projek"] = this.id_projek
+        json["nama"] = this.nama
+        json["keterangan"] = this.keterangan
+        json["tanggal_awal"] = this.tanggal_awal 
+        json["tangggal_akhir"] = this.tanggal_akhir
+        json["id_kategori"] = this.id_kategori
 
+        return json;
+    }
+    simpan(){
+        var ctx = this;
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content")
+            },
+            url: "/tugas",
+            type: "post",
+            data: ctx.toJson(),
+            success: function(data){
+                
+            },error:function(err){
+             alert(err.responseText)
+            }
+        })
+    }
 }
-       

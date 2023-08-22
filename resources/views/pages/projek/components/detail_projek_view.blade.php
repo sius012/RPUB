@@ -7,7 +7,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#informasiProjek" aria-controls="navs-top-home" aria-selected="true">
+                            data-bs-target="#informasi-projek" aria-controls="navs-top-home" aria-selected="true">
                             Informasi Projek
                         </button>
                     </li>
@@ -25,74 +25,45 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="informasiProjek" role="tabpanel">
-                        <table id="detail_projek" class="display"
-                            style="margin-left: 5em; width:80%; margin-top: 20px;">
-
-                            <tr>
-                                <td>Kode Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Aksi</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Gambar</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Jumlad Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Deskripsi</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Nama Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Jenis Obat</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Kadaluarsa</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Satuan</td>
-                                <td></td>
-                            </tr>
-
-
-                        </table>
+                    <div class="tab-pane fade show active" id="informasi-projek" role="tabpanel">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Nama Projek</label>
+                                    <input type="text" name="nama" class="nama-projek form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Tanggal Awal</label>
+                                    <input type="text" name="tanggal-awal class="tanggal-awal form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Tanggal Akhir</label>
+                                    <input type="text" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Penanggung Jawab</label>
+                                    <input type="text" name="id_penanggung_jawab" class="penanggung-jawab form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Jenis Projek</label>
+                                    <input type="text" name="jenis-projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Klien</label>
+                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
-                        <p>
-                            Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-                            cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice
-                            cream
-                            cheesecake fruitcake.
-                        </p>
-                        <p class="mb-0">
-                            Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-                            cotton candy liquorice caramels.
-                        </p>
+
                     </div>
+
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
-                        <p>
-                            Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
-                            cupcake gummi bears cake chocolate.
-                        </p>
-                        <p class="mb-0">
-                            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake.
-                            Sweet
-                            roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding
-                            jelly
-                            jelly-o tart brownie jelly.
-                        </p>
+
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 class Jenis {
     constructor(){
         this.nama;
-        this.kategori;
+        this.tipe;
         this.id_jurusan;
         this.icon;
     }
@@ -13,18 +13,35 @@ class Jenis {
             type: "GET",
             async:false,
             success:function(data){
-                user=Jenis.parse(data)
+                jenis=Jenis.parse(data)
             }
-        })
+        });
         return jenis
+    }
+
+    static byJurusan(id){
+        var jenis = [];
+        $.ajax({
+            url: "/jenis",
+            type: "GET",
+            async: false,
+            data: {
+                id_jurusan: id,
+            },
+            success: function (data){
+                jenis = data.map(function (e){
+                    return Jenis.parse(e);
+                });
+            }
+        });
     }
     static parse(json){
         var jenis = new Jenis
-
-        user.nama=json["nama"]
-        user.kategori=json["kategori"]
-        user.id_jurusan=json["id_jurusan"]
-        user.icon=json["icon"]
+        jenis.id = json["id"];
+        jenis.nama=json["nama"];
+        jenis.kategori=json["kategori"];
+        jenis.id_jurusan=json["id_jurusan"];
+        jenis.icon=json["icon"];
         return jenis;
     }
     static all(){
@@ -34,7 +51,7 @@ class Jenis {
             type: "GET",
             async:false,
             success:function(data){
-                user=data.map(function(e){
+                jenis=data.map(function(e){
                     return Jenis.parse(e)
                     
                 })

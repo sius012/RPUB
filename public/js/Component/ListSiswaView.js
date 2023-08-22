@@ -1,9 +1,9 @@
-class JurusanListView{
+class ListSiswaView{
     constructor(container){
         this.container = container;
         this.jurusanList = [];
         this.page_setup;
-        this.nama_component = "JurusanListView";
+        this.nama_component = "ListSiswaView";
     }
 
 
@@ -31,13 +31,6 @@ globalEventListener(){
     this.container.find("#tambah-jurusan").click(function(){
         var modal = ctx.page_setup.getComponent("ProjekModal").modal;
         modal.show()
-    });
-
-    this.container.delegate(".jurusan-card", "click", function () {
-        //New Update
-        var projekListView = ctx.page_setup.getComponent("ProjekListView");
-        var id = $(this).data("id");
-        projekListView.load(id);
-     });
-   }
+    })
+}
 }
