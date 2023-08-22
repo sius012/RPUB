@@ -1,5 +1,5 @@
 
-<div class="content-wrapper">
+<div class="content-wrapper" id="projek-list-view">
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
@@ -10,14 +10,14 @@
 
 
                   {{--  button tambah projek  --}}
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                        <button type="button" class="btn btn-primary tambah-projek" data-bs-toggle="modal" data-bs-target="#basicModal">
                           Tambah Projek
                         </button>
 
 
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
-                  <div class="row row-cols-1 row-cols-md-3 g-4" id="projek-list-view">
+                  <div class="row row-view" >
                     <a href="">
                         <div class="col">
                         <div class="card h-100">

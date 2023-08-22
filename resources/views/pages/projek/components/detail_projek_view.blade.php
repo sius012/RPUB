@@ -1,5 +1,6 @@
 {{--  ambil dari uitabspills  --}}
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view">
+
     <div class="row">
         <div class="col-xl-6">
             <h6 class="text-muted">Basic</h6>
@@ -34,15 +35,15 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Awal</label>
-                                    <input type="text" name="tanggal-awal class="tanggal-awal form-control" placeholder="tambahkan nama projek" />
+                                    <input type="text" name="tanggal-awal class="tanggal-awal form-control" placeholder="" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Akhir</label>
-                                    <input type="text" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="tambahkan nama projek" />
+                                    <input type="text" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Penanggung Jawab</label>
-                                    <input type="text" name="id_penanggung_jawab" class="penanggung-jawab form-control" placeholder="tambahkan nama projek" />
+                                    <input type="text" name="id_penanggung_jawab" class="penanggung-jawab form-control" placeholder="" />
                                 </div>
                             </div>
                             <div class="col">
@@ -52,7 +53,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Klien</label>
-                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama projek" />
+                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama klien" />
                                 </div>
                             </div>
                         </div>

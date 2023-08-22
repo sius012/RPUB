@@ -1,5 +1,6 @@
              <!-- Modal Untuk Tambah Projek -->
                 <div class="modal fade" id="projek-modal" tabindex="-1" aria-hidden="true">
+                    <form action="{{ route('') }}" method="">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -32,8 +33,10 @@
                           </div>
                           <div class="row">
                             <div class="col mb-3">
-                              <label for="nameBasic" class="form-label">Nama Penanggung Jawab</label>
-                              <input type="text" name="id_penanggung_jawab" class="form-control" placeholder="Masukkan Nama Penanggung Jawab" />
+                              <label for="nameBasic" class="form-label">Penanggung Jawab</label>
+                              <select name="id_penajnggung_jawab" class="form-select" aria-label="Default select example">
+                                <option value=""></option>
+                              </select>
                             </div>
                           </div>
                           <div class="row">
@@ -64,33 +67,20 @@
                               </select>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col mb-3">
-                              <label for="nameBasic" class="form-label">Nama Pembuat</label>
-                              <input type="text" name="id_pembuat" class="form-control" placeholder="Masukkan nama pembuat" />
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col mb-3">
-                              <label for="nameBasic" class="form-label">Asal jurusan</label>
-
-                              <select name="id_jurusan" class="form-select" aria-label="Default select example">
-                                <option value="">jurusan/option>
-                              </select>
-
-                            </div>
+                          <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">id_jurusan</label>
+                            <input type="hidden" name="id_jurusan" class="form-control" placeholder="tambahkan id jurusan" />
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                           </button>
-                          <button type="button" class="btn btn-primary" id="clear-jurusan">Save changes</button>
+                          <button type="submit" class="btn btn-primary" id="">Buat Projek</button>
                         </div>
                       </div>
                     </div>
+                </form>
                   </div>
-                </div>
-              </div>
                 <!-- Akhir Modal Untuk Tambah Jurusan -->
 
