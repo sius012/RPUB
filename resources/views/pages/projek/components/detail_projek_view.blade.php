@@ -7,7 +7,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#informasiProjek" aria-controls="navs-top-home" aria-selected="true">
+                            data-bs-target="#informasi-projek" aria-controls="navs-top-home" aria-selected="true">
                             Informasi Projek
                         </button>
                     </li>
@@ -25,30 +25,41 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="informasiProjek" role="tabpanel">
-
+                    <div class="tab-pane fade show active" id="informasi-projek" role="tabpanel">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Nama Projek</label>
+                                    <input type="text" name="nama" class="nama-projek form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Tanggal Awal</label>
+                                    <input type="text" name="tanggal-awal class="tanggal-awal form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Tanggal Akhir</label>
+                                    <input type="text" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Penanggung Jawab</label>
+                                    <input type="text" name="id_penanggung_jawab" class="penanggung-jawab form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Jenis Projek</label>
+                                    <input type="text" name="jenis-projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Klien</label>
+                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama projek" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
-                    <table id="table" class="display"
-                                                style="margin-left: 5em; width:80%; margin-top: 20px;">
 
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th></th>
-                                                    <th>Nama</th>
-                                                    <th>Status</th>
-                                                    <th>Dari</th>
-                                                    <th>Sampai</th>
-                                                    <th>Partisipan</th>
-                                                    <th>Keterangan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            </tbody>
-
-                                            </table>
                     </div>
 
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
