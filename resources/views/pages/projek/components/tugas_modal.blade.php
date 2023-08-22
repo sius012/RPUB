@@ -57,7 +57,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Jenis</label>
-              <select name="id_jenis">
+              <select name="id_jenis" class="form-select" aria-label="Default select example">
                 <option value=""></option>
               </select>
             </div>
@@ -66,7 +66,7 @@
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Status</label>
 
-              <select name="status">
+              <select name="status" class="form-select" aria-label="Default select example">
                 <option value="">/option>
               </select>
 

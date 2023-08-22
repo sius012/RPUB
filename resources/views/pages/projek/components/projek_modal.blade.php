@@ -41,14 +41,6 @@
                               <label for="nameBasic" class="form-label">Jenis Projek</label>
                               <select name="jenis_projek" class="form-select" aria-label="Default select example">
                                 <option value=""></option>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-                                <option value=""></option>
-                                <option value=""></option>
-=======
->>>>>>> 56e653bc9e3cf242174223f5bd67b75844818200
->>>>>>> Stashed changes
                               </select>
                             </div>
                           </div>
@@ -69,14 +61,6 @@
                               <label for="nameBasic" class="form-label">Status</label>
                               <select name="status" class="form-select" aria-label="Default select example">
                                 <option value=""></option>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-                                <option value=""></option>
-                                <option value=""></option>
-=======
->>>>>>> 56e653bc9e3cf242174223f5bd67b75844818200
->>>>>>> Stashed changes
                               </select>
                             </div>
                           </div>
@@ -91,9 +75,7 @@
                               <label for="nameBasic" class="form-label">Asal jurusan</label>
 
                               <select name="id_jurusan" class="form-select" aria-label="Default select example">
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
+                                <option value="">jurusan/option>
                               </select>
 
                             </div>
