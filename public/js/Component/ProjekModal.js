@@ -7,21 +7,29 @@ class ProjekModal{
         this.nama_component = "ProjekModal";
     }
 
+    init(id_jurusan){
+        this.getElement("id_jurusan").val(id_jurusan);
+        var optionJenisStr = "";
+        var jenis = Jenis.byJurusan(id_jurusan);
+        jenis.forEach(function (e) {
+            optionJenisStr += `<option value='${e.id}'>${e.nama}</option>`
+            
+        });
+        //this.getElement("id_jenis", "select").html(optionJenisStr);
+    }
+
     parse(){
         var projek = new Projek();
-        if(id_projek =null){
-          this.ProjeekData = Projek.find(id_projek);
-        }
-        projek.nama = this.getElement("nama");
-        projek.tanggal_awal = this.getElement("tanggal_awal");
-        projek.tanggal_akhir = this.getElement("tanggal_akhir");
-        projek.id_penanggung_jawab = this.getElement("id_penanggung_jawab");
-        projek.jenis_projek = this.getElement("jenis_projek");
-        projek.klien = this.getElement("klien");
-        projek.deskripsi = this.getElement("deskripsi");
-        projek.status = this.getElement("status");
-        projek.id_pembuat = this.getElement("id_pembuat");
-        projek.id_jurusan = this.getElement("id_jurusan");
+        projek.nama = this.getElement("nama").val();
+        projek.tanggal_awal = this.getElement("tanggal_awal").val();
+        projek.tanggal_akhir = this.getElement("tanggal_akhir").val();
+         projek.id_penanggung_jawab =1; //this.getElement("id_penanggung_jawab").val();
+        projek.jenis_projek = this.getElement("jenis_projek").val();
+        projek.klien = this.getElement("klien").val();
+        projek.deskripsi = this.getElement("deskripsi").val();
+        projek.status = this.getElement("status").val();
+        projek.id_pembuat = this.getElement("id_pembuat").val();
+        projek.id_jurusan = this.getElement("id_jurusan").val();
         this.ProjekData = projek;
 
     }
@@ -65,7 +73,13 @@ class ProjekModal{
         var ctx = this;
         this.container.find("#clear-Jurusan").click(function(){
             var jLV = ctx.page_setup.getComponent("JurusanListView").container
-        })
+        });
+
+        this.container.find("form").submit(function(e){
+            e.preventDefault();
+            ctx.kirim();
+            var pLV = ctx.page_setup.getComponent("ProjekListView");
+        });
     }
 
     getElement(nam, type = "input"){
