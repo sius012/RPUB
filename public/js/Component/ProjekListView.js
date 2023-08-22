@@ -21,7 +21,28 @@ load(id_jurusan = null){
     this.container.find(".row-view").html("")
     this.projekList.forEach(element =>{
         var projekCard =new ProjekCard(element);
-        this.container.find("row-view").append(projekCard.load())
+        this.container.find("row-view").append(projekCard.load());
     });
-    }
+   
+    //assign modal id_jurusan
+    var modal = this.page_setup.getComponent("ProjekModal");
+    modal.init(this.id_jurusan);
+
 }
+
+globalEventListener() {
+    //GlobalEventListener
+    var ctx = this;
+    this.container.find(".tambah-projek").click(function () {
+        var modal = ctx.page_setup.getComponent("ProjekModal");
+        modal.modal.show();
+    });
+
+    //Updatean
+    this.container.delegate(".projek-card", "click", function () {
+        var id_projek = $(this).data("id");
+        var dPV = ctx.page_setup.getComponent("DetailProjekView");
+        dPV.load(id_projek);
+       });
+    }
+  }
