@@ -40,7 +40,10 @@ class ProjekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $projek = $request->input();
+        $projek["id_pembuat"] = 1;
+        $projek = Projek::create($projek);
+        return response()->json($projek);
     }
 
     /**

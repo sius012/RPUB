@@ -13,9 +13,14 @@ class JenisController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        return response()->json(Jenis::all());
+        $jenis = new Jenis;
+        if($req->has("id_jurusan")){
+            $jenis = $jenis->where("id_jurusan", $req->id_jurusan);
+        }
+        return response()->json($jenis->get());
+        // return response()->json(Jenis::all());
     }
 
     /**
