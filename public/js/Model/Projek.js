@@ -76,4 +76,37 @@ class Projek {
         console.log(projek);
         return projek;
     }
+
+    toJson(){
+        var json = {};
+        json["nama"] = this.nama;
+        json["tanggal_awal"] = this.tanggal_awal;
+        json["tanggal_akhir"] = this.tanggal_akhir;
+        json["id_penanggung_jawab"] = this.id_penanggung_jawab;
+        json["jenis_projek"] = this.jenis_projek;
+        json["klien"] = this.klien;
+        json["deskripsi"] = this.deskripsi
+        json["status"] = this.status;
+        json["id_jurusan"] = this.id_jurusan;
+        return json;
+
+    }
+
+    simpan(){
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN":$("meta[name=csrd-token]").attr("context"),
+            },
+            url: "/projek",
+            type: "post",
+            data:this.toJson(),
+            async: false,
+            success: function (response){
+                console.log(response);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
 }
