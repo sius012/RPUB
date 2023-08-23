@@ -6,9 +6,10 @@ class ProjekCard{
 
 
 load() {
-    this.elementStr = `<div class="row row-cols-1 row-cols-md-3 g-4">
-        <a href="">
-        <div class="col">
+    this.elementStr = `
+        
+        <div class="col-md-3 mb-3">
+        <a href="#" class='projek-card' data-id="${this.projek}">
         <div class="card h-100">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
@@ -19,7 +20,8 @@ load() {
             </p>
       </div>
     </div>
-  </div></a>
+    </a>
+  </div>
 
   </div>`;
     return this.elementStr;
