@@ -16,7 +16,7 @@
                                 <div class="row">
                                   <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Jurusan</label>
-                                    <input type="number" name="jurusan"  class="form-control" placeholder="Masukkan Jurusan" />
+                                    <input type="text" name="jurusan"  class="form-control" placeholder="Masukkan Jurusan" />
                                   </div>
                                 </div>
                                 <div class="row g-2">
