@@ -1,6 +1,6 @@
              <!-- Modal Untuk Tambah Projek -->
                 <div class="modal fade" id="projek-modal" tabindex="-1" aria-hidden="true">
-                    <form action="{{ route('') }}" method="">
+                    <form action="" method="">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">

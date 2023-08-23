@@ -33,10 +33,10 @@ Route::get('/index', function () {
 ;
 
 Route::get('/konfigurasiangkatan', function () {
-    return view('pages.konfigurasi.components.konfigurasi_jenis_view');
+    return view('pages.konfigurasi.components.konfigurasi_angkatan_view');
 });
 Route::get('/card', function () {
-    return view('pages.projek.components.tugas_detail_view');
+    return view('pages.konfigurasi.components.index');
 });
 
 Route::get('/login',[LoginController::class, 'index'])->name('login')

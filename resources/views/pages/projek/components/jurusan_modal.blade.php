@@ -1,5 +1,6 @@
                 <!-- Modal Untuk Tambah Jurusan -->
-                        <div class="modal fade" id="" tabindex="-1" aria-hidden="true">
+                        <div class="modal fade" id="jurusan-modal" tabindex="-1" aria-hidden="true">
+                        <form action="" method="">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -21,7 +22,7 @@
                                 <div class="row g-2">
                                   <div class="col mb-0">
                                     <label for="emailBasic" class="form-label">Keterangan</label>
-                                    <input type="date" name="keterangan" class="form-control" placeholder="Masukkan Keterangan"/>
+                                    <textarea name="keterangan" class="form-control" placeholder="Masukkan Keterangan"></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -33,9 +34,8 @@
                               </div>
                             </div>
                           </div>
+                        </form>
                         </div>
-                      </div>
-                    </div>
 
                 {{--  /modal tambah jurusan  --}}
 

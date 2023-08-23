@@ -19,8 +19,8 @@
             </thead>
             <tbody class="table-border-bottom-0">
                 <tr>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                    <td>Albert Cook</td>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>angkatan</strong></td>
+                    <td>~~~~~~~</td>
                     <td>
                         <div class="dropdown">
                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -38,8 +38,8 @@
                       </td>
                 </tr>
                 <tr>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                    <td>Albert Cook</td>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>angkatan</strong></td>
+                    <td>~~~~~~~</td>
                     <td>
                         <div class="dropdown">
                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -57,8 +57,8 @@
                       </td>
                 </tr>
                 <tr>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                    <td>Albert Cook</td>
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>angkatan</strong></td>
+                    <td>~~~~~~~</td>
                     <td>
                         <div class="dropdown">
                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
