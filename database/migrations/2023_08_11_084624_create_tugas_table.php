@@ -19,7 +19,7 @@ class CreateTugasTable extends Migration
             $table->string("nama");
             $table->text("keterangan");
             $table->bigInteger("id_projek");
-            $table->bigInteger("id_parent");
+            $table->bigInteger("id_parent")->nullable();
             $table->date("tanggal_awal");
             $table->date("tanggal_akhir");
             $table->enum('status',['Belum Selesai','Siap Dikerjakan','Dalam Pengerjaan','Revisi','Ditunda','Ditinjau','Selesai']);
