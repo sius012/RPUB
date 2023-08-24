@@ -78,14 +78,14 @@ class DetailProjekView {
      barStr += "</div>";   
 
      var tugasStr =`
-     <tr data-id='$(tugas.id_tugas)">
-        <td class="no">$(index)</td>
-        <td style="padding-left: $(tugas.indent_level * 20)px">$(tugas.nama)</td>
-        <td>$(tugas.tugasCount > 0 ? barStr : "<span class='badge bg-primary'>" + tugas.status + "</span>")</td>
-        <td>$(tugas.keterangan)</td>
-        <td>$(tugas.tanggal_awal)</td>
-        <td>$(tugas.tanggal_akhir)</td>
-        <td>$(tugas.tugasCount)</td>
+     <tr data-id='${tugas.id_tugas}">
+        <td class="no">${index}</td>
+        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama}</td>
+        <td>${tugas.tugasCount > 0 ? barStr : "<span class='badge bg-primary'>" + tugas.status + "</span>"}</td>
+        <td>${tugas.keterangan}{</td>
+        <td>${tugas.tanggal_awal}</td>
+        <td>${tugas.tanggal_akhir}</td>
+        <td>${tugas.tugasCount}</td>
      </tr>
      `;
 
