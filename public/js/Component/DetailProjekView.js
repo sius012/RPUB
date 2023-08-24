@@ -8,8 +8,21 @@ class DetailProjekView {
         this.nama_component = "DetailProjekView";
     }
 
+    load(id) {
+        this.page_setup.componentList.forEach((element) => {
+            //Menyembunyikan element yang lainnya
+            if (element.isLayout == undefined && element.modal == undefined) {
+                element.container.hide();
+            }
+        });
+        this.container.show();
+
+        this.loadData(id);
+        this.loadInfoProjek();
+    }
+
     loadData(id) {
-        this.projek = projek.find(id);
+        this.projek = Projek.find(id);
         this.tugasList = Tugas.byProjek(id);
     }
 
@@ -38,8 +51,10 @@ class DetailProjekView {
         });
 
         tugasView.children("tr").each(function(i) {
-            $(this).find(".no").text(i + 1)
-        })
+            $(this)
+                .find(".no")
+                .text(i + 1)
+        });
     }
 
     #rekursifTugas(tugas, index) {
@@ -56,38 +71,40 @@ class DetailProjekView {
                 default:
                     break; 
             }
-            barStr +=`<div class="progress-bar ${color}" style=="width:${tugas.tugasStatusArr[i] / tugas.tugasCount * 100}%"></div>`
+            barStr +=`<div class="progress-bar ${color}" style=="width:${
+                (tugas.tugasStatusArr[i] / tugas.tugasCount) * 100
+            }%"></div>`;
      }
-     barStr += "</div>"   
+     barStr += "</div>";   
 
      var tugasStr =`
-     <tr data-id='$(tugas.id_tugas)">
-        <td class="no">$(index)</td>
-        <td style="padding-left: $(tugas.indent_level * 20)px">$(tugas.nama)</td>
-        <td>$(tugas.tugasCount > 0 ? barStr : "<span class='badge bg-primary'>" + tugas.status + "</span>")</td>
-        <td>$(tugas.keterangan)</td>
-        <td>$(tugas.tanggal_awal)</td>
-        <td>$(tugas.tanggal_akhir)</td>
-        <td>$(tugas.tugasCount)</td>
+     <tr data-id='${tugas.id_tugas}">
+        <td class="no">${index}</td>
+        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama}</td>
+        <td>${tugas.tugasCount > 0 ? barStr : "<span class='badge bg-primary'>" + tugas.status + "</span>"}</td>
+        <td>${tugas.keterangan}{</td>
+        <td>${tugas.tanggal_awal}</td>
+        <td>${tugas.tanggal_akhir}</td>
+        <td>${tugas.tugasCount}</td>
      </tr>
-     `
+     `;
 
      if (tugas.children.length > 0) {
-        tugas.children.forEach(element => {
-            tugasStr += this.#rekursifTugas(element, index)
+        tugas.children.forEach((element) => {
+            tugasStr += this.#rekursifTugas(element, index);
         });
      }
 
-     return tugasStr
+     return tugasStr;
 
     }
 
 globalEventListener() {
     var ctx = this;
     this.container.find("#tugas").delegate("td","click", function (e) {
-        e.preventDefault()
+        e.preventDefault();
         var ctxmenu = ctxpage_setup.getComponent("ContextMenu");
-        ctxmenu.trigger($(this),closest("tr").attr("data-id"))
-    })
+        ctxmenu.trigger($(this),closest("tr").attr("data-id"));
+    });
 }
 }
