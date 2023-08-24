@@ -74,7 +74,6 @@
                 <option value="Ditinjau">Ditinjau</option>
                 <option value="Selesai">Selesai</option>
               </select>
-
             </div>
           </div>
         </div>

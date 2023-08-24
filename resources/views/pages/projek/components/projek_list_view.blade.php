@@ -17,9 +17,9 @@
 
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
-                  <div class="row row-view" >
-                    <a href="">
-                        <div class="col">
+                  <div class="row row-jurusan">
+                    <div class="col col-md-3 pb-3">
+                        <a href="">
                         <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Nama Projek</h5>
@@ -28,8 +28,9 @@
                                 <small class="text-muted">Jenis Projek</small>
                             </p>
                       </div>
+                    </a>
                     </div>
-                  </div></a>
+                  </div>
 
                   </div>
                 {{--  -----/card projek jurusan---  --}}
