@@ -31,7 +31,7 @@
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
-    <meta name="crsf-token" content="{{ crsf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/dashboard/assets/img/favicon/favicon.ico" />
 
