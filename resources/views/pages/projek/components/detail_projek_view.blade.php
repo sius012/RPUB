@@ -1,8 +1,10 @@
 {{--  ambil dari uitabspills  --}}
+@extends('layout.layout')
+@section('main-content')
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view">
 
     <div class="row">
-        <div class="col-xl-6">
+        <div class="container-fluid">
             <h6 class="text-muted">Basic</h6>
             <div class="nav-align-top mb-4">
                 <ul class="nav nav-tabs" role="tablist">
@@ -35,7 +37,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Awal</label>
-                                    <input type="text" name="tanggal-awal class="tanggal-awal form-control" placeholder="" />
+                                    <input type="text" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Akhir</label>
@@ -60,7 +62,18 @@
                     </div>
 
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
 
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                <tr>
+
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
@@ -71,3 +84,4 @@
         </div>
     </div>
 </div>
+@endsection
