@@ -1,4 +1,6 @@
 {{--  ambil dari uitabspills  --}}
+@extends('layout.layout')
+@section('main-content')
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view">
 
     <div class="row">
@@ -35,7 +37,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Awal</label>
-                                    <input type="text" name="tanggal-awal class="tanggal-awal form-control" placeholder="" />
+                                    <input type="text" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Akhir</label>
@@ -71,3 +73,4 @@
         </div>
     </div>
 </div>
+@endsection
