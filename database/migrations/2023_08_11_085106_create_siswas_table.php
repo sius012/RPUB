@@ -17,7 +17,7 @@ class CreateSiswasTable extends Migration
             $table->id();
             $table->string("nis")->unique();
             $table->string("nama");
-            $table->enum("jk",["1","2","3"]);
+            $table->enum("jk",["Laki-laki","Perempuan"]);
             $table->bigInteger("id_angkatan");
             $table->bigInteger("id_jurusan");
             $table->enum("kelas",["1","2","3"]);

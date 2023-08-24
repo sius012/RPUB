@@ -19,12 +19,12 @@ class SiswaSeeder extends Seeder
 
         for($i = 0 ;$i < 100; $i++){
             Siswa::create([
-                'nis'=>'NIS' . $faker->unique()->numberBetween(1000,9999),
+                'nis'=>$faker->unique()->numberBetween(1000,9999),
                 'nama'=> $faker->name,
                 'jk'=> $faker->randomElement(['Laki-laki','Perempuan']),
                 'id_angkatan'=> rand(1,10),
                 'id_jurusan'=> rand(1,6),
-                'kelas' => 'Kelas' . rand(18,12) . '-' . chr(rand(65,67)),
+                'kelas' => rand(1,3),
                 'fotoprofil'=> 'default.jpg',
                 'email'=> $faker->unique()->safeEmail(),
                 'created_at' => now(),
