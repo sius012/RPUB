@@ -1,4 +1,5 @@
-
+@extends('layout.layout')
+@section('main-content')
 <div class="content-wrapper" id="jurusan-list-view">
             <!-- Content -->
 
@@ -15,9 +16,9 @@
                         </button>
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
-                  <div class="row row-view">
-                    <a href="">
-                        <div class="col">
+                  <div class="row row-jurusan">
+                        <div class="col col-md-3 pb-3">
+                            <a href="">
                         <div class="card h-100">
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
@@ -27,8 +28,8 @@
                                 <small class="text-muted">Jumlah Projek</small>
                             </p>
                       </div>
-                    </div>
-                  </div></a>
+                    </div></a>
+                  </div>
                   </div>
                 {{--  -----/card projek jurusan---  --}}
 
@@ -36,8 +37,6 @@
               </div>
             </div>
             <!-- / Content -->
-
-
-
             <div class="content-backdrop fade"></div>
           </div>
+@endsection

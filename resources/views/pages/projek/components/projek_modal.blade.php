@@ -44,7 +44,8 @@
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Jenis Projek</label>
                               <select name="jenis_projek" class="form-select" aria-label="Default select example">
-                                <option value=""></option>
+                                <option value="Projek Internal">Projek Internal</option>
+                                <option value="Projek Eksternal">Projek Eksternal</option>
                               </select>
                             </div>
                           </div>
@@ -75,7 +76,6 @@
                             </div>
                           </div>
                           <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">id_jurusan</label>
                             <input type="hidden" name="id_jurusan" class="form-control" placeholder="tambahkan id jurusan" required/>
                           </div>
                         </div>
