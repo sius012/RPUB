@@ -57,7 +57,7 @@ class Projek {
         return projek;
     }
 
-    static byJurusan(){
+    static byJurusan(id){
         var projek = [];
         $.ajax({
             url: "/projek",
