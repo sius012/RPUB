@@ -50,7 +50,14 @@ class AssigmentSiswaModal {
             ctx.loadContext(null, $(this).val());
         });
         this.container.delegate(".btn-tambah-siswa", "click", function(){
-            
+           var id = $(this).closest(".row").date("id");
+           var containersiswa = ctx.container.find(".container-siswa");
+           containersiswa.append(`
+                <input type='hidden' name='id_siswa{}' value='${id}'>
+           `);
+        });
+        this.container.find("form").submit(function (e){
+
         });
     }
 
