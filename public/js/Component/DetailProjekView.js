@@ -29,7 +29,7 @@ class DetailProjekView {
 
 
     loadInfoProjek() {
-        var infoProjek = this.container.find("#informasiprojek");
+        var infoprojek = this.container.find("#informasiprojek");
         infoprojek.find(".nama-projek").val(this.projek.nama);
         infoprojek.find(".tanggal-awal").val(this.projek.tanggal_awal);
         infoprojek.find(".tanggal-akhir").val(this.projek.tanggal_akhir);
