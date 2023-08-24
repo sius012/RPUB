@@ -82,7 +82,7 @@ class ProjekModal{
         });
     }
 
-    getElement(nam, type = "input"){
+    getElement(name, type = "input"){
         return this.container.find(`${type}[name=${name}]`)
     }
 }
