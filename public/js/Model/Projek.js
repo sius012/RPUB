@@ -60,7 +60,7 @@ class Projek {
     static byJurusan(){
         var projek = [];
         $.ajax({
-            url: "/jurusan",
+            url: "/projek",
             type: "GET",
             data: {
                 id_jurusan:id
@@ -95,7 +95,7 @@ class Projek {
     simpan(){
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN":$("meta[name=csrd-token]").attr("context"),
+                "X-CSRF-TOKEN":$("meta[name=csrf-token]").attr("content"),
             },
             url: "/projek",
             type: "post",
