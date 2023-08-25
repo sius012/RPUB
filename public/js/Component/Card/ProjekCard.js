@@ -9,7 +9,7 @@ load() {
     this.elementStr = `
         
         <div class="col-md-3 mb-3">
-        <a href="#" class='projek-card' data-id="${this.projek}">
+        <a href="#" class='projek-card' data-id="${this.projek.id}">
         <div class="card h-100">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
