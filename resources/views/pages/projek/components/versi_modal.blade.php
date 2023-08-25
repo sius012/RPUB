@@ -1,6 +1,5 @@
 <!-- Modal Untuk Tambah Jurusan -->
-@extends('layout.layout')
-@section('main-content')
+
 
 <div class="modal fade" id="versi-modal" tabindex="-1" aria-hidden="true">
     <form action="" method="">
@@ -83,6 +82,4 @@
 </form>
 </div>
 
-{{--  /modal tambah jurusan  --}}
-@endsection
 

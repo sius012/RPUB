@@ -1,5 +1,4 @@
-@extends('layout.layout')
-@section('main-content')
+
     <div class="button">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#assignment-siswa-modal"
             id="tambah-jurusan">
@@ -52,6 +51,3 @@
                 </div>
         </form>
     </div>
-
-    {{--  /modal tambah jurusan  --}}
-@endsection

@@ -1,5 +1,3 @@
-@extends('layout.layout')
-@section('main-content')
 
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -79,7 +77,4 @@
         </table>
     </div>
     </div>
-</div></div></div>
-
-
-@endsection
+</div>
