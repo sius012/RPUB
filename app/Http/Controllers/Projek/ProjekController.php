@@ -17,7 +17,7 @@ class ProjekController extends Controller
     {
         $projek = new Projek;
         if($request->has("id_jurusan")){
-            $projek = $projek->where("id_juruasn", $request->id_jurusan);
+            $projek = $projek->where("id_jurusan", $request->id_jurusan);
         }
         return response()->json($projek->get());
     }

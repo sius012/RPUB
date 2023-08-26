@@ -1,23 +1,23 @@
 
-<div class="content-wrapper" id="projek-list-view">
+<div class="content-wrapper" id="projek-list-view" style="display:none">
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
+
 
               <div class="row">
                 <div class="col-md-12">
 
 
                   {{--  button tambah projek  --}}
-                        <button type="button" class="btn btn-primary tambah-projek" data-bs-toggle="modal" data-bs-target="#basicModal">
+                        <button type="button" class="btn btn-primary tambah-projek mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
                           Tambah Projek
                         </button>
 
 
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
-                  <div class="row row-jurusan">
+                  <div class="row row-view">
                     <div class="col col-md-3 pb-3">
                         <a href="">
                         <div class="card h-100">

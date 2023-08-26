@@ -36,7 +36,7 @@ class TugasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Tugas::create($request->input());
     }
 
     /**
@@ -47,7 +47,7 @@ class TugasController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Tugas::find($id));
+        return response()->json(Tugas::with("jenis")->find($id));
     }
 
     /**
@@ -70,7 +70,9 @@ class TugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tugas = Tugas::find($id);
+        $tugas->update($request->input());
+
     }
 
     /**
@@ -81,6 +83,7 @@ class TugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tugas = Tugas::find($id);
+        $tugas->delete();
     }
 }
