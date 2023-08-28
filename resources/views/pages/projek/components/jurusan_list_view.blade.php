@@ -1,9 +1,8 @@
-
-<div class="content-wrapper" id="jurusan-list-view" style="display: none;">
+<div class="content-wrapper" id="jurusan-list-view">
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-  
+
 
               <div class="row">
                 <div class="col-md-12">
@@ -38,4 +37,3 @@
             <!-- / Content -->
             <div class="content-backdrop fade"></div>
           </div>
-

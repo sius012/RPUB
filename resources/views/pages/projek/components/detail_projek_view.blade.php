@@ -1,7 +1,7 @@
 
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view" style="display:none">
 
-    <div class="row">   
+    <div class="row">
         <div class="container-fluid">
             <h6 class="text-muted">Basic</h6>
             <div class="nav-align-top mb-4">
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
-                        
+
                     </div>
                 </div>
             </div>
