@@ -1,45 +1,50 @@
 class Jurusan {
-    constructor(){
+    constructor() {
         this.id;
         this.jurusan;
         this.keterangan;
-        this.timestamp
+        this.timestamp;
     }
 
-    static find(id){
-        var jurusan = new Jurusan;
+    static find(id) {
+        var jurusan = new Jurusan();
         $.ajax({
-            url: "/jurusan/"+id,
+            url: "/jurusan/" + id,
             type: "GET",
-            async:false,
-            success:function(data){
-                jurusan=Jurusan.parse(data)
-            }
-        })
-        return jurusan
-    }
-    static parse(json){
-        var jurusan = new Jurusan
-
-        jurusan.id=json["id"]
-        jurusan.jurusan=json["jurusan"]
-        jurusan.keterangan=json["keterangan"]
-        jurusan.timestamp={created_at: json["created_at"], updated_at: json["updated_at"]}
+            async: false,
+            success: function (data) {
+                jurusan = Jurusan.parse(data);
+            },
+        });
         return jurusan;
     }
-    static all(){
+    static parse(json) {
+        var jurusan = new Jurusan();
+
+        jurusan.id = json["id"];
+        jurusan.jurusan = json["jurusan"];
+        jurusan.keterangan = json["keterangan"];
+        jurusan.timestamp = {
+            created_at: json["created_at"],
+            updated_at: json["updated_at"],
+        };
+        return jurusan;
+    }
+    static all() {
         var jurusan = [];
         $.ajax({
             url: "/jurusan/",
             type: "GET",
-            async:false,
-            success:function(data){
-                jurusan=data.map(function(e){
-                    return Jurusan.parse(e)
-                    
-                })
-            }
-        })
+            async: false,
+            success: function (data) {
+                jurusan = data.map(function (e) {
+                    return Jurusan.parse(e);
+                });
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
         return jurusan;
     }
 }

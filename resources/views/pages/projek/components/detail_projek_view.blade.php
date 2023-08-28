@@ -1,4 +1,6 @@
-
+{{--  ambil dari uitabspills  --}}
+@extends('layout.layout')
+@section('main-content')
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view">
 
     <div class="row">
@@ -60,10 +62,16 @@
                     </div>
 
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
+                        <button class="tambah-tugas btn btn-primary">Tambah Tugas</button>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-
+                                    <th>No</th>
+                                    <th>Nama Tugas</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
+                                    <th>Dari</th>
+                                    <th>Sampai</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">

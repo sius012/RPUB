@@ -1,25 +1,26 @@
 class Jenis {
-    constructor(){
+    constructor() {
+        this.id;
         this.nama;
         this.tipe;
         this.id_jurusan;
         this.icon;
     }
 
-    static find(id){
-        var jenis = new Jenis;
+    static find(id) {
+        var jenis = new Jenis();
         $.ajax({
-            url: "/jenis/"+id,
+            url: "/jenis/" + id,
             type: "GET",
-            async:false,
-            success:function(data){
-                jenis=Jenis.parse(data)
-            }
+            async: false,
+            success: function (data) {
+                jenis = Jenis.parse(data);
+            },
         });
-        return jenis
+        return jenis;
     }
 
-    static byJurusan(id){
+    static byJurusan(id) {
         var jenis = [];
         $.ajax({
             url: "/jenis",
@@ -28,35 +29,35 @@ class Jenis {
             data: {
                 id_jurusan: id,
             },
-            success: function (data){
-                jenis = data.map(function (e){
+            success: function (data) {
+                jenis = data.map(function (e) {
                     return Jenis.parse(e);
                 });
-            }
+            },
         });
-    }
-    static parse(json){
-        var jenis = new Jenis
-        jenis.id = json["id"];
-        jenis.nama=json["nama"];
-        jenis.kategori=json["kategori"];
-        jenis.id_jurusan=json["id_jurusan"];
-        jenis.icon=json["icon"];
         return jenis;
     }
-    static all(){
+    static parse(json) {
+        var jenis = new Jenis();
+        jenis.id = json["id"];
+        jenis.nama = json["nama"];
+        jenis.tipe = json["tipe"];
+        jenis.id_jurusan = json["id_jurusan"];
+        jenis.icon = json["icon"];
+        return jenis;
+    }
+    static all() {
         var jenis = [];
         $.ajax({
             url: "/jenis/",
             type: "GET",
-            async:false,
-            success:function(data){
-                jenis=data.map(function(e){
-                    return Jenis.parse(e)
-                    
-                })
-            }
-        })
+            async: false,
+            success: function (data) {
+                jenis = data.map(function (e) {
+                    return Jenis.parse(e);
+                });
+            },
+        });
         return jenis;
     }
 }

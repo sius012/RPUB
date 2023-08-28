@@ -1,12 +1,11 @@
-class ProjekCard{
-    constructor(projek){
-        this.projek =projek;
-        this.elementStr =``;
+class ProjekCard {
+    constructor(projek) {
+        this.projek = projek;
+        this.elementStr = ``;
     }
 
-
-load() {
-    this.elementStr = `
+    load() {
+        this.elementStr = `
         
         <div class="col-md-3 mb-3">
         <a href="#" class='projek-card' data-id="${this.projek.id}">
@@ -20,10 +19,9 @@ load() {
             </p>
       </div>
     </div>
-    </a>
+        </a>
   </div>
-
-  </div>`;
-    return this.elementStr;
+`;
+        return this.elementStr;
     }
 }

@@ -1,8 +1,8 @@
              <!-- Modal Untuk Tambah Projek -->
-                <div class="modal fade" id="projek-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal fade"  tabindex="-1" aria-hidden="true" id="projek-modal">
                     <form action="" method="">
                         @csrf
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog show" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel1">Tambah Projek</h5>

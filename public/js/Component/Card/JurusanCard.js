@@ -1,15 +1,14 @@
-class JurusanCard{
-    constructor(jurusan){
+class JurusanCard {
+    constructor(jurusan) {
         this.jurusan = jurusan;
         this.elementStr;
-        
     }
-
 
     load() {
         this.elementStr = `
+        <div class="col-md-3 mb-3">
         <a href="#" class='jurusan-card' data-id="${this.jurusan.id}">
-            <div class="col">
+            
             <div class="card h-100">
             <div class="card-body">
                 <h5 class="card-title">${this.jurusan.jurusan}</h5>
@@ -19,7 +18,7 @@ class JurusanCard{
                 </p>
           </div>
         </div>
-      </div></a>`;
+      </a></div>`;
         return this.elementStr;
-        }
     }
+}
