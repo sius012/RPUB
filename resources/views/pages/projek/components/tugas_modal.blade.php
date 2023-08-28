@@ -5,7 +5,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Tambah Projek</h5>
+          <h5 class="modal-title" id="exampleModalLabel1">Tambah Tugas</h5>
           <button
             type="button"
             class="btn-close"
@@ -14,21 +14,9 @@
           ></button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col mb-3">
               <input type="hidden" name="id_tugas" class="form-control" placeholder="tambahkan id tugas" required />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
               <input type="hidden" name="id_parent" class="form-control" placeholder="tambahkan id parent" required/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
               <input type="hidden" name="id_projek" class="form-control" placeholder="tambahkan id projek" required/>
-            </div>
-          </div>
           <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Nama Tugas</label>
@@ -66,7 +54,8 @@
               <label for="nameBasic" class="form-label">Status</label>
 
               <select name="status" class="form-select" aria-label="Default select example">
-                <option value="Belum Dimulai">Belum Dimulai</option>
+                <option value="">Pilih Status</option>
+                <option value="Belum Dimulai" >Belum Dimulai</option>
                 <option value="Siap Dikerjakan">Siap Dikerjakan</option>
                 <option value="Dalam Pengerjaan">Dalam Pengerjaan</option>
                 <option value="Revisi">Revisi</option>
@@ -74,7 +63,6 @@
                 <option value="Ditinjau">Ditinjau</option>
                 <option value="Selesai">Selesai</option>
               </select>
-
             </div>
           </div>
         </div>
@@ -82,7 +70,7 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary" id="clear-jurusan">Buat Tugas</button>
+          <button type="submit" class="btn btn-primary" id="clear-jurusan">Buat Tugas</button>
         </div>
       </div>
     </div>

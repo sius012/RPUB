@@ -21,6 +21,7 @@
   data-template="vertical-menu-template-free"
 >
   <head>
+
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -30,7 +31,7 @@
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/dashboard/assets/img/favicon/favicon.ico" />
 
@@ -70,8 +71,8 @@
 
   <body>
     <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-      <div class="layout-container">
+    <div class="layout-wrapper layout-content-navbar" >
+      <div class="layout-container" >
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -382,8 +383,26 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('js/Component/PageSetup.js') }}"></script>
+    <script src="{{ asset('js/Component/Breadcrumb.js') }}"></script>
+    <script src="{{ asset('js/Helper/Helper.js') }}"></script>
+    <script>
+      $(document).ready(function(){
+        
+      })
+    </script>
+    <style>
+      .bg-ready {
+    background-color: #9944e3 !important;
+}
+
+.bg-review {
+    background-color: #912a91 !important;
+}
+    </style>
     <script >
         var pageSetup=new PageSetup();
+    
+        
     </script>
     @stack('script')
     <script >
@@ -391,5 +410,6 @@
             pageSetup.init();
         })
     </script>
+
 </body>
 </html>

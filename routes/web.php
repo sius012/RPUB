@@ -36,7 +36,7 @@ Route::get('/konfigurasiangkatan', function () {
     return view('pages.konfigurasi.components.konfigurasi_angkatan_view');
 });
 Route::get('/card', function () {
-    return view('pages.projek.components.detail_projek_view');
+    return view('pages.projek.components.jurusan_list_view');
 });
 
 Route::get('/login',[LoginController::class, 'index'])->name('login')

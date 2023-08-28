@@ -1,6 +1,4 @@
-@extends('layout.layout')
-@section('main-content')
-{{--  ambil dari uitabspills  --}}
+
 <div class="container-xxl flex-grow-1 container-p-y" id="tugas-detail-view">
     <div class="d-flex">
         <div class="image" >
@@ -70,4 +68,3 @@
         </div>
     </div>
 </div>
-@endsection

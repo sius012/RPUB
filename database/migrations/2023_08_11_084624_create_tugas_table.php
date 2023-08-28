@@ -22,7 +22,7 @@ class CreateTugasTable extends Migration
             $table->bigInteger("id_parent")->nullable();
             $table->date("tanggal_awal");
             $table->date("tanggal_akhir");
-            $table->enum('status',['Belum Selesai','Siap Dikerjakan','Dalam Pengerjaan','Revisi','Ditunda','Ditinjau','Selesai']);
+            $table->enum('status',['Belum Dimulai','Siap Dikerjakan','Dalam Pengerjaan','Revisi','Ditunda','Ditinjau','Selesai']);
             $table->bigInteger("id_jenis");
             $table->timestamps();
         });

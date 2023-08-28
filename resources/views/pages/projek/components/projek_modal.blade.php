@@ -1,8 +1,8 @@
              <!-- Modal Untuk Tambah Projek -->
-                <div class="modal fade" id="projek-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal fade"  tabindex="-1" aria-hidden="true" id="projek-modal">
                     <form action="" method="">
                         @csrf
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog show" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel1">Tambah Projek</h5>
@@ -44,7 +44,8 @@
                             <div class="col mb-3">
                               <label for="nameBasic" class="form-label">Jenis Projek</label>
                               <select name="jenis_projek" class="form-select" aria-label="Default select example">
-                                <option value=""></option>
+                                <option value="Projek Internal">Projek Internal</option>
+                                <option value="Projek Eksternal">Projek Eksternal</option>
                               </select>
                             </div>
                           </div>
@@ -75,7 +76,6 @@
                             </div>
                           </div>
                           <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">id_jurusan</label>
                             <input type="hidden" name="id_jurusan" class="form-control" placeholder="tambahkan id jurusan" required/>
                           </div>
                         </div>
