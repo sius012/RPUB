@@ -3,6 +3,7 @@ class PageSetup {
         this.componentList = [];
         this.cache = {
             tugas: [],
+            projek: []
         };
     }
 
