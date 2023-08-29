@@ -9,6 +9,7 @@
     <div class="modal fade" id="assignment-siswa-modal" tabindex="-1" aria-hidden="true">
         <form action="" method="">
             <div class="modal-dialog" role="document">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel1">Cari Siswa</h5>
@@ -22,30 +23,18 @@
                                     placeholder="Masukkan Nama Siswa" />
                             </div>
                         </div>
-                        <div class="demo-inline-spacing mt-3">
-                            <div class="list-group list-group-flush">
-                                <a href="" class="list-group-item list-group-item-action">Bear claw cake
-                                    biscuit</a>
-                                <a href="" class="list-group-item list-group-item-action">Soufflé pastry
-                                    pie ice</a>
-                                <a href="" class="list-group-item list-group-item-action">Tart tiramisu
-                                    cake</a>
-                                <a href="" class="list-group-item list-group-item-action">Bonbon toffee
-                                    muffin</a>
-                                <a href="" class="list-group-item list-group-item-action">Dragée tootsie
-                                    roll</a>
-                                <center>
-                                    <p class="show-link" onclick=""> Show More</p>
-                                </center>
-
-                            </div>
+                        <div class="siswa-container"></div>
+                        <div class="demo-inline-spacing mt-3 siswa-list-continer">
 
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 Close
                             </button>
-
+                            <button type="submit" class="btn btn-outline-primary" >
+                               Tambah Partisipan
+                            </button>
                         </div>
                     </div>
                 </div>

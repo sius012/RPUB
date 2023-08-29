@@ -52,4 +52,62 @@ class Versi {
         })
         return versi;
     }
+
+    static byTugas(id, cb = null) {
+        let versi = [];
+        $.ajax({
+            url:"/versi",
+            data: {
+                id_tugas: id,
+            },
+            type: "get",
+            success: function(data){
+                versi = data.map(function (e){
+                    return Versi.parse(e);
+                });
+
+                if (typeof cb == "function"){
+                    cb(data);
+                }
+            }
+        });
+    }
+
+    toJson(){
+        let json = [];
+        json["id_tugas"] = this.id_tugas;
+        json["id_siswa"] = this.id_siswa;
+        json["nomor_versi"] = this.nomor_versi;
+        json["nama"] = this.nama;
+        json["keterangan"] = this.keterangan;
+        json["lampiran"] = this.lampiran;
+        json["status"] = this.status;
+        return json;
+    }
+
+    simpan(cb=null){
+        const formdata = new FormData();
+        this.toJson().forEach(function (e, i){
+            formdata.append(i, e);
+        });
+
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("context")
+            },
+            url: "/versi",
+            type: "post",
+            data: formdata,
+            processData: false,
+            contextType: false,
+            success: function(data){
+                if(cb=null){
+                    cb(data);
+                }
+            },error: function(err){
+                alert(err.responseText);
+            }
+        });
+    }
 }
+
