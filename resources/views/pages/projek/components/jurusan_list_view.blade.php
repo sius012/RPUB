@@ -1,5 +1,4 @@
-@extends('layout.layout')
-@section('main-content')
+
 <div class="content-wrapper" id="jurusan-list-view">
             <!-- Content -->
 
