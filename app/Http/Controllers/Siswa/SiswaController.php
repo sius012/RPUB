@@ -13,9 +13,13 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        return response()->json(Siswa::all());
+        $siswa = new Siswa();
+        if($req->has("byQuery")){
+            $siswa = $siswa->where("id_jurusan",$req->id_jurusan)->where("nama","LIKE","%".$req->kw."%");
+        }
+        return response()->json($siswa->get());
     }
 
     /**

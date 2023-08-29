@@ -34,9 +34,14 @@ class PenugasanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $penugasan = new Penugasan();
+        $penugasan->id_siswa = $req->id_siswa;
+        $penugasan->id_tugas = $req->id_tugas;
+        $penugasan->id_penugas = $req->id_penugas;
+        $penugasan->keterangan = $req->keterangan;
+        $penugasan->save();
     }
 
     /**
