@@ -14,9 +14,9 @@
           ></button>
         </div>
         <div class="modal-body">
-              <input type="hidden" name="id_tugas" class="form-control" placeholder="tambahkan id tugas" required />
-              <input type="hidden" name="id_parent" class="form-control" placeholder="tambahkan id parent" required/>
-              <input type="hidden" name="id_projek" class="form-control" placeholder="tambahkan id projek" required/>
+              <input type="hidden" name="id_tugas" class="form-control" placeholder="tambahkan id tugas" />
+              <input type="hidden" name="id_parent" class="form-control" placeholder="tambahkan id parent"/>
+              <input type="hidden" name="id_projek" class="form-control" placeholder="tambahkan id projek"/>
           <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Nama Tugas</label>

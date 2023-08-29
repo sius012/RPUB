@@ -1,6 +1,5 @@
 {{--  ambil dari uitabspills  --}}
-@extends('layout.layout')
-@section('main-content')
+
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view">
 
     <div class="row">
@@ -72,6 +71,7 @@
                                     <th>Keterangan</th>
                                     <th>Dari</th>
                                     <th>Sampai</th>
+                                    <th>Partisipan</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
