@@ -23,5 +23,6 @@ class ProjekCard {
   </div>
 `;
         return this.elementStr;
+        
     }
 }
