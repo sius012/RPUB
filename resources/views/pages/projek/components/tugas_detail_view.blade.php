@@ -1,5 +1,5 @@
-{{--  @extends('layout.layout')
-@section('main-content')  --}}
+  @extends('layout.layout')
+@section('main-content')  
 
     <div class="modal fade" id="tugas-detail-view">
     <div class="container-xxl flex-grow-1 container-p-y" >
@@ -103,4 +103,4 @@
         </div>
     </div></div>
 
-{{--  @endsection  --}}
+  @endsection  

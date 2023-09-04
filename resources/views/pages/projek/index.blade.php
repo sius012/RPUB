@@ -15,8 +15,8 @@
 @include("pages.projek.components.jurusan_list_view")
 @include("pages.projek.components.detail_projek_view")
 @include("pages.projek.components.tugas_modal")
-{{--  @include("pages.projek.components.projek_list_view")
-@include("pages.projek.components.detail_projek_view")  --}}
+ @include("pages.projek.components.projek_list_view")
+@include("pages.projek.components.detail_projek_view")  
 
 @push("script")
 <script src="{{ asset('js/Model/Jurusan.js') }}"></script>
