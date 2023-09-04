@@ -14,6 +14,26 @@ class Siswa {
 
     }
 
+    static byQuery(query, cb) {
+        let siswa =[];
+        $.ajax({
+            url: "/siswa",
+            data: {
+                byQuery: "yes",
+                kw: query.nama,
+                id_jurusan:query.id_jurusan,
+            },
+            type:"get",
+            success:function (data) {
+                siswa = data.map(function (e) {
+                    return Siswa.parse(e);
+                });
+
+                cb(siswa);
+            },
+        });
+    }
+
     static find(id){
         var siswa = new Siswa;
         $.ajax({
@@ -27,7 +47,7 @@ class Siswa {
         return siswa
     }
     static parse(json){
-        var siswa = new Siswa
+        var siswa = new Siswa();
 
         siswa.id=json["id"]
         siswa.nis=json["nis"]
@@ -53,9 +73,9 @@ class Siswa {
                 siswa=data.map(function(e){
                     return Siswa.parse(e)
                     
-                })
-            }
-        })
+                });
+            },
+        });
         return siswa;
     }
 }

@@ -123,7 +123,8 @@ class DetailProjekView {
                 ctxmenu.trigger($(this), $(this).closest("tr").attr("data-id"));
             });
 
-        this.container.find(".tambah-tugas").click(function () {
+        this.container
+        .find(".tambah-tugas").click(function () {
             var tugasModal = ctx.page_setup.getComponent("TugasModal");
             tugasModal.reset();
             tugasModal.modal.show();
