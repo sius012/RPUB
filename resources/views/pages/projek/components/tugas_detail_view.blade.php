@@ -1,12 +1,12 @@
 {{--  @extends('layout.layout')
 @section('main-content')  --}}
 
-    <div class="card">
-    <div class="container-xxl flex-grow-1 container-p-y" id="tugas-detail-view">
+    <div class="modal fade" id="tugas-detail-view">
+    <div class="container-xxl flex-grow-1 container-p-y" >
         <div class="nama p-3">
-            <h1>Nama Tugas</h1>
+            <h3>Nama Tugas</h3>
         </div>
-        <div class="d-flex p-3">
+        <div class="d-flex p-4 m-5">
             <div class="image">
                 <img src="/dashboard/assets/img/avatars/7.png" class="img-thumbnail " >
             </div>
@@ -56,7 +56,7 @@
                         </li>
                         <li class="nav-item">
                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                                data-bs-target="#versi" aria-controls="navs-top-profile" aria-selected="false">
+                                data-bs-target="#partisipan" aria-controls="navs-top-profile" aria-selected="false">
                                 Partisipan
                             </button>
                         </li>
@@ -77,12 +77,12 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Tanggal Awal</label>
-                                        <input type="date" name="tanggal-awal" class="tanggal-awal form-control"
+                                        <input type="date" name="tanggal_awal" class="tanggal-awal form-control"
                                             placeholder="tanggal awal pembuatan" />
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Tanggal Akhir</label>
-                                        <input type="date" name="tanggal-akhir" class="tanggal-akhir form-control"
+                                        <input type="date" name="tanggal_akhir" class="tanggal-akhir form-control"
                                             placeholder="tanggal akhir pembuatan" />
                                     </div>
                                 </div>
@@ -90,7 +90,9 @@
                         </div>
 
                         <div class="tab-pane fade" id="versi" role="tabpanel">
-
+                            <button type="button" class="btn btn-primary tombol-tambah-versi mb-3" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
+                                Buat Versi
+                              </button>
                         </div>
                         <div class="tab-pane fade" id="partisipan" role="tabpanel">
 
