@@ -1,7 +1,7 @@
 class Versi {
     constructor(){
         this.id_versi;
-        this.tugas;
+        this.id_tugas;
         this.id_siswa;
         this.nomor_versi;
         this.nama;
