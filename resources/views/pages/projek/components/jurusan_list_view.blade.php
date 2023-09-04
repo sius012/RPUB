@@ -9,10 +9,10 @@
                 <div class="col-md-12">
 
 
-                  <!-- {{--  button tambah projek  --}}
+                   {{--  button tambah projek  --}}
                         <button type="button" class="btn btn-primary tambah-jurusan mb-3" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
                           Tambah Jurusan
-                        </button> -->
+                        </button> 
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
                   <div class="row row-jurusan">

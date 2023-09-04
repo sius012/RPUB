@@ -38,9 +38,17 @@ class TugasDetailView{
         }
     }
 
-    getElement(name, type = "input") {
-        return this.container.find('$type)[name=($name)]');
-    }
+  getElement(name, type = "input"){
+    return this.container.find(`${type}[name=${name}]`);
+  }
+
+  globalEventListener(){
+    var ctx = this;
+    this.container.find(".tombol-tambah-versi", function (e){
+        const versimodal = ctx.page_setup.getComponent("VersiModal");
+        versimodal.load(ctx.tugas.id_tugas);
+    });
+  }
 
 
     versiCard(versi) {

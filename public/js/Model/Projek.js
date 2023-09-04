@@ -44,7 +44,7 @@ class Projek {
     static all() {
         var projek = [];
         $.ajax({
-            url: "/projek/",
+            url: "/projek",
             type: "GET",
             async: false,
             success: function (data) {
@@ -107,6 +107,7 @@ class Projek {
             error: function (err) {
                 alert(err.responseText);
             },
+            
         });
     }
 }

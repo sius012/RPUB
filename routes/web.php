@@ -30,7 +30,7 @@ Route::get('/index', function () {
     return view('layout.layout');
 })
 // ->middleware('auth')
-;
+;   
 
 Route::get('/konfigurasiangkatan', function () {
     return view('pages.konfigurasi.components.konfigurasi_angkatan_view');

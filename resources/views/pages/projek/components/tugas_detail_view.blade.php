@@ -1,5 +1,5 @@
-{{--  @extends('layout.layout')
-@section('main-content')  --}}
+  @extends('layout.layout')
+@section('main-content')  
 
     <div class="card">
     <div class="container-xxl flex-grow-1 container-p-y" id="tugas-detail-view">
@@ -101,4 +101,4 @@
         </div>
     </div></div>
 
-{{--  @endsection  --}}
+  @endsection  
