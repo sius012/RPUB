@@ -123,10 +123,25 @@ class DetailProjekView {
                 ctxmenu.trigger($(this), $(this).closest("tr").attr("data-id"));
             });
 
+        this.container
+        .find("#tugas")
+        .delegate(".partisipan", "click", function (e) {
+            e.preventDefault();
+
+            let id = $ (this).closest("tr").attr("data-id");
+            let aSM = ctx-page_setup.getComponent("AssignmentSiswaModal");
+            aSM.init(
+                ctx.projek.id_jurusan,
+                window.pageSetup.getTugasCache(id)
+            );
+            aSM.modal.show();
+        });
+
         this.container.find(".tambah-tugas").click(function () {
             var tugasModal = ctx.page_setup.getComponent("TugasModal");
             tugasModal.reset();
             tugasModal.modal.show();
         });
+
     }
 }
