@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Versi;
 use App\Http\Controllers\Controller;
 use App\Models\Versi;
 use Illuminate\Http\Request;
+use PharIo\Manifest\Requirement;
 
 class VersiController extends Controller
 {
@@ -13,9 +14,13 @@ class VersiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        return response()->json(Versi::all());
+        $versi = new Versi;
+        if($req->has("id_tugas")){
+            $versi = $versi->where("id_tugas",$req->id_tugas);
+        }
+        return response()->json($versi->get());
     }
 
     /**
@@ -36,7 +41,19 @@ class VersiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $versi = new Versi;
+        $versi->id_tugas = $request->id_tugas;
+        $versi->id_siswa = 1;
+        $versi->nomor_versi = $request->nomor_versi;
+        $versi->nama = $request->nama;
+        $versi->keterangan = $request->keterangan;
+        $imageName = time().'.'.$request->nama. ".".$request->nomor_versi.".png";
+        $request->lampiran->move(public_path('versi'), $imageName);
+        $versi->lampiran = $imageName;
+        $versi->status = $request->status;
+        $versi->save();
+        
+        return response()->json(["data"=>$request->files]);
     }
 
     /**
