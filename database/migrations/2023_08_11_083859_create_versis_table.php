@@ -21,7 +21,7 @@ class CreateVersisTable extends Migration
             $table->string("nama");
             $table->string("keterangan");
             $table->string("lampiran");
-            $table->enum('status',['Belum Selesai','Siap Dikerjakan','Dalam Pengerjaan','Revisi','Ditunda','Ditinjau','Selesai']);
+            $table->enum('status',['Belum dimulai', 'Siap dikerjakan', 'Dalam Pengerjaan','Revisi', 'Ditunda','Ditinjau','Selesai']);
             $table->timestamps();
         });
     }
