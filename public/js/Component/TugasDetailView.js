@@ -20,8 +20,9 @@ class TugasDetailView{
         this.versiList = Versi.byTugas(this.tugas.id_tugas, function (data) {
             let versiList = ctx.container.find("#versi").find("#versi-list");
             versiList.html("");
+            console.log(data);
             data.forEach((element) => {
-                versiList.append(versiCard(element));
+                versiList.append(ctx.versiCard(element));
             });
         });
     }
@@ -35,6 +36,8 @@ class TugasDetailView{
             );
             this.getElement("tanggal_awal").val(this.tugas.tanggal_awal);
             this.getElement("tanggal_akhir").val(this.tugas.tanggal_akhir);
+            this.loadversi();
+            this.modal.show();
         }
     }
 
@@ -53,12 +56,19 @@ class TugasDetailView{
 
     versiCard(versi) {
         return `
-        <div class='row' data-id='${versi.id_versi}'>
+        <div class='row p-3' data-id='${versi.id_versi}'>
         <div class='col-3'>
-            <img src=''>
+            <img style="width: 100px; height: 75px; object-fit: cover; src='/images/${
+                versi.lampiran
+            }'>
         </div>
-        <div class='col-9><b>${versi.nama + "_v" + versi.nomor}</b><span>
-        ${versi.keterangan}</span></div>
+        <div class='col-6><b>${
+            versi.nama + "_v" + versi.nomor}</b><span>
+        ${versi.keterangan}</span>
+        </div>
+        <div class='col3 p-3'>
+        ${Helper.status(versi.status)}
+        </div>
         </div>
 
         `;
