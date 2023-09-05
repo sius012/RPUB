@@ -8,7 +8,7 @@ class Versi {
         this.keterangan;
         this.lampiran;
         this.status;
-        this.timestamp
+        this.timestamp;
     }
 
     static find(id){
@@ -20,7 +20,7 @@ class Versi {
             success:function(data){
                 versi=Versi.parse(data)
             }
-        })
+        });
         return versi
     }
     static parse(json){
@@ -34,7 +34,7 @@ class Versi {
         tugas.keterangan=json["keterangan"]
         tugas.lampiran=json["lampiran"]
         tugas.status=json["status"]
-        tugas.timestamp={created_at: json["created_at"], updated_at: json["updated_at"]}
+        tugas.timestamp={created_at: json["created_at"], updated_at: json["updated_at"],}
         return versi;
     }
     static all(){
@@ -47,9 +47,9 @@ class Versi {
                 tugas=data.map(function(e){
                     return Versi.parse(e)
                     
-                })
-            }
-        })
+                });
+            },
+        });
         return versi;
     }
 
@@ -85,29 +85,39 @@ class Versi {
         return json;
     }
 
-    simpan(cb=null){
-        const formdata = new FormData();
-        this.toJson().forEach(function (e, i){
-            formdata.append(i, e);
-        });
+    simpan(cb=null, e = null){
+        console.log(this.lampiran);
+        var formdata = new FormData(e);
+
+        formdata.append("id_tugas", this.id_tugas);
+        formdata.append("id_siswa", this.id_siswa);
+        formdata.append("nomor_versi", this.nomor_versi);
+        formdata.append("nama", this.nama);
+        formdata.append("keterangan", this.keterangan);
+        formdata.append("status", this.status);
+
+        console.log(formdata);
 
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("context")
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
             },
             url: "/versi",
             type: "post",
             data: formdata,
-            processData: false,
-            contextType: false,
-            success: function(data){
-                if(cb=null){
+            procesData: false,
+            contentType:false,
+            success: function (data) {
+                if ((cb = null)) {
                     cb(data);
                 }
-            },error: function(err){
+                console.log(data);
+            },
+            error: function (err) {
                 alert(err.responseText);
-            }
+            },
         });
+
     }
 }
 
