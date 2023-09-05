@@ -2,7 +2,7 @@
 
 
 <div class="modal fade" id="versi-modal" tabindex="-1" aria-hidden="true">
-    <form action="" method="">
+    <form action="" method="" enctype="multipart/form-data">
         @csrf
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -75,7 +75,7 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">Buat</button>
+        <button type="submit" class="btn btn-primary">Buat</button>
       </div>
     </div>
   </div>

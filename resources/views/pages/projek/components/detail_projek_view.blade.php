@@ -36,11 +36,11 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Awal</label>
-                                    <input type="text" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" />
+                                    <input type="date" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Akhir</label>
-                                    <input type="text" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="" />
+                                    <input type="date" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="" />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Penanggung Jawab</label>

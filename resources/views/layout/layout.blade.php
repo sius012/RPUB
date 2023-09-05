@@ -22,6 +22,80 @@
 >
   <head>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .board {
+            display: flex;
+        }
+
+        .column {
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            background-color: #e2e2e2;
+            border: 1px solid #bbbbbb;
+            border-radius: 5px;
+        }
+
+        .task {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    .task-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .task-card {
+        width: 300px;
+        margin: 10px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .task-card h2 {
+        margin: 0;
+    }
+
+    .task-card p {
+        margin-top: 10px;
+    }
+
+    .task-card .due-date {
+        font-style: italic;
+        font-size: 14px;
+        color: #888;
+    }
+
+    .task-card .status {
+        margin-top: 10px;
+    }
+
+    .task-card .status span {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .status-to-do {
+        background-color: #ffffff;
+    }
+
+    .status-in-progress {
+        background-color: #ebebeb;
+    }
+
+    .status-done {
+        background-color: #d3f5d3;
+    }
+</style>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -159,6 +233,14 @@
                 <a href="/pages/projek" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                   <div data-i18n="Basic">Projek</div>
+                </a>
+              </li>
+
+            <!-- ---------------------TaskBoard---------------------- -->
+            <li class="menu-item">
+                <a href="/pages/taskboard" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Basic">Task Board</div>
                 </a>
               </li>
 
@@ -387,7 +469,7 @@
     <script src="{{ asset('js/Helper/Helper.js') }}"></script>
     <script>
       $(document).ready(function(){
-        
+
       })
     </script>
     <style>
@@ -401,8 +483,8 @@
     </style>
     <script >
         var pageSetup=new PageSetup();
-    
-        
+
+
     </script>
     @stack('script')
     <script >
