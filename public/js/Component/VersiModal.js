@@ -19,13 +19,17 @@ class VersiModal {
         this.versi.keterangan = this.getElement("keterangan", "textarea").val();
         this.versi.lampiran = this.getElement("lampiran")[0];
         this.versi.nomor_versi = this.getElement("nomor_versi").val();
+        this.versi.status = this.getElement("status", "select").val();
     }
 
     globalEventListener() {
         var ctx = this;
         ctx.container.delegate("form", "submit", function (e) {
-            ctx.versi.simpan(function (e) {
-                alert("berhasil");
+           e.preventDefault();
+           ctx.parseFromElement();
+           ctx.versi.simpan(function (ed) {
+            ctx.reset();
+            ctx.page_setup.getComponent("TugasDetailView").loadVersi();
             });
         });
     }
@@ -34,4 +38,12 @@ class VersiModal {
         return this.container.find(`${type}[name=${name}]`);
     }
 
+    reset() {
+        this.getElement("nama").val("");
+        this.getElement("keterangan", "textarea").val("");
+        this.getElement("lampiran").val("");
+        this.getElement("nomor_versi").val("");
+        this.getElement("status", "select").val("");
+        this.modal.hide();
+    }
 }
