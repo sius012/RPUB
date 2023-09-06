@@ -1,4 +1,4 @@
-class TugasDetailView{
+export default class TugasDetailView{
     constructor(container){
         this.container = container;
         this.modal = new bootstrap.Modal(container);

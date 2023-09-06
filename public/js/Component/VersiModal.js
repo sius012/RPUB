@@ -1,4 +1,4 @@
-class VersiModal {
+export default class VersiModal {
     constructor(container) {
         this.container = container;
         this.modal = new bootstrap.Modal(container);

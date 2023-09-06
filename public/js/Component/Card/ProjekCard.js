@@ -1,4 +1,4 @@
-class ProjekCard {
+export default class ProjekCard {
     constructor(projek) {
         this.projek = projek;
         this.elementStr = ``;

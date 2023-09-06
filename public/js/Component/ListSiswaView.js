@@ -1,4 +1,4 @@
-class ListSiswaView{
+export default class ListSiswaView{
     constructor(container){
         this.container = container;
         this.jurusanList = [];

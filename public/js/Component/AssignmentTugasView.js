@@ -1,4 +1,4 @@
-class AssigmentSiswaModal {
+export default class AssigmentSiswaModal {
     constructor(container){
         this.container = container;
         this.modal = new bootstrap.Modal(container);

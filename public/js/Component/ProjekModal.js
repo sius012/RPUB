@@ -1,4 +1,4 @@
-class ProjekModal {
+export default class ProjekModal {
     constructor(container) {
         this.container = container;
         this.modal = new bootstrap.Modal(container);
