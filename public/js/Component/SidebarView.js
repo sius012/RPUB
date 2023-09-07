@@ -1,4 +1,4 @@
-class SideBarView {
+export default class SideBarView {
     constructor(container) {
         this.container = container
         this.menu = [

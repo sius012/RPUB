@@ -1,4 +1,4 @@
-class Tugasmodal {
+export default class Tugasmodal {
     constructor(container) {
         this.container = container;
         this.projek_data;

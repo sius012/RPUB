@@ -1,4 +1,4 @@
-class JurusanModal{
+export default class JurusanModal{
     constructor(container){
         this.container;
         this.modal = new bootstrap.Modal(container);

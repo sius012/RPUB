@@ -1,4 +1,4 @@
-class PageSetup {
+export default class PageSetup {
     constructor() {
         this.componentList = [];
         this.cache = {

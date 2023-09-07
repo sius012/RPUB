@@ -1,4 +1,4 @@
-class ContextMenu {
+export default class ContextMenu {
     constructor() {
         this.container; //Berisikan element DOM contextMenu (diisi saat menjalankan function init)
         this.list; //Berikan list / opsi yang ada disetiap ContextMenu (nama aksi,fungsi)
