@@ -33,7 +33,7 @@
             padding: 10px;
             width: 300px;
             background-color: #e2e2e2;
-            border: 1px solid #bbbbbb;
+            border: 1px solid #e6e6e6;
             border-radius: 5px;
         }
 
@@ -41,7 +41,7 @@
             margin: 10px 0;
             padding: 10px;
             background-color: #fff;
-            border: 1px solid #ccc;
+            border: 1px solid #f0f0f0;
             border-radius: 5px;
             cursor: pointer;
         }
@@ -71,7 +71,7 @@
     .task-card .due-date {
         font-style: italic;
         font-size: 14px;
-        color: #888;
+        color: #e7e7e7;
     }
 
     .task-card .status {
@@ -239,7 +239,7 @@
             <!-- ---------------------TaskBoard---------------------- -->
             <li class="menu-item">
                 <a href="/pages/taskboard" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <i class="menu-icon tf-icons bi bi-list-task"></i>
                   <div data-i18n="Basic">Task Board</div>
                 </a>
               </li>

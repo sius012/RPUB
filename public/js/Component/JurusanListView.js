@@ -33,7 +33,7 @@ export default class JurusanListView {
         var ctx = this;
         console.log(ctx.page_setup);
         this.container.find("#tambah-jurusan").click(function () {
-            var modal = ctx.page_setup.getComponent("ProjekModal").modal;
+            var modal = ctx.page_setup.getComponent("JurusanModal").modal;
             modal.show();
         });
 

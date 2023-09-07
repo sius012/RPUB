@@ -63,4 +63,4 @@ Route::view('/pages/projek', "pages.projek.index");
 Route::view('/pages/dashboard', "pages.dashboard.index");
 Route::view('/pages/taskboard', "pages.taskboard.components.taskboard");
 
-Route::view('/login', "pages.auth.login");
+Route::view('/login', "pages.auth.login_siswa");
