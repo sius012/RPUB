@@ -1,4 +1,4 @@
-class JurusanCard {
+export default class JurusanCard {
     constructor(jurusan) {
         this.jurusan = jurusan;
         this.elementStr;

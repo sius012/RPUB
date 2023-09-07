@@ -1,4 +1,4 @@
-class AngkatanModal{
+export default class AngkatanModal{
     constructor(container){
         this.container;
         this.modal = new bootstrap.Modal(container);

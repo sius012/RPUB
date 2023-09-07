@@ -151,4 +151,24 @@ class Tugas {
             success: function () {},
         });
     }
+
+    static getTaskBoard(id_siswa,status){
+        let tugas=[]
+        $.ajax({
+            url: "/tugas/taskboard",
+            type: "get",
+            data: {
+                id_siswa:id_siswa,
+                status:status,
+            },
+            async:false,
+            success:function(data){
+                tugas=data.map((e)=>Tugas.parse.e)
+            },error:function(err){
+                alert(err.responseText);
+            }
+        })
+        return tugas;
+    }
+
 }

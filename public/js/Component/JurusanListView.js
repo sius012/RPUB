@@ -1,4 +1,4 @@
-class JurusanListView {
+export default class JurusanListView {
     constructor(container) {
         this.container = container;
         this.jurusanList = [];

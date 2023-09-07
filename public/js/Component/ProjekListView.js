@@ -1,4 +1,4 @@
-class ProjekListView {
+export default class ProjekListView {
     constructor(container) {
         this.container = container;
         this.projekList = [];

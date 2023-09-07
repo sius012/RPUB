@@ -1,4 +1,4 @@
-class DetailProjekView {
+export default class DetailProjekView {
     constructor(container) {
         this.container = container;
         this.projek;

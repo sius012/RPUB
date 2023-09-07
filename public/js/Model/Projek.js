@@ -16,7 +16,7 @@ class Projek {
     static find(id) {
         var projek = new Projek();
         $.ajax({
-            url: "/projek/" + id,
+            url: "/projek" + id,
             type: "GET",
             async: false,
             success: function (data) {
