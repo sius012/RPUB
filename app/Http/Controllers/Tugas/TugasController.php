@@ -86,4 +86,17 @@ class TugasController extends Controller
         $tugas = Tugas::find($id);
         $tugas->delete();
     }
+
+    public function getTaskBoard(Request $req){
+        switch ($req->status) {
+            case 'Belum Dimulai':
+                break;
+            case 'Dalam Pengerjaan':
+                break;
+            case 'Revisi':
+                break;
+            case 'Selesai':
+                break;
+        }
+    }
 }
