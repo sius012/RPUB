@@ -11,7 +11,7 @@ export default class SiswaListView{
     load(){
         this.container.find("#container-siswa").html("");
         this.siswaList.foreach(element => {
-            let SiswaCard = new SiswaCard(element);
+            let siswaCard = new SiswaCard(element);
             this.container.append(siswaCard.load())
         });
     }
