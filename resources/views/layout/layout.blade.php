@@ -464,8 +464,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="{{ asset('js/Component/PageSetup.js') }}"></script>
-    <script src="{{ asset('js/Component/Breadcrumb.js') }}"></script>
     <script src="{{ asset('js/Helper/Helper.js') }}"></script>
     <script>
       $(document).ready(function(){
@@ -481,17 +479,7 @@
     background-color: #912a91 !important;
 }
     </style>
-    <script >
-        var pageSetup=new PageSetup();
-
-
-    </script>
     @stack('script')
-    <script >
-        $(document).ready(function(){
-            pageSetup.init();
-        })
-    </script>
 
 </body>
 </html>

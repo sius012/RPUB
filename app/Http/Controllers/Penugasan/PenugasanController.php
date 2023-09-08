@@ -13,9 +13,13 @@ class PenugasanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        return response()->json(Penugasan::all());
+        $penugasan = new Penugasan;
+        if($req->has("id_tugas")){
+            $penugasan = $penugasan->where('id_tugas', $req->id_tugas);
+        }
+        return response()->json($penugasan->get());
     }
 
     /**
@@ -36,12 +40,22 @@ class PenugasanController extends Controller
      */
     public function store(Request $req)
     {
-        $penugasan = new Penugasan();
-        $penugasan->id_siswa = $req->id_siswa;
-        $penugasan->id_tugas = $req->id_tugas;
-        $penugasan->id_penugas = $req->id_penugas;
-        $penugasan->keterangan = $req->keterangan;
-        $penugasan->save();
+        $siswa= $req->siswa;
+        foreach ($siswa as $sws) {
+          //Check Available
+          $check = Penugasan::where("id_siswa",$req->id_siswa)->where("id_tugas",$req->id_tugas)->get()->count();
+          if($check<1){
+            $penugasan = new Penugasan();
+            $penugasan->id_siswa = $sws['id_siswa'];
+            $penugasan->id_tugas = $sws['id_tugas'];
+            $penugasan->id_penugas = $sws['id_penugas'];
+            $penugasan->keterangan = $sws['keterangan'];
+            $penugasan->save();
+          }
+        }
+
+        return response()->json(["data"=>$siswa]);
+
     }
 
     /**

@@ -1,3 +1,8 @@
+import pageSetup from "./PageSetup.js";
+import Projek from "../Model/Projek.js";
+import Tugas from "../Model/Tugas.js";
+import Penugasan from "../Model/Penugasan.js";
+
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;
@@ -9,7 +14,7 @@ export default class DetailProjekView {
     }
 
     load(id) {
-        let breadcrumb = window.pageSetup.getComponent("Breadcrumb");
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
         this.page_setup.componentList.forEach((element) => {
@@ -18,7 +23,7 @@ export default class DetailProjekView {
                 element.container.hide();
             }
         });
-        
+
         this.container.show();
 
         this.loadData(id);
@@ -58,9 +63,11 @@ export default class DetailProjekView {
         });
 
         tugasView.children("tr").each(function (i) {
+            let id = $(this).data("id");
             $(this)
                 .find(".no")
                 .text(i + 1);
+            ctx.loadPenugasan(id);
         });
 
         //mengisi id_projek
@@ -94,6 +101,11 @@ export default class DetailProjekView {
         <td>${tugas.keterangan}</td>
         <td>${tugas.tanggal_awal}</td>
         <td>${tugas.tanggal_akhir}</td>
+        <td class='partisipan'>
+        <div>
+   
+        </div>
+        </td>
      </tr>
      `;
 
@@ -104,6 +116,26 @@ export default class DetailProjekView {
         }
 
         return tugasStr;
+    }
+
+    loadPenugasan(id) {
+        let ctx = this;
+
+        let container = ctx.container
+            .find("tr[data-id=" + id + "]")
+            .find(".partisipan");
+
+        console.log(id);
+
+        Penugasan.byTugas(id, function (data) {
+            let cont = ctx.container
+                .find("tr[data-id=" + id + "]")
+                .find(".partisipan");
+            cont.empty();
+            data.forEach(function (e) {
+                cont.append(e.id_siswa + ",");
+            });
+        });
     }
 
     globalEventListener() {
@@ -124,24 +156,20 @@ export default class DetailProjekView {
             });
 
         this.container
-        .find("#tugas")
-        .delegate(".partisipan", "click", function (e) {
-            e.preventDefault();
-
-            let id = $ (this).closest("tr").attr("data-id");
-            let aSM = ctx-page_setup.getComponent("AssignmentSiswaModal");
-            aSM.init(
-                ctx.projek.id_jurusan,
-                window.pageSetup.getTugasCache(id)
-            );
-            aSM.modal.show();
-        });
+            .find("#tugas")
+            .delegate(".partisipan", "click", function (e) {
+                e.preventDefault();
+                let id = $(this).closest("tr").attr("data-id");
+                let aSM = ctx.page_setup.getComponent("AssignmentSiswaModal");
+                console.log(ctx.page_setup);
+                aSM.init(ctx.projek.id_jurusan, pageSetup.getTugasCache(id));
+                aSM.modal.show();
+            });
 
         this.container.find(".tambah-tugas").click(function () {
             var tugasModal = ctx.page_setup.getComponent("TugasModal");
             tugasModal.reset();
             tugasModal.modal.show();
         });
-
     }
 }

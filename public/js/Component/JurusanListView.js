@@ -1,3 +1,5 @@
+import pageSetup from "./PageSetup.js";
+import JurusanCard from "./Card/JurusanCard.js";
 export default class JurusanListView {
     constructor(container) {
         this.container = container;
@@ -7,8 +9,8 @@ export default class JurusanListView {
     }
 
     load() {
-        //applybreadcrumb
-        let breadcrumb = window.pageSetup.getComponent("Breadcrumb");
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        console.log(pageSetup);
         breadcrumb.add([this.nama_component, "active"]);
 
         if (this.page_setup != undefined) {

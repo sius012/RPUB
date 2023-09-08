@@ -1,4 +1,4 @@
-class Jenis {
+export default class Jenis {
     constructor() {
         this.id;
         this.nama;

@@ -1,4 +1,4 @@
-class Projek {
+export default class Projek {
     constructor() {
         this.id;
         this.nama;
@@ -16,7 +16,7 @@ class Projek {
     static find(id) {
         var projek = new Projek();
         $.ajax({
-            url: "/projek" + id,
+            url: "/projek/" + id,
             type: "GET",
             async: false,
             success: function (data) {
@@ -107,7 +107,6 @@ class Projek {
             error: function (err) {
                 alert(err.responseText);
             },
-            
         });
     }
 }

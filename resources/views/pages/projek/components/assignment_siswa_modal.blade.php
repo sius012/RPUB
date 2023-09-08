@@ -19,13 +19,12 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Nama Siswa</label>
-                                <input type="text" name="nama" class="form-control"
+                                <input type="text" name="nama" class="form-control input-siswa"
                                     placeholder="Masukkan Nama Siswa" />
                             </div>
                         </div>
                         <div class="siswa-container"></div>
-                        <div class="demo-inline-spacing mt-3 siswa-list-continer">
-
+                        <div class="demo-inline-spacing mt-3 siswa-list-container">
                         </div>
 
                         <div class="modal-footer">

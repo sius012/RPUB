@@ -1,3 +1,6 @@
+import pageSetup from "./PageSetup.js";
+import Projek from "../Model/Projek.js";
+import ProjekCard from "./Card/ProjekCard.js";
 export default class ProjekListView {
     constructor(container) {
         this.container = container;
@@ -9,7 +12,7 @@ export default class ProjekListView {
     }
 
     load(id_jurusan = null) {
-        let breadcrumb = window.pageSetup.getComponent("Breadcrumb");
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
         this.page_setup.componentList.forEach((element) => {

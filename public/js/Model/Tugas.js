@@ -1,4 +1,7 @@
-class Tugas {
+import Jenis from "./Jenis.js";
+import pageSetup from "../Component/PageSetup.js";
+import Penugasan from "./Penugasan.js";
+export default class Tugas {
     constructor() {
         this.id_tugas;
         this.nama;
@@ -18,6 +21,7 @@ class Tugas {
         this.tugasStatusArr = [];
         this.statusArr = [];
         this.data_jenis;
+        this.partisipan;
     }
 
     static find(id, params = { jenis: false }) {
@@ -30,7 +34,7 @@ class Tugas {
                 tugas = Tugas.parse(data, params);
             },
         });
-        window.pageSetup.tambahCacheTugas(tugas);
+        pageSetup.tambahCacheTugas(tugas);
         return tugas;
     }
 
@@ -56,7 +60,7 @@ class Tugas {
         });
         return projekList;
     }
-    static parse(json, params = { jenis: false }) {
+    static parse(json, params = { jenis: false, partisipan: false }) {
         //mengubah data json menjadi objek tugas
         var tugas = new Tugas();
 
@@ -85,12 +89,16 @@ class Tugas {
             console.log(json["jenis"]["id"]);
         }
 
+        if (params.partisipan == true) {
+            tugas.partisipan = Penugasan.byTugas(tugas.id);
+        }
+
         return tugas;
     }
     static rekursifParse(json, indentLevel) {
         //mirip seperti yang diatas,namun bedanya ini untuk membaca children
         var tugas = Tugas.parse(json, { jenis: true });
-        window.pageSetup.tambahCacheTugas(tugas);
+        pageSetup.tambahCacheTugas(tugas);
         tugas.indent_level = indentLevel;
         json["children"].forEach((element) => {
             tugas.children.push(Tugas.rekursifParse(element, indentLevel + 1));
@@ -152,23 +160,23 @@ class Tugas {
         });
     }
 
-    static getTaskBoard(id_siswa,status){
-        let tugas=[]
+    static getTaskBoard(id_siswa, status) {
+        let tugas = [];
         $.ajax({
             url: "/tugas/taskboard",
             type: "get",
             data: {
-                id_siswa:id_siswa,
-                status:status,
+                id_siswa: id_siswa,
+                status: status,
             },
-            async:false,
-            success:function(data){
-                tugas=data.map((e)=>Tugas.parse.e)
-            },error:function(err){
+            async: false,
+            success: function (data) {
+                tugas = data.map((e) => Tugas.parse.e);
+            },
+            error: function (err) {
                 alert(err.responseText);
-            }
-        })
+            },
+        });
         return tugas;
     }
-
 }

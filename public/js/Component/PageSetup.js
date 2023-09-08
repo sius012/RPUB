@@ -1,9 +1,9 @@
-export default class PageSetup {
+class PageSetup {
     constructor() {
         this.componentList = [];
         this.cache = {
             tugas: [],
-            projek: []
+            projek: [],
         };
     }
 
@@ -50,3 +50,6 @@ export default class PageSetup {
         this.cache.tugas.push(tugas);
     }
 }
+
+const pageSetup = new PageSetup();
+export default pageSetup;

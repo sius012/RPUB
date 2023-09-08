@@ -1,4 +1,6 @@
-export default class Tugasmodal {
+import Tugas from "../Model/Tugas.js";
+import Jenis from "../Model/Jenis.js";
+export default class TugasModal {
     constructor(container) {
         this.container = container;
         this.projek_data;

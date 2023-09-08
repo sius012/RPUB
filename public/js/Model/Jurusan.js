@@ -1,4 +1,4 @@
-class Jurusan {
+export default class Jurusan {
     constructor() {
         this.id;
         this.jurusan;
