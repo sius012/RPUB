@@ -163,7 +163,7 @@ export default class Tugas {
     static getTaskBoard(id_siswa, status) {
         let tugas = [];
         $.ajax({
-            url: "/tugas/taskboard",
+            url: "/gettaskboardstudent",
             type: "get",
             data: {
                 id_siswa: id_siswa,
@@ -171,7 +171,7 @@ export default class Tugas {
             },
             async: false,
             success: function (data) {
-                tugas = data.map((e) => Tugas.parse.e);
+                tugas = data.map((e) => Tugas.find(e["id"]));
             },
             error: function (err) {
                 alert(err.responseText);

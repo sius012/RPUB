@@ -133,7 +133,10 @@ export default class DetailProjekView {
                 .find(".partisipan");
             cont.empty();
             data.forEach(function (e) {
-                cont.append(e.id_siswa + ",");
+                cont.append(
+                    '<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg">' +
+                        ","
+                );
             });
         });
     }

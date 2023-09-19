@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tugas;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penugasan;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,12 @@ class TugasController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json(Tugas::byProjek($request->id_projek));
+        if($request->has('penugasan')){
+            $this->getTaskBoard($request);
+        }else{
+            return response()->json(Tugas::byProjek($request->id_projek));
+        }
+       
     }
 
     /**
@@ -88,15 +94,34 @@ class TugasController extends Controller
     }
 
     public function getTaskBoard(Request $req){
+        $tugas = new Tugas();
+
         switch ($req->status) {
-            case 'Belum Dimulai':
+            case ($req->status == "Belum Dimulai" or $req->status == "Siap Dikerjakan"):
+                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
+                    $q->where("id_siswa", $req->id_siswa)->whereIn("status",["Siap Dikerjakan","Belum Dimulai"]);
+                })->get();
                 break;
             case 'Dalam Pengerjaan':
+                
+                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
+                    $q->where("id_siswa", $req->id_siswa)->whereIn("status",["Dalam Pengerjaan","Ditinjau"]);
+                })->get();
                 break;
             case 'Revisi':
+                
+                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
+                    $q->where("id_siswa", $req->id_siswa)->whereIn("status",["Revisi"]);
+                })->get();
                 break;
             case 'Selesai':
+            
+                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
+                    $q->where("id_siswa", $req->id_siswa);
+                })->whereIn("status",["Selesai"])->get();
+               
                 break;
         }
+        return response()->json($tugas);
     }
 }

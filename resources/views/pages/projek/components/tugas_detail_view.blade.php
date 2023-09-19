@@ -4,41 +4,7 @@
     <div class="modal fade" id="tugas-detail-view">
     <div class="modal-dialog flex-grow-1 container-p-y" >
         <div class="modal-content">
-        <div class="nama p-4">
-            <h3>Nama Tugas</h3>
-        </div>
-        <div class="d-flex p-2 m-5">
-            <div class="image p-2">
-                <img src="/dashboard/assets/img/avatars/7.png" class="img-thumbnail " >
-            </div>
-            <div class="keterangan">
-                <div class="card-text d-flex">
-                    <div class="status">
-                      <b> Status :</b>
-                    </div>
 
-                </div>
-                <div class="card-text d-flex">
-                    <p> <b> Waktu Pengerjaan :</b></p>
-                </div>
-                <div class="card-text d-flex">
-                   <b>Lokasi :</b>
-                </div>
-            </div>
-            <div class="isi_keterangan">
-                <div class="card-text d-flex">
-                    <div class="demo-inline-spacing">
-                        <span class="badge bg-primary">Primary</span>
-                    </div>
-                </div>
-                <div class="card-text d-flex">
-                    <p>12-12-2023/12-02-2024</p>
-                </div>
-                <div class="card-text d-flex">
-                    <p>Path Projek</p>
-                </div>
-            </div>
-        </div>
         <div class="row mt-2">
             <div class="col">
                 <div class="nav-align-top mb-4">
@@ -90,7 +56,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="versi1" role="tabpanel">
-                            <button type="button" class="btn btn-primary tombol-tambah-versi mb-3" data-bs-toggle="modal" data-bs-target="#basicModal" id="tombol-tambah-versi">
+                            <button type="button" class="btn btn-primary tombol-tambah-versi mb-3" id="tombol-tambah-versi">
                                 Buat Versi
                               </button>
                               <div id="versi-list"></div>

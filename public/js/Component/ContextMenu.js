@@ -31,10 +31,12 @@ export default class ContextMenu {
             }
         });
         contextMenuStr += `</div>`;
-        this.container = $("<div>").html(contextMenuStr).addClass("dropdown");
+        this.container = $("<div>")
+            .html(contextMenuStr)
+            .addClass("dropdown dropdown-cm");
     }
     trigger(ctr, id) {
-        $(".dropdown").hide();
+        $(".dropdown-cm").hide();
         this.data_id = id;
         this.#renderElement();
         this.container.appendTo(ctr);
@@ -45,6 +47,7 @@ export default class ContextMenu {
     globalEventListener() {
         var ctx = this;
         this.container.find(".dropdown-item").click(function (e) {
+            e.stopPropagation();
             var index = $(this).data("index");
             console.log(ctx.list);
             ctx.list[index][1](ctx.data_id);

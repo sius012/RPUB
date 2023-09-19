@@ -1,4 +1,6 @@
-class Helper {
+import Siswa from "../Model/Siswa.js";
+
+export default class Helper {
     static status(status, onlytext = false) {
         var statusStr = "";
         switch (status) {
@@ -30,6 +32,19 @@ class Helper {
         if (onlytext) {
             return statusStr;
         }
-        return `<span class='badge ${statusStr}'>${status}</span>`;
+        return `<span class='badge status ${statusStr}'>${status}</span>`;
+    }
+
+    static getCurrentAuthSiswa() {
+        let siswa = new Siswa();
+        $.ajax({
+            url: "/getcurrentauthsiswa",
+            type: "get",
+            async: false,
+            success: function (data) {
+                siswa = Siswa.parse(data);
+            },
+        });
+        return siswa;
     }
 }

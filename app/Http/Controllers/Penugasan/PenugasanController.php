@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Penugasan;
 use App\Http\Controllers\Controller;
 use App\Models\Penugasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenugasanController extends Controller
 {
@@ -48,7 +49,7 @@ class PenugasanController extends Controller
             $penugasan = new Penugasan();
             $penugasan->id_siswa = $sws['id_siswa'];
             $penugasan->id_tugas = $sws['id_tugas'];
-            $penugasan->id_penugas = $sws['id_penugas'];
+            $penugasan->id_penugas = Auth::user()->id;
             $penugasan->keterangan = $sws['keterangan'];
             $penugasan->save();
           }

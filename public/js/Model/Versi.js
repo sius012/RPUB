@@ -1,5 +1,6 @@
-class Versi {
-    constructor(){
+import Siswa from "./Siswa.js";
+export default class Versi {
+    constructor() {
         this.id_versi;
         this.id_tugas;
         this.id_siswa;
@@ -9,44 +10,48 @@ class Versi {
         this.lampiran;
         this.status;
         this.timestamp;
+        this.siswa;
     }
 
-    static find(id){
-        var versi = new Versi;
+    static find(id) {
+        var versi = new Versi();
         $.ajax({
-            url: "/versi/"+id,
+            url: "/versis/" + id,
             type: "GET",
-            async:false,
-            success:function(data){
-                versi=Versi.parse(data)
-            }
+            async: false,
+            success: function (data) {
+                versi = Versi.parse(data);
+            },
         });
-        return versi
-    }
-    static parse(json){
-        var versi = new Versi
-
-        tugas.id_versi=json["id_versi"]
-        tugas.id_tugas=json["id_tugas"]
-        tugas.id_siswa=json["id_siswa"] 
-        tugas.nomor_versi=json["nomor_versi"]
-        tugas.nama=json["nama"]
-        tugas.keterangan=json["keterangan"]
-        tugas.lampiran=json["lampiran"]
-        tugas.status=json["status"]
-        tugas.timestamp={created_at: json["created_at"], updated_at: json["updated_at"],}
         return versi;
     }
-    static all(){
+    static parse(json) {
+        var versi = new Versi();
+
+        versi.id_versi = json["id_versi"];
+        versi.id_versi = json["id_tugas"];
+        versi.id_siswa = json["id_siswa"];
+        versi.nomor_versi = json["nomor_versi"];
+        versi.nama = json["nama"];
+        versi.keterangan = json["keterangan"];
+        versi.lampiran = json["lampiran"];
+        versi.status = json["status"];
+        versi.timestamp = {
+            created_at: json["created_at"],
+            updated_at: json["updated_at"],
+        };
+        versi.siswa = Siswa.find(versi.id_siswa);
+        return versi;
+    }
+    static all() {
         var versi = [];
         $.ajax({
-            url: "/versi/",
+            url: "/versis/",
             type: "GET",
-            async:false,
-            success:function(data){
-                tugas=data.map(function(e){
-                    return Versi.parse(e)
-                    
+            async: false,
+            success: function (data) {
+                versi = data.map(function (e) {
+                    return Versi.parse(e);
                 });
             },
         });
@@ -56,24 +61,24 @@ class Versi {
     static byTugas(id, cb = null) {
         let versi = [];
         $.ajax({
-            url:"/versi",
+            url: "/versis",
             data: {
                 id_tugas: id,
             },
             type: "get",
-            success: function(data){
-                versi = data.map(function (e){
+            success: function (data) {
+                versi = data.map(function (e) {
                     return Versi.parse(e);
                 });
 
-                if (typeof cb == "function"){
+                if (typeof cb == "function") {
                     cb(data);
                 }
-            }
+            },
         });
     }
 
-    toJson(){
+    toJson() {
         let json = [];
         json["id_tugas"] = this.id_tugas;
         json["id_siswa"] = this.id_siswa;
@@ -85,8 +90,8 @@ class Versi {
         return json;
     }
 
-    simpan(cb=null, e = null){
-        console.log(this.lampiran);
+    simpan(cb = null, e = null) {
+        console.log(e);
         var formdata = new FormData(e);
 
         formdata.append("id_tugas", this.id_tugas);
@@ -102,11 +107,11 @@ class Versi {
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
             },
-            url: "/versi",
+            url: "/versis",
             type: "post",
             data: formdata,
-            procesData: false,
-            contentType:false,
+            processData: false,
+            contentType: false,
             success: function (data) {
                 if ((cb = null)) {
                     cb(data);
@@ -117,7 +122,5 @@ class Versi {
                 alert(err.responseText);
             },
         });
-
     }
 }
-

@@ -13,13 +13,11 @@ export default class JurusanListView {
         console.log(pageSetup);
         breadcrumb.add([this.nama_component, "active"]);
 
-        if (this.page_setup != undefined) {
-            this.page_setup.componentList.forEach((element) => {
-                if (element.isLayout == undefined) {
-                    element.container.hide();
-                }
-            });
-        }
+        pageSetup.componentList.forEach((element) => {
+            if (element.isLayout == undefined) {
+                element.container.hide();
+            }
+        });
 
         this.container.show();
 

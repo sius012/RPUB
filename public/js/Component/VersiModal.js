@@ -1,3 +1,5 @@
+import Helper from "../Helper/Helper.js";
+import Versi from "../Model/Versi.js";
 export default class VersiModal {
     constructor(container) {
         this.container = container;
@@ -10,11 +12,13 @@ export default class VersiModal {
 
     load(id_tugas) {
         this.versi.id_tugas = id_tugas;
+        this.getElement("id_tugas").val(id_tugas);
         this.modal.show();
     }
 
     parseFromElement() {
         this.versi.id_tugas = this.getElement("id_tugas").val();
+        this.versi.id_siswa = Helper.getCurrentAuthSiswa().id;
         this.versi.nama = this.getElement("nama").val();
         this.versi.keterangan = this.getElement("keterangan", "textarea").val();
         this.versi.lampiran = this.getElement("lampiran")[0];
@@ -25,16 +29,17 @@ export default class VersiModal {
     globalEventListener() {
         var ctx = this;
         ctx.container.delegate("form", "submit", function (e) {
-           e.preventDefault();
-           ctx.parseFromElement();
-           ctx.versi.simpan(function (ed) {
-            ctx.reset();
-            ctx.page_setup.getComponent("TugasDetailView").loadVersi();
-            });
+            e.preventDefault();
+            let form = this;
+            ctx.parseFromElement();
+            ctx.versi.simpan(function (ed) {
+                ctx.reset();
+                ctx.page_setup.getComponent("TugasDetailView").loadVersi();
+            }, form);
         });
     }
 
-    getElement(name,type = "input") {
+    getElement(name, type = "input") {
         return this.container.find(`${type}[name=${name}]`);
     }
 

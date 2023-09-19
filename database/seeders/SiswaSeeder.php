@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Siswa;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaSeeder extends Seeder
 {
@@ -27,6 +28,7 @@ class SiswaSeeder extends Seeder
                 'kelas' => rand(1,3),
                 'fotoprofil'=> 'default.jpg',
                 'email'=> $faker->unique()->safeEmail(),
+                'password'=>Hash::make("password"),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

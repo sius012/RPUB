@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Versi;
 use App\Http\Controllers\Controller;
 use App\Models\Versi;
 use Illuminate\Http\Request;
-use PharIo\Manifest\Requirement;
 
 class VersiController extends Controller
 {
@@ -43,7 +42,7 @@ class VersiController extends Controller
     {
         $versi = new Versi;
         $versi->id_tugas = $request->id_tugas;
-        $versi->id_siswa = 1;
+        $versi->id_siswa = $request->id_siswa;
         $versi->nomor_versi = $request->nomor_versi;
         $versi->nama = $request->nama;
         $versi->keterangan = $request->keterangan;

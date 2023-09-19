@@ -38,8 +38,6 @@
         }
 
         .task {
-            margin: 10px 0;
-            padding: 10px;
             background-color: #fff;
             border: 1px solid #f0f0f0;
             border-radius: 5px;
@@ -229,23 +227,27 @@
             </li>
 
             <!-- ---------------------Layouts as a project---------------------- -->
+            @if(Auth::guard('web')->check())
             <li class="menu-item">
                 <a href="/pages/projek" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                   <div data-i18n="Basic">Projek</div>
                 </a>
               </li>
-
+            @endif
             <!-- ---------------------TaskBoard---------------------- -->
+            @if(Auth::guard('student')->check())
             <li class="menu-item">
                 <a href="/pages/taskboard" class="menu-link">
                     <i class="menu-icon tf-icons bi bi-list-task"></i>
                   <div data-i18n="Basic">Task Board</div>
                 </a>
               </li>
+              @endif
 
               <!-- ---------------------menu projek pakai drop down---------------------- -->
-            {{--  <li class="menu-item">
+            
+              <!-- <li class="menu-item">
                 <a href="" class="menu-link menu-toggle" ">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Projek </div>
@@ -283,7 +285,7 @@
                     </a>
                   </li>
               </ul>
-            </li>  --}}
+            </li>  -->
 
             {{--  -----------------------setting akun---------------------- --}}
             <li class="menu-header small text-uppercase">
@@ -357,7 +359,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="dashboard/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="/dashboard/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -366,12 +368,12 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="dashboard/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="/dashboard/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block">    @if(Auth::guard('student')->check())  {{ Auth::guard('student')->user()->nama }}  @endif</span>
+                            <small class="text-muted">{{Auth::guard('student')->user()->kelas}} {{Auth::guard('student')->user()->getRolesName()->jurusan}}</small>
                           </div>
                         </div>
                       </a>
@@ -379,7 +381,7 @@
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
@@ -390,24 +392,18 @@
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
                       </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                      </a>
-                    </li>
+                    </li> -->
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                      <form action="{{route('logout')}}" method="post">
+                        @csrf
+                      <button class="dropdown-item">
+                        <i class="bx bx-power-off me-2"></i><span class="align-middle">Log Out</span>
+                      </button>
                       </a>
+                      </form>
                     </li>
                   </ul>
                 </li>

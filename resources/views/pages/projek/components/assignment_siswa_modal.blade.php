@@ -1,10 +1,4 @@
 
-    <div class="button">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#assignment-siswa-modal"
-            id="tambah-jurusan">
-            Tambah Data Siswa
-        </button>
-    </div>
     <!-- Modal Untuk Tambah Jurusan -->
     <div class="modal fade" id="assignment-siswa-modal" tabindex="-1" aria-hidden="true">
         <form action="" method="">

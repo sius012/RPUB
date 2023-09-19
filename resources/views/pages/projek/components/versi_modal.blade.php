@@ -53,7 +53,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Lampiran</label>
-              <input type="file" name=""  class="form-control" placeholder="tambahkan lampiran" required>
+              <input type="file" name="lampiran"  class="form-control" placeholder="tambahkan lampiran" required>
             </div>
           </div>
           <div class="row">
