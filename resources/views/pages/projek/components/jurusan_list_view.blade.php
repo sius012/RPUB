@@ -10,24 +10,13 @@
 
 
                    {{--  button tambah projek  --}}
-                        <button type="button" class="btn btn-primary tambah-jurusan mb-3" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
+                        <!-- <button type="button" class="btn btn-primary tambah-jurusan mb-3" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
                           Tambah Jurusan
-                        </button> 
+                        </button>  -->
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
                   <div class="row row-jurusan">
-                        <div class="col col-md-3 pb-3">
-                            <a href="">
-                        <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Nama Jurusan</h5>
-                            <p class="card-text"></p>
-                            <p class="card-text">
-                                <small class="text-muted">Jumlah Projek</small>
-                            </p>
-                      </div>
-                    </div></a>
+                      
                   </div>
                   </div>
                 {{--  -----/card projek jurusan---  --}}

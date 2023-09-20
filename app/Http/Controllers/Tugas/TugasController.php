@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tugas;
 use App\Http\Controllers\Controller;
 use App\Models\Penugasan;
 use App\Models\Tugas;
+use App\Models\Versi;
 use Illuminate\Http\Request;
 
 class TugasController extends Controller
@@ -51,8 +52,14 @@ class TugasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $req)
     {
+        if($req->has('params')){
+            if($req->params == ("version-image")){
+                $versi = Versi::where("id_tugas", $id)->get()->pluck("lampiran");
+                return response()->json($versi);
+            }
+        }
         return response()->json(Tugas::with("jenis")->find($id));
     }
 
@@ -121,6 +128,9 @@ class TugasController extends Controller
                 })->whereIn("status",["Selesai"])->get();
                
                 break;
+        }
+        foreach ($tugas as $i => $tgs) {
+            $tugas[$i]->image = Versi::where("id_tugas", $tgs->id)->get()->pluck("lampiran");
         }
         return response()->json($tugas);
     }

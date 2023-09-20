@@ -4,6 +4,10 @@ export default class Jurusan {
         this.jurusan;
         this.keterangan;
         this.timestamp;
+        this.jumlah_projek = [];
+        this.jumlah_siswa;
+        this.siswa_aktif_projek;
+        this.siswa_nonaktif_projek;
     }
 
     static find(id) {
@@ -28,15 +32,31 @@ export default class Jurusan {
             created_at: json["created_at"],
             updated_at: json["updated_at"],
         };
+
+        if (json["jumlah_projek"] != undefined) {
+            jurusan.jumlah_projek = json["jumlah_projek"];
+        }
+
+        if (json["jumlah_siswa"] != undefined) {
+            jurusan.jumlah_siswa = json["jumlah_siswa"];
+        }
+
+        if (json["siswa_aktif_projek"] != undefined) {
+            jurusan.siswa_aktif_projek = json["siswa_aktif_projek"];
+        }
+
         return jurusan;
     }
-    static all() {
+    1;
+    static all(params = null) {
         var jurusan = [];
         $.ajax({
             url: "/jurusan/",
             type: "GET",
             async: false,
+            data: params != null ? params : {},
             success: function (data) {
+                console.log(data);
                 jurusan = data.map(function (e) {
                     return Jurusan.parse(e);
                 });

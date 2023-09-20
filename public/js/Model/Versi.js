@@ -113,7 +113,7 @@ export default class Versi {
             processData: false,
             contentType: false,
             success: function (data) {
-                if ((cb = null)) {
+                if (cb != null) {
                     cb(data);
                 }
                 console.log(data);

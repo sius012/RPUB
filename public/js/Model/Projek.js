@@ -11,6 +11,7 @@ export default class Projek {
         this.status;
         this.pembuat;
         this.id_jurusan;
+        this.image;
     }
 
     static find(id) {
@@ -39,6 +40,10 @@ export default class Projek {
         projek.status = json["status"];
         projek.pembuat = json["pembuat"];
         projek.id_jurusan = json["id_jurusan"];
+
+        if (json["image"] != undefined) {
+            projek.image = json["image"];
+        }
         return projek;
     }
     static all() {

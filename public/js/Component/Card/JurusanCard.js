@@ -14,7 +14,7 @@ export default class JurusanCard {
                 <h5 class="card-title">${this.jurusan.jurusan}</h5>
                 <p class="card-text"></p>
                 <p class="card-text">
-                    <small class="text-muted">Jumlah Projek</small>
+                    <small class="text-muted">Jumlah Projek ${this.jurusan.jumlah_projek}</small>
                 </p>
           </div>
         </div>

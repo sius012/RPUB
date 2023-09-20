@@ -22,6 +22,7 @@ export default class Tugas {
         this.statusArr = [];
         this.data_jenis;
         this.partisipan;
+        this.image = [];
     }
 
     static find(id, params = { jenis: false }) {
@@ -93,6 +94,10 @@ export default class Tugas {
             tugas.partisipan = Penugasan.byTugas(tugas.id);
         }
 
+        if (json["image"] != undefined) {
+            tugas.image = json["image"];
+        }
+
         return tugas;
     }
     static rekursifParse(json, indentLevel) {
@@ -149,18 +154,26 @@ export default class Tugas {
         });
     }
 
-    hapus() {
+    hapus(cb = null) {
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
             },
             url: "/tugas/" + this.id_tugas,
             type: "delete",
-            success: function () {},
+            success: function (data) {
+                console.log(data);
+                if (cb != null) {
+                    cb();
+                }
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
         });
     }
 
-    static getTaskBoard(id_siswa, status) {
+    static getTaskBoard(id_siswa, status, cb = null) {
         let tugas = [];
         $.ajax({
             url: "/gettaskboardstudent",
@@ -169,14 +182,31 @@ export default class Tugas {
                 id_siswa: id_siswa,
                 status: status,
             },
-            async: false,
+            async: cb != null ? true : false,
             success: function (data) {
-                tugas = data.map((e) => Tugas.find(e["id"]));
+                console.log(data);
+                tugas = data.map((e) => Tugas.parse(e));
+                tugas.forEach(function (e) {
+                    pageSetup.tambahCacheTugas(e);
+                });
+                cb(tugas);
             },
             error: function (err) {
                 alert(err.responseText);
             },
         });
         return tugas;
+    }
+
+    getVersionImage(cb) {
+        let ctx = this;
+        $.ajax({
+            url: "/tugas/" + ctx.id_tugas,
+            type: "get",
+            data: {
+                params: "version_image",
+            },
+            success: function (data) {},
+        });
     }
 }

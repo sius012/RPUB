@@ -1,5 +1,6 @@
 import Helper from "../Helper/Helper.js";
 import Versi from "../Model/Versi.js";
+import pageSetup from "./PageSetup.js";
 export default class VersiModal {
     constructor(container) {
         this.container = container;
@@ -34,8 +35,9 @@ export default class VersiModal {
             ctx.parseFromElement();
             ctx.versi.simpan(function (ed) {
                 ctx.reset();
-                ctx.page_setup.getComponent("TugasDetailView").loadVersi();
+                pageSetup.getComponent("TugasDetailView").loadversi();
             }, form);
+            ctx.modal.hide();
         });
     }
 

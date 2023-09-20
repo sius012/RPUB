@@ -48,7 +48,10 @@ $(document).ready(function () {
         [
             "Hapus",
             function (id) {
-                pageSetup.getTugasCache(id).hapus();
+                console.log(pageSetup.getTugasCache(id));
+                pageSetup.getTugasCache(id).hapus(function () {
+                    detailProjekView.loadTugas();
+                });
             },
         ],
     ]);

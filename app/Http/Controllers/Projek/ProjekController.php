@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Projek;
 
 use App\Http\Controllers\Controller;
 use App\Models\Projek;
+use App\Models\Tugas;
+use App\Models\Versi;
 use Illuminate\Http\Request;
 
 class ProjekController extends Controller
@@ -19,7 +21,11 @@ class ProjekController extends Controller
         if($request->has("id_jurusan")){
             $projek = $projek->where("id_jurusan", $request->id_jurusan);
         }
-        return response()->json($projek->get());
+        $projek = $projek->get();
+        foreach ($projek as $i => $prjk) {
+            $projek[$i]->image = Versi::whereIn("id_tugas", Tugas::where("id_projek",$prjk->id)->get()->pluck("id")->toArray())->get()->pluck("lampiran");
+        }
+        return response()->json($projek);
     }
 
     /**

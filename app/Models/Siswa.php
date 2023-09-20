@@ -16,4 +16,8 @@ class Siswa extends Authenticatable
         $jurusan = Jurusan::find($this->id_jurusan);
         return $jurusan;
     }
+
+    public function penugasan(){
+        return $this->hasMany(Penugasan::class, "id_siswa","id");
+    }
 }

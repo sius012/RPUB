@@ -10,17 +10,15 @@ export default class Siswa {
         this.foto_profil;
         this.password;
         this.email;
+        this.ikut_penugasan;
     }
 
     static byQuery(query, cb) {
+        query.byQuery = "yes";
         let siswa = [];
         $.ajax({
             url: "/siswa",
-            data: {
-                byQuery: "yes",
-                kw: query.nama,
-                id_jurusan: query.id_jurusan,
-            },
+            data: query,
             type: "get",
             success: function (data) {
                 siswa = data.map(function (e) {
@@ -57,6 +55,10 @@ export default class Siswa {
         siswa.foto_profil = json["foto_profil"];
         siswa.password = json["password"];
         siswa.email = json["email"];
+
+        if (json["ikut_penugasan"]) {
+            siswa.ikut_penugasan = json["ikut_penugasan"];
+        }
 
         return siswa;
     }

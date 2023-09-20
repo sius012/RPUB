@@ -17,9 +17,19 @@ class SiswaController extends Controller
     {
         $siswa = new Siswa();
         if($req->has("byQuery")){
-            $siswa = $siswa->where("id_jurusan",$req->id_jurusan)->where("nama","LIKE","%".$req->kw."%");
+            $siswa = $siswa->with("penugasan")->where("id_jurusan",$req->id_jurusan)->whereHas("penugasan", function($q) use($req){
+                $q->where("id_tugas", $req->id_tugas);
+            });
+            if($req->filled("nama")){
+                $siswa = $siswa->orWhere("nama","LIKE","%".$req->nama."%");
+            }
+            $siswa = $siswa->get()->map(function($q){
+                $sws = $q;
+                $sws->ikut_penugasan = $q->penugasan->count() > 0 ? true : false;
+                return $sws;
+            });
         }
-        return response()->json($siswa->get());
+        return response()->json($siswa);
     }
 
     /**

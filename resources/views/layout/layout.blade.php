@@ -93,6 +93,24 @@
     .status-done {
         background-color: #d3f5d3;
     }
+
+    .card-jurusan-dashboard{
+      background-color: #369FFF;
+      color: white;
+      padding: 20px;
+      border-radius: 20px;
+      height: 180px;
+      box-shadow: 0px 10px 30px 0px #8AC53E66;
+
+    }
+
+    
+
+    .card-jurusan-dashboard h3{ 
+      color: white;
+      font-size: 15pt;
+    }
+
 </style>
     <meta charset="utf-8" />
     <meta
@@ -373,7 +391,7 @@
                           </div>
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">    @if(Auth::guard('student')->check())  {{ Auth::guard('student')->user()->nama }}  @endif</span>
-                            <small class="text-muted">{{Auth::guard('student')->user()->kelas}} {{Auth::guard('student')->user()->getRolesName()->jurusan}}</small>
+                            <small class="text-muted">@if(Auth::guard('student')->check()){{Auth::guard('student')->user()->kelas}} {{Auth::guard('student')->user()->getRolesName()->jurusan}}@endif</small>
                           </div>
                         </div>
                       </a>
@@ -442,8 +460,9 @@
     <!-- Core JS -->
     <!-- build:dashboard assets/vendor/js/core.js -->
     <script src="/dashboard/assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="/dashboard/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/dashboard/assets/vendor/js/bootstrap.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="/dashboard/assets/vendor/js/menu.js"></script>
@@ -453,14 +472,15 @@
     <script src="/dashboard/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="/dashboard/assets/js/main.js"></script>
-
+    <script src="/dashboard/assets/js/main.js"></script>  
+    
     <!-- Page JS -->
     <script src="/dashboard/assets/js/dashboards-analytics.js"></script>
-
+    <script src="/admin/assets/js/plugins/chartjs.min.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('js/Helper/Helper.js') }}"></script>
+    
     <script>
       $(document).ready(function(){
 

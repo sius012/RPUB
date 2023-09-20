@@ -2,7 +2,7 @@ import pageSetup from "./PageSetup.js";
 import Projek from "../Model/Projek.js";
 import Tugas from "../Model/Tugas.js";
 import Penugasan from "../Model/Penugasan.js";
-
+import Helper from "../Helper/Helper.js";
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;

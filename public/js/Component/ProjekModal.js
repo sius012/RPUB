@@ -1,3 +1,4 @@
+import Projek from "../Model/Projek.js";
 export default class ProjekModal {
     constructor(container) {
         this.container = container;
@@ -63,7 +64,7 @@ export default class ProjekModal {
     kirim() {
         this.parse();
         this.ProjekData.simpan();
-        this.container.modal.hide();
+        this.modal.hide();
         var pLV = this.page_setup.getComponent("ProjekListView");
         pLV.load(pLV.id_jurusan);
     }

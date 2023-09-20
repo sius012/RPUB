@@ -10,7 +10,9 @@ export default class ProjekCard {
         <div class="col-md-3 mb-3">
         <a href="#" class='projek-card' data-id="${this.projek.id}">
         <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="/versi/${this.projek.image
+            .map((e) => e)
+            .join("")}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">${this.projek.nama}</h5>
             <p class="card-text">Deskripsi Projek</p>
@@ -23,6 +25,5 @@ export default class ProjekCard {
   </div>
 `;
         return this.elementStr;
-        
     }
 }

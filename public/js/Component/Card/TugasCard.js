@@ -7,10 +7,23 @@ export default class TugasCard {
     }
 
     load() {
+        console.log(this.tugas);
         this.elementStr = `
         <div class="task tugas-card" data-id='${this.tugas.id_tugas}'>
             <div class="row g-0">
-                <div class='col-md-12'><img src="/dashboard/assets/img/avatars/6.png" style='width: 100%; height: 100px;object-fit: cover' class="img-fluid" alt="..."></div>
+                <div class='col-md-12'>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  ${this.tugas.image
+                      .map(
+                          (e) => `<div class="carousel-item active">
+                  <img src="/versi/${e}" style="height: 50px;object-fit: cover" class="d-block w-100" alt="...">
+                </div>`
+                      )
+                      .join("")}
+                </div>
+              </div>
+                </div>
                 <div class='w-100'></div>
                 <div class="col p-2">
                     <h6 class="nama-tugas m-0" style='font-size: 10pt'>${

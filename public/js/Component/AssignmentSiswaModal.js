@@ -16,34 +16,40 @@ export default class AssigmentSiswaModal {
 
     init(id_jurusan, tugas) {
         this.id_jurusan = id_jurusan;
-
         this.tugas = tugas;
         this.container.find("input[name=id_projek]").val(id_jurusan);
         this.container.find("input[name=id_tugas]").val(this.tugas.id);
-        console.log(this.tugas);
+        this.loadContext();
     }
 
     loadContext(kw = null) {
         var ctx = this;
-        Siswa.byQuery(
-            {
-                id_jurusan: this.id_jurusan,
-                nama: kw,
-            },
-            function (data) {
-                ctx.siswaList = data;
-                ctx.container.find(".siswa-list-container").html("");
-                ctx.siswaList.forEach((element) => {
-                    let input = ctx.container
-                        .find(".siswa-container")
-                        .find("input[value=" + element.id + "]");
+        let datas = {
+            id_jurusan: this.id_jurusan,
+            id_tugas: this.tugas.id_tugas,
+        };
+        if (kw != null) {
+            datas.nama = kw;
+        }
 
-                    ctx.container
-                        .find(".siswa-list-container")
-                        .append(ctx.siswaListCard(element, input));
-                });
-            }
-        );
+        this.container.find(".siswa-container").empty();
+        Siswa.byQuery(datas, function (data) {
+            ctx.siswaList = data;
+            console.log(data);
+            ctx.container.find(".siswa-list-container").html("");
+            ctx.siswaList.forEach((element) => {
+                if (element.ikut_penugasan == true) {
+                    ctx.tambahPartisipan(element.id);
+                }
+                let input = ctx.container
+                    .find(".siswa-container")
+                    .find("input[value=" + element.id + "]");
+
+                ctx.container
+                    .find(".siswa-list-container")
+                    .append(ctx.siswaListCard(element, input));
+            });
+        });
     }
 
     show() {
@@ -99,7 +105,7 @@ export default class AssigmentSiswaModal {
                 penugasan.id_penugas = 1;
                 listSiswa.push(penugasan.toJson());
             });
-        Penugasan.tambahPenugasan(listSiswa, function (data) {
+        Penugasan.tambahPenugasan(listSiswa, ctx.tugas, function (data) {
             ctx.modal.hide();
             let detailProjekView = pageSetup.getComponent("DetailProjekView");
             detailProjekView.loadTugas();
@@ -107,13 +113,13 @@ export default class AssigmentSiswaModal {
     }
 
     siswaListCard(element, input) {
-        console.log(input);
+        console.log("tes: " + element.ikut_penugasan);
         return `
         <div class='row' data-id="${element.id}">
         <div class='col-md-2'>  <img style="width: 20px; height: 20px; object-fit: cover; border-radius: 50%" src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Outdoors-man-portrait_%28cropped%29.jpg/1200px-Outdoors-man-portrait_%28cropped%29.jpg'></div>
         <div class='col-md-8'>${element.nama}</div>
         <div class='col-md-2'><input class='btn-tambah-siswa' type='checkbox' ${
-            input.length > 0 ? "checked" : ""
+            input.length > 0 || element.ikut_penugasan == true ? "checked" : ""
         }></div>
         </div>
         </div>

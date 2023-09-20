@@ -74,7 +74,7 @@ export default class Penugasan {
         });
     }
 
-    static tambahPenugasan(siswa, cb = function () {}) {
+    static tambahPenugasan(siswa, tugas, cb = function () {}) {
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
@@ -83,6 +83,7 @@ export default class Penugasan {
             type: "post",
             data: {
                 siswa: siswa,
+                tugas: tugas,
             },
             async: false,
             success: function (data) {

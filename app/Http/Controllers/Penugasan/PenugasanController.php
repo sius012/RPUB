@@ -42,18 +42,22 @@ class PenugasanController extends Controller
     public function store(Request $req)
     {
         $siswa= $req->siswa;
-        foreach ($siswa as $sws) {
-          //Check Available
-          $check = Penugasan::where("id_siswa",$req->id_siswa)->where("id_tugas",$req->id_tugas)->get()->count();
-          if($check<1){
-            $penugasan = new Penugasan();
-            $penugasan->id_siswa = $sws['id_siswa'];
-            $penugasan->id_tugas = $sws['id_tugas'];
-            $penugasan->id_penugas = Auth::user()->id;
-            $penugasan->keterangan = $sws['keterangan'];
-            $penugasan->save();
-          }
+        Penugasan::where("id_tugas",$req->tugas["id_tugas"])->delete();
+        if($siswa!=null){
+            foreach ($siswa as $sws) {
+                //Check Available
+                $check = Penugasan::where("id_siswa",$req->id_siswa)->where("id_tugas",$req->id_tugas)->get()->count();
+                if($check<1){
+                  $penugasan = new Penugasan();
+                  $penugasan->id_siswa = $sws['id_siswa'];
+                  $penugasan->id_tugas = $sws['id_tugas'];
+                  $penugasan->id_penugas = Auth::user()->id;
+                  $penugasan->keterangan = $sws['keterangan'];
+                  $penugasan->save();
+                }
+              }
         }
+
 
         return response()->json(["data"=>$siswa]);
 
