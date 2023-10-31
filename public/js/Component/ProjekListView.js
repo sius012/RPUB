@@ -1,6 +1,7 @@
 import pageSetup from "./PageSetup.js";
 import Projek from "../Model/Projek.js";
 import ProjekCard from "./Card/ProjekCard.js";
+import Jurusan from "../Model/Jurusan.js";
 export default class ProjekListView {
     constructor(container) {
         this.container = container;
@@ -15,7 +16,7 @@ export default class ProjekListView {
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
-        this.page_setup.componentList.forEach((element) => {
+        pageSetup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
             if (element.isLayout == undefined) {
                 element.container.hide();
@@ -27,6 +28,8 @@ export default class ProjekListView {
             //cek apakah ada parameter jurusan, jika ada perbarui datanya, jika tidak gunakan yag sudah ada
             this.projekList = Projek.byJurusan(id_jurusan);
             this.id_jurusan = id_jurusan;
+        } else {
+            this.projekList = Projek.all();
         }
         this.container.find(".row-view").html("");
         this.projekList.forEach((element) => {
@@ -34,23 +37,23 @@ export default class ProjekListView {
             this.container.find(".row-view").append(projekCard.load());
         });
 
-        //assign modal id_jurusan
-        var modal = this.page_setup.getComponent("ProjekModal");
-        modal.init(this.id_jurusan);
+        var modal = pageSetup.getComponent("ProjekModal");
+        modal.init();
     }
 
     globalEventListener() {
         //GlobalEventListener
         var ctx = this;
+
         this.container.find(".tambah-projek").click(function () {
-            var modal = ctx.page_setup.getComponent("ProjekModal");
+            var modal = pageSetup.getComponent("ProjekModal");
             modal.modal.show();
         });
 
         //Updatean
         this.container.delegate(".projek-card", "click", function () {
             var id_projek = $(this).data("id");
-            var dPV = ctx.page_setup.getComponent("DetailProjekView");
+            var dPV = pageSetup.getComponent("DetailProjekView");
             dPV.load(id_projek);
         });
     }

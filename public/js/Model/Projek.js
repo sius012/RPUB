@@ -10,8 +10,9 @@ export default class Projek {
         this.deskripsi;
         this.status;
         this.pembuat;
-        this.id_jurusan;
+        this.id_jurusan = [];
         this.image;
+        this.jurusan = [];
     }
 
     static find(id) {
@@ -44,6 +45,7 @@ export default class Projek {
         if (json["image"] != undefined) {
             projek.image = json["image"];
         }
+
         return projek;
     }
     static all() {
@@ -83,6 +85,30 @@ export default class Projek {
         return projek;
     }
 
+    static bySiswa(id, cb = null) {
+        var projek = [];
+        $.ajax({
+            url: "/projek",
+            type: "GET",
+            data: {
+                id_siswa: id,
+            },
+            async: cb == null ? false : true,
+            success: function (data) {
+                data.forEach((element) => {
+                    projek.push(Projek.parse(element));
+                });
+
+                if (cb != null) cb(projek);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+        console.log(projek);
+        return projek;
+    }
+
     toJson() {
         var json = {};
         json["nama"] = this.nama;
@@ -94,10 +120,11 @@ export default class Projek {
         json["deskripsi"] = this.deskripsi;
         json["status"] = this.status;
         json["id_jurusan"] = this.id_jurusan;
+        json["id_pembuat"] = 0;
         return json;
     }
 
-    simpan() {
+    simpan(params = null) {
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
@@ -113,5 +140,10 @@ export default class Projek {
                 alert(err.responseText);
             },
         });
+        if (params != null) {
+            if (params.withJurusan == true) {
+                this.simpanJurusan();
+            }
+        }
     }
 }

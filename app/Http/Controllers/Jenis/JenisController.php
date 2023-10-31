@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Jenis;
 
 use App\Http\Controllers\Controller;
 use App\Models\Jenis;
+use App\Models\ProjekJurusan;
 use Illuminate\Http\Request;
 
 class JenisController extends Controller
@@ -16,8 +17,12 @@ class JenisController extends Controller
     public function index(Request $req)
     {
         $jenis = new Jenis;
-        if($req->has("id_jurusan")){
+        if ($req->has("id_jurusan")) {
             $jenis = $jenis->where("id_jurusan", $req->id_jurusan);
+        }
+        if ($req->has("id_projek")) {
+            $id_jurusan = ProjekJurusan::where("id_projek", $req->id_projek)->pluck("id_jurusan")->toArray();
+            $jenis = Jenis::whereIn("id_jurusan", $id_jurusan);
         }
         return response()->json($jenis->get());
         // return response()->json(Jenis::all());

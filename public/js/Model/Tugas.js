@@ -111,6 +111,8 @@ export default class Tugas {
         return tugas;
     }
     toJson() {
+        console.log("datanya");
+        console.log(this);
         var json = {};
         json["id_parent"] = this.id_parent;
         json["id_projek"] = this.id_projek;
@@ -133,7 +135,9 @@ export default class Tugas {
             url: "/tugas",
             type: "post",
             data: ctx.toJson(),
-            success: function (data) {},
+            success: function (data) {
+                console.log(data);
+            },
             error: function (err) {
                 alert(err.responseText);
             },

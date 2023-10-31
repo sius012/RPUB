@@ -30,7 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ->middleware('auth')
+    // ->middleware('auth')
 ;
 
 Route::get('/konfigurasiangkatan', function () {
@@ -40,14 +40,14 @@ Route::get('/card', function () {
     return view('pages.projek.components.tugas_detail_view');
 });
 
-Route::get('/login',[LoginController::class, 'index'])->name('login')
-// ->middleware('guest')
+Route::get('/login', [LoginController::class, 'index'])->name('login')
+    // ->middleware('guest')
 ;
-Route::post('/login',[LoginController::class, 'authenticate']);
-Route::post('/logout',[LoginController::class, 'logout']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])
-// ->middleware('guest')
+    // ->middleware('guest')
 ;
 Route::post('/register', [RegisterController::class, 'store']);
 
@@ -73,7 +73,9 @@ Route::group(['middleware' => ['auth:student']], function () {
 
 Route::group(['middleware' => ['role:Admin']], function () {
     Route::view('/pages/projek', "pages.projek.index");
-    Route::view('/pages/dashboard', "pages.dashboard.index");   
+    Route::view('/pages/dashboard', "pages.dashboard.index");
+    Route::view('/pages/konfigurasi', "pages.konfigurasi.index");
+    Route::view('/pages/siswa', "pages.siswa.index");
 });
 
 
@@ -85,7 +87,7 @@ Route::get('/loginsiswa', [LoginController::class, "index"])->name("siswa.login"
 Route::post('/loginsiswa', [LoginController::class, "authenticate"])->name("siswa.login");
 Route::get('/getcurrentauthsiswa', [LoginController::class, "getcurrentauthsiswa"])->name("siswa.authdata");
 
-Route::get('/teshash', function(){
+Route::get('/teshash', function () {
     dd(Hash::make("password"));
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

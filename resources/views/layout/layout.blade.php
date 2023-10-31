@@ -156,6 +156,11 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/dashboard/assets/js/config.js"></script>
     {{--  css bootsrtrap  --}}
+    <style>
+      td,th{
+        font-size: 8pt;
+      }
+    </style>
 
   </head>
 
@@ -250,6 +255,18 @@
                 <a href="/pages/projek" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                   <div data-i18n="Basic">Projek</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="/pages/siswa" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                  <div data-i18n="Basic">Siswa</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="/pages/konfigurasi" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-cog"></i>
+                  <div data-i18n="Basic">Konfigurasi</div>
                 </a>
               </li>
             @endif
@@ -436,7 +453,7 @@
           <div class="content-wrapper">
 
             <!-- -----------Content------- -->
-            <div class="container">
+            <div class="container-fluid">
                 @yield('main-content')
             </div>
             <!-- ----------/Content------- -->

@@ -37,6 +37,24 @@ export default class Jenis {
         });
         return jenis;
     }
+
+    static byProjek(id, cb) {
+        var jenis = [];
+        $.ajax({
+            url: "/jenis",
+            type: "GET",
+            data: {
+                id_projek: id,
+            },
+            success: function (data) {
+                jenis = data.map(function (e) {
+                    return Jenis.parse(e);
+                });
+                cb(jenis);
+            },
+        });
+        return jenis;
+    }
     static parse(json) {
         var jenis = new Jenis();
         jenis.id = json["id"];

@@ -11,12 +11,12 @@ import TugasDetailView from "../Component/TugasDetailView.js";
 import AssignmentSiswaModal from "../Component/AssignmentSiswaModal.js";
 
 import Jurusan from "../Model/Jurusan.js";
+import Projek from "../Model/Projek.js";
 
 $(document).ready(function () {
     var breadcrumb = new Breadcrumb($("#breadcrumb"));
 
     //Komponen Uta
-    var jurusanListView = new JurusanListView($("#jurusan-list-view"));
     var projekListView = new ProjekListView($("#projek-list-view"));
     var projekModal = new ProjekModal($("#projek-modal"));
     var detailProjekView = new DetailProjekView($("#detail-projek-view"));
@@ -54,11 +54,14 @@ $(document).ready(function () {
                 });
             },
         ],
+        [
+            "Subtugas",
+            function (id) {
+                pageSetup.getComponent("TugasModal").attach(id);
+            },
+        ],
     ]);
 
-    jurusanListView.jurusanList = Jurusan.all();
-
-    pageSetup.add(jurusanListView);
     pageSetup.add(projekListView);
     pageSetup.add(projekModal);
     pageSetup.add(detailProjekView);
@@ -68,7 +71,7 @@ $(document).ready(function () {
     pageSetup.add(assignmentSiswaModal);
     pageSetup.add(breadcrumb);
 
-    jurusanListView.load();
+    projekListView.load();
     console.log(pageSetup);
 
     pageSetup.init();

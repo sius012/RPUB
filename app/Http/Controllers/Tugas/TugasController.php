@@ -17,12 +17,11 @@ class TugasController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('penugasan')){
+        if ($request->has('penugasan')) {
             $this->getTaskBoard($request);
-        }else{
+        } else {
             return response()->json(Tugas::byProjek($request->id_projek));
         }
-       
     }
 
     /**
@@ -43,6 +42,7 @@ class TugasController extends Controller
      */
     public function store(Request $request)
     {
+        //  return response()->json($request->input());
         Tugas::create($request->input());
     }
 
@@ -54,8 +54,8 @@ class TugasController extends Controller
      */
     public function show($id, Request $req)
     {
-        if($req->has('params')){
-            if($req->params == ("version-image")){
+        if ($req->has('params')) {
+            if ($req->params == ("version-image")) {
                 $versi = Versi::where("id_tugas", $id)->get()->pluck("lampiran");
                 return response()->json($versi);
             }
@@ -85,7 +85,6 @@ class TugasController extends Controller
     {
         $tugas = Tugas::find($id);
         $tugas->update($request->input());
-
     }
 
     /**
@@ -100,33 +99,34 @@ class TugasController extends Controller
         $tugas->delete();
     }
 
-    public function getTaskBoard(Request $req){
+    public function getTaskBoard(Request $req)
+    {
         $tugas = new Tugas();
 
         switch ($req->status) {
             case ($req->status == "Belum Dimulai" or $req->status == "Siap Dikerjakan"):
-                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
-                    $q->where("id_siswa", $req->id_siswa)->whereIn("status",["Siap Dikerjakan","Belum Dimulai"]);
+                $tugas = Tugas::whereHas("penugasan", function ($q) use ($req) {
+                    $q->where("id_siswa", $req->id_siswa)->whereIn("status", ["Siap Dikerjakan", "Belum Dimulai"]);
                 })->get();
                 break;
             case 'Dalam Pengerjaan':
-                
-                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
-                    $q->where("id_siswa", $req->id_siswa)->whereIn("status",["Dalam Pengerjaan","Ditinjau"]);
+
+                $tugas = Tugas::whereHas("penugasan", function ($q) use ($req) {
+                    $q->where("id_siswa", $req->id_siswa)->whereIn("status", ["Dalam Pengerjaan", "Ditinjau"]);
                 })->get();
                 break;
             case 'Revisi':
-                
-                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
-                    $q->where("id_siswa", $req->id_siswa)->whereIn("status",["Revisi"]);
+
+                $tugas = Tugas::whereHas("penugasan", function ($q) use ($req) {
+                    $q->where("id_siswa", $req->id_siswa)->whereIn("status", ["Revisi"]);
                 })->get();
                 break;
             case 'Selesai':
-            
-                $tugas = Tugas::whereHas("penugasan", function($q) use($req){
+
+                $tugas = Tugas::whereHas("penugasan", function ($q) use ($req) {
                     $q->where("id_siswa", $req->id_siswa);
-                })->whereIn("status",["Selesai"])->get();
-               
+                })->whereIn("status", ["Selesai"])->get();
+
                 break;
         }
         foreach ($tugas as $i => $tgs) {

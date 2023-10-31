@@ -1,36 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Jurusan;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Jurusan;
-use App\Models\Projek;
-use App\Models\ProjekJurusan;
-use App\Models\Siswa;
 use Illuminate\Http\Request;
 
-class JurusanController extends Controller
+class ProjekJurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function index()
     {
-        $jurusan = Jurusan::all();
-        foreach ($jurusan as $j => $jrs) {
-            if ($req->has("detail_level")) {
-                switch ($req->detail_level) {
-                    case 3:
-                        $jurusan[$j]->jumlah_siswa = Siswa::where("id_jurusan", $jrs->id)->get()->count();
-                        $jurusan[$j]->siswa_aktif_projek = Siswa::where("id_jurusan", $jrs->id)->whereHas("penugasan")->get()->count();
-                        break;
-                }
-            }
-            $jurusan[$j]->jumlah_projek = ProjekJurusan::where("id_jurusan", $jrs->id)->get()->count();
-        }
-        return response()->json($jurusan);
+        //
     }
 
     /**
@@ -62,7 +45,7 @@ class JurusanController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Jurusan::find($id));
+        //
     }
 
     /**

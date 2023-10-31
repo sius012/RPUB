@@ -48,18 +48,21 @@ export default class Jurusan {
         return jurusan;
     }
     1;
-    static all(params = null) {
+    static all(params = null, cb = null) {
         var jurusan = [];
         $.ajax({
             url: "/jurusan/",
             type: "GET",
-            async: false,
+            async: cb != null ? true : false,
             data: params != null ? params : {},
             success: function (data) {
                 console.log(data);
                 jurusan = data.map(function (e) {
                     return Jurusan.parse(e);
                 });
+                if (cb != null) {
+                    cb(jurusan);
+                }
             },
             error: function (err) {
                 alert(err.responseText);

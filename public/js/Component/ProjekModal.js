@@ -1,4 +1,5 @@
 import Projek from "../Model/Projek.js";
+import Jurusan from "../Model/Jurusan.js";
 export default class ProjekModal {
     constructor(container) {
         this.container = container;
@@ -8,8 +9,21 @@ export default class ProjekModal {
         this.nama_component = "ProjekModal";
     }
 
-    init(id_jurusan) {
-        this.getElement("id_jurusan").val(id_jurusan);
+    init() {
+        let cjr = this.container.find(".container-jurusan-row");
+        cjr.empty();
+        Jurusan.all(null, function (jurusan) {
+            jurusan.forEach(function (e) {
+                cjr.append(
+                    `<div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="${e.id}" name='id_jurusan' id="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate">
+                      ${e.jurusan}
+                    </label>
+                  </div>`
+                );
+            });
+        });
 
         //this.getElement("id_jenis", "select").html(optionJenisStr);
     }
@@ -26,6 +40,21 @@ export default class ProjekModal {
         projek.status = this.getElement("status").val();
         projek.id_pembuat = this.getElement("id_pembuat").val();
         projek.id_jurusan = this.getElement("id_jurusan").val();
+        this.ProjekData = projek;
+    }
+
+    fastParse(json) {
+        var projek = new Projek();
+        projek.nama = json["nama"];
+        projek.tanggal_awal = json["tanggal_awal"];
+        projek.tanggal_akhir = json["tanggal_akhir"];
+        projek.id_penanggung_jawab = 1; //this.getElement("id_penanggung_jawab").val();
+        projek.jenis_projek = json["jenis_projek"];
+        projek.klien = json["klien"];
+        projek.deskripsi = json["deskripsi"];
+        projek.status = json["status"];
+        projek.id_pembuat = 0;
+        projek.id_jurusan = json["id_jurusan"];
         this.ProjekData = projek;
     }
 
@@ -62,7 +91,9 @@ export default class ProjekModal {
     }
 
     kirim() {
-        this.parse();
+        //  this.parse();
+        console.log("Datanya adalah:");
+        console.log(this.ProjekData);
         this.ProjekData.simpan();
         this.modal.hide();
         var pLV = this.page_setup.getComponent("ProjekListView");
@@ -77,7 +108,31 @@ export default class ProjekModal {
 
         this.container.find("form").submit(function (e) {
             e.preventDefault();
+            //  ctx.kirim();
+            var formData = $(this)
+                .serializeArray()
+                .filter(function (item) {
+                    return item.name !== "id_jurusan";
+                });
+            let newFormData = {};
+            formData.push({
+                name: "id_jurusan",
+                value: $('input[name="id_jurusan"]:checked')
+                    .map(function () {
+                        return $(this).val();
+                    })
+                    .get(),
+            });
+
+            formData.forEach(function (e) {
+                newFormData[e["name"]] = e["value"];
+            });
+
+            ctx.fastParse(newFormData);
+
+            // Display form data (you can also send it to the server via AJAX)
             ctx.kirim();
+
             var pLV = ctx.page_setup.getComponent("ProjekListView");
         });
     }
