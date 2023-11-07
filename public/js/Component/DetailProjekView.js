@@ -3,6 +3,7 @@ import Projek from "../Model/Projek.js";
 import Tugas from "../Model/Tugas.js";
 import Penugasan from "../Model/Penugasan.js";
 import Helper from "../Helper/Helper.js";
+import SiswaCard from "./Card/SiswaCard.js";
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;
@@ -14,6 +15,7 @@ export default class DetailProjekView {
     }
 
     load(id) {
+        Helper.curl("/pages/projek/" + id);
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
@@ -29,6 +31,7 @@ export default class DetailProjekView {
         this.loadData(id);
         this.loadInfoProjek();
         this.loadTugas();
+        this.loadPartisipan();
     }
 
     loadData(id) {
@@ -74,6 +77,15 @@ export default class DetailProjekView {
         var tugasModal = this.page_setup.getComponent("TugasModal");
         tugasModal.init(this.projek);
         $(window).scrollTop(previousScroll);
+    }
+
+    loadPartisipan() {
+        let partisipan = Projek.find(this.projek.id, { partisipan: true });
+        this.container
+            .find("#partisipan")
+            .html(
+                SiswaCard.autoList(partisipan.partisipan, { redirect: true })
+            );
     }
 
     #rekursifTugas(tugas, index) {

@@ -16,7 +16,7 @@ class CreatePenugasansTable extends Migration
         Schema::create('penugasan', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("id_tugas");
-            $table->string('nis')->unique();
+            $table->bigInteger("id_siswa");
             $table->bigInteger("id_penugas");
             $table->text("keterangan");
             $table->timestamps();

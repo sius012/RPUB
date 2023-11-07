@@ -1,3 +1,5 @@
+import Siswa from "./Siswa.js";
+
 export default class Projek {
     constructor() {
         this.id;
@@ -13,13 +15,18 @@ export default class Projek {
         this.id_jurusan = [];
         this.image;
         this.jurusan = [];
+        this.partisipan = [];
+        this.etc = {};
     }
 
-    static find(id) {
+    static find(id, params = { partisipan: false }) {
         var projek = new Projek();
         $.ajax({
             url: "/projek/" + id,
             type: "GET",
+            data: {
+                partisipan: params.partisipan == true ? 1 : 0,
+            },
             async: false,
             success: function (data) {
                 projek = Projek.parse(data);
@@ -27,7 +34,7 @@ export default class Projek {
         });
         return projek;
     }
-    static parse(json) {
+    static parse(json, params = { withEtc: false }) {
         var projek = new Projek();
 
         projek.id = json["id"];
@@ -44,6 +51,18 @@ export default class Projek {
 
         if (json["image"] != undefined) {
             projek.image = json["image"];
+        }
+
+        if (params.withEtc == true) {
+            projek.etc["jumlah_tugas"] = json["jumlah_tugas"];
+            projek.etc["tugas_selesai"] = json["tugas_selesai"];
+            projek.etc["proses"] = json["proses"];
+        }
+
+        if (json["partisipan"] != undefined) {
+            projek.partisipan = json["partisipan"].map(function (e) {
+                return Siswa.parse(e);
+            });
         }
 
         return projek;

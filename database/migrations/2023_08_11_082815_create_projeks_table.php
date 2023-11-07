@@ -22,9 +22,8 @@ class CreateProjeksTable extends Migration
             $table->string("jenis_projek");
             $table->string("klien");
             $table->text("deskripsi");
-            $table->enum("status",["Belum Selesai","Sedang Dikerjakan","Selesai","Revisi","Ditunda"]);
+            $table->enum("status", ["Belum Dimulai", "Siap Dikerjakan", "Sedang Dikerjakan", "Selesai", "Revisi", "Ditunda"]);
             $table->bigInteger("id_pembuat");
-            $table->bigInteger("id_jurusan");
             $table->timestamps();
         });
     }

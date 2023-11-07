@@ -73,9 +73,15 @@ Route::group(['middleware' => ['auth:student']], function () {
 
 Route::group(['middleware' => ['role:Admin']], function () {
     Route::view('/pages/projek', "pages.projek.index");
+
     Route::view('/pages/dashboard', "pages.dashboard.index");
     Route::view('/pages/konfigurasi', "pages.konfigurasi.index");
+
+
     Route::view('/pages/siswa', "pages.siswa.index");
+    Route::get('/pages/siswa/{jurusan}/{angkatan}/{id}', function ($jurusan, $angkatan, $id) {
+        return view("pages.siswa.index");
+    });
 });
 
 

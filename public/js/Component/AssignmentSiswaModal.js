@@ -109,6 +109,7 @@ export default class AssigmentSiswaModal {
             ctx.modal.hide();
             let detailProjekView = pageSetup.getComponent("DetailProjekView");
             detailProjekView.loadTugas();
+            detailProjekView.loadPartisipan();
         });
     }
 
@@ -117,12 +118,12 @@ export default class AssigmentSiswaModal {
         return `
         <div class='row' data-id="${element.id}">
         <div class='col-md-2'>  <img style="width: 20px; height: 20px; object-fit: cover; border-radius: 50%" src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Outdoors-man-portrait_%28cropped%29.jpg/1200px-Outdoors-man-portrait_%28cropped%29.jpg'></div>
-        <div class='col-md-8'>${element.nama}</div>
+        <div class='col-md-8'>${element.nama} ${element.kelasDanJurusan}</div>
         <div class='col-md-2'><input class='btn-tambah-siswa' type='checkbox' ${
             input.length > 0 || element.ikut_penugasan == true ? "checked" : ""
         }></div>
         </div>
-        </div>
+        </div>  
         `;
     }
 }

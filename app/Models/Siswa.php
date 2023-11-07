@@ -10,14 +10,26 @@ class Siswa extends Authenticatable
 {
     use HasFactory;
     protected $table = "siswa";
-    protected $fillable = ["nis","nama","jk","","id_angkatan","id_jurusan","kelas","fotoprofil","password","email","created_at","updated_at"];
+    protected $fillable = ["nis", "nama", "jk", "", "id_angkatan", "id_jurusan", "kelas", "fotoprofil", "password", "email", "created_at", "updated_at"];
 
-    public function getRolesName(){
+    public function getRolesName()
+    {
         $jurusan = Jurusan::find($this->id_jurusan);
         return $jurusan;
     }
 
-    public function penugasan(){
-        return $this->hasMany(Penugasan::class, "id_siswa","id");
+    public function penugasan()
+    {
+        return $this->hasMany(Penugasan::class, "id_siswa", "id");
+    }
+
+    public function angkatan()
+    {
+        return $this->hasOne(Angkatan::class, "id", "id_angkatan");
+    }
+
+    public function jurusan()
+    {
+        return $this->hasOne(Jurusan::class, "id", "id_jurusan");
     }
 }

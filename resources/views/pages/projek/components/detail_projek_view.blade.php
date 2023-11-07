@@ -1,4 +1,4 @@
-{{--  ambil dari uitabspills  --}}
+{{-- ambil dari uitabspills  --}}
 
 <div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view" style="display:none">
 
@@ -8,21 +8,23 @@
             <div class="nav-align-top mb-4">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#informasi-projek" aria-controls="navs-top-home" aria-selected="true">
+                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#informasi-projek" aria-controls="navs-top-home" aria-selected="true">
                             Informasi Projek
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#tugas" aria-controls="navs-top-profile" aria-selected="false">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#tugas" aria-controls="navs-top-profile" aria-selected="false">
                             Tugas
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                            data-bs-target="#partisipan" aria-controls="navs-top-messages" aria-selected="false">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#partisipan" aria-controls="navs-top-messages" aria-selected="false">
                             Partisipan
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#konfigurasi-projek" aria-controls="navs-top-messages" aria-selected="false">
+                            Konfigurasi Projek
                         </button>
                     </li>
                 </ul>
@@ -84,6 +86,18 @@
 
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
 
+                    </div>
+                    <div class="tab-pane fade" id="konfigurasi-projek" role="tabpanel">
+                        <table>
+                            <tr>
+                                <th>Arsipkan Projek</th>
+                                <th><button class="btn btn-danger"><i class="fa fa-danger"></i></button></th>
+                            </tr>
+                            <tr>
+                                <th>Jurusan yang berpatisipasi</th>
+                                <td><button class="btn btn-danger"><i class="fa fa-danger"></i></button></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

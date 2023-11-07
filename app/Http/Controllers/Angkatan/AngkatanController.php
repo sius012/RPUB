@@ -13,8 +13,16 @@ class AngkatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
+        if ($req->has("activeClass")) {
+            $angkatan = Angkatan::getClass();
+            $angkatan = $angkatan->map(function ($q) {
+                $q->kelas = $q->kelas();
+                return $q;
+            });
+            return response()->json($angkatan);
+        }
         return response()->json(Angkatan::all());
     }
 
@@ -47,7 +55,10 @@ class AngkatanController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Angkatan::find($id));
+        $angkatan = Angkatan::find($id);
+        $angkatan->kelas = $angkatan->kelas();
+
+        return response()->json($angkatan);
     }
 
     /**

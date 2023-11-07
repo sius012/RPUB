@@ -1,3 +1,5 @@
+import Projek from "../Model/Projek.js";
+import Jurusan from "../Model/Jurusan.js";
 export default class Siswa {
     constructor() {
         this.id;
@@ -11,6 +13,9 @@ export default class Siswa {
         this.password;
         this.email;
         this.ikut_penugasan;
+        this.list_projek = [];
+        this.kelasDanJurusan;
+        this.jurusan;
     }
 
     static byQuery(query, cb) {
@@ -26,6 +31,9 @@ export default class Siswa {
                 });
 
                 cb(siswa);
+            },
+            error: function (err) {
+                alert(err.responseText);
             },
         });
     }
@@ -55,9 +63,14 @@ export default class Siswa {
         siswa.foto_profil = json["foto_profil"];
         siswa.password = json["password"];
         siswa.email = json["email"];
+        siswa.kelasDanJurusan = json["kelasDanJurusan"];
 
         if (json["ikut_penugasan"]) {
             siswa.ikut_penugasan = json["ikut_penugasan"];
+        }
+
+        if (json["jurusan"] != undefined) {
+            siswa.jurusan = Jurusan.parse(json["jurusan"]);
         }
 
         return siswa;
@@ -75,5 +88,28 @@ export default class Siswa {
             },
         });
         return siswa;
+    }
+
+    getListProjek(cb) {
+        const ctx = this;
+        console.log(this);
+        $.ajax({
+            url: "/siswa/" + ctx.id,
+            data: {
+                withProjek: 1,
+            },
+            type: "get",
+            success: function (data) {
+                ctx.list_projek = data.map(function (e) {
+                    return Projek.parse(e, { withEtc: true });
+                });
+                console.log(data);
+
+                cb(ctx.list_projek);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
     }
 }

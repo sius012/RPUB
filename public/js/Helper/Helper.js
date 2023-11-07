@@ -47,4 +47,19 @@ export default class Helper {
         });
         return siswa;
     }
+
+    static curl(url) {
+        var newURL = window.location.href.replace(
+            window.location.pathname,
+            url
+        );
+        window.history.pushState({}, "", newURL);
+    }
+
+    static exurl() {
+        let strUrl = window.location.href;
+        let url = new URL(strUrl);
+        let arr = url.pathname.substring(1).split("/");
+        return arr;
+    }
 }

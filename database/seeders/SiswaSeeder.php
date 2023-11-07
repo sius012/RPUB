@@ -18,21 +18,20 @@ class SiswaSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for($i = 0 ;$i < 100; $i++){
+        for ($i = 0; $i < 1000; $i++) {
             Siswa::create([
-                'nis'=>$faker->unique()->numberBetween(1000,9999),
-                'nama'=> $faker->name,
-                'jk'=> $faker->randomElement(['Laki-laki','Perempuan']),
-                'id_angkatan'=> rand(1,10),
-                'id_jurusan'=> rand(1,6),
-                'kelas' => rand(1,3),
-                'fotoprofil'=> 'default.jpg',
-                'email'=> $faker->unique()->safeEmail(),
-                'password'=>Hash::make("password"),
+                'nis' => $faker->unique()->numberBetween(1000, 9999),
+                'nama' => $faker->name,
+                'jk' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                'id_angkatan' => rand(1, 13),
+                'id_jurusan' => rand(1, 6),
+                'kelas' => rand(1, 3),
+                'fotoprofil' => 'default.jpg',
+                'email' => $faker->unique()->safeEmail(),
+                'password' => Hash::make("password"),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }
     }
 }
-            

@@ -9,6 +9,7 @@ use App\Models\ProjekJurusan;
 use App\Models\Tugas;
 use App\Models\Versi;
 use Illuminate\Http\Request;
+use App\Models\Siswa;
 
 class ProjekController extends Controller
 {
@@ -76,9 +77,24 @@ class ProjekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $req, $id)
     {
-        return response()->json(Projek::find($id));
+        $projek = Projek::find($id);
+        if ($req->has("partisipan")) {
+            if ($req->partisipan == 1) {
+                $partisipan = Siswa::with(["angkatan", "jurusan"])->whereHas("penugasan", function ($q) use ($id) {
+                    $q->whereHas("tugas", function ($q) use ($id) {
+                        $q->where("id_projek", $id);
+                    });
+                })->get();
+                $partisipan = $partisipan->map(function ($q) {
+                    $q->kelasDanJurusan = $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
+                    return $q;
+                });
+                $projek->partisipan = $partisipan;
+            }
+        }
+        return response()->json($projek);
     }
 
     /**

@@ -1,14 +1,5 @@
 @extends('layout.layout')
 @section('main-content')
-<div class="row p-3">
-  <nav aria-label="breadcrumb p-3" id="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Library</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data</li>
-    </ol>
-  </nav>
-</div>
 
 @include("pages.projek.components.projek_modal")
 @include("pages.projek.components.projek_list_view")

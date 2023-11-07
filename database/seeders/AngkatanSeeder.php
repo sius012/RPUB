@@ -15,13 +15,13 @@ class AngkatanSeeder extends Seeder
     public function run()
     {
         $defaultYear = 2011;
-        for($i = 0;$i<10;$i++){
+        for ($i = 0; $i < 20; $i++) {
             Angkatan::create([
-                "id_angkatan"=>$i+1,
-                "keterangan" =>"Test",
-                "dari"=>($defaultYear+($i))."-06-03",
-                "sampai"=>($defaultYear+($i)+3)."-06-03",
-            ]); 
+                "id_angkatan" => $i + 1,
+                "keterangan" => "Test",
+                "dari" => ($defaultYear + ($i)) . "-06-03",
+                "sampai" => ($defaultYear + ($i) + 3) . "-06-03",
+            ]);
         }
     }
 }

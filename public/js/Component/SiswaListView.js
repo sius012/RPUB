@@ -1,18 +1,44 @@
+import Siswa from "../Model/Siswa.js";
 import SiswaCard from "./Card/SiswaCard.js";
+import pageSetup from "./PageSetup.js";
 
-export default class SiswaListView{
-    constructor(container = $("siswa-list-view")){
+export default class SiswaListView {
+    constructor(container) {
         this.container = container;
-        this.siswaList = Siswa.all()
+        this.siswaList = null;
 
         this.page_setup;
         this.nama_component = "SiswaListView";
     }
-    load(){
-        this.container.find("#container-siswa").html("");
-        this.siswaList.foreach(element => {
-            let siswaCard = new SiswaCard(element);
-            this.container.append(siswaCard.load())
+    load(id_angkatan, id_jurusan) {
+        pageSetup.componentList.forEach((element) => {
+            //Menyembunyikan element yang lainnya
+            if (element.isLayout == undefined && element.modal == undefined) {
+                element.container.hide();
+            }
+        });
+
+        const ctx = this;
+        console.log(`${id_angkatan} ${id_jurusan}`);
+        Siswa.byQuery(
+            {
+                id_jurusan: id_jurusan,
+                id_angkatan: id_angkatan,
+                getClassMember: 1,
+            },
+            function (data) {
+                ctx.container.html(SiswaCard.autoList(data));
+                ctx.container.show();
+                console.log(ctx.container.find(".row"));
+            }
+        );
+    }
+
+    globalEventListener() {
+        const ctx = this;
+        ctx.container.delegate(".profile-siswa", "click", function () {
+            let sDV = pageSetup.getComponent("SiswaDetailView");
+            sDV.load($(this).data("id"));
         });
     }
 }
