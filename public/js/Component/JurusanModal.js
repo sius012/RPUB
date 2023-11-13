@@ -22,7 +22,7 @@ export default class JurusanModal{
         this.container.find("form").find("button[type=submit]").text("Tambah jurusan")
         this.getElement("jurusan").val("");
         this.getElement("keterangan").val("");
-    }
+    }   
 
 
 

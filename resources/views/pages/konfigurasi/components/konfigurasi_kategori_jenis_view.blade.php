@@ -1,17 +1,19 @@
-<div class="content-wrapper" id="konfigurasi_jurusan_view" style="display: none;">
+<div class="content-wrapper" id="konfigurasi-kategori-jenis-view" style="display: none;">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="button"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
-                    Tambah Jurusan
+                    Tambah Kategori Jenis
                 </button></div>
 
             <div class=" ">
-                <table class="table table-hover jurusan-table">
+                <table class="table table-hover kategori-jenis-table">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Jurusan</th>
+                            <th>Icon</th>
+                            <th>Jenis</th>
                             <th>Keterangan</th>
+                            <th>Tipe</th>
+                            <th>Jurusan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

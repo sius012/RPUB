@@ -1,4 +1,4 @@
-<div class="content-wrapper" id="konfigurasi_jurusan_view" style="display: none;">
+<div class="content-wrapper" id="konfigurasi_pengguna_view" style="display: none;">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="button"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
@@ -6,12 +6,14 @@
                 </button></div>
 
             <div class=" ">
-                <table class="table table-hover jurusan-table">
+                <table class="table table-hover pengguna-table">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Jurusan</th>
-                            <th>Keterangan</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Sebagai</th>
+                            <th>UB Jurusan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

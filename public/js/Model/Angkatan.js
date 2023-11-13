@@ -61,7 +61,7 @@ export default class Angkatan {
     simpan() {
         $.ajax({
             headers: {
-                "X=CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
             },
             url: "/angkatan",
             data: this.toJson(),

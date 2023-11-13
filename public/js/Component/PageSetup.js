@@ -49,6 +49,14 @@ class PageSetup {
         this.cache.tugas = tugass;
         this.cache.tugas.push(tugas);
     }
+
+    hideAllComponent() {
+        this.componentList.forEach((element) => {
+            if (element.isLayout == undefined) {
+                element.container.hide();
+            }
+        });
+    }
 }
 
 const pageSetup = new PageSetup();

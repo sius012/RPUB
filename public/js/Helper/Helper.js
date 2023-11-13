@@ -1,4 +1,5 @@
 import Siswa from "../Model/Siswa.js";
+import pageSetup from "../Component/PageSetup.js";
 
 export default class Helper {
     static status(status, onlytext = false) {
@@ -61,5 +62,13 @@ export default class Helper {
         let url = new URL(strUrl);
         let arr = url.pathname.substring(1).split("/");
         return arr;
+    }
+
+    static aksi(id, edit, hapus) {
+        return `
+        <button class='btn btn-sm btn-danger ${edit}' data-id='${id}'><i class='bi bi-trash'></i></button>
+                <button class='btn btn-sm btn-warning ${hapus}' data-id='${id}'><i class='bi bi-pencil'></i></button>
+        
+        `;
     }
 }

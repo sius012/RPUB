@@ -17,6 +17,12 @@ class JenisController extends Controller
     public function index(Request $req)
     {
         $jenis = new Jenis;
+        if ($req->has("jurusan")) {
+            if ($req->jurusan == 1) {
+                $jenis = $jenis->with("jurusan");
+            }
+        }
+
         if ($req->has("id_jurusan")) {
             $jenis = $jenis->where("id_jurusan", $req->id_jurusan);
         }

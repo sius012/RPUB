@@ -10,19 +10,19 @@ export default class KonfigurasiView {
     globalEventListener() {
         const ctx = this;
         this.container.find(".konfigurasi-pengguna").click(function () {
-            alert("Halaman Konfigurasi Pengguna");
+            pageSetup.getComponent("KonfigurasiPenggunaView").load();
         });
 
         this.container.find(".konfigurasi-angkatan").click(function () {
-            alert("Halaman Konfigurasi Angkatan");
+            pageSetup.getComponent("KonfigurasiAngkatanView").load();
         });
 
         this.container.find(".konfigurasi-jurusan").click(function () {
-            alert("Halaman Konfigurasi Jurusan");
+            pageSetup.getComponent("KonfigurasiJurusanView").load();
         });
 
         this.container.find(".konfigurasi-kategori-jenis").click(function () {
-            alert("Halaman Konfigurasi Pengguna");
+            pageSetup.getComponent("KonfigurasiKategoriJenisView").load();
         });
     }
 }

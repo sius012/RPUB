@@ -1,10 +1,12 @@
+import Jurusan from "./Jurusan.js";
+
 export default class Jenis {
     constructor() {
         this.id;
         this.nama;
         this.tipe;
         this.id_jurusan;
-        this.icon;
+        this.jurusan;
     }
 
     static find(id) {
@@ -61,15 +63,18 @@ export default class Jenis {
         jenis.nama = json["nama"];
         jenis.tipe = json["tipe"];
         jenis.id_jurusan = json["id_jurusan"];
-        jenis.icon = json["icon"];
+        if (json["jurusan"] != undefined) {
+            jenis.jurusan = Jurusan.parse(json["jurusan"]);
+        }
         return jenis;
     }
-    static all() {
+    static all(params = {}) {
         var jenis = [];
         $.ajax({
             url: "/jenis/",
             type: "GET",
             async: false,
+            data: params,
             success: function (data) {
                 jenis = data.map(function (e) {
                     return Jenis.parse(e);
@@ -77,5 +82,10 @@ export default class Jenis {
             },
         });
         return jenis;
+    }
+
+    icon() {
+        let type = this.tipe == "grup" ? "grup.png" : "task.png";
+        return "/img/icons/jenis/" + type;
     }
 }

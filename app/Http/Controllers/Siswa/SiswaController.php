@@ -54,7 +54,7 @@ class SiswaController extends Controller
                 $q->where("dari", "<", date("Y-m-d"))->where("sampai", ">", date("Y-m-d"));
             });
 
-            $siswa = $siswa->get()->map(function ($q) {
+            $siswa = $siswa->paginate(20)->map(function ($q) {
                 $sws = $q;
                 $sws->ikut_penugasan = $q->penugasan->count() > 0 ? true : false;
                 $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
