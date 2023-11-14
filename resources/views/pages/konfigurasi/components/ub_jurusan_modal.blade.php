@@ -9,28 +9,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Jurusan</label>
-                            <input type="number" name="jurusan" class="form-control" placeholder="Masukkan Jurusan" required />
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">Keterangan</label>
-                            <input type="date" name="keterangan" class="form-control" placeholder="Masukkan Keterangan" required />
-                        </div>
-                    </div>
+                    {{--  <?php
+                    foreach ($jurusan as $key => $jur) {
+                        echo '<div class="form-check form-check-inline">';
+                        echo '<input class="form-check-input" type="checkbox" id="inlineCheckbox' . ($key + 1) . '" name="jurusan[]" value="' . $jur . '">';
+                        echo '<label class="form-check-label" for="inlineCheckbox' . ($key + 1) . '">' . $jur . '</label>';
+                        echo '</div>';
+                    }
+                    ?>  --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary">Buat Jurusan</button>
+                    <button type="submit" class="btn btn-primary">Perbarui</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-
-{{--  /modal tambah jurusan  --}}
