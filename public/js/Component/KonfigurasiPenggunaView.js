@@ -7,6 +7,7 @@ export default class KonfigurasiPenggunaView {
         this.container = container;
         this.userList = User.all();
         this.nama_component = "KonfigurasiPenggunaView";
+        this.isLayout = true;
     }
 
     load() {
@@ -19,12 +20,29 @@ export default class KonfigurasiPenggunaView {
               <td>${i + 1}</td>
               <td>${element.nama}</td>
               <td>${element.email}</td>
-              <td>Admin</td>
-              <td>PPLG, MM</td>
-              <td>${Helper.aksi(element.id, ".edit-user", ".hapus-user")}</td>
+              <td>${element.rolesStr}</td>
+              <td><a href='#' class='btn-ubjurusan'><i class='bi bi-pencil'></i></a></td>
+              <td>${Helper.aksi(element.id, "edit-user", "hapus-user")}</td>
             </tr>
             `);
         });
         this.container.show();
+    }
+
+    globalEventListener() {
+        const ctx = this;
+        const modal = pageSetup.getComponent("PenggunaModal");
+        this.container.find("#btn-pengguna").click(function () {
+            modal.load();
+        });
+
+        this.container.delegate(".edit-user", "click", function () {
+            modal.load($(this).data("id"));
+        });
+
+        this.container.delegate(".btn-ubjurusan", "click", function (e) {
+            e.preventDefault();
+            let modalUB = pageSetup.getComponent("UBJurusanModal").load();
+        });
     }
 }

@@ -66,8 +66,8 @@ export default class Helper {
 
     static aksi(id, edit, hapus) {
         return `
-        <button class='btn btn-sm btn-danger ${edit}' data-id='${id}'><i class='bi bi-trash'></i></button>
-                <button class='btn btn-sm btn-warning ${hapus}' data-id='${id}'><i class='bi bi-pencil'></i></button>
+        <button class='btn btn-sm btn-danger ${hapus}' data-id='${id}'><i class='bi bi-trash'></i></button>
+                <button class='btn btn-sm btn-warning ${edit}' data-id='${id}'><i class='bi bi-pencil'></i></button>
         
         `;
     }

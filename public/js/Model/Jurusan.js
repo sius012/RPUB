@@ -48,6 +48,17 @@ export default class Jurusan {
         return jurusan;
     }
     1;
+
+    toJson() {
+        let json = {};
+        json["jurusan"] = this.jurusan;
+        json["keterangan"] = this.keterangan;
+        if (this.id != undefined) {
+            json["id"] = this.id;
+        }
+        return json;
+    }
+
     static all(params = null, cb = null) {
         var jurusan = [];
         $.ajax({
@@ -69,5 +80,24 @@ export default class Jurusan {
             },
         });
         return jurusan;
+    }
+
+    simpan(cb) {
+        let type = this.id == undefined ? "post" : "put";
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/jurusan" + (type == "post" ? "" : "/" + this.id),
+            data: this.toJson(),
+            type: type,
+            success: function (data) {
+                console.log(data);
+                cb(data);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
     }
 }

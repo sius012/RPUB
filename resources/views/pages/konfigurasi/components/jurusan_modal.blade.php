@@ -1,5 +1,5 @@
                 <!-- Modal Untuk Tambah Jurusan -->
-                <div class="modal fade" id="jurusan-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="konfigurasi-jurusan-modal" tabindex="-1" aria-hidden="true">
                   <form action="" method="">
                     @csrf
                     <div class="modal-dialog" role="document">

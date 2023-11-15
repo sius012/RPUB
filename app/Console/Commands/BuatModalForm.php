@@ -113,7 +113,7 @@ class BuatModalForm extends Command
                 </div>
               </div>
             </div>';
-            file_put_contents(resource_path("/views/maincomponent//$nama" . "Modal.blade.php"), $modal);
+            file_put_contents(resource_path("/views/maincomponent//$nama" . "_modal.blade.php"), $modal);
         }
     }
 

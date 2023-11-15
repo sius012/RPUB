@@ -1,5 +1,5 @@
 <!-- Modal Untuk Tambah pengguna -->
-<div class="modal fade" id="PenggunaModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="pengguna-modal" tabindex="-1" aria-hidden="true">
     <form action="" method="">
         @csrf
         <div class="modal-dialog" role="document">
@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Password</label>
-                            <input type="text" name="nama_kategori" class="form-control" placeholder="Masukkan nama kategori" required />
+                            <input type="text" name="password" class="form-control" placeholder="Masukkan nama kategori" required />
                         </div>
                     </div>
                     <div class="col mb-3">
@@ -34,7 +34,7 @@
                             <option value="">-</option>
                             <option value="">-</option>
                         </select>
-                      </div>
+                    </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Foto Profil</label>

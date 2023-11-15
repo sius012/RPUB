@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Jurusan;
+namespace App\Http\Controllers\UBJurusan;
 
 use App\Http\Controllers\Controller;
-use App\Models\Jurusan;
-use App\Models\Projek;
-use App\Models\ProjekJurusan;
-use App\Models\Siswa;
+use App\Models\UBJurusan;
 use Illuminate\Http\Request;
 
-class JurusanController extends Controller
+class UBJurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,19 +15,9 @@ class JurusanController extends Controller
      */
     public function index(Request $req)
     {
-        $jurusan = Jurusan::all();
-        foreach ($jurusan as $j => $jrs) {
-            if ($req->has("detail_level")) {
-                switch ($req->detail_level) {
-                    case 3:
-                        $jurusan[$j]->jumlah_siswa = Siswa::where("id_jurusan", $jrs->id)->get()->count();
-                        $jurusan[$j]->siswa_aktif_projek = Siswa::where("id_jurusan", $jrs->id)->whereHas("penugasan")->get()->count();
-                        break;
-                }
-            }
-            $jurusan[$j]->jumlah_projek = ProjekJurusan::where("id_jurusan", $jrs->id)->get()->count();
+        if ($req->has("id_pengguna")) {
+            $ubJurusan = UBJurusan
         }
-        return response()->json($jurusan);
     }
 
     /**
@@ -51,11 +38,7 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        $jurusan = new Jurusan();
-        $jurusan->jurusan = $request->jurusan;
-        $jurusan->keterangan = $request->keterangan;
-        $jurusan->save();
-        return response()->json($jurusan);
+        //
     }
 
     /**
@@ -66,7 +49,7 @@ class JurusanController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Jurusan::find($id));
+        //
     }
 
     /**
@@ -89,11 +72,7 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $jurusan = Jurusan::find($id);
-        $jurusan->jurusan = $request->jurusan;
-        $jurusan->keterangan = $request->keterangan;
-        $jurusan->save();
-        return response()->json($jurusan);
+        //
     }
 
     /**

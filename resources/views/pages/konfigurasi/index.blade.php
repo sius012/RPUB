@@ -6,6 +6,9 @@
 @include("pages.konfigurasi.components.konfigurasi_pengguna_view")
 @include("pages.konfigurasi.components.konfigurasi_kategori_jenis_view")
 @include("pages.konfigurasi.components.angkatan_modal")
+@include("pages.konfigurasi.components.jurusan_modal")
+@include("pages.konfigurasi.components.pengguna_modal")
+@include("pages.konfigurasi.components.ub_jurusan_modal")
 @endsection
 
 @push("script")
