@@ -15,9 +15,9 @@ class UBJurusanController extends Controller
      */
     public function index(Request $req)
     {
-        if ($req->has("id_pengguna")) {
-            $ubJurusan = UBJurusan
-        }
+        // if ($req->has("id_pengguna")) {
+        //     $ubJurusan = UBJurusan
+        // }
     }
 
     /**
