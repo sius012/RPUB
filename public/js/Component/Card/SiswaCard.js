@@ -17,7 +17,6 @@ export default class SiswaCard {
             <div class="card-body">
                 <h5 class="card-title">${element.nama}</h5>
                 <p>${element.kelasDanJurusan}</p>
-                <a href="/pages/siswa" class="btn btn-primary">Lihat Profil</a>
             </div>
             </div>
             ${params.redirect == false ? "" : "</a>"}

@@ -9,6 +9,7 @@
 @include("pages.konfigurasi.components.jurusan_modal")
 @include("pages.konfigurasi.components.pengguna_modal")
 @include("pages.konfigurasi.components.ub_jurusan_modal")
+@include("pages.konfigurasi.components.jenis_modal")
 @endsection
 
 @push("script")

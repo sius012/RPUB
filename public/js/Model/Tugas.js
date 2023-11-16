@@ -213,4 +213,6 @@ export default class Tugas {
             success: function (data) {},
         });
     }
+
+    duplicate() {}
 }

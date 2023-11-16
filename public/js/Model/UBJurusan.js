@@ -1,9 +1,12 @@
+import Jurusan from "./Jurusan.js";
+
 export default class UBJurusan {
     constructor() {
         this.id;
         this.id_jurusan;
         this.id_pengguna;
         this.timestamps = {};
+        this.jurusan;
     }
 
     static find(id) {
@@ -20,13 +23,26 @@ export default class UBJurusan {
     }
 
     static parse(json) {
-        this.id = json["id"];
-        this.id_jurusan = json["id_jurusan"];
-        this.id_pengguna = json["id_pengguna"];
-        this.timestamps = {
+        let ubjurusan = new UBJurusan();
+        ubjurusan.id = json["id"];
+        ubjurusan.id_jurusan = json["id_jurusan"];
+        ubjurusan.id_pengguna = json["id_pengguna"];
+        ubjurusan.timestamps = {
             created_at: json["created_at"],
             updated_at: json["updated_at"],
         };
+
+        if (json["jurusan"] != undefined) {
+            ubjurusan.jurusan = Jurusan.parse(json["jurusan"]);
+        }
+        return ubjurusan;
+    }
+
+    toJson() {
+        let json = {};
+        json["id_pengguna"] = this.id_pengguna;
+        json["id_jurusan"] = this.id_jurusan;
+        return json;
     }
 
     static byPengguna(id) {
@@ -39,7 +55,7 @@ export default class UBJurusan {
             },
             async: false,
             success: function (data) {
-                user = data.map(function (e) {
+                ub = data.map(function (e) {
                     return UBJurusan.parse(e);
                 });
             },

@@ -1,6 +1,7 @@
 import Jurusan from "../Model/Jurusan.js";
 import UBJurusan from "../Model/UBJurusan.js";
 import User from "../Model/User.js";
+import pageSetup from "./PageSetup.js";
 
 export default class UBJurusanModal {
     constructor(container) {
@@ -13,8 +14,10 @@ export default class UBJurusanModal {
     }
 
     load(id = null) {
+        const ctx = this;
         this.pengguna = User.find(id);
         let contjurusan = this.container.find(".container-jurusan");
+        contjurusan.empty();
         Jurusan.all(null, function (e) {
             e.forEach((element) => {
                 contjurusan.append(
@@ -23,24 +26,35 @@ export default class UBJurusanModal {
                     </div>`
                 );
             });
+
+            //checklist the UB jurusan
+            ctx.pengguna.getUBJurusan().ub_jurusan.forEach(function (e) {
+                $(".inp-jurusan").each(function () {
+                    if ($(this).val() == e.id_jurusan) {
+                        $(this).attr("checked", "checked");
+                    }
+                });
+            });
+
+            ctx.modal.show();
         });
-        this.modal.show();
     }
 
     parseFromElement() {
+        const ctx = this;
         let ubJurusan = [];
         $(".inp-jurusan").each(function (e) {
+            console.log(this.pengguna);
             if ($(this).is(":checked")) {
                 let val = $(this).val();
-                ubJurusan.push(
-                    UBJurusan.parse({
-                        id_pengguna: this.pengguna.id,
-                        id_jurusan: val,
-                    })
-                );
+                let ubj = new UBJurusan();
+                ubj.id_pengguna = ctx.pengguna.id;
+                ubj.id_jurusan = val;
+                ubJurusan.push(ubj);
             }
         });
-        console.log(ubJurusan);
+
+        this.pengguna.ub_jurusan = ubJurusan;
     }
 
     globalEventListener() {
@@ -48,6 +62,9 @@ export default class UBJurusanModal {
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.parseFromElement();
+            ctx.pengguna.storeUBJurusan();
+            ctx.modal.hide();
+            pageSetup.getComponent("KonfigurasiPenggunaView").load();
         });
     }
 }

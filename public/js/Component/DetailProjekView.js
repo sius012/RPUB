@@ -102,9 +102,9 @@ export default class DetailProjekView {
         var tugasStr = `
      <tr data-id='${tugas.id_tugas}'>
         <td class="no">${index}</td>
-        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama} ${
-            tugas.data_jenis.tipe
-        }</td>
+        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama} 
+        <img src='${tugas.data_jenis.icon()}' style='width: 15px'>
+        </td>
         <td class='status'>${
             tugas.data_jenis.tipe == "grup"
                 ? barStr

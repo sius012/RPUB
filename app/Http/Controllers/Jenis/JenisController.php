@@ -52,7 +52,15 @@ class JenisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jenis = $request->has("id") ? Jenis::find($request->id) : new Jenis();
+        $jenis->nama = $request->nama;
+        $jenis->keterangan = $request->keterangan;
+        $jenis->tipe = $request->tipe;
+        $jenis->id_jurusan = $request->id_jurusan;
+        $filename = time() . "_" . $request->nama . "_" . $request->id_jurusan . ".png";
+        $request->icon->move(public_path('img/icons/jenis'), $filename);
+        $jenis->icon = $filename;
+        $jenis->save();
     }
 
     /**
@@ -86,7 +94,16 @@ class JenisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return response()->json($request);
+        $jenis = Jenis::find($id);
+        $jenis->nama = $request->nama;
+        $jenis->keterangan = $request->keterangan;
+        $jenis->tipe = $request->tipe;
+        $jenis->id_jurusan = $request->id_jurusan;
+        $filename = time() . "_" . $request->nama . "_" . $request->id_jurusan . ".png";
+        $request->file('icon')->move(public_path('img/icons/jenis'), $filename);
+        $jenis->icon = $filename;
+        $jenis->save();
     }
 
     /**

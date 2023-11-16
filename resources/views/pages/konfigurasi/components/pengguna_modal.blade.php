@@ -29,17 +29,11 @@
                     </div>
                     <div class="col mb-3">
                         <label for="nameBasic" class="form-label">Sebagai</label>
-                        <select name="id_sebagai" class="form-select">
+                        <select name="role" class="form-select">
                             <option value="">-</option>
                             <option value="">-</option>
                             <option value="">-</option>
                         </select>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Foto Profil</label>
-                            <input type="file" name="profil_pengguna" class="form-control" placeholder="Masukkan foto profil" required />
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

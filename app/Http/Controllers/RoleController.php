@@ -1,25 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Versi;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Versi;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class VersiController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $req)
+    public function index()
     {
-        $versi = new Versi;
-        if ($req->has("id_tugas")) {
-            $versi = $versi->where("id_tugas", $req->id_tugas);
-        }
-        return response()->json($versi->get());
+        $role = Role::all();
+        return response()->json($role);
     }
 
     /**
@@ -40,19 +36,7 @@ class VersiController extends Controller
      */
     public function store(Request $request)
     {
-        $versi = new Versi;
-        $versi->id_tugas = $request->id_tugas;
-        $versi->id_siswa = $request->id_siswa;
-        $versi->nomor_versi = $request->nomor_versi;
-        $versi->nama = $request->nama;
-        $versi->keterangan = $request->keterangan;
-        $imageName = time() . '.' . $request->nama . "." . $request->nomor_versi . ".png";
-        $request->lampiran->move(public_path('versi'), $imageName);
-        $versi->lampiran = $imageName;
-        $versi->status = $request->status;
-        $versi->save();
-
-        return response()->json(["data" => $request->files]);
+        //
     }
 
     /**
@@ -63,7 +47,7 @@ class VersiController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Versi::find($id));
+        //
     }
 
     /**

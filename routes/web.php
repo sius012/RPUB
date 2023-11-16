@@ -7,6 +7,7 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Penugasan\PenugasanController;
 use App\Http\Controllers\Projek\ProjekController;
 use App\Http\Controllers\Register\RegisterController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\Tugas\TugasController;
 use App\Http\Controllers\UBJurusan\UBJurusanController;
@@ -63,7 +64,7 @@ Route::resource('/angkatan', AngkatanController::class);
 Route::resource('/siswa', SiswaController::class);
 Route::resource('/user', UserController::class);
 Route::resource('/ubjurusan', UBJurusanController::class);
-
+Route::resource('/role', RoleController::class);
 
 
 

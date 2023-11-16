@@ -21,7 +21,11 @@ export default class KonfigurasiPenggunaView {
               <td>${element.nama}</td>
               <td>${element.email}</td>
               <td>${element.rolesStr}</td>
-              <td><a href='#' class='btn-ubjurusan'><i class='bi bi-pencil'></i></a></td>
+              <td><a href='#' class='btn-ubjurusan' data-id="${
+                  element.id
+              }">${element
+                .getUBJurusan()
+                .getUBJurusanStr()}<i class='bi bi-pencil'></i></a></td>
               <td>${Helper.aksi(element.id, "edit-user", "hapus-user")}</td>
             </tr>
             `);
@@ -42,7 +46,8 @@ export default class KonfigurasiPenggunaView {
 
         this.container.delegate(".btn-ubjurusan", "click", function (e) {
             e.preventDefault();
-            let modalUB = pageSetup.getComponent("UBJurusanModal").load();
+            let id = $(this).data("id");
+            let modalUB = pageSetup.getComponent("UBJurusanModal").load(id);
         });
     }
 }

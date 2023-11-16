@@ -1,4 +1,5 @@
 import AngkatanModal from "../Component/AngkatanModal.js";
+import JenisModal from "../Component/JenisModal.js";
 import JurusanModal from "../Component/JurusanModal.js";
 import KonfigurasiAngkatanView from "../Component/KonfigurasiAngkatanView.js";
 import KonfigurasiJurusanView from "../Component/KonfigurasiJurusanView.js";
@@ -23,6 +24,7 @@ $(document).ready(function () {
     var jurModal = new JurusanModal($("#konfigurasi-jurusan-modal"));
     var pgnModal = new PenggunaModal($("#pengguna-modal"));
     var uBJModal = new UBJurusanModal($("#ub-jurusan-modal"));
+    var jnsModal = new JenisModal($("#jenis-modal"));
 
     pageSetup.add(konfigurasiPage);
     pageSetup.add(kav);
@@ -35,6 +37,7 @@ $(document).ready(function () {
     pageSetup.add(jurModal);
     pageSetup.add(pgnModal);
     pageSetup.add(uBJModal);
+    pageSetup.add(jnsModal);
 
     pageSetup.init();
 });

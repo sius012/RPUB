@@ -10,4 +10,9 @@ class UBJurusan extends Model
     use HasFactory;
     protected $table = "ub_jurusan";
     protected $fillable = ["id_pengguna", "id_jurusan"];
+
+    public function jurusan()
+    {
+        return $this->hasOne(Jurusan::class, "id", "id_jurusan");
+    }
 }

@@ -16,7 +16,8 @@ class CreateJenisTable extends Migration
         Schema::create('jenis', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
-            $table->enum("tipe",['grup','tugas']);
+            $table->text("keterangan");
+            $table->enum("tipe", ['grup', 'tugas']);
             $table->bigInteger("id_jurusan");
             $table->string("icon");
             $table->timestamps();

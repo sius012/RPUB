@@ -7,7 +7,8 @@ export default class User {
         this.email;
         this.password;
         this.rolesStr;
-        this.ub_jurusan;
+        this.ub_jurusan = [];
+        this.selected_role = "";
     }
 
     static find(id) {
@@ -25,6 +26,7 @@ export default class User {
 
     getUBJurusan() {
         this.ub_jurusan = UBJurusan.byPengguna(this.id);
+        return this;
     }
 
     static parse(json) {
@@ -63,11 +65,13 @@ export default class User {
         json["name"] = this.nama;
         json["email"] = this.email;
         json["password"] = this.password;
+        json["selected_role"] = this.selected_role;
         return json;
     }
 
     simpan(cb) {
         let type = this.id == undefined ? "post" : "put";
+        console.log(this.toJson());
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
@@ -85,7 +89,8 @@ export default class User {
         });
     }
 
-    storeUBJurusan() {
+    storeUBJurusan(cb) {
+        console.log(this.ub_jurusan);
         if (this.ub_jurusan != undefined) {
             $.ajax({
                 headers: {
@@ -93,11 +98,31 @@ export default class User {
                 },
                 url: "/ubjurusan",
                 data: {
-                    ub_jurusan: this.ub_jurusan,
+                    id_pengguna: this.id,
+                    ub_jurusan:
+                        this.ub_jurusan.length > 0
+                            ? this.ub_jurusan.map(function (e) {
+                                  return e.toJson();
+                              })
+                            : [],
                 },
                 type: "post",
-                success: function (data) {},
+                success: function (data) {
+                    console.log(data);
+                    cb(data);
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                },
             });
         }
+    }
+
+    getUBJurusanStr() {
+        return this.ub_jurusan
+            .map(function (e) {
+                return e.jurusan.jurusan;
+            })
+            .join(",");
     }
 }

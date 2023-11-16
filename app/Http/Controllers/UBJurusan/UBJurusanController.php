@@ -15,9 +15,10 @@ class UBJurusanController extends Controller
      */
     public function index(Request $req)
     {
-        // if ($req->has("id_pengguna")) {
-        //     $ubJurusan = UBJurusan
-        // }
+        if ($req->has("id_pengguna")) {
+            $ubJurusan = UBJurusan::with("jurusan")->where("id_pengguna", $req->id_pengguna)->get();
+            return response()->json($ubJurusan);
+        }
     }
 
     /**
@@ -38,7 +39,16 @@ class UBJurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //clear all ub jurusan ;
+        UBJurusan::where("id_pengguna", $request->id_pengguna)->delete();
+        if ($request->has("ub_jurusan")) {
+            foreach ($request->ub_jurusan as $ub => $ubj) {
+                UBJurusan::create([
+                    "id_pengguna" => $request->id_pengguna,
+                    "id_jurusan" => $ubj['id_jurusan'],
+                ]);
+            }
+        }
     }
 
     /**

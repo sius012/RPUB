@@ -35,7 +35,7 @@ class UserController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->assignRole("Admin");
+        $user->assignRole($data['selected_role']);
     }
 
     public function show($id)
@@ -43,5 +43,18 @@ class UserController extends Controller
         $user = User::find($id);
         $user->rolesStr = implode(",", $user->roles->pluck("name")->toArray());
         return response()->json($user);
+    }
+
+    public function update(Request $req, $id)
+    {
+        $user = User::find($id);
+        $user->name = $req->name;
+        $user->email = $req->email;
+        if ($req->filled("password")) {
+            $user->password = $req->password;
+        }
+        $user->save();
+
+        $user->syncRoles([$req->selected_role]);
     }
 }

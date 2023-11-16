@@ -9,7 +9,7 @@ class Jenis extends Model
 {
     use HasFactory;
     protected $table = "jenis";
-    protected $fillable = ["nama", "kategori", "id_jurusan", "icon", "created_at", "updated_at"];
+    protected $fillable = ["nama", "kategori", "keterangan", "id_jurusan", "icon", "created_at", "updated_at"];
 
     public function jurusan()
     {

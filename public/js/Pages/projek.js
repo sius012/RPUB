@@ -60,6 +60,7 @@ $(document).ready(function () {
                 pageSetup.getComponent("TugasModal").attach(id);
             },
         ],
+        ["Duplikat"],
     ]);
 
     pageSetup.add(projekListView);
