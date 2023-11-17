@@ -1,3 +1,4 @@
+import Jurusan from "./Jurusan.js";
 import Siswa from "./Siswa.js";
 
 export default class Projek {
@@ -62,6 +63,12 @@ export default class Projek {
         if (json["partisipan"] != undefined) {
             projek.partisipan = json["partisipan"].map(function (e) {
                 return Siswa.parse(e);
+            });
+        }
+
+        if (json["jurusan"] != undefined) {
+            this.jurusan = json["jurusan"].map(function (e) {
+                return Jurusan.parse(e);
             });
         }
 

@@ -23,6 +23,7 @@
   <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         .board {
             display: flex;
@@ -161,6 +162,7 @@
         font-size: 8pt;
       }
     </style>
+    
 
   </head>
 
@@ -457,6 +459,8 @@
     background-color: #912a91 !important;
 }
     </style>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @stack('script')
 
 </body>

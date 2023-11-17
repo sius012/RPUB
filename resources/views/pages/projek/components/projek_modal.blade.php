@@ -8,7 +8,7 @@
                        <h5 class="modal-title" id="exampleModalLabel1">Tambah Projek</h5>
                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
-                     <div class="modal-body">
+                     <div class="modal-body"
                        <div class="row">
                          <div class="col">
                            <div class="row">
@@ -27,14 +27,6 @@
                              <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Tanggal Akhir</label>
                                <input type="date" name="tanggal_akhir" class="form-control" placeholder="Masukkan Tanggal" required />
-                             </div>
-                           </div>
-                           <div class="row">
-                             <div class="col mb-3">
-                               <label for="nameBasic" class="form-label">Penanggung Jawab</label>
-                               <select name="id_penanggung_jawab" class="form-select" aria-label="Default select example">
-                                 <option value=""></option>
-                               </select>
                              </div>
                            </div>
                            <div class="row">

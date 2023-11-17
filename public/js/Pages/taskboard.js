@@ -50,6 +50,13 @@ $(document).ready(function () {
                     tugas.changeStatus("Siap Dikerjakan");
                 },
             ],
+            [
+                "Ditinjau",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Ditinjau");
+                },
+            ],
         ],
         function (ctx) {
             taskboard.load();

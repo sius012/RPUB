@@ -26,6 +26,8 @@ export default class ProjekModal {
         });
 
         //this.getElement("id_jenis", "select").html(optionJenisStr);
+
+        this.getElement("jenis_projek", "select").select2();
     }
 
     parse() {

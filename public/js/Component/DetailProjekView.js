@@ -186,5 +186,14 @@ export default class DetailProjekView {
             tugasModal.reset();
             tugasModal.modal.show();
         });
+
+        this.container.delegate("status").click(function () {
+            pageSetup
+                .getComponent("ContextMenuStatus")
+                .trigger(
+                    $(this).closest("td"),
+                    $(this).closest("tr").data("id")
+                );
+        });
     }
 }
