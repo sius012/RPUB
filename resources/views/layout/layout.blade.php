@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sius012/dheracodelibrary@master/js/Timeliner/timeliner.css">
     <style>
         .board {
             display: flex;
@@ -112,6 +113,8 @@
       font-size: 15pt;
     }
 
+
+
 </style>
     <meta charset="utf-8" />
     <meta
@@ -162,6 +165,7 @@
         font-size: 8pt;
       }
     </style>
+
     
 
   </head>
@@ -451,7 +455,7 @@
       })
     </script>
     <style>
-      .bg-ready {
+      .bg-ready {   
     background-color: #9944e3 !important;
 }
 
@@ -461,7 +465,8 @@
     </style>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    @stack('script')
 
+    @stack('script')
+    <script src="{{asset('js/lib/Timeliner.js')}}"></script>
 </body>
 </html>

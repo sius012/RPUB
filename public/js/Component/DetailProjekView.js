@@ -15,7 +15,6 @@ export default class DetailProjekView {
     }
 
     load(id) {
-        Helper.curl("/pages/projek/" + id);
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
@@ -30,8 +29,9 @@ export default class DetailProjekView {
 
         this.loadData(id);
         this.loadInfoProjek();
-        this.loadTugas();
         this.loadPartisipan();
+        this.loadTugas();
+        this.loadTimeliner();
     }
 
     loadData(id) {
@@ -76,7 +76,21 @@ export default class DetailProjekView {
         //mengisi id_projek
         var tugasModal = this.page_setup.getComponent("TugasModal");
         tugasModal.init(this.projek);
-        $(window).scrollTop(previousScroll);
+
+        //this.container.find("#tugas").find("table").Timeliner();
+    }
+
+    loadTimeliner() {
+        let data = Tugas.byProjek(this.projek.id, { rekursif: false });
+
+        let timeliner = new Timechart(this.container.find("#canvas")[0], data);
+        timeliner.config = {
+            title: "nama",
+            start_date: "tanggal_awal",
+            end_date: "tanggal_akhir",
+        };
+        timeliner.data = data;
+        timeliner.render();
     }
 
     loadPartisipan() {
@@ -155,6 +169,13 @@ export default class DetailProjekView {
 
     globalEventListener() {
         var ctx = this;
+
+        this.container.find('button[data-bs-toggle="tab"]').click(function () {
+            if ($(this).data("bs-target") == "#tugas") {
+                ctx.loadTugas();
+            }
+        });
+
         this.container.find("#tugas").delegate("td", "click", function (e) {
             //e.preventDefault();
             e.stopPropagation();

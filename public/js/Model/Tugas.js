@@ -39,7 +39,7 @@ export default class Tugas {
         return tugas;
     }
 
-    static byProjek(id) {
+    static byProjek(id, params = { rekursif: true }) {
         //mengambil data tugas-tugas dar id projek
         var projekList = [];
         $.ajax({
@@ -50,10 +50,21 @@ export default class Tugas {
             },
             async: false,
             success: function (data) {
-                data.forEach((element) => {
-                    let tugas = Tugas.rekursifParse(element, 1);
-                    projekList.push(tugas);
-                });
+                if (params.rekursif == true) {
+                    data.forEach((element) => {
+                        let tugas = Tugas.rekursifParse(element, 1);
+                        projekList.push(tugas);
+                    });
+                } else {
+                    let current = data;
+                    let parentsAndChildren = current.flatMap((parent) => [
+                        parent,
+                        ...parent.children.map((child) => child),
+                    ]);
+                    console.log("datanya:");
+                    console.log(parentsAndChildren);
+                    projekList = parentsAndChildren;
+                }
             },
             error: function (err) {
                 alert(err.responseText);
@@ -213,6 +224,4 @@ export default class Tugas {
             success: function (data) {},
         });
     }
-
-    duplicate() {}
 }

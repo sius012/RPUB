@@ -65,6 +65,7 @@ export default class TugasModal {
 
     globalEventListener() {
         var ctx = this;
+
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.fromElement();

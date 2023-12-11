@@ -111,11 +111,11 @@ $(document).ready(function () {
             detailProjekView.loadTugas();
         }
     );
-
+    pageSetup.add(tugasModal);
     pageSetup.add(projekListView);
     pageSetup.add(projekModal);
     pageSetup.add(detailProjekView);
-    pageSetup.add(tugasModal);
+
     pageSetup.add(tugasDetailView);
     pageSetup.add(contextMenuTugas);
     pageSetup.add(contextMenuStatus);
