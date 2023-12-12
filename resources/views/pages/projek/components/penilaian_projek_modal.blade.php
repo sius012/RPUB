@@ -16,7 +16,7 @@
           <input type="number" class="form-control" name="n_nformal">
         </div>
         <div class="form-group">
-          <div class="row">
+          <div class="table">
             <div class="col">Antusias</div>
             <div class="col">Kejujuran</div>
             <div class="col">Kreatifitas</div>

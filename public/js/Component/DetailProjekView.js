@@ -15,7 +15,8 @@ export default class DetailProjekView {
     }
 
     load(id) {
-        //Helper.curl("/pages/projek/" + id);
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([this.nama_component, "active"]);
 
         this.page_setup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
@@ -50,7 +51,7 @@ export default class DetailProjekView {
         infoprojek.find(".deskripsi").val(this.projek.deskripsi);
         infoprojek.find(".status").val(this.projek.status);
     }
-
+    z;
     loadTugas() {
         var ctx = this;
         //simpan posisi terakhir
@@ -116,7 +117,7 @@ export default class DetailProjekView {
         var tugasStr = `
      <tr data-id='${tugas.id_tugas}'>
         <td class="no">${index}</td>
-        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama} 
+        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama}
         <img src='' style='width: 15px'>
         </td>
         <td class='status'>${
@@ -127,7 +128,7 @@ export default class DetailProjekView {
         <td>${tugas.tanggal_akhir}</td>
         <td class='partisipan'>
         <div>
-   
+
         </div>
         </td>
      </tr>

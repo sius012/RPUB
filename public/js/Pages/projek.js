@@ -69,6 +69,56 @@ $(document).ready(function () {
         ["Duplikat"],
     ]);
 
+    contextMenuStatus.init(
+        [
+            [
+                "Revisi",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Revisi");
+                },
+            ],
+            [
+                "Selesai",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Selesai");
+                },
+            ],
+            [
+                "Belum Dikerjakan",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Belum Dimulai");
+                },
+            ],
+            [
+                "Dalam Pengerjaan",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Dalam Pengerjaan");
+                },
+            ],
+            [
+                "Siap Dikerjakan",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Siap Dikerjakan");
+                },
+
+                "Ditinjau",
+                function (id) {
+                    let tugas = pageSetup.getTugasCache(id);
+                    tugas.changeStatus("Siap Dikerjakan");
+                },
+            ],
+        ],
+        function (ctx) {
+            detailProjekView.loadTugas();
+        }
+    );
+    pageSetup.add(tugasModal);
+
     contextMenuPartisipan.init([
         [
             "Beri Nilai",
@@ -77,13 +127,13 @@ $(document).ready(function () {
             },
         ],
     ]);
-
     pageSetup.add(projekListView);
     pageSetup.add(projekModal);
     pageSetup.add(detailProjekView);
 
     pageSetup.add(tugasDetailView);
     pageSetup.add(contextMenuTugas);
+    pageSetup.add(contextMenuStatus);
     pageSetup.add(contextMenuPartisipan);
     pageSetup.add(assignmentSiswaModal);
     pageSetup.add(breadcrumb);
