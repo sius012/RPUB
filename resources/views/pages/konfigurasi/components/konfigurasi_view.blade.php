@@ -27,14 +27,6 @@
                 </div>
             </a>
         </div>
-        <div class="col-md-4 mb-2">
-            <a href="#" class='konfigurasi-kategori-jenis'>
-                <div class="card card-konfigurasi">
-                    <div class="card-body">
-                        Konfigurasi Kategori Jenis
-                    </div>
-                </div>
-            </a>
-        </div>
+       
     </div>
 </div>
