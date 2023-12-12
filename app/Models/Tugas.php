@@ -9,12 +9,12 @@ class Tugas extends Model
 {
     use HasFactory;
     protected $table = "tugas";
-    protected $fillable = ["nama", "keterangan", "id_jenis", "id_projek", "id_parent", "tanggal_awal", "tanggal_akhir", "status", "id_tugas", "created_at", "updated_at"];
+    protected $fillable = ["nama", "keterangan", "id_projek", "id_parent", "tanggal_awal", "tanggal_akhir", "status", "id_tugas", "created_at", "updated_at", "tipe"];
 
 
     public static function byProjek($id)
     {
-        $tugas = Tugas::where("id_projek", $id)->where("id_parent", null)->with("jenis")->get();
+        $tugas = Tugas::where("id_projek", $id)->where("id_parent", null)->get();
         $tugasArr = [];
         foreach ($tugas as $i => $tgs) {
             $tugasArr[$i] = Tugas::recursifParse($tgs);
@@ -24,7 +24,7 @@ class Tugas extends Model
 
     public static function findWithChild($id)
     {
-        $tugas = Tugas::with("jenis")->find($id);
+        $tugas = Tugas::find($id);
         return Tugas::recursifParse($tugas);
     }
 
@@ -32,13 +32,11 @@ class Tugas extends Model
     {
         $newTugas = $tugas;
         $newTugasArr = [];
-        $children = Tugas::with("jenis")->where("id_parent", $tugas->id);
+        $children = Tugas::where("id_parent", $tugas->id);
 
 
-        if ($tugas->jenis->tipe == "grup") {
-            $childrenWithoutTugas = Tugas::with("jenis")->where("id_parent", $tugas->id)->whereHas("jenis", function ($q) {
-                $q->where("tipe", "!=", "grup");
-            });
+        if ($tugas->tipe == "grup") {
+            $childrenWithoutTugas = Tugas::where("id_parent", $tugas->id)->where("tipe", "grup");
             $tugas->tugasStatusArr = implode(":", $childrenWithoutTugas->pluck("status")->toArray()) . (count($childrenWithoutTugas->pluck("status")->toArray()) > 0 ? ":" : "");
             $tugas->tugasCount = $childrenWithoutTugas->get()->count();
             $newTugas->data = "success";
@@ -50,7 +48,7 @@ class Tugas extends Model
         if ($children->count() > 0) {
             foreach ($children->get() as $i => $cld) {
                 $tgs = Tugas::recursifParse($cld);
-                if ($tgs->jenis->tipe == "grup") {
+                if ($tgs->tipe == "grup") {
                     $newTugas->tugasCount += $tgs->tugasCount;
 
                     //  printf($newTugas->tugasStatusArr);
@@ -67,21 +65,17 @@ class Tugas extends Model
         }
 
         //CheckChildren
-        if ($newTugas->jenis->tipe == "grup") {
+        if ($newTugas->tipe == "grup") {
             if (strlen($newTugas->tugasStatusArr) > 0) {
                 $newTugas->statusArr =  array_count_values(explode(":", substr($newTugas->tugasStatusArr, 0, -1)));
             } else {
-                $newTugas->statusArr = [];
+                $newTugas->statusArr = $newTugas->tugasStatusArr;
             }
         }
         $newTugas->children = $newTugasArr;
         return $newTugas;
     }
 
-    public function jenis()
-    {
-        return $this->hasOne(Jenis::class, "id", "id_jenis");
-    }
 
     public function penugasan()
     {

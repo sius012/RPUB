@@ -60,7 +60,7 @@ class TugasController extends Controller
                 return response()->json($versi);
             }
         }
-        return response()->json(Tugas::with("jenis")->find($id));
+        return response()->json(Tugas::find($id));
     }
 
     /**

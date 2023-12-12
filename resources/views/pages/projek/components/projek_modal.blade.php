@@ -43,6 +43,7 @@
                                <select name="jenis_projek" class="form-select" aria-label="Default select example">
                                  <option value="Projek Internal">Projek Internal</option>
                                  <option value="Projek Eksternal">Projek Eksternal</option>
+                                 <option value="Projek Dudi">Projek Dudi</option>
                                </select>
                              </div>
                            </div>
@@ -76,7 +77,7 @@
                              </div>
                            </div>
                            <div class="row">
-                             <label class="form-label" for="">Jurusan</label>
+                             <label class="form-label" for="">Kompetensi Keahlian</label>
                              <div class="container-jurusan-row">
 
                              </div>

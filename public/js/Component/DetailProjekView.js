@@ -15,9 +15,7 @@ export default class DetailProjekView {
     }
 
     load(id) {
-        Helper.curl("/pages/projek/" + id);
-        let breadcrumb = pageSetup.getComponent("Breadcrumb");
-        breadcrumb.add([this.nama_component, "active"]);
+        //Helper.curl("/pages/projek/" + id);
 
         this.page_setup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
@@ -90,6 +88,7 @@ export default class DetailProjekView {
 
     #rekursifTugas(tugas, index) {
         var barStr = "<div class='progress position-relative'>";
+        console.log(tugas);
         for (var i in tugas.statusArr) {
             var color = Helper.status(i, true);
 
@@ -97,18 +96,16 @@ export default class DetailProjekView {
                 (tugas.statusArr[i] / tugas.tugasCount) * 100
             }%"></div>`;
         }
-        barStr += "</div>";
+        barStr += tugas.statusArr + " </div>";
 
         var tugasStr = `
      <tr data-id='${tugas.id_tugas}'>
         <td class="no">${index}</td>
         <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama} 
-        <img src='${tugas.data_jenis.icon()}' style='width: 15px'>
+        <img src='' style='width: 15px'>
         </td>
         <td class='status'>${
-            tugas.data_jenis.tipe == "grup"
-                ? barStr
-                : Helper.status(tugas.status)
+            tugas.tipe == "grup" ? barStr : Helper.status(tugas.status)
         }</td>
         <td>${tugas.keterangan}</td>
         <td>${tugas.tanggal_awal}</td>
@@ -155,9 +152,17 @@ export default class DetailProjekView {
 
     globalEventListener() {
         var ctx = this;
+        this.container.delegate(".profile-siswa", "contextmenu", function (e) {
+            e.preventDefault();
+
+            var ctxmenu = ctx.page_setup.getComponent("ContextMenuPartisipan");
+            ctxmenu.trigger($(this), $(this).attr("data-id"));
+        });
+
         this.container.find("#tugas").delegate("td", "click", function (e) {
             //e.preventDefault();
             e.stopPropagation();
+
             var ctxmenu = ctx.page_setup.getComponent("ContextMenuTugas");
             ctxmenu.trigger($(this), $(this).closest("tr").attr("data-id"));
         });
@@ -166,7 +171,7 @@ export default class DetailProjekView {
             .find("#tugas")
             .delegate(".status", "click", function (e) {
                 e.preventDefault();
-                var ctxmenu = ctx.page_setup.getComponent("ContextMenuStatus");
+                var ctxmenu = pageSetup.getComponent("ContextMenuStatus");
                 ctxmenu.trigger($(this), $(this).closest("tr").attr("data-id"));
             });
 

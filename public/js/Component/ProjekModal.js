@@ -132,7 +132,7 @@ export default class ProjekModal {
 
             // Display form data (you can also send it to the server via AJAX)
             ctx.kirim();
-
+            
             var pLV = ctx.page_setup.getComponent("ProjekListView");
         });
     }
