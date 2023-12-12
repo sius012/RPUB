@@ -5,14 +5,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Tambah Jurusan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Tambah Kompetensi Keahlian</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Jurusan</label>
-                            <input type="number" name="jurusan" class="form-control" placeholder="Masukkan Jurusan" required />
+                            <label for="nameBasic" class="form-label">Kompetensi Keahlian</label>
+                            <input type="number" name="jurusan" class="form-control" placeholder="Masukkan kompetensi keahlian" required />
                         </div>
                     </div>
                     <div class="row g-2">

@@ -11,12 +11,12 @@
 
                    {{--  button tambah projek  --}}
                         <!-- <button type="button" class="btn btn-primary tambah-jurusan mb-3" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
-                          Tambah Jurusan
+                          Tambah Kompetensi Keahlian
                         </button>  -->
 
                   {{--  -----card projek jurusan--- note(nanti cardnya ini pake foreach)  --}}
                   <div class="row row-jurusan">
-                      
+
                   </div>
                   </div>
                 {{--  -----/card projek jurusan---  --}}

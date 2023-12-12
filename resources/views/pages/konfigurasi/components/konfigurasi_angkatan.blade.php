@@ -1,13 +1,13 @@
 
 <div class="content-wrapper">
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container flex-grow-1 container-p-y">
         <div class="row">
             <div class="button"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#basicModal" id="tambah-angkatan">
                     Tambah
                 </button></div>
 
-            <div class=" ">
+            <div class="konfigurate_angkatan">
                 <table class="table table-hover">
                     <thead>
                         <tr>

@@ -1,7 +1,6 @@
-<div class="content-wrapper" id="projek-list-view" style="display:none">
-  <!-- Content -->
 
-  <div class="container-xxl flex-grow-1 container-p-y">
+
+  <div class="containers flex-grow-1 container-p-y">
 
 
     <div class="row">
@@ -41,7 +40,7 @@
 
 <div class="content-backdrop fade"></div>
 </div>
-</div>
+
 
 <script type="text/javascript">
   var link = document.getElementById('click');

@@ -1,6 +1,7 @@
 {{-- ambil dari uitabspills  --}}
 
-<div class="container-xxl flex-grow-1 container-p-y" id="detail-projek-view" style="display:none">
+
+<div class="containers flex-grow-1 container-p-y" id="detail-projek-view" style="display:none">
 
     <div class="row">
         <div class="container-fluid">
