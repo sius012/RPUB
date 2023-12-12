@@ -18,7 +18,7 @@
                         <li class="nav-item">
                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                 data-bs-target="#versi1" aria-controls="navs-top-profile" aria-selected="false">
-                                Versi
+                                Laporan
                             </button>
                         </li>
                         <li class="nav-item">

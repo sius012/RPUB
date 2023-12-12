@@ -1,3 +1,4 @@
+import Jurusan from "./Jurusan.js";
 import Siswa from "./Siswa.js";
 
 export default class Projek {
@@ -33,7 +34,7 @@ export default class Projek {
             },
         });
         return projek;
-    }
+    } c
     static parse(json, params = { withEtc: false }) {
         var projek = new Projek();
 
@@ -65,6 +66,12 @@ export default class Projek {
             });
         }
 
+        if (json["jurusan"] != undefined) {
+            this.jurusan = json["jurusan"].map(function (e) {
+                return Jurusan.parse(e);
+            });
+        }
+
         return projek;
     }
     static all() {
@@ -80,6 +87,44 @@ export default class Projek {
             },
         });
         return projek;
+    }
+
+    toJson() {
+        var json = {};
+        json["nama"] = this.nama;
+        json["tanggal_awal"] = this.tanggal_awal;
+        json["tanggal_akhir"] = this.tanggal_akhir;
+        json["id_penanggung_jawab"] = this.id_penanggung_jawab;
+        json["jenis_projek"] = this.jenis_projek;
+        json["klien"] = this.klien;
+        json["deskripsi"] = this.deskripsi;
+        json["status"] = this.status;
+        json["id_jurusan"] = this.id_jurusan;
+        json["id_pembuat"] = 0;
+        return json;
+    }
+
+    simpan(params = null) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/projek",
+            type: "post",
+            data: this.toJson(),
+            async: false,
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+        if (params != null) {
+            if (params.withJurusan == true) {
+                this.simpanJurusan();
+            }
+        }
     }
 
     static byJurusan(id) {
@@ -126,43 +171,5 @@ export default class Projek {
         });
         console.log(projek);
         return projek;
-    }
-
-    toJson() {
-        var json = {};
-        json["nama"] = this.nama;
-        json["tanggal_awal"] = this.tanggal_awal;
-        json["tanggal_akhir"] = this.tanggal_akhir;
-        json["id_penanggung_jawab"] = this.id_penanggung_jawab;
-        json["jenis_projek"] = this.jenis_projek;
-        json["klien"] = this.klien;
-        json["deskripsi"] = this.deskripsi;
-        json["status"] = this.status;
-        json["id_jurusan"] = this.id_jurusan;
-        json["id_pembuat"] = 0;
-        return json;
-    }
-
-    simpan(params = null) {
-        $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
-            },
-            url: "/projek",
-            type: "post",
-            data: this.toJson(),
-            async: false,
-            success: function (response) {
-                console.log(response);
-            },
-            error: function (err) {
-                alert(err.responseText);
-            },
-        });
-        if (params != null) {
-            if (params.withJurusan == true) {
-                this.simpanJurusan();
-            }
-        }
     }
 }

@@ -22,8 +22,12 @@ class ProjekController extends Controller
     {
         $projek = new Projek;
         if ($request->has("id_jurusan")) {
-            $projek = $projek->where("id_jurusan", $request->id_jurusan);
+            $projek = $projek->with("projekjurusan", function ($e) use ($request) {
+                $e->whereIn("id_jurusan", $request->id_jurusan);
+            })->get();
+            return response()->json($projek);
         }
+
         if ($request->has("id_siswa")) {
             $id_tugas = Penugasan::where("id_siswa", $request->id_siswa)->get()->pluck("id_tugas")->toArray();
             $id_projek = Tugas::whereIn("id", $id_tugas)->get()->pluck("id_projek");

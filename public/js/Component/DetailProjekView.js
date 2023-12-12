@@ -28,8 +28,9 @@ export default class DetailProjekView {
 
         this.loadData(id);
         this.loadInfoProjek();
-        this.loadTugas();
         this.loadPartisipan();
+        this.loadTugas();
+        this.loadTimeliner();
     }
 
     loadData(id) {
@@ -74,7 +75,21 @@ export default class DetailProjekView {
         //mengisi id_projek
         var tugasModal = this.page_setup.getComponent("TugasModal");
         tugasModal.init(this.projek);
-        $(window).scrollTop(previousScroll);
+
+        //this.container.find("#tugas").find("table").Timeliner();
+    }
+
+    loadTimeliner() {
+        let data = Tugas.byProjek(this.projek.id, { rekursif: false });
+
+        let timeliner = new Timechart(this.container.find("#canvas")[0], data);
+        timeliner.config = {
+            title: "nama",
+            start_date: "tanggal_awal",
+            end_date: "tanggal_akhir",
+        };
+        timeliner.data = data;
+        timeliner.render();
     }
 
     loadPartisipan() {
@@ -191,5 +206,14 @@ export default class DetailProjekView {
             tugasModal.reset();
             tugasModal.modal.show();
         });
+
+        // this.container.delegate("status").click(function () {
+        //     pageSetup
+        //         .getComponent("ContextMenuStatus")
+        //         .trigger(
+        //             $(this).closest("td"),
+        //             $(this).closest("tr").data("id")
+        //         );
+        // });
     }
 }

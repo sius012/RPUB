@@ -26,6 +26,8 @@ export default class ProjekModal {
         });
 
         //this.getElement("id_jenis", "select").html(optionJenisStr);
+
+        this.getElement("jenis_projek", "select").select2();
     }
 
     parse() {
@@ -62,6 +64,7 @@ export default class ProjekModal {
         if ((id_projek = null)) {
             this.ProjekData = Projek.find(id_projek);
         }
+        alert("tes");
         this.getElement("id").val(this.ProjekData.id);
         this.getElement("nama").val(this.ProjekData.nama);
         this.getElement("tanggal_awal").val(this.ProjekData.tanggal_awal);
@@ -108,6 +111,7 @@ export default class ProjekModal {
 
         this.container.find("form").submit(function (e) {
             e.preventDefault();
+
             //  ctx.kirim();
             var formData = $(this)
                 .serializeArray()

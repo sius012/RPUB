@@ -11,8 +11,8 @@
                         <div class="modal-body">
                           <div class="row">
                             <div class="col mb-3">
-                              <label for="nameBasic" class="form-label">Jurusan</label>
-                              <input type="text" name="jurusan" class="form-control" placeholder="Masukkan Jurusan" required>
+                              <label for="nameBasic" class="form-label">Kompetensi Keahlian</label>
+                              <input type="text" name="jurusan" class="form-control" placeholder="Masukkan kompetensi keahlian" required>
                             </div>
                           </div>
                           <div class="row g-2">

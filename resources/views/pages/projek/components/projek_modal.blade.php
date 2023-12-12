@@ -31,14 +31,6 @@
                            </div>
                            <div class="row">
                              <div class="col mb-3">
-                               <label for="nameBasic" class="form-label">Penanggung Jawab</label>
-                               <select name="id_penanggung_jawab" class="form-select" aria-label="Default select example">
-                                 <option value=""></option>
-                               </select>
-                             </div>
-                           </div>
-                           <div class="row">
-                             <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Jenis Projek</label>
                                <select name="jenis_projek" class="form-select" aria-label="Default select example">
                                  <option value="Projek Internal">Projek Internal</option>

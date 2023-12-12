@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Jurusan</th>
+                            <th>Kompetensi Keahlian</th>
                             <th>Keterangan</th>
                             <th>Aksi</th>
                         </tr>

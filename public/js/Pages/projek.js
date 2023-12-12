@@ -81,13 +81,16 @@ $(document).ready(function () {
     pageSetup.add(projekListView);
     pageSetup.add(projekModal);
     pageSetup.add(detailProjekView);
-    pageSetup.add(tugasModal);
+
     pageSetup.add(tugasDetailView);
     pageSetup.add(contextMenuTugas);
     pageSetup.add(contextMenuPartisipan);
     pageSetup.add(assignmentSiswaModal);
     pageSetup.add(breadcrumb);
     pageSetup.add(penilaianProjekModal);
+    pageSetup.add(tugasModal);
+
+    penilaianProjekModal.modal.show();
 
     projekListView.load();
     console.log(pageSetup);

@@ -13,6 +13,7 @@ export default class ProjekListView {
     }
 
     load(id_jurusan = null) {
+        const ctx = this;
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
@@ -31,10 +32,13 @@ export default class ProjekListView {
         } else {
             this.projekList = Projek.all();
         }
+
         this.container.find(".row-view").html("");
+
         this.projekList.forEach((element) => {
             var projekCard = new ProjekCard(element);
-            this.container.find(".row-view").append(projekCard.load());
+            console.log(this.container);
+            ctx.container.find(".row-view").append(projekCard.load());
         });
 
         var modal = pageSetup.getComponent("ProjekModal");

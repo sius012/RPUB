@@ -9,8 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
+        if($req->has("penanggung_jawab")){
+            if($req->penanggung_jawab == 1){
+                $user = User::whereHas("ubjurusan",function($q){
+                    $q->where("id_jurusan")
+                })
+            }
+        }
         $user = User::all();
         $user = $user->map(function ($e) {
             $e->rolesStr = implode(",", $e->roles->pluck("name")->toArray());

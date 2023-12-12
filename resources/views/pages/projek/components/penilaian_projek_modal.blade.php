@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
           <label for="" class="form-label">Nilai Non-formal</label>
-          <input type="number" name="n_nformal">
+          <input type="number" class="form-control" name="n_nformal">
         </div>
         <div class="form-group">
           <div class="row">
