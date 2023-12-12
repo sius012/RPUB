@@ -103,7 +103,7 @@
                                 <th><button class="btn btn-danger"><i class="fa fa-danger"></i></button></th>
                             </tr>
                             <tr>
-                                <th>Jurusan yang berpatisipasi</th>
+                                <th>Kompetensi keahlian yang berpatisipasi</th>
                                 <td><button class="btn btn-danger"><i class="fa fa-danger"></i></button></td>
                             </tr>
                         </table>

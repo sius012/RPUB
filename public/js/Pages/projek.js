@@ -9,6 +9,7 @@ import TugasModal from "../Component/TugasModal.js";
 import ContextMenu from "../Component/ContextMenu.js";
 import TugasDetailView from "../Component/TugasDetailView.js";
 import AssignmentSiswaModal from "../Component/AssignmentSiswaModal.js";
+import PenilaianProjekModal from "../Component/PenilaianProjekModal.js";
 
 import Jurusan from "../Model/Jurusan.js";
 import Projek from "../Model/Projek.js";
@@ -16,7 +17,7 @@ import Projek from "../Model/Projek.js";
 $(document).ready(function () {
     var breadcrumb = new Breadcrumb($("#breadcrumb"));
 
-    //Komponen Uta
+    //Komponen Utama
     var projekListView = new ProjekListView($("#projek-list-view"));
     var projekModal = new ProjekModal($("#projek-modal"));
     var detailProjekView = new DetailProjekView($("#detail-projek-view"));
@@ -25,13 +26,18 @@ $(document).ready(function () {
     var assignmentSiswaModal = new AssignmentSiswaModal(
         $("#assignment-siswa-modal")
     );
+    var penilaianProjekModal = new PenilaianProjekModal(
+        $("#penilaian-projek-modal")
+    );
 
     //ContextMenu
     var contextMenuTugas = new ContextMenu();
     var contextMenuStatus = new ContextMenu();
+    var contextMenuPartisipan = new ContextMenu();
 
     contextMenuTugas.nama_component = "ContextMenuTugas";
     contextMenuStatus.nama_component = "ContextMenuStatus";
+    contextMenuPartisipan.nama_component = "ContextMenuPartisipan";
     contextMenuTugas.init([
         [
             "Buka",
@@ -40,7 +46,7 @@ $(document).ready(function () {
             },
             function (id) {
                 let tugas = pageSetup.getTugasCache(id);
-                if (tugas.data_jenis.tipe == "grup") {
+                if (tugas.tipe == "grup") {
                     return false;
                 }
             },
@@ -112,6 +118,15 @@ $(document).ready(function () {
         }
     );
     pageSetup.add(tugasModal);
+
+    contextMenuPartisipan.init([
+        [
+            "Beri Nilai",
+            function (id) {
+                penilaianProjekModal.modal.show();
+            },
+        ],
+    ]);
     pageSetup.add(projekListView);
     pageSetup.add(projekModal);
     pageSetup.add(detailProjekView);
@@ -119,8 +134,10 @@ $(document).ready(function () {
     pageSetup.add(tugasDetailView);
     pageSetup.add(contextMenuTugas);
     pageSetup.add(contextMenuStatus);
+    pageSetup.add(contextMenuPartisipan);
     pageSetup.add(assignmentSiswaModal);
     pageSetup.add(breadcrumb);
+    pageSetup.add(penilaianProjekModal);
 
     projekListView.load();
     console.log(pageSetup);

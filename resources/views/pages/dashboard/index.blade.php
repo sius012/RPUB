@@ -6,15 +6,17 @@
 
 
     <div class="container-fluid">
+
         <div class="row">
-            <div class="col-md-6"> <canvas id="projek-jurusan-chart" style="width: 10px">
-
-                </canvas></div>
             <div class="col-md-6">
-
-                <div id="card-jurusan-dashboard-vertical" style="height:360px;overflow-y: scroll"></div>
+                <canvas id="projek-jurusan-chart" style="width: 10px">
+                </canvas>
+            </div>
+            <div class="col-md-6">
+                <div id="card-jurusan-dashboard-vertical" style="height:200px;overflow-y: scroll"></div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 

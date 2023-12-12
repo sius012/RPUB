@@ -16,19 +16,19 @@ export default class TugasModal {
         this.getElement("id_projek").val(this.projek_data.id);
 
         var jenis = this.getElement("id_jenis", "select");
-        var jenisdata = Jenis.byProjek(projekdata.id_jurusan, function (data) {
-            jenis.html("");
-            jenis.append(
-                "<option value=''>Pilih Tugas/Grup (Sesuai dengan jurusan)</option>"
-            );
-            data.forEach(function (element) {
-                jenis.append(
-                    `<option value='${element.id}' data-tipe='${element.tipe}'>${element.nama}   (${element.tipe}) (${element.id_jurusan})</option>`
-                );
-            });
+        // var jenisdata = Jenis.byProjek(projekdata.id_jurusan, function (data) {
+        //     jenis.html("");
+        //     jenis.append(
+        //         "<option value=''>Pilih Tugas/Grup (Sesuai dengan jurusan)</option>"
+        //     );
+        //     data.forEach(function (element) {
+        //         jenis.append(
+        //             `<option value='${element.id}' data-tipe='${element.tipe}'>${element.nama}   (${element.tipe}) (${element.id_jurusan})</option>`
+        //         );
+        //     });
 
-            ctx.reset();
-        });
+        //     ctx.reset();
+        // });
     }
 
     attach(id) {
@@ -44,7 +44,7 @@ export default class TugasModal {
         this.tugas.id_projek = this.getElement("id_projek").val();
         this.tugas.nama = this.getElement("nama").val();
         this.tugas.keterangan = this.getElement("keterangan", "textarea").val();
-        this.tugas.id_jenis = this.getElement("id_jenis", "select").val();
+        this.tugas.tipe = this.getElement("tipe", "select").val();
         this.tugas.tanggal_awal = this.getElement("tanggal_awal").val();
         this.tugas.tanggal_akhir = this.getElement("tanggal_akhir").val();
         this.tugas.status = this.getElement("status", "select").val();
@@ -69,7 +69,9 @@ export default class TugasModal {
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.fromElement();
+            console.log(ctx.tugas);
             ctx.tugas.simpan();
+
             ctx.modal.hide();
             var dpv = ctx.page_setup.getComponent("DetailProjekView");
             dpv.loadTugas();
@@ -81,7 +83,7 @@ export default class TugasModal {
             function (q) {
                 var option = $(this).find(`option[value=${$(this).val()}]`);
                 var status = ctx.getElement("status", "select").closest(".row");
-                if (option.data("tipe") == "grup") {
+                if (option.attr("value") == "grup") {
                     status.hide();
                 } else {
                     status.show();

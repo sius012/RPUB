@@ -13,15 +13,15 @@ class CreateJenisTable extends Migration
      */
     public function up()
     {
-        Schema::create('jenis', function (Blueprint $table) {
-            $table->id();
-            $table->string("nama");
-            $table->text("keterangan");
-            $table->enum("tipe", ['grup', 'tugas']);
-            $table->bigInteger("id_jurusan");
-            $table->string("icon");
-            $table->timestamps();
-        });
+        // Schema::create('jenis', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string("nama");
+        //     $table->text("keterangan");
+        //     $table->enum("tipe", ['grup', 'tugas']);
+        //     $table->bigInteger("id_jurusan");
+        //     $table->string("icon");
+        //     $table->timestamps();
+        // });
     }
 
     /**

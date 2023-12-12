@@ -11,7 +11,6 @@ export default class Tugas {
         this.tanggal_awal;
         this.tanggal_akhir;
         this.status;
-        this.id_jenis;
         this.created_at;
         this.updated_at;
         this.children = [];
@@ -23,6 +22,7 @@ export default class Tugas {
         this.data_jenis;
         this.partisipan;
         this.image = [];
+        this.tipe;
     }
 
     static find(id, params = { jenis: false }) {
@@ -94,13 +94,6 @@ export default class Tugas {
         } else {
         }
 
-        if (params.jenis == true) {
-            if (json["jenis"] != undefined) {
-                tugas.data_jenis = Jenis.parse(json["jenis"]);
-            }
-            console.log(json["jenis"]["id"]);
-        }
-
         if (params.partisipan == true) {
             tugas.partisipan = Penugasan.byTugas(tugas.id);
         }
@@ -108,6 +101,7 @@ export default class Tugas {
         if (json["image"] != undefined) {
             tugas.image = json["image"];
         }
+        tugas.tipe = json["tipe"];
 
         return tugas;
     }
@@ -131,8 +125,8 @@ export default class Tugas {
         json["keterangan"] = this.keterangan;
         json["tanggal_awal"] = this.tanggal_awal;
         json["tanggal_akhir"] = this.tanggal_akhir;
-        json["id_jenis"] = this.id_jenis;
         json["status"] = this.status;
+        json["tipe"] = this.tipe;
         console.log(json);
         return json;
     }

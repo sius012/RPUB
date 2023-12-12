@@ -13,7 +13,7 @@ export default class ProjekCard {
 
         <div class="card-body">
             <h5 class="card-title">${this.projek.nama}</h5>
-            <p class="card-text">Deskripsi Projek</p>
+            <p class="card-text">${this.projek.deskripsi}</p>
             <p class="card-text">
                 <small class="text-muted">${this.projek.jenis_projek}</small>
             </p>

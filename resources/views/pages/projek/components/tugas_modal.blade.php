@@ -39,8 +39,9 @@
           <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Jenis</label>
-              <select name="id_jenis" class="form-select" aria-label="Default select example">
-                <option value=""></option>
+              <select name="tipe" class="form-select" aria-label="Default select example">
+                <option value="tugas">Tugas</option>
+                <option value="grup">Grup</option>
               </select>
             </div>
           </div>
