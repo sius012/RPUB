@@ -140,6 +140,11 @@ $(document).ready(function () {
     pageSetup.add(penilaianProjekModal);
     pageSetup.add(tugasModal);
 
+<<<<<<< HEAD
+=======
+    // penilaianProjekModal.modal.show();
+
+>>>>>>> 62733c698f89ac8b1d37c665f441dbe9e822dcc4
     projekListView.load();
     console.log(pageSetup);
 

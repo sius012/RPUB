@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('main-content')
-    
+
 
     @include('pages.konfigurasi.components.konfigurasi_view')
     @include('pages.konfigurasi.components.konfigurasi_angkatan_view')
@@ -17,3 +17,4 @@
 @push('script')
     <script src="{{ asset('js/Pages/konfigurasi.js') }}" type="module"></script>
 @endpush
++
