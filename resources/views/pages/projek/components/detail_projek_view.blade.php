@@ -35,7 +35,7 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade  active   " id="informasi-projek" role="tabpanel">
+                    <div class="tab-pane fade  active " id="informasi-projek" role="tabpanel">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">

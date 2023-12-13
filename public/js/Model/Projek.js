@@ -172,4 +172,8 @@ export default class Projek {
         console.log(projek);
         return projek;
     }
+
+    tambahpenilaian(id) {
+        
+    } 
 }

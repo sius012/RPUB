@@ -51,8 +51,34 @@
                         </tr>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="row row-view raportcard">
+                        <div class="col col-md-3 pb-3">
+                            <a href="">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Semester 1</h5>
+                                    </div>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-view raportcard">
+                    <div class="col col-md-3 pb-3">
+                        <a href="">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Semester 2</h5>
+                                </div>
+                        </a>
+                    </div>
+                </div>
             </div>
+
+
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>

@@ -10,5 +10,9 @@ export default class PenilaianProjekModal {
         alert(id);
     }
 
-    globalEventListener() {}
+    globalEventListener() {
+        this.container.find("form").submit( function (e){
+            e.preventDefault()
+        })
+    }
 }

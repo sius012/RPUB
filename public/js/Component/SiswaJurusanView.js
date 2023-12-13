@@ -5,7 +5,6 @@ export default class SiswaJurusanView {
     constructor(container) {
         this.container = container;
         this.jurusanList = Jurusan.all();
-
         this.nama_component = "SiswaJurusanView";
     }
 

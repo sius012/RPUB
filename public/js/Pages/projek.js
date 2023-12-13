@@ -140,8 +140,6 @@ $(document).ready(function () {
     pageSetup.add(penilaianProjekModal);
     pageSetup.add(tugasModal);
 
-    penilaianProjekModal.modal.show();
-
     projekListView.load();
     console.log(pageSetup);
 
