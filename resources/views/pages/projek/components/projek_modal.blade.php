@@ -48,20 +48,15 @@
                             </div>
                             <div class="row">
                                 <div class="col mb-3">
-                                    <label for="nameBasic" class="form-label">Penanggung Jawab</label>
-                                    <input type="text" name="nama_penanggungjawab" class="form-control" placeholder="Masukkan Nama penanggung jawab" required />
+                                    <label for="nameBasic" class="form-label">Klien</label>
+                                    <input type="text" name="klien" class="form-control" placeholder="Masukkan Klien" required />
                                 </div>
                             </div>
 
                         </div>
                         <div class="col">
 
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <label for="nameBasic" class="form-label">Klien</label>
-                                    <input type="text" name="klien" class="form-control" placeholder="Masukkan Klien" required />
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Deskripsi</label>
@@ -86,6 +81,13 @@
                                 <label class="form-label" for="">Kompetensi Keahlian</label>
                                 <div class="container-jurusan-row">
 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Penanggung Jawab</label>
+                                    <input type="text" name="nama_penanggungjawab" class="form-control" placeholder="Masukkan Nama penanggung jawab" required />
+                                    <ul class="pj-list" style="list-style-type: none;position:absolute"></ul>
                                 </div>
                             </div>
                         </div>

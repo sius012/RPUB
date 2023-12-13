@@ -1,5 +1,6 @@
 import Projek from "../Model/Projek.js";
 import Jurusan from "../Model/Jurusan.js";
+import User from "../Model/User.js";
 export default class ProjekModal {
     constructor(container) {
         this.container = container;
@@ -148,6 +149,27 @@ export default class ProjekModal {
             } else {
                 ctx.getElement("nilai_projek").closest(".row").hide();
             }
+        });
+
+        this.getElement("nama_penanggungjawab").keyup(function () {
+            let jurusanList = [];
+            let container = $(this).parent().find(".pj-list");
+            container.empty();
+            ctx.getElement("id_jurusan").each(function (e) {
+                if ($(this).is(":checked")) {
+                    jurusanList.push($(this).val());
+                }
+            });
+            console.log(jurusanList);
+            User.getListUBJurusan(jurusanList, function (data) {
+                let userlist = data
+                    .map(function (e) {
+                        return `<li><a href="#">${e.nama}</a></li>`;
+                    })
+                    .join("");
+                container.html(userlist);
+            });
+            $(this).parent().find(".pj-list");
         });
     }
 

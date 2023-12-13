@@ -11,12 +11,12 @@ class UserController extends Controller
 {
     public function index(Request $req)
     {
-        if($req->has("penanggung_jawab")){
-            if($req->penanggung_jawab == 1){
-                $user = User::whereHas("ubjurusan",function($q){
-                    $q->where("id_jurusan")
-                })
-            }
+        $jurusan = $req->jurusan_list_id;
+        if ($req->has("jurusan_list_id")) {
+            $user = User::whereHas("ubjurusan", function ($q) use ($req, $jurusan) {
+                $q->whereIn("id_jurusan", $jurusan);
+            });
+            return response()->json($user->get());
         }
         $user = User::all();
         $user = $user->map(function ($e) {

@@ -125,4 +125,20 @@ export default class User {
             })
             .join(",");
     }
+
+    static getListUBJurusan(jurusanListID, cb) {
+        $.ajax({
+            url: "/user",
+            data: {
+                jurusan_list_id: jurusanListID,
+            },
+            type: "get",
+            success: function (data) {
+                let user = data.map(function (e) {
+                    return User.parse(e);
+                });
+                cb(user);
+            },
+        });
+    }
 }

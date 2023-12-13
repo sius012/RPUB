@@ -1,4 +1,4 @@
-{{--  <!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,14 +15,14 @@
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="/dashboard/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="/dashboard/assets/css/demo.css" />
-    <link rel="stylesheet" href="/dashboard/assets/vendor/css/pages/page-auth.css" />
+<link rel="stylesheet" href="/dashboard/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+<link rel="stylesheet" href="/dashboard/assets/css/demo.css" />
+<link rel="stylesheet" href="/dashboard/assets/vendor/css/pages/page-auth.css" />
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<!-- Vendors CSS -->
+<link rel="stylesheet" href="/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="/dashboard/assets/vendor/libs/apex-charts/apex-charts.css" />
+<link rel="stylesheet" href="/dashboard/assets/vendor/libs/apex-charts/apex-charts.css" />
 </head>
 
 <body>
@@ -90,7 +90,7 @@
 
 </body>
 
-</html>  --}}
+</html> --}}
 
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
@@ -165,7 +165,7 @@
             display: flex;
             height: 50px;
             width: 100%;
-            overflow: hidden;
+
             margin: 30px 0 10px 0;
             justify-content: space-between;
             border: 1px solid lightgrey;
@@ -229,7 +229,7 @@
 
         .wrapper .form-container {
             width: 100%;
-            overflow: hidden;
+
         }
 
         .form-container .form-inner {
@@ -337,7 +337,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            
+            width: 80vw;
+
         }
 
         .title-text {
@@ -393,7 +394,7 @@
                 <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
-                <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
+                <form id="form-admin" class=" mb-3" action="{{ route('login') }}" x-action="{{ route('login') }}" y-action="{{ route('siswa.login') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -421,7 +422,7 @@
                         <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
                     </div>
                 </form>
-                <form id="formAuthentication" class="mb-3" action="{{ route('siswa.login') }}" method="POST">
+                <form id="form-siswa" class="mb-3" action="{{ route('siswa.login') }}" method="POST" style="display: none;">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -431,7 +432,7 @@
                         <div class="d-flex justify-content-between">
                             <label class="form-label" for="password">Password</label>
                             <a href="auth-forgot-password-basic.html">
-                                <small>Forgot Password?</small>
+                                <small>Forgot Passwords?</small>
                             </a>
                         </div>
                         <div class="input-group input-group-merge">
@@ -455,19 +456,25 @@
     <script>
         const loginBtn = document.querySelector("label.login");
         const signupBtn = document.querySelector("label.signup");
-        const signupLink = document.querySelector("form .signup-link a");
+        const signupLink = document.querySelector("form");
+        const formAdmin = document.getElementById("form-admin");
+        const formSiswa = document.getElementById("form-siswa");
+
         signupBtn.onclick = (() => {
-            loginForm.style.marginLeft = "-50%";
-            loginText.style.marginLeft = "-50%";
+            formAdmin.style.display = "none"
+            formSiswa.style.display = "unset"
+            //signupLink.setAttribute("action", signupLink.getAttribute("y-action"))
         });
         loginBtn.onclick = (() => {
-            loginForm.style.marginLeft = "0%";
-            loginText.style.marginLeft = "0%";
+            formSiswa.style.display = "none"
+            formAdmin.style.display = "unset"
+            // signupLink.setAttribute("action", signupLink.getAttribute("y-action"))
         });
-        signupLink.onclick = (() => {
-            signupBtn.click();
-            return false;
-        });
+        // signupLink.onclick = (() => {
+        //     signupBtn.click();
+
+        //     return false;
+        // });
     </script>
 </body>
 
