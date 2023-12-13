@@ -139,6 +139,16 @@ export default class ProjekModal {
 
             var pLV = ctx.page_setup.getComponent("ProjekListView");
         });
+
+        ctx.getElement("nilai_projek").closest(".row").hide();
+
+        this.getElement("jenisProjek", "select").change(function () {
+            if ($(this).val() == "Projek Eksternal") {
+                ctx.getElement("nilai_projek").closest(".row").show();
+            } else {
+                ctx.getElement("nilai_projek").closest(".row").hide();
+            }
+        });
     }
 
     getElement(name, type = "input") {

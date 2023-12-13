@@ -1,3 +1,4 @@
+
 <script>
     function toggleNilaiProjek() {
         console.log("toggleNilaiProjek dijalankan"); // Tambahkan ini
@@ -13,8 +14,6 @@
     }
 </script>
 
-
-<!-- Modal Untuk Tambah Projek -->
 <div class="modal fade" tabindex="-1" aria-hidden="true" id="projek-modal">
     <form action="" method="">
         @csrf
@@ -48,7 +47,8 @@
                             <div class="row">
                                 <div class="col mb-3">
                                     <label for="jenisProjek" class="form-label">Jenis Projek</label>
-                                    <select class="form-select" id="jenisProjek" name="jenis_projek" onchange="toggleNilaiProjek()">
+                                    <select class="form-select" id="jenisProjek" name="jenisProjek" onchange="toggleNilaiProjek()>
+                                        <option value="" selected>Pilih jenis projek...</option>
                                         <option value="Projek Internal">Projek Internal</option>
                                         <option value="Projek Eksternal">Projek Eksternal</option>
                                         <option value="Projek Dudi">Projek Dudi</option>
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" id="nilaiProjekdiv" style="display: none;">
+                            <div class="row" id="nilaiProjekDiv">
                                 <div class="col mb-3">
                                     <label for="nilaiProjek" class="form-label">Nilai Projek</label>
                                     <input type="number" id="nilaiProjekInput" name="nilai_projek" class="form-control" placeholder="Masukkan Nominal" required style="display: none;" />
