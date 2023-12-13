@@ -27,7 +27,7 @@ export default class ProjekModal {
 
         //this.getElement("id_jenis", "select").html(optionJenisStr);
 
-        this.getElement("jenis_projek", "select").select2();
+        // this.getElement("jenis_projek", "select").select2();
     }
 
     parse() {
@@ -136,7 +136,7 @@ export default class ProjekModal {
 
             // Display form data (you can also send it to the server via AJAX)
             ctx.kirim();
-            
+
             var pLV = ctx.page_setup.getComponent("ProjekListView");
         });
     }
