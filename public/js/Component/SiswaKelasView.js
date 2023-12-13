@@ -25,7 +25,7 @@ export default class SiswaKelasView {
                 ctx.container
                     .find(".row")
                     .append(
-                        `<div class='col-md-4'><div class='card card-class'  data-id='${e.id_angkatan}' data-idj='${id_jurusan}'><div class='card-body'><h3>Kelas ${e.kelas}</h3></div></div></div>`
+                        `<div class='col-md-4'><div class='card card-class'  data-id='${e.id_angkatan}' data-idj='${id_jurusan}'><div class='card-body'>Kelas ${e.kelas}</div></div></div>`
                     );
             });
         });

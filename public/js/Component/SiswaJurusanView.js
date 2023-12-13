@@ -1,5 +1,6 @@
 import Jurusan from "../Model/Jurusan.js";
 import pageSetup from "./PageSetup.js";
+import JurusanCard from "./Card/JurusanCard.js";
 
 export default class SiswaJurusanView {
     constructor(container) {
@@ -15,10 +16,12 @@ export default class SiswaJurusanView {
         this.container.find(".row").empty();
 
         this.jurusanList.forEach(function (e) {
+            let jurusan = new JurusanCard(e);
+
             ctx.container
                 .find(".row")
                 .append(
-                    `<div class='col-md-4 mb-3'><div class='card jurusan-card' data-id='${e.id}'><div class='card-body'>${e.jurusan}</div></div></div>`
+                    jurusan.load()
                 );
         });
     }

@@ -130,11 +130,11 @@
             height: 100%;
             width: 100%;
             place-items: center;
-            background: -webkit-linear-gradient(left, #ffb868, #ee4242);
+            background: -webkit-linear-gradient(left, #ff8b2b, #d4460d);
         }
 
         ::selection {
-            background: #fa4299;
+            background: #d4460d;
             color: #fff;
         }
 
@@ -196,7 +196,7 @@
             left: 0;
             z-index: 0;
             border-radius: 5px;
-            background: -webkit-linear-gradient(left, #ffb868, #ee4242);
+            background: -webkit-linear-gradient(left, #ff8b2b, #d4460d);
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
@@ -285,7 +285,7 @@
 
         .form-inner form .pass-link a,
         .form-inner form .signup-link a {
-            color: #fa4299;
+            color: #d4460d;
             text-decoration: none;
         }
 
@@ -307,7 +307,7 @@
             width: 300%;
             position: absolute;
             left: -100%;
-            background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+            background: -webkit-linear-gradient(right, #ff8b2b, #d4460d, #ff8b2b, #d4460d);
             border-radius: 5px;
             transition: all 0.4s ease;
             ;
@@ -380,10 +380,11 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a href="" class="">
-                        <img src="{{ asset('img/logo/logo1.svg') }}" alt="" style="width: 200px;">
+                        <img src="{{asset('img/logo/logo1.svg')}}" alt="" style="width: 200px;">
                     </a>
                 </div>
             </div>
+
         </div>
         <div class="form-container">
             <div class="slide-controls">
@@ -454,6 +455,8 @@
         </div>
     </div>
     <script>
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
         const loginBtn = document.querySelector("label.login");
         const signupBtn = document.querySelector("label.signup");
         const signupLink = document.querySelector("form");
