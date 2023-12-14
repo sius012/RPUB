@@ -21,35 +21,77 @@
           <table class="table">
             <tr>
               <td>Antusias</td>
-              <td><input type="text" class="form-control" name="antusias"></td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td>Kejujuran</td>
-              <td><input type="text" class="form-control" name="kejujuran"></td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td>Kreativitas</td>
-              <td><input type="text" class="form-control" name="kreativitas"></td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td>Tanggung Jawab</td>
-              <td><input type="text" class="form-control" name="tanggung_jawab"></td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
             <tr>
-              <td>Komunikasi</td>
-              <td><input type="text" class="form-control" name="komunikasi"></td>
+              <td>komunikasi</td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td>Etika & Sopan Santun</td>
-              <td><input type="text" class="form-control" name="etika_sopansantun"></td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
             <tr>
-              <td>Kecepatan, Ketepatan & Kerapian</td>
-              <td><input type="text" class="form-control" name="k3"></td>
+              <td>Kecepatan, Ketepatan & Kerapian </td>
+              <td><select name="tipe" class="form-select" aria-label="Default select example">
+                  <option value="tugas">A</option>
+                  <option value="grup">B</option>
+                  <option value="grup">C</option>
+                  <option value="grup">D</option>
+                </select>
+              </td>
             </tr>
           </table>
           <div class="row">
-            <input type="text" class="form-control" name="keterangan">
+            <input type="textarea" class="form-control" name="keterangan">
           </div>
         </div>
         <div class="modal-footer">
