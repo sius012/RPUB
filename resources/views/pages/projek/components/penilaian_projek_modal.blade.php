@@ -21,7 +21,7 @@
           <table class="table">
             <tr>
               <td>Antusias</td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td><select name="Antusias" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <td>Kejujuran</td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td><select name="Kejujuran" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
               <td>Kreativitas</td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td><select name="Kreativitas" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -51,7 +51,7 @@
             </tr>
             <tr>
               <td>Tanggung Jawab</td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td><select name="Tanggung_Jawab" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -60,8 +60,8 @@
               </td>
             </tr>
             <tr>
-              <td>komunikasi</td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td>Komunikasi</td>
+              <td><select name="komunikasi" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -71,7 +71,7 @@
             </tr>
             <tr>
               <td>Etika & Sopan Santun</td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td><select name="Etika_SopanSantun " class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -81,7 +81,7 @@
             </tr>
             <tr>
               <td>Kecepatan, Ketepatan & Kerapian </td>
-              <td><select name="tipe" class="form-select" aria-label="Default select example">
+              <td><select name="K3" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
