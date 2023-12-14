@@ -5,6 +5,7 @@ import Penugasan from "../Model/Penugasan.js";
 import Helper from "../Helper/Helper.js";
 import SiswaCard from "./Card/SiswaCard.js";
 import User from "../Model/User.js";
+import PenilaianProjek from "../Model/PenilaianProjek.js";
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;
@@ -99,11 +100,12 @@ export default class DetailProjekView {
 
     loadPartisipan() {
         let partisipan = Projek.find(this.projek.id, { partisipan: true });
-        this.container
-            .find("#partisipan")
-            .html(
-                SiswaCard.autoList(partisipan.partisipan, { redirect: true })
-            );
+        this.container.find("#partisipan").html(
+            SiswaCard.autoList(partisipan.partisipan, {
+                redirect: true,
+                penilaianProjek: true,
+            })
+        );
     }
 
     #rekursifTugas(tugas, index) {
@@ -172,11 +174,15 @@ export default class DetailProjekView {
 
     globalEventListener() {
         var ctx = this;
-        this.container.delegate(".profile-siswa", "contextmenu", function (e) {
+        this.container.delegate(".pp-item", "click", function (e) {
             e.preventDefault();
-
-            var ctxmenu = ctx.page_setup.getComponent("ContextMenuPartisipan");
-            ctxmenu.trigger($(this), $(this).attr("data-id"));
+            let id_projek = ctx.projek.id;
+            let id_siswa = $(this).closest(".profile-siswa").attr("data-id");
+            let penilaianProjekModal = pageSetup.getComponent(
+                "PenilaianProjekModal"
+            );
+            penilaianProjekModal.init(id_projek, id_siswa);
+            penilaianProjekModal.modal.show();
         });
 
         this.container.find("#tugas").delegate("td", "click", function (e) {

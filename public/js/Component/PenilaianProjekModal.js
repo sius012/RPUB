@@ -20,7 +20,13 @@ export default class PenilaianProjekModal {
             e.preventDefault();
             ctx.parseFromElement();
             ctx.penilaianProjek.simpan(function (data) {
-                Swal.fire("success", "Berhasil dibuat");
+                ctx.modal.hide();
+                Swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text: "Data Berhasil dibuat",
+                    target: ctx.container[0],
+                });
             });
         });
     }

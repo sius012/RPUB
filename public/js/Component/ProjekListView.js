@@ -17,13 +17,6 @@ export default class ProjekListView {
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
 
-        pageSetup.componentList.forEach((element) => {
-            //Menyembunyikan element yang lainnya
-            if (element.isLayout == undefined) {
-                element.container.hide();
-            }
-        });
-
         this.container.show();
         if (id_jurusan != null) {
             //cek apakah ada parameter jurusan, jika ada perbarui datanya, jika tidak gunakan yag sudah ada
