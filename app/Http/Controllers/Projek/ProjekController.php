@@ -10,6 +10,7 @@ use App\Models\Tugas;
 use App\Models\Versi;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 
 class ProjekController extends Controller
 {
@@ -59,7 +60,7 @@ class ProjekController extends Controller
     public function store(Request $request)
     {
         $projek = $request->input();
-        $projek["id_pembuat"] = 1;
+        $projek["id_pembuat"] = Auth::user()->id;
         $newprojek  = $projek;
         unset($newprojek["id_jurusan"]);
         $dataprojek = Projek::create($newprojek);
@@ -83,7 +84,7 @@ class ProjekController extends Controller
      */
     public function show(Request $req, $id)
     {
-        $projek = Projek::find($id);
+        $projek = Projek::with("penanggung_jawab")->find($id);
         if ($req->has("partisipan")) {
             if ($req->partisipan == 1) {
                 $partisipan = Siswa::with(["angkatan", "jurusan"])->whereHas("penugasan", function ($q) use ($id) {

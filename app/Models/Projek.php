@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+
 
 class Projek extends Model
 {
@@ -15,5 +17,10 @@ class Projek extends Model
     {
         $penilaian_siswa = PenilaianProjek::where("id_siswa", $id)->where("id_projek", $this->id)->get();
         return $penilaian_siswa;
+    }
+
+    public function penanggung_jawab()
+    {
+        return $this->hasOne(User::class,  "id", "id_penanggung_jawab",);
     }
 }

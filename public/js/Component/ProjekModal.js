@@ -36,13 +36,13 @@ export default class ProjekModal {
         projek.nama = this.getElement("nama").val();
         projek.tanggal_awal = this.getElement("tanggal_awal").val();
         projek.tanggal_akhir = this.getElement("tanggal_akhir").val();
-        projek.id_penanggung_jawab = 1; //this.getElement("id_penanggung_jawab").val();
         projek.jenis_projek = this.getElement("jenis_projek", "select").val();
         projek.klien = this.getElement("klien").val();
         projek.deskripsi = this.getElement("deskripsi").val();
         projek.status = this.getElement("status").val();
         projek.id_pembuat = this.getElement("id_pembuat").val();
         projek.id_jurusan = this.getElement("id_jurusan").val();
+        projek.id_penanggung_jawab = this.getElement("id_penanggung_jawab");
         this.ProjekData = projek;
     }
 
@@ -51,7 +51,7 @@ export default class ProjekModal {
         projek.nama = json["nama"];
         projek.tanggal_awal = json["tanggal_awal"];
         projek.tanggal_akhir = json["tanggal_akhir"];
-        projek.id_penanggung_jawab = 1; //this.getElement("id_penanggung_jawab").val();
+        projek.id_penanggung_jawab = json["id_penanggung_jawab"];
         projek.jenis_projek = json["jenis_projek"];
         projek.klien = json["klien"];
         projek.deskripsi = json["deskripsi"];
@@ -65,7 +65,6 @@ export default class ProjekModal {
         if ((id_projek = null)) {
             this.ProjekData = Projek.find(id_projek);
         }
-        alert("tes");
         this.getElement("id").val(this.ProjekData.id);
         this.getElement("nama").val(this.ProjekData.nama);
         this.getElement("tanggal_awal").val(this.ProjekData.tanggal_awal);
@@ -135,8 +134,12 @@ export default class ProjekModal {
 
             ctx.fastParse(newFormData);
 
+            if (newFormData["id_penanggung_jawab"].length > 0) {
+                ctx.kirim();
+            } else {
+                alert("Pastikan Penanggung Jawab Terisi");
+            }
             // Display form data (you can also send it to the server via AJAX)
-            ctx.kirim();
 
             var pLV = ctx.page_setup.getComponent("ProjekListView");
         });
@@ -154,7 +157,9 @@ export default class ProjekModal {
         this.getElement("nama_penanggungjawab").keyup(function () {
             let jurusanList = [];
             let container = $(this).parent().find(".pj-list");
+            let containerPj = $(this).parent().find(".container-pj");
             container.empty();
+            containerPj.empty();
             ctx.getElement("id_jurusan").each(function (e) {
                 if ($(this).is(":checked")) {
                     jurusanList.push($(this).val());
@@ -164,12 +169,23 @@ export default class ProjekModal {
             User.getListUBJurusan(jurusanList, function (data) {
                 let userlist = data
                     .map(function (e) {
-                        return `<li><a href="#">${e.nama}</a></li>`;
+                        return `<li><a href="#" class='pj-list-item' value='${e.id}'>${e.nama}</a></li>`;
                     })
                     .join("");
                 container.html(userlist);
             });
             $(this).parent().find(".pj-list");
+        });
+
+        ctx.container.delegate(".pj-list-item", "click", function () {
+            let containerPj = $(this).closest(".col").find(".container-pj");
+            containerPj.empty();
+            containerPj.append(
+                `<input type='hidden' name='id_penanggung_jawab' value='${$(
+                    this
+                ).attr("value")}'>`
+            );
+            console.log(containerPj);
         });
     }
 

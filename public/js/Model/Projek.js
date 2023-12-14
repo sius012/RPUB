@@ -34,7 +34,8 @@ export default class Projek {
             },
         });
         return projek;
-    } c
+    }
+    c;
     static parse(json, params = { withEtc: false }) {
         var projek = new Projek();
 
@@ -173,7 +174,5 @@ export default class Projek {
         return projek;
     }
 
-    tambahpenilaian(id) {
-        
-    } 
+    tambahpenilaian(id) {}
 }

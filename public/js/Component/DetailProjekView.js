@@ -4,6 +4,7 @@ import Tugas from "../Model/Tugas.js";
 import Penugasan from "../Model/Penugasan.js";
 import Helper from "../Helper/Helper.js";
 import SiswaCard from "./Card/SiswaCard.js";
+import User from "../Model/User.js";
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;
@@ -45,13 +46,16 @@ export default class DetailProjekView {
         infoprojek.find(".nama-projek").val(this.projek.nama);
         infoprojek.find(".tanggal-awal").val(this.projek.tanggal_awal);
         infoprojek.find(".tanggal-akhir").val(this.projek.tanggal_akhir);
-        infoprojek.find(".penanggung-jawab").val(this.projek.penanggung_jawab);
+
         infoprojek.find(".jenis-projek").val(this.projek.jenis_projek);
         infoprojek.find(".klien").val(this.projek.klien);
         infoprojek.find(".deskripsi").val(this.projek.deskripsi);
         infoprojek.find(".status").val(this.projek.status);
+
+        infoprojek
+            .find(".penanggung_jawab")
+            .val(this.projek.penanggung_jawab.name);
     }
-    z;
     loadTugas() {
         var ctx = this;
         //simpan posisi terakhir

@@ -46,7 +46,7 @@
                             <div class="row">
                                 <div class="col mb-3">
                                     <label for="jenisProjek" class="form-label">Jenis Projek</label>
-                                    <select class="form-select" id="jenisProjek" name="jenisProjek" onchange="toggleNilaiProjek()">
+                                    <select class="form-select" id="jenisProjek" name="jenis_projek" onchange="toggleNilaiProjek()">
                                         <option value="" selected>Pilih jenis projek...</option>
                                         <option value=" Projek Internal">Projek Internal</option>
                                         <option value="Projek Eksternal">Projek Eksternal</option>
@@ -58,7 +58,7 @@
                             <div class="row" id="nilaiProjekDiv">
                                 <div class="col mb-3">
                                     <label for="nilaiProjek" class="form-label">Nilai Projek</label>
-                                    <input type="number" id="nilaiProjekInput" name="nilai_projek" class="form-control" placeholder="Masukkan Nominal" required style="display: none;" />
+                                    <input type="number" id="nilaiProjekInput" name="nilai_projek" class="form-control" placeholder="Masukkan Nominal" required style="display: none;" value="100000" />
 
                                 </div>
                             </div>
@@ -104,6 +104,9 @@
                                     <label for="nameBasic" class="form-label">Penanggung Jawab</label>
                                     <input type="text" name="nama_penanggungjawab" class="form-control" placeholder="Masukkan Nama penanggung jawab" required />
                                     <ul class="pj-list" style="list-style-type: none;position:absolute"></ul>
+                                    <div class="container-pj">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>

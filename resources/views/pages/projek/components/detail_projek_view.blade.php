@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Penanggung Jawab</label>
-                                    <input type="text" name="id_penanggung_jawab" class="penanggung-jawab form-control" placeholder="" />
+                                    <input type="text" name="pj" class="penanggung_jawab form-control" placeholder="" />
                                 </div>
                             </div>
                             <div class="col">
@@ -63,6 +63,10 @@
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Klien</label>
                                     <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama klien" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Nilai Projek</label>
+                                    <input type="text" name="nominal" value="2000000" class="klien form-control" placeholder="tambahkan nama klien" />
                                 </div>
                             </div>
                         </div>
