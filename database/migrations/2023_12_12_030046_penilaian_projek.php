@@ -27,6 +27,7 @@ class PenilaianProjek extends Migration
             $table->char("etika_sopansantun");
             $table->char("k3");
             $table->string("keterangan");
+            $table->timestamps();
         });
     }
 

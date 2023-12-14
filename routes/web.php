@@ -4,6 +4,7 @@ use App\Http\Controllers\Angkatan\AngkatanController;
 use App\Http\Controllers\Jenis\JenisController;
 use App\Http\Controllers\Jurusan\JurusanController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\PenilaianProjek\PenilaianProjekController;
 use App\Http\Controllers\Penugasan\PenugasanController;
 use App\Http\Controllers\Projek\ProjekController;
 use App\Http\Controllers\Register\RegisterController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Tugas\TugasController;
 use App\Http\Controllers\UBJurusan\UBJurusanController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Versi\VersiController;
+use App\Models\PenilaianProjek;
 use App\Models\Penugasan;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Hash;
@@ -65,6 +67,7 @@ Route::resource('/siswa', SiswaController::class);
 Route::resource('/user', UserController::class);
 Route::resource('/ubjurusan', UBJurusanController::class);
 Route::resource('/role', RoleController::class);
+Route::resource('/penilaianprojek', PenilaianProjekController::class);
 
 
 

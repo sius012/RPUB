@@ -21,33 +21,36 @@
           <table class="table">
             <tr>
               <td>Antusias</td>
-              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control" name="antusias"></td>
             </tr>
             <tr>
               <td>Kejujuran</td>
-              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control" name="kejujuran"></td>
             </tr>
             <tr>
-              <td>Kreatifitas</td>
-              <td><input type="text" class="form-control"></td>
+              <td>Kreativitas</td>
+              <td><input type="text" class="form-control" name="kreativitas"></td>
             </tr>
             <tr>
               <td>Tanggung Jawab</td>
-              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control" name="tanggung_jawab"></td>
             </tr>
             <tr>
               <td>Komunikasi</td>
-              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control" name="komunikasi"></td>
             </tr>
             <tr>
               <td>Etika & Sopan Santun</td>
-              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control" name="etika_sopansantun"></td>
             </tr>
             <tr>
               <td>Kecepatan, Ketepatan & Kerapian</td>
-              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control" name="k3"></td>
             </tr>
           </table>
+          <div class="row">
+            <input type="text" class="form-control" name="keterangan">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

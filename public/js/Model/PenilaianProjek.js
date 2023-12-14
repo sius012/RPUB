@@ -24,9 +24,13 @@ export default class PenilaianProjek {
             data: json,
             type: "post",
             success: function (data) {
+                console.log(data);
                 if (cb != null) {
                     cb(data);
                 }
+            },
+            error: function (err) {
+                alert(err.responseText);
             },
         });
     }
@@ -40,6 +44,7 @@ export default class PenilaianProjek {
         json["antusias"] = this.antusias;
         json["kejujuran"] = this.kejujuran;
         json["kreatifitas"] = this.kreatifitas;
+        json["komunikasi"] = this.komunikasi;
         json["tanggung_jawab"] = this.tanggung_jawab;
         json["etika_sopansantun"] = this.etika_sopansantun;
         json["k3"] = this.k3;

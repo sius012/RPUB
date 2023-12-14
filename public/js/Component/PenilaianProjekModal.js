@@ -9,8 +9,9 @@ export default class PenilaianProjekModal {
         this.penilaianProjek = new PenilaianProjek();
     }
 
-    init(pp) {
-        this.penilaianProjek = pp;
+    init(id_projek, id_siswa) {
+        this.getElement("id_projek").val(id_projek);
+        this.getElement("id_siswa").val(id_siswa);
     }
 
     globalEventListener() {
@@ -18,7 +19,9 @@ export default class PenilaianProjekModal {
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.parseFromElement();
-            ctx.penilaianProjek.simpan(function () {});
+            ctx.penilaianProjek.simpan(function (data) {
+                Swal.fire("success", "Berhasil dibuat");
+            });
         });
     }
 
@@ -27,18 +30,20 @@ export default class PenilaianProjekModal {
     }
 
     parseFromElement() {
-        this.penilaianProjek.id_projek = this.getElement("id_projek");
-        this.penilaianProjek.id_siswa = this.getElement("id_siswa");
-        this.penilaianProjek.id_penilai = this.getElement("id_penilai");
-        this.penilaianProjek.n_nformal = this.getElement("n_nformal");
-        this.penilaianProjek.antusias = this.getElement("antusias");
-        this.penilaianProjek.kejujuran = this.getElement("kejujuran");
-        this.penilaianProjek.kreatifitas = this.getElement("kreatifitas");
-        this.penilaianProjek.tanggung_jawab = this.getElement("tanggung_jawab");
-        this.penilaianProjek.komunikasi = this.getElement("komunikasi");
+        this.penilaianProjek.id_projek = this.getElement("id_projek").val();
+        this.penilaianProjek.id_siswa = this.getElement("id_siswa").val();
+        this.penilaianProjek.id_penilai = this.getElement("id_penilai").val();
+        this.penilaianProjek.n_nformal = this.getElement("n_nformal").val();
+        this.penilaianProjek.antusias = this.getElement("antusias").val();
+        this.penilaianProjek.kejujuran = this.getElement("kejujuran").val();
+        this.penilaianProjek.kreatifitas = this.getElement("kreativitas").val();
+        this.penilaianProjek.tanggung_jawab =
+            this.getElement("tanggung_jawab").val();
+        this.penilaianProjek.komunikasi = this.getElement("komunikasi").val();
         this.penilaianProjek.etika_sopansantun =
-            this.getElement("etika_sopansantun");
-        this.penilaianProjek.k3 = this.getElement("k3");
+            this.getElement("etika_sopansantun").val();
+        this.penilaianProjek.k3 = this.getElement("k3").val();
         console.log(this.penilaianProjek);
+        this.penilaianProjek.keterangan = this.getElement("keterangan").val();
     }
 }

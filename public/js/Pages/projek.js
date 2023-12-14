@@ -123,6 +123,7 @@ $(document).ready(function () {
         [
             "Beri Nilai",
             function (id) {
+                penilaianProjekModal.init(detailProjekView.projek.id, id);
                 penilaianProjekModal.modal.show();
             },
         ],

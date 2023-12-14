@@ -363,7 +363,7 @@
 
             <!-- -----------Content------- -->
             <div class="container-fluid">
-                @include('maincomponent.breadcrumb')
+
                 @yield('main-content')
             </div>
             <!-- ----------/Content------- -->
@@ -423,8 +423,8 @@
 }
     </style>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('script')
     <script src="{{ asset('js/lib/Timeliner.js') }}"></script>
 </body>
