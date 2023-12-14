@@ -36,7 +36,7 @@ export default class PenilaianProjekModal {
     }
 
     parseFromElement() {
-        this.penilaianProjek.id_projek = this.getElement("id_projek").val();
+        this.penilaianProjek.id_projek = this.getElement("id_projek",).val();
         this.penilaianProjek.id_siswa = this.getElement("id_siswa").val();
         this.penilaianProjek.id_penilai = this.getElement("id_penilai").val();
         this.penilaianProjek.n_nformal = this.getElement("n_nformal").val();

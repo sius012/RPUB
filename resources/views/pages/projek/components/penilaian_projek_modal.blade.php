@@ -41,7 +41,8 @@
             </tr>
             <tr>
               <td>Kreativitas</td>
-              <td><select name="Kreativitas" class="form-select" aria-label="Default select example">
+              <td>
+                <select name="kreativitas" class="form-select" aria-label="Default select example">
                   <option value="tugas">A</option>
                   <option value="grup">B</option>
                   <option value="grup">C</option>
@@ -51,21 +52,21 @@
             </tr>
             <tr>
               <td>Tanggung Jawab</td>
-              <td><select name="Tanggung_Jawab" class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+              <td><select name="tanggung_jawab" class="form-select" aria-label="Default select example">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td>Komunikasi</td>
               <td><select name="komunikasi" class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
