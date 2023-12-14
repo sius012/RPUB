@@ -1,7 +1,7 @@
 {{-- ambil dari uitabspills  --}}
 
 
-<div class="containers" id="detail-projek-view" style="display:none">
+<div class="containers" id="detail-projek-view" style="display: none;">
 
     <div class="row">
         <div class="container-fluid">
