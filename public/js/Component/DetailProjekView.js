@@ -100,6 +100,7 @@ export default class DetailProjekView {
 
     loadPartisipan() {
         let partisipan = Projek.find(this.projek.id, { partisipan: true });
+        console.log(partisipan.partisipan);
         this.container.find("#partisipan").html(
             SiswaCard.autoList(partisipan.partisipan, {
                 redirect: true,
@@ -208,7 +209,12 @@ export default class DetailProjekView {
                 let id = $(this).closest("tr").attr("data-id");
                 let aSM = ctx.page_setup.getComponent("AssignmentSiswaModal");
                 console.log(ctx.page_setup);
-                aSM.init(ctx.projek.id_jurusan, pageSetup.getTugasCache(id));
+                aSM.init(
+                    ctx.projek.jurusan.map(function (e) {
+                        return e.id;
+                    }),
+                    pageSetup.getTugasCache(id)
+                );
                 aSM.modal.show();
             });
 

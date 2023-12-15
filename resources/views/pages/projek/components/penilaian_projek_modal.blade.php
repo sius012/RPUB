@@ -21,32 +21,31 @@
           <table class="table">
             <tr>
               <td>Antusias</td>
-              <td><select name="Antusias" class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+              <td><select name="antusias" class="form-select" aria-label="Default select example">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td>Kejujuran</td>
-              <td><select name="Kejujuran" class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+              <td><select name="kejujuran" class="form-select" aria-label="Default select example">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td>Kreativitas</td>
-              <td>
-                <select name="kreativitas" class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+              <td><select name="kreativitas" class="form-select" aria-label="Default select example">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
@@ -72,27 +71,27 @@
             </tr>
             <tr>
               <td>Etika & Sopan Santun</td>
-              <td><select name="Etika_SopanSantun " class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+              <td><select name="etika_sopansantun" class="form-select" aria-label="Default select example">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td>Kecepatan, Ketepatan & Kerapian </td>
-              <td><select name="K3" class="form-select" aria-label="Default select example">
-                  <option value="tugas">A</option>
-                  <option value="grup">B</option>
-                  <option value="grup">C</option>
-                  <option value="grup">D</option>
+              <td><select name="k3" class="form-select" aria-label="Default select example">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
           </table>
           <div class="row">
-            <input type="textarea" class="form-control" name="keterangan">
+            <textarea class="form-control" name="keterangan"></textarea>
           </div>
         </div>
         <div class="modal-footer">

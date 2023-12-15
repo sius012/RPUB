@@ -23,4 +23,9 @@ class Projek extends Model
     {
         return $this->hasOne(User::class,  "id", "id_penanggung_jawab",);
     }
+
+    public function projek_jurusan()
+    {
+        return $this->hasMany(ProjekJurusan::class, "id_projek", "id");
+    }
 }

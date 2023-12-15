@@ -2,7 +2,7 @@ export default class SiswaCard {
     static autoList(arr, params = { redirect: false, penilaianProjek: false }) {
         let elm = "<div class='row'>";
         arr.forEach((element) => {
-            elm += `<div class='col-md-3 pb-3 profile-siswa' data-id='${
+            elm += `<div class='col-md-3 pb-3 profile-siswa' style='height: 400px' data-id='${
                 element.id
             }'>${
                 params.redirect == false
@@ -16,26 +16,29 @@ export default class SiswaCard {
                       "' >"
             }
 
-        <div class="card" style="width: 100%;" ${element.id}>  
+        <div class="card" style="width: 100%; " ${element.id}>  
             <div class="card-body">
-            <div class="py-2 px-2"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <div class=" px-2"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                 <h5 class="card-title">${element.nama}</h5>
                 <p>${element.kelasDanJurusan}</p>
             </div> </div>
-            ${
-                params.penilaianProjek == true
-                    ? `  <div class="modal-footer">
-                    <button
+
+
+                     <div class="modal-footers">
+                      <button
                         type="button"
-                        class="btn btn-secondary pp-item"
+                        class="btn  pp-item ${
+                            element.penilaianProjek == true
+                                ? "btn-primary"
+                                : "btn-secondary"
+                        }"
                         data-bs-dismiss="modal"
                     >
                         <i class="fa fa-star"></i>
                     </button>
+                   
                 </div>
-            `
-                    : ""
-            }
+            
             </div>
             ${params.redirect == false ? "" : "</a>"}
             </div>`;

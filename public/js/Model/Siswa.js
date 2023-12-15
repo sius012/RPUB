@@ -16,10 +16,12 @@ export default class Siswa {
         this.list_projek = [];
         this.kelasDanJurusan;
         this.jurusan;
+        this.penilaianGuru;
     }
 
     static byQuery(query, cb) {
         query.byQuery = "yes";
+        console.log(query);
         let siswa = [];
         $.ajax({
             url: "/siswa",
@@ -71,6 +73,10 @@ export default class Siswa {
 
         if (json["jurusan"] != undefined) {
             siswa.jurusan = Jurusan.parse(json["jurusan"]);
+        }
+
+        if (json["penilaianProjek"] != undefined) {
+            siswa.penilaianProjek = json["penilaianProjek"];
         }
 
         return siswa;

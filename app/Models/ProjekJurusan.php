@@ -13,7 +13,7 @@ class ProjekJurusan extends Model
 
     public function jurusan()
     {
-        return $this->hasOne(Jurusan::class, "id_jurusan", "id");
+        return $this->hasOne(Jurusan::class, "id", "id_jurusan");
     }
 
 
