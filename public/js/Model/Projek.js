@@ -67,12 +67,11 @@ export default class Projek {
             });
         }
 
-        if (json["jurusan"] != undefined) {
-            this.jurusan = json["jurusan"].map(function (e) {
-                return Jurusan.parse(e);
+        if (json["projek_jurusan"] != undefined) {
+            projek.jurusan = json["projek_jurusan"].map(function (e) {
+                return Jurusan.parse(e["jurusan"]);
             });
         }
-
         return projek;
     }
     static all() {

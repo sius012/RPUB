@@ -24,8 +24,8 @@
               <td><select name="antusias" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
-                  <option value="B">C</option>
-                  <option value="B">D</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
                 </select>
               </td>
             </tr>
@@ -71,7 +71,7 @@
             </tr>
             <tr>
               <td>Etika & Sopan Santun</td>
-              <td><select name="etika_sopansantun " class="form-select" aria-label="Default select example" required>
+              <td><select name="etika_sopansantun" class="form-select" aria-label="Default select example">
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -91,7 +91,7 @@
             </tr>
           </table>
           <div class="row">
-            <input type="textarea" class="form-control" required="keterangan">
+            <textarea class="form-control" name="keterangan"></textarea>
           </div>
         </div>
         <div class="modal-footer">

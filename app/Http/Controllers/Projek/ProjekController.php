@@ -11,6 +11,7 @@ use App\Models\Versi;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PenilaianProjek;
 
 class ProjekController extends Controller
 {
@@ -84,7 +85,7 @@ class ProjekController extends Controller
      */
     public function show(Request $req, $id)
     {
-        $projek = Projek::with("penanggung_jawab")->find($id);
+        $projek = Projek::with("penanggung_jawab")->with("projek_jurusan.jurusan")->find($id);
         if ($req->has("partisipan")) {
             if ($req->partisipan == 1) {
                 $partisipan = Siswa::with(["angkatan", "jurusan"])->whereHas("penugasan", function ($q) use ($id) {
@@ -92,8 +93,10 @@ class ProjekController extends Controller
                         $q->where("id_projek", $id);
                     });
                 })->get();
-                $partisipan = $partisipan->map(function ($q) {
+                $partisipan = $partisipan->map(function ($q) use ($id) {
                     $q->kelasDanJurusan = $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
+                    $hasPenilaian = PenilaianProjek::where("id_penilai", Auth::user()->id)->where("id_projek", $id)->where("id_siswa", $q->id)->get()->count();
+                    $q->penilaianProjek = $hasPenilaian > 0 ? true : false;
                     return $q;
                 });
                 $projek->partisipan = $partisipan;

@@ -38,8 +38,6 @@ class SiswaController extends Controller
         if ($req->has("byQuery")) {
 
             $id_projek = Tugas::find($req->id_tugas)->id_projek;
-            $id_jurusan = ProjekJurusan::where("id_projek", $id_projek)->pluck("id_jurusan")->toArray();
-
 
             $siswa = $siswa->with(["angkatan", "jurusan"])->with("penugasan", function ($q) use ($req) {
                 $q->where("id_tugas", $req->id_tugas);
@@ -49,7 +47,7 @@ class SiswaController extends Controller
             if ($req->filled("nama")) {
                 $siswa = $siswa->orWhere("nama", "LIKE", "%" . $req->nama . "%");
             }
-            $siswa = $siswa->whereIn("id_jurusan", $id_jurusan);
+            $siswa = $siswa->whereIn("id_jurusan", $req->id_jurusan);
             $siswa = $siswa->whereHas("angkatan", function ($q) {
                 $q->where("dari", "<", date("Y-m-d"))->where("sampai", ">", date("Y-m-d"));
             });
