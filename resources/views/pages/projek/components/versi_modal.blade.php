@@ -13,28 +13,6 @@
         <div class="modal-body">
           <div class="row">
             <div class="col mb-3">
-              <input type="hidden" name="id_versi" class="form-control" placeholder="">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
-              <input type="hidden" name="id_tugas" class="form-control" placeholder="">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Teruskan No Laporan</label>
-              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Nomor Laporan</label>
-              <input type="number" name="nomor_versi" class="form-control" placeholder="masukkan nomor versi">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
               <label for="nameBasic" class="form-label">Nama</label>
               <input type="text" name="nama" class="form-control" placeholder="masukkan nama">
             </div>
@@ -48,7 +26,7 @@
           <div class="row">
             <div class="col mb-3">
               <label for="nameBasic" class="form-label">Lampiran</label>
-              <input type="file" name="lampiran" class="form-control" placeholder="tambahkan lampiran" required>
+              <input type="file" name="lampiran" class="form-control" placeholder="tambahkan lampiran">
             </div>
           </div>
           <div class="row">

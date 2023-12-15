@@ -15,6 +15,7 @@ export default class AssigmentSiswaModal {
     }
 
     init(id_jurusan, tugas) {
+        alert(id_jurusan);
         this.id_jurusan = id_jurusan;
         this.tugas = tugas;
         this.container.find("input[name=id_projek]").val(id_jurusan);
