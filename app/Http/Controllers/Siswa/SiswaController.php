@@ -41,13 +41,12 @@ class SiswaController extends Controller
 
             $siswa = $siswa->with(["angkatan", "jurusan"])->with("penugasan", function ($q) use ($req) {
                 $q->where("id_tugas", $req->id_tugas);
-            })->where("id_jurusan", $req->id_jurusan)->whereHas("penugasan", function ($q) use ($req) {
+            })->whereIn("id_jurusan", $req->id_jurusan)->whereHas("penugasan", function ($q) use ($req) {
                 $q->where("id_tugas", $req->id_tugas);
             });
             if ($req->filled("nama")) {
                 $siswa = $siswa->orWhere("nama", "LIKE", "%" . $req->nama . "%");
             }
-            $siswa = $siswa->whereIn("id_jurusan", $req->id_jurusan);
             $siswa = $siswa->whereHas("angkatan", function ($q) {
                 $q->where("dari", "<", date("Y-m-d"))->where("sampai", ">", date("Y-m-d"));
             });

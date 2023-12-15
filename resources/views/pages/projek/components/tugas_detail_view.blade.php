@@ -35,21 +35,21 @@
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Nama Tugas</label>
                                         <input type="text" name="nama" class="nama-tugas form-control"
-                                            placeholder="nama tugas" />
+                                            placeholder="nama tugas" readonly/>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Keterangan</label>
-                                        <textarea name="keterangan" class="keterangan form-control" placeholder="tambahkan keterangan"></textarea>
+                                        <textarea name="keterangan" class="keterangan form-control" placeholder="tambahkan keterangan" readonly></textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Tanggal Awal</label>
                                         <input type="date" name="tanggal_awal" class="tanggal-awal form-control"
-                                            placeholder="tanggal awal pembuatan" />
+                                            placeholder="tanggal awal pembuatan" readonly />
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Tanggal Akhir</label>
                                         <input type="date" name="tanggal_akhir" class="tanggal-akhir form-control"
-                                            placeholder="tanggal akhir pembuatan" />
+                                            placeholder="tanggal akhir pembuatan" readonly />
                                     </div>
                                 </div>
                             </div>
