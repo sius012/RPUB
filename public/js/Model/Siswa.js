@@ -20,6 +20,7 @@ export default class Siswa {
 
     static byQuery(query, cb) {
         query.byQuery = "yes";
+        console.log(query);
         let siswa = [];
         $.ajax({
             url: "/siswa",
