@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
 ==============================================================
@@ -24,7 +25,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sius012/dheracodelibrary@master/js/Timeliner/timeliner.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .board {
             display: flex;
@@ -106,67 +106,15 @@
 
     }
 
+    
 
-
-    .card-jurusan-dashboard h3{
+    .card-jurusan-dashboard h3{ 
       color: white;
       font-size: 15pt;
     }
 
-    #layout-menu {
-  width: 250px; /* Sesuaikan dengan lebar yang diinginkan */
-}
 
-.menu-inner {
-  padding-left: 20px; /* Sesuaikan dengan padding yang diinginkan di dalam sidebar */
-}
 
-.menu-inner .menu-item {
-  padding: 10px 0; /* Sesuaikan dengan padding item menu di dalam sidebar */
-}
-
-.menu-inner .menu-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #ffffff; /* Sesuaikan dengan warna teks yang diinginkan */
-}
-
-.menu-inner .menu-icon {
-  margin-right: 10px; /* Sesuaikan dengan margin antara ikon dan teks */
-}
-
-.menu-sub .menu-item {
-  padding: 10px 0; /* Sesuaikan dengan padding item submenu di dalam sidebar */
-}
-
-.menu-sub .menu-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #ffffff; /* Sesuaikan dengan warna teks submenu yang diinginkan */
-}
-
-.menu-sub .menu-icon {
-  margin-right: 10px; /* Sesuaikan dengan margin antara ikon dan teks submenu */
-}
-
-.tab-content .table th,
-.tab-content .table td {
-    font-size: 15px;
-    padding: 10px; /* Sesuaikan dengan ukuran huruf yang diinginkan */
-}
-
-.konfigurate_angkatan .table th,
-        .konfigurate_angkatan .table td {
-            font-size: 15px;
-            padding: 10px;
-            /* Sesuaikan dengan ukuran huruf yang diinginkan */
-        }
-
-.caontainer{
-    padding: 30px;
-}
 </style>
     <meta charset="utf-8" />
     <meta
@@ -218,7 +166,7 @@
       }
     </style>
 
-
+    
 
   </head>
 
@@ -230,9 +178,9 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-          <img src="{{ asset('img/logo/logo1.svg') }}" alt="" style="width: 80%">
+          <img src="{{asset('img/logo/logo1.svg')}}" alt="" style="width: 80%">
             <a href="/index" class="app-brand-link">
-
+              
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -253,8 +201,8 @@
             </li>
 
             <!-- ---------------------Layouts as a project---------------------- -->
-            @if (Auth::guard('web')->check())
-<li class="menu-item">
+            @if(Auth::guard('web')->check())
+            <li class="menu-item">
                 <a href="/pages/projek" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                   <div data-i18n="Basic">Projek</div>
@@ -272,19 +220,19 @@
                   <div data-i18n="Basic">Konfigurasi</div>
                 </a>
               </li>
-@endif
+            @endif
             <!-- ---------------------TaskBoard---------------------- -->
-            @if (Auth::guard('student')->check())
-<li class="menu-item">
+            @if(Auth::guard('student')->check())
+            <li class="menu-item">
                 <a href="/pages/taskboard" class="menu-link">
                     <i class="menu-icon tf-icons bi bi-list-task"></i>
                   <div data-i18n="Basic">Task Board</div>
                 </a>
               </li>
-@endif
+              @endif
 
               <!-- ---------------------menu projek pakai drop down---------------------- -->
-
+            
               <!-- <li class="menu-item">
                 <a href="" class="menu-link menu-toggle" ">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -341,7 +289,7 @@
                         @csrf
                           <button type="submit" class="btn">Keluar</button>
                     </form>
-
+                
                   </a>
                 </li>
               </ul>
@@ -353,18 +301,57 @@
         <!-- Layout container -->
         <div class="layout-page">
           <!-- ---------------------Navbar-------------------- -->
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
 
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search..."
+                    aria-label="Search..."
+                  />
+                </div>
+              </div>
+              <!-- /Search -->
 
-        <div class="caontainer">
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Place this tag where you want the button to render. -->
+                <li class="nav-item lh-1 me-3">
+                  <a
+                    class="github-button"
+                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    data-show-count="true"
+                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+                    >Star</a
+                  >
+                </li>
 
-        </div>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
 
           <!-- Content wrapper -->
           <div class="content-wrapper">
 
             <!-- -----------Content------- -->
             <div class="container-fluid">
-
+                @include('maincomponent.breadcrumb')
                 @yield('main-content')
             </div>
             <!-- ----------/Content------- -->
@@ -388,7 +375,7 @@
     <!-- Core JS -->
     <!-- build:dashboard assets/vendor/js/core.js -->
     <script src="/dashboard/assets/vendor/libs/jquery/jquery.js"></script>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -400,22 +387,22 @@
     <script src="/dashboard/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="/dashboard/assets/js/main.js"></script>
-
+    <script src="/dashboard/assets/js/main.js"></script>  
+    
     <!-- Page JS -->
     <script src="/dashboard/assets/js/dashboards-analytics.js"></script>
     <script src="/admin/assets/js/plugins/chartjs.min.js"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('js/Helper/Helper.js') }}"></script>
-
+    
     <script>
-        $(document).ready(function() {
+      $(document).ready(function(){
 
-        })
+      })
     </script>
     <style>
-      .bg-ready {
+      .bg-ready {   
     background-color: #9944e3 !important;
 }
 
@@ -424,9 +411,9 @@
 }
     </style>
 
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     @stack('script')
-    <script src="{{ asset('js/lib/Timeliner.js') }}"></script>
+    <script src="{{asset('js/lib/Timeliner.js')}}"></script>
 </body>
 </html>
