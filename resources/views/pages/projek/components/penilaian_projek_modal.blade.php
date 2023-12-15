@@ -15,13 +15,13 @@
           </div>
           <div class="form-group">
             <label for="" class="form-label">Nilai Non-formal</label>
-            <input type="number" class="form-control" name="n_nformal">
+            <input type="number" class="form-control" name="n_nformal" required>
           </div>
 
           <table class="table">
             <tr>
               <td>Antusias</td>
-              <td><select name="antusias" class="form-select" aria-label="Default select example">
+              <td><select name="antusias" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <td>Kejujuran</td>
-              <td><select name="kejujuran" class="form-select" aria-label="Default select example">
+              <td><select name="kejujuran" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
               <td>Kreativitas</td>
-              <td><select name="kreativitas" class="form-select" aria-label="Default select example">
+              <td><select name="kreativitas" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -51,7 +51,7 @@
             </tr>
             <tr>
               <td>Tanggung Jawab</td>
-              <td><select name="tanggung_jawab" class="form-select" aria-label="Default select example">
+              <td><select name="tanggung_jawab" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -61,7 +61,7 @@
             </tr>
             <tr>
               <td>Komunikasi</td>
-              <td><select name="komunikasi" class="form-select" aria-label="Default select example">
+              <td><select name="komunikasi" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -81,7 +81,7 @@
             </tr>
             <tr>
               <td>Kecepatan, Ketepatan & Kerapian </td>
-              <td><select name="k3" class="form-select" aria-label="Default select example">
+              <td><select name="k3" class="form-select" aria-label="Default select example" required>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
