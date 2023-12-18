@@ -6,6 +6,7 @@ import Helper from "../Helper/Helper.js";
 import SiswaCard from "./Card/SiswaCard.js";
 import User from "../Model/User.js";
 import PenilaianProjek from "../Model/PenilaianProjek.js";
+import Versi from "../Model/Versi.js";
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;
@@ -42,7 +43,7 @@ export default class DetailProjekView {
                 ctx.loadInfoProjek();
                 ctx.loadPartisipan();
                 ctx.loadTugas();
-                ctx.loadTimeliner();
+                ctx.loadLaporan();
             } else {
                 Swal.fire(
                     "Gagal",
@@ -136,6 +137,22 @@ export default class DetailProjekView {
                 penilaianProjek: true,
             })
         );
+    }
+
+    loadLaporan() {
+        const ctx = this;
+        Versi.all(function (data) {
+            let table = ctx.container.find("#laporan").find("tbody");
+            data.forEach(function (e, i) {
+                table.append(
+                    `<tr><td>${i + 1}</td><td>${e.nama}</td><td>${
+                        e.keterangan
+                    }</td><td>${e.id_tugas}</td><td>${
+                        e.timestamp.created_at
+                    }</td><td>${e.lampiran}</td><td>${e.id_siswa}</td></tr>`
+                );
+            });
+        });
     }
 
     #rekursifTugas(tugas, index) {
@@ -271,6 +288,4 @@ export default class DetailProjekView {
         //         );
         // });
     }
-
-    
 }

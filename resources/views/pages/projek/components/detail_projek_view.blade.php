@@ -10,9 +10,15 @@
                             Informasi Projek
                         </button>
                     </li>
+
                     <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#tugas" aria-controls="navs-top-profile" aria-selected="false">
                             Tugas
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#laporan" aria-controls="navs-top-profile" aria-selected="false">
+                            Laporan
                         </button>
                     </li>
                     <li class="nav-item">
@@ -94,7 +100,28 @@
                         </table>
                     </div>
 
+                    <div class="tab-pane fade" id="laporan" role="tabpanel">
+                        <button class="tambah-tugas btn btn-primary">Tambah Tugas</button>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th data-name="title">Judul</th>
+                                    <th>Keterangan</th>
+                                    <th>Tugas</th>
+                                    <th data-name="start_date">Dari</th>
+                                    <th>Lampiran</th>
+                                    <th>Dikirim Oleh</th>
 
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                                <tr>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
 
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">

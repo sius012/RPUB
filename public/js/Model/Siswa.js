@@ -32,7 +32,6 @@ export default class Siswa {
                 siswa = data.map(function (e) {
                     return Siswa.parse(e);
                 });
-                alert("teds");
                 cb(siswa);
             },
             error: function (err) {

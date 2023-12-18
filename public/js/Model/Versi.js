@@ -29,7 +29,7 @@ export default class Versi {
         var versi = new Versi();
 
         versi.id_versi = json["id_versi"];
-        versi.id_versi = json["id_tugas"];
+        versi.id_tugas = json["id_tugas"];
         versi.id_siswa = json["id_siswa"];
         versi.nomor_versi = json["nomor_versi"];
         versi.nama = json["nama"];
@@ -43,16 +43,19 @@ export default class Versi {
         versi.siswa = Siswa.find(versi.id_siswa);
         return versi;
     }
-    static all() {
+    static all(cb = null) {
         var versi = [];
         $.ajax({
             url: "/versis/",
             type: "GET",
-            async: false,
+            async: cb == null ? false : true,
             success: function (data) {
                 versi = data.map(function (e) {
                     return Versi.parse(e);
                 });
+                if (cb != null) {
+                    cb(versi);
+                }
             },
         });
         return versi;
