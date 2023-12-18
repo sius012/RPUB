@@ -18,14 +18,16 @@
   dir="ltr"
   data-theme="theme-default"
   dadashboard-assets-path="dashboard/assets/"
-  data-template="vertical-menu-template-free"
->
+  data-template="vertical-menu-template-free">
   <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sius012/dheracodelibrary@master/js/Timeliner/timeliner.css">
     <style>
+      th,td{
+        font-size: 8pt;
+      }
         .board {
             display: flex;
         }
@@ -33,18 +35,17 @@
         .column {
             margin: 10px;
             padding: 10px;
-            width: 300px;
+            width: 600px;
             background-color: #e2e2e2;
             border: 1px solid #e6e6e6;
             border-radius: 5px;
         }
 
-        .task {
-            background-color: #fff;
-            border: 1px solid #f0f0f0;
-            border-radius: 5px;
-            cursor: pointer;
+        .text-sm{
+          font-size: 8pt;
         }
+
+       
     .task-container {
         display: flex;
         flex-wrap: wrap;
@@ -115,15 +116,52 @@
 
 
 
+.filter-bar, .search-bar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: right;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-bar, .search-bar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    text-align: center;
+}
+  
+
+    
+
+
+
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>RUBI</title>
+
     <meta name="description" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
@@ -329,7 +367,7 @@
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <li class="nav-item lh-1 me-3">
-                  <a href="">Dionisius Setya Hermawan</a>
+                 
                 </li>
 
                 <!--/ User -->
@@ -342,8 +380,8 @@
           <div class="content-wrapper">
 
             <!-- -----------Content------- -->
-            <div class="container-fluid">
-                @include('maincomponent.breadcrumb')
+            <div class="container-fluid p-3">
+
                 @yield('main-content')
             </div>
             <!-- ----------/Content------- -->
@@ -404,7 +442,7 @@
     </style>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('script')
     <script src="{{asset('js/lib/Timeliner.js')}}"></script>
 </body>

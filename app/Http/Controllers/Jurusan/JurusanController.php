@@ -7,7 +7,9 @@ use App\Models\Jurusan;
 use App\Models\Projek;
 use App\Models\ProjekJurusan;
 use App\Models\Siswa;
+use App\Models\UBJurusan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JurusanController extends Controller
 {
@@ -18,7 +20,16 @@ class JurusanController extends Controller
      */
     public function index(Request $req)
     {
-        $jurusan = Jurusan::all();
+        $jurusan = new Jurusan();
+        if (!in_array("Super Admin", Auth::user()->roles->pluck("name")->toArray())) {
+            if ($req->has("ubjurusan")) {
+                if ($req->ubjurusan == true) {
+                    $jurusanList = UBJurusan::where("id_pengguna", Auth::user()->id)->pluck("id_jurusan")->toArray();
+                    $jurusan = $jurusan->whereIn("id", $jurusanList);
+                }
+            }
+        }
+        $jurusan = $jurusan->get();
         foreach ($jurusan as $j => $jrs) {
             if ($req->has("detail_level")) {
                 switch ($req->detail_level) {

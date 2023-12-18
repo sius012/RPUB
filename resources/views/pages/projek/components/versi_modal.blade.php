@@ -11,7 +11,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Nama</label>
+              <label for="nameBasic" class="form-label">Judul</label>
               <input type="text" name="nama" class="form-control" placeholder="masukkan nama">
             </div>
           </div>

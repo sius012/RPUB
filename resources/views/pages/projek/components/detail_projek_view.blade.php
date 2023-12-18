@@ -66,9 +66,13 @@
                                     <label for="" class="form-label">Nilai Projek</label>
                                     <input type="text" name="nominal" value="2000000" class="klien form-control" placeholder="tambahkan nama klien" readonly />
                                 </div>
-                                <!-- <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Edit</button>
-                                </div> -->
+                                <div class="form-group mb-3">
+                                    <label for="" class="form-label">Jurusan</label>
+                                    <div class="container-jurusan-row">
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,21 +104,12 @@
 
                     <div class="tab-pane fade" id="partisipan" role="tabpanel">
                     </div>
-                    <div class="tab-pane fade" id="timeline" role="tabpanel">
-                        <canvas id="canvas" width="800" height="700" style="border: 1px solid whitesmoke"></canvas>
-                    </div>
-                    <div class="tab-pane fade" id="konfigurasi-projek" role="tabpanel">
-                        <table>
-                            <tr>
-                                <th>Arsipkan Projek</th>
-                                <th><button class="btn btn-danger"><i class="fa fa-danger"></i></button></th>
-                            </tr>
-                            <tr>
-                                <th>Kompetensi keahlian yang berpatisipasi</th>
-                                <td><button class="btn btn-danger"><i class="fa fa-danger"></i></button></td>
-                            </tr>
 
-                        </table>
+                    <div class="tab-pane fade" id="konfigurasi-projek" role="tabpanel">
+                        <div class="row">
+                            <div class="col">Arsipkan Projek</div>
+                            <div class="col"><button class="btn btn-primary"><i class="fa fa-archive"></i></button></div>
+                        </div>
                     </div>
                 </div>
             </div>

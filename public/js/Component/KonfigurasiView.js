@@ -24,5 +24,9 @@ export default class KonfigurasiView {
         this.container.find(".konfigurasi-kategori-jenis").click(function () {
             pageSetup.getComponent("KonfigurasiKategoriJenisView").load();
         });
+
+        this.container.find(".konfigurasi-siswa").click(function () {
+            pageSetup.getComponent("KonfigurasiSiswaView").load();
+        });
     }
 }

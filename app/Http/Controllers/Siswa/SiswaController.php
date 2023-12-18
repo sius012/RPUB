@@ -10,7 +10,7 @@ use App\Models\ProjekJurusan;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\Tugas;
-use App\Models\PenilaianProjek;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -21,7 +21,14 @@ class SiswaController extends Controller
      */
     public function index(Request $req)
     {
-        $siswa = new Siswa();
+        $siswa = Siswa::with(["angkatan", "jurusan"]);
+
+
+        if ($req->has("filter")) {
+            if ($req->filter == 1) {
+                return $this->filter($req);
+            }
+        }
 
         if ($req->has("getClassMember")) {
             if ($req->getClassMember == 1) {
@@ -37,20 +44,43 @@ class SiswaController extends Controller
 
 
         if ($req->has("byQuery")) {
+            if ($req->has("id_tugas")) {
+                $id_projek = Tugas::find($req->id_tugas)->id_projek;
+            }
 
-            $id_projek = Tugas::find($req->id_tugas)->id_projek;
 
-            $siswa = $siswa->with(["angkatan", "jurusan"])->with("penugasan", function ($q) use ($req) {
-                $q->where("id_tugas", $req->id_tugas);
-            })->whereIn("id_jurusan", $req->id_jurusan)->whereHas("penugasan", function ($q) use ($req) {
-                $q->where("id_tugas", $req->id_tugas);
-            });
+            if ($req->has("id_tugas")) {
+                $siswa = $siswa->with("penugasan", function ($q) use ($req) {
+                    $q->where("id_tugas", $req->id_tugas);
+                })->whereIn("id_jurusan", $req->id_jurusan)->whereHas("penugasan", function ($q) use ($req) {
+                    $q->where("id_tugas", $req->id_tugas);
+                });
+            }
+
             if ($req->filled("nama")) {
                 $siswa = $siswa->orWhere("nama", "LIKE", "%" . $req->nama . "%");
             }
+
+
             $siswa = $siswa->whereHas("angkatan", function ($q) {
                 $q->where("dari", "<", date("Y-m-d"))->where("sampai", ">", date("Y-m-d"));
             });
+
+
+            if (gettype($req->id_jurusan) == "array") {
+                $siswa =
+                    $siswa->whereIn("id_jurusan", $req->id_jurusan);
+            }
+
+
+
+            if ($req->has("id_angkatan")) {
+                if (gettype($req->id_angkatan) != "array") {
+                    $siswa = $siswa->where("id_angkatan", $req->id_angkatan);
+                } else {
+                    $siswa = $siswa->whereIn("id_angkatan", $req->id_angkatan);
+                }
+            }
 
             $siswa = $siswa->paginate(20)->map(function ($q) {
                 $sws = $q;
@@ -58,7 +88,51 @@ class SiswaController extends Controller
                 $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
                 return $sws;
             });
+
+            return response()->json($siswa);
         }
+
+        $siswa = $siswa->paginate(50)->map(function ($q) {
+            $sws = $q;
+            $sws->ikut_penugasan = $q->penugasan->count() > 0 ? true : false;
+            $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
+            return $sws;
+        });
+        return response()->json($siswa);
+    }
+
+    public function filter(Request $req)
+    {
+        $siswa = new Siswa();
+
+
+
+
+
+
+        if ($req->filled("id_jurusan")) {
+            $siswa =
+                $siswa->where("id_jurusan", $req->id_jurusan);
+        }
+
+
+
+        if ($req->filled("id_angkatan")) {
+            $siswa = $siswa->where("id_angkatan", $req->id_angkatan);
+        }
+
+        if ($req->filled("nama")) {
+            $siswa = $siswa->where("nama", "LIKE", "%" . $req->nama . "%");
+        }
+
+
+        $siswa = $siswa->paginate(20)->map(function ($q) {
+            $sws = $q;
+            $sws->ikut_penugasan = $q->penugasan->count() > 0 ? true : false;
+            $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
+            return $sws;
+        });
+
         return response()->json($siswa);
     }
 
@@ -80,7 +154,29 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!$request->id != null) {
+            $siswa = new Siswa();
+            $siswaCount = Siswa::where("nis", $request->nis)->orWhere("email", $request->email)->get()->count();
+            if ($siswaCount < 1) {
+                $siswa->nama = $request->nama;
+                $siswa->nis = $request->nis;
+                $siswa->email = $request->email;
+                $siswa->password = Hash::make($request->password);
+                $siswa->id_angkatan = $request->id_angkatan;
+                $siswa->id_jurusan = $request->id_jurusan;
+                $siswa->jk = $request->jk;
+                $imageName = time() . '_' . $request->nama . "_" . $request->id_angkatan . "_" . $request->id_jurusan . ".png";
+                $siswa->fotoprofil = $imageName;
+                $siswa->save();
+                $request->fotoprofil->move(public_path('img/profilsiswa'), $imageName);
+
+                return response()->json(["keterangan" => "berhasil", "data" => $siswa]);
+            } else {
+                return response()->json(["keterangan" => "gagal"]);
+            }
+        } else {
+            return $this->update($request, $request->id);
+        }
     }
 
     /**
@@ -116,7 +212,9 @@ class SiswaController extends Controller
                 return response()->json($projek);
             }
         }
-        return response()->json(Siswa::with(["angkatan", "jurusan"])->find($id));
+        $siswa = Siswa::with(["angkatan", "jurusan"])->find($id);
+        $siswa->kelasDanJurusan =  $siswa->angkatan->kelas() . " " . $siswa->jurusan->jurusan;
+        return response()->json($siswa);
     }
 
     /**
@@ -139,7 +237,26 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        // $siswaCount = Siswa::where("nis", $request->nis)->orWhere("email", $request->email)->get()->count();
+
+        $siswa->nama = $request->nama;
+        $siswa->nis = $request->nis;
+        $siswa->email = $request->email;
+        $siswa->password = Hash::make($request->password);
+        $siswa->id_angkatan = $request->id_angkatan;
+        $siswa->id_jurusan = $request->id_jurusan;
+        $siswa->jk = $request->jk;
+        $imageName = time() . '_' . $request->nama . "_" . $request->id_angkatan . "_" . $request->id_jurusan . ".png";
+        if ($request->hasFile("fotoprofil")) {
+            $request->fotoprofil->move(public_path('img/profilsiswa'), $imageName);
+            $siswa->fotoprofil = $imageName;
+        }
+
+        $siswa->save();
+
+
+        return response()->json(["keterangan" => "datanya adalah", "data" => $request->input()]);
     }
 
     /**

@@ -1,5 +1,6 @@
 import Projek from "../Model/Projek.js";
 import Jurusan from "../Model/Jurusan.js";
+import PenilaianProjek from "./PenilaianProjek.js";
 export default class Siswa {
     constructor() {
         this.id;
@@ -9,14 +10,14 @@ export default class Siswa {
         this.id_angkatan;
         this.id_jurusan;
         this.kelas;
-        this.foto_profil;
+        this.fotoprofil;
         this.password;
         this.email;
         this.ikut_penugasan;
         this.list_projek = [];
         this.kelasDanJurusan;
         this.jurusan;
-        this.penilaianGuru;
+        this.penilaianProjek = null;
     }
 
     static byQuery(query, cb) {
@@ -31,7 +32,7 @@ export default class Siswa {
                 siswa = data.map(function (e) {
                     return Siswa.parse(e);
                 });
-
+                alert("teds");
                 cb(siswa);
             },
             error: function (err) {
@@ -52,6 +53,20 @@ export default class Siswa {
         });
         return siswa;
     }
+
+    toJson() {
+        let json = {};
+        json["id"] = this.id;
+        json["nis"] = this.nis;
+        json["nama"] = this.nama;
+        json["jk"] = this.jk;
+        json["id_angkatan"] = this.id_angkatan;
+        json["id_jurusan"] = this.id_jurusan;
+        json["kelas"] = this.kelas;
+        json["fotoprofil"] = this.fotoprofil;
+        json["email"] = this.email;
+        json["password"] = this.password;
+    }
     static parse(json) {
         var siswa = new Siswa();
 
@@ -62,7 +77,7 @@ export default class Siswa {
         siswa.id_angkatan = json["id_angkatan"];
         siswa.id_jurusan = json["id_jurusan"];
         siswa.kelas = json["kelas"];
-        siswa.foto_profil = json["foto_profil"];
+        siswa.fotoprofil = json["fotoprofil"];
         siswa.password = json["password"];
         siswa.email = json["email"];
         siswa.kelasDanJurusan = json["kelasDanJurusan"];
@@ -76,7 +91,9 @@ export default class Siswa {
         }
 
         if (json["penilaianProjek"] != undefined) {
-            siswa.penilaianProjek = json["penilaianProjek"];
+            siswa.penilaianProjek = PenilaianProjek.parse(
+                json["penilaianProjek"]
+            );
         }
 
         return siswa;
@@ -112,6 +129,55 @@ export default class Siswa {
                 console.log(data);
 
                 cb(ctx.list_projek);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
+
+    getFotoProfil() {
+        return "/img/profilsiswa/" + this.fotoprofil;
+    }
+
+    simpan(cb = null, e = null) {
+        let ctx = this;
+        var formdata = new FormData(e);
+        console.log(formdata);
+
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/siswa",
+            type: "post",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (cb != null) {
+                    cb(data);
+                }
+                console.log(data);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
+
+    static filter(query, cb) {
+        console.log(query);
+        let siswa = [];
+        $.ajax({
+            url: "/siswa",
+            data: query,
+            type: "get",
+            success: function (data) {
+                siswa = data.map(function (e) {
+                    return Siswa.parse(e);
+                });
+                cb(siswa);
             },
             error: function (err) {
                 alert(err.responseText);

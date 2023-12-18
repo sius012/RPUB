@@ -71,4 +71,26 @@ export default class Helper {
         
         `;
     }
+
+    static formatShortDate(dates) {
+        let date = new Date(dates);
+        // Extract the components of the date
+        var day = date.getDate();
+        var month = date.getMonth() + 1; // Months are zero-based, so add 1
+        var year = date.getFullYear() % 100; // Get the last two digits of the year
+
+        // Add leading zeros if needed
+        day = day < 10 ? "0" + day : day;
+        month = month < 10 ? "0" + month : month;
+        year = year < 10 ? "0" + year : year;
+
+        // Concatenate the components in the desired format
+        var formattedDate = month + "/" + day + "/" + year;
+
+        return formattedDate;
+    }
+
+    static UBJurusanChecker() {
+        
+    }
 }

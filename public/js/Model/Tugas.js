@@ -140,6 +140,7 @@ export default class Tugas {
             data: ctx.toJson(),
             success: function (data) {
                 console.log(data);
+                alert("lolz");
             },
             error: function (err) {
                 alert(err.responseText);

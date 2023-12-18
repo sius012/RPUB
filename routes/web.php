@@ -78,7 +78,7 @@ Route::group(['middleware' => ['auth:student']], function () {
     Route::view('/pages/taskboard', "pages.taskboard.index");
 });
 
-Route::group(['middleware' => ['role:Admin']], function () {
+Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
     Route::view('/pages/projek', "pages.projek.index");
 
     Route::view('/pages/dashboard', "pages.dashboard.index");

@@ -13,7 +13,7 @@ export default class ProjekModal {
     init() {
         let cjr = this.container.find(".container-jurusan-row");
         cjr.empty();
-        Jurusan.all(null, function (jurusan) {
+        Jurusan.all({ ubjurusan: true }, function (jurusan) {
             jurusan.forEach(function (e) {
                 cjr.append(
                     `<div class="form-check">
@@ -146,7 +146,7 @@ export default class ProjekModal {
 
         ctx.getElement("nilai_projek").closest(".row").hide();
 
-        this.getElement("jenisProjek", "select").change(function () {
+        this.getElement("jenis_projek", "select").change(function () {
             if ($(this).val() == "Projek Eksternal") {
                 ctx.getElement("nilai_projek").closest(".row").show();
             } else {
