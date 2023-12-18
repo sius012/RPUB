@@ -11,12 +11,16 @@ export default class KonfigurasiAngkatanView {
     }
 
     load() {
+        const ctx = this;
         pageSetup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
             if (element.isLayout == undefined && element.modal == undefined) {
                 element.container.hide();
             }
         });
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([this.nama_component, "active"]);
 
         let table = this.container.find(".angkatan-table").find("tbody");
         table.empty();

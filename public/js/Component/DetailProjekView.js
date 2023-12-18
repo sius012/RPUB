@@ -17,23 +17,39 @@ export default class DetailProjekView {
     }
 
     load(id) {
-        let breadcrumb = pageSetup.getComponent("Breadcrumb");
-        breadcrumb.add([this.nama_component, "active"]);
+        const ctx = this;
 
-        this.page_setup.componentList.forEach((element) => {
-            //Menyembunyikan element yang lainnya
-            if (element.isLayout == undefined && element.modal == undefined) {
-                element.container.hide();
+        //curl
+        Helper.curl("/pages/projek/" + id);
+
+        Helper.permissionProjek(id, function (result) {
+            if (result) {
+                let breadcrumb = pageSetup.getComponent("Breadcrumb");
+                breadcrumb.add([ctx.nama_component, "active"]);
+
+                ctx.page_setup.componentList.forEach((element) => {
+                    //Menyembunyikan element yang lainnya
+                    if (
+                        element.isLayout == undefined &&
+                        element.modal == undefined
+                    ) {
+                        element.container.hide();
+                    }
+                });
+
+                ctx.container.show();
+                ctx.loadData(id);
+                ctx.loadInfoProjek();
+                ctx.loadPartisipan();
+                ctx.loadTugas();
+                ctx.loadTimeliner();
+            } else {
+                Swal.fire(
+                    "Gagal",
+                    "Anda tidak memiliki hak akses untuk projek ini"
+                );
             }
         });
-
-        this.container.show();
-
-        this.loadData(id);
-        this.loadInfoProjek();
-        this.loadPartisipan();
-        this.loadTugas();
-        this.loadTimeliner();
     }
 
     loadData(id) {

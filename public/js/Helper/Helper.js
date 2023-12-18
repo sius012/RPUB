@@ -90,7 +90,23 @@ export default class Helper {
         return formattedDate;
     }
 
-    static UBJurusanChecker() {
-        
+    static UBJurusanChecker(id, cb) {
+        $.ajax({
+            url: "/checkubjurusan/" + id,
+            type: "get",
+            success: function (data) {
+                cb(data);
+            },
+        });
+    }
+
+    static permissionProjek(id, cb) {
+        $.ajax({
+            url: "/permissionprojek/" + id,
+            type: "get",
+            success: function (data) {
+                cb(data);
+            },
+        });
     }
 }

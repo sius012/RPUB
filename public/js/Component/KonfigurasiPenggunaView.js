@@ -11,6 +11,11 @@ export default class KonfigurasiPenggunaView {
     }
 
     load() {
+        const ctx = this;
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([this.nama_component, "active"]);
+
         let table = this.container.find(".pengguna-table").find("tbody");
         table.empty();
         this.userList.forEach((element, i) => {

@@ -19,6 +19,16 @@ export default class SiswaListView {
         });
 
         const ctx = this;
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([
+            this.nama_component,
+            "active",
+            function (element) {
+                element.load(id_angkatan, id_jurusan);
+            },
+        ]);
+
         console.log(`${id_angkatan} ${id_jurusan}`);
         Siswa.byQuery(
             {

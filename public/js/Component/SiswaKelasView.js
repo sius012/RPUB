@@ -8,6 +8,16 @@ export default class SiswaKelasView {
 
     load(id_jurusan) {
         const ctx = this;
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([
+            this.nama_component,
+            "active",
+            function (component) {
+                component.load(id_jurusan);
+            },
+        ]);
+
         Angkatan.getClass(function (data) {
             pageSetup.componentList.forEach((element) => {
                 //Menyembunyikan element yang lainnya

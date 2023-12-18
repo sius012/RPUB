@@ -115,6 +115,12 @@
       font-size: 15pt;
     }
 
+    .card-projek{
+      transition: .2s;
+    }
+    .card-projek:hover{
+      box-shadow: 0px 0px 20px -10px black;
+    }
     
 
 
@@ -348,7 +354,7 @@
 
             <!-- -----------Content------- -->
             <div class="container-fluid p-3">
-
+                @include("maincomponent.breadcrumb")
                 @yield('main-content')
             </div>
             <!-- ----------/Content------- -->

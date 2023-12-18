@@ -10,9 +10,11 @@ export default class JurusanListView {
 
     load() {
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
-        console.log(pageSetup);
-        breadcrumb.add([this.nama_component, "active"]);
 
+        
+
+        breadcrumb.add([this.nama_component, "active"]);
+        console.log(breadcrumb);
         pageSetup.hideAllComponent();
 
         this.container.show();

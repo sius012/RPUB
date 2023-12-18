@@ -14,6 +14,14 @@ export default class ProjekListView {
 
     load(id_jurusan = null) {
         const ctx = this;
+
+        pageSetup.componentList.forEach((element) => {
+            //Menyembunyikan element yang lainnya
+            if (element.isLayout == undefined && element.modal == undefined) {
+                element.container.hide();
+            }
+        });
+
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([this.nama_component, "active"]);
         ctx.container.find(".filter-jurusan").html("");
@@ -41,20 +49,15 @@ export default class ProjekListView {
                 .html(`<div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
           </div>`);
-            this.projekList = Projek.all({
-                cb: function (data) {
-                    ctx.container.find(".row-view").html("");
-                    data.forEach((element) => {
-                        var projekCard = new ProjekCard(element);
-                        console.log(this.container);
-                        ctx.container
-                            .find(".row-view")
-                            .append(projekCard.load());
-                    });
+            this.projekList = Projek.byRole(function (data) {
+                ctx.container.find(".row-view").html("");
+                data.forEach((element) => {
+                    var projekCard = new ProjekCard(element);
+                    ctx.container.find(".row-view").append(projekCard.load());
+                });
 
-                    var modal = pageSetup.getComponent("ProjekModal");
-                    modal.init();
-                },
+                var modal = pageSetup.getComponent("ProjekModal");
+                modal.init();
             });
         }
     }
@@ -69,14 +72,37 @@ export default class ProjekListView {
         });
 
         //Updatean
-        this.container.delegate(".projek-card", "click", function () {
+        this.container.delegate(".projek-card", "click", function (e) {
+            e.preventDefault();
             var id_projek = $(this).data("id");
             var dPV = pageSetup.getComponent("DetailProjekView");
             dPV.load(id_projek);
         });
 
         ctx.container.find(".filter-jurusan").change(function () {
-            alert("tes");
+            let val = $(this).val();
+            if (val != "semua") {
+                ctx.container
+                    .find(".row-view")
+                    .children(".col-projek")
+                    .each(function () {
+                        let jurusanList = $(this)
+                            .find(".projek-card")
+                            .data("jurusan")
+                            .split(",");
+                        $(this).hide();
+                        if (jurusanList.includes(val)) {
+                            $(this).show();
+                        }
+                    });
+            } else {
+                ctx.container
+                    .find(".row-view")
+                    .children(".col-projek")
+                    .each(function () {
+                        $(this).show();
+                    });
+            }
         });
     }
 }

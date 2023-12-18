@@ -26,6 +26,16 @@ export default class SiswaDetailView {
                 element.container.hide();
             }
         });
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([
+            this.nama_component,
+            "active",
+            function (component) {
+                component.load(id_siswa);
+            },
+        ]);
+
         this.siswa = Siswa.find(id_siswa);
         this.siswa.getListProjek(function (data) {
             ctx.container.find(".container-projek").empty();
@@ -34,7 +44,7 @@ export default class SiswaDetailView {
                 ctx.container.find(
                     ".container-projek"
                 ).append(` <div class="row">
-            <div class="card">
+            <div class="card card-projek" data-id=${e.id}>
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-7">
@@ -73,6 +83,10 @@ export default class SiswaDetailView {
             e.preventDefault();
             let rM = pageSetup.getComponent("RaportModal");
             rM.modal.show();
+        });
+
+        ctx.container.delegate(".card-projek", "click", function () {
+            window.location = "/pages/projek/" + $(this).data("id");
         });
     }
 }

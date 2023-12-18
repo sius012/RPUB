@@ -22,7 +22,20 @@ class ProjekController extends Controller
      */
     public function index(Request $request)
     {
-        $projek = new Projek;
+        $projek = Projek::with("projek_jurusan.jurusan");
+
+        if ($request->has("byRole")) {
+            if ($request->byRole == 1) {
+                $superadmin = Auth::user()->hasAnyRole(["Super Admin"]);
+                if (!$superadmin) {
+                    $projek = $projek->whereHas("projek_jurusan.jurusan.ub_jurusan", function ($q) {
+                        $q->where("id_pengguna", Auth::user()->id);
+                    });
+                }
+            }
+            return response()->json($projek->get());
+        }
+
         if ($request->has("id_jurusan")) {
             $projek = $projek->with("projekjurusan", function ($e) use ($request) {
                 $e->whereIn("id_jurusan", $request->id_jurusan);

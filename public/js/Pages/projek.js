@@ -10,6 +10,7 @@ import ContextMenu from "../Component/ContextMenu.js";
 import TugasDetailView from "../Component/TugasDetailView.js";
 import AssignmentSiswaModal from "../Component/AssignmentSiswaModal.js";
 import PenilaianProjekModal from "../Component/PenilaianProjekModal.js";
+import Helper from "../Helper/Helper.js";
 
 import Jurusan from "../Model/Jurusan.js";
 import Projek from "../Model/Projek.js";
@@ -141,8 +142,12 @@ $(document).ready(function () {
     pageSetup.add(penilaianProjekModal);
     pageSetup.add(tugasModal);
 
-    projekListView.load();
-    console.log(pageSetup);
+    //Check jika ada projek yang redirect
+    if (Helper.exurl().length == 3) {
+        detailProjekView.load(Helper.exurl()[2]);
+    } else {
+        projekListView.load();
+    }
 
     pageSetup.init();
 });

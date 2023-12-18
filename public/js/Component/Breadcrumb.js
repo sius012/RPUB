@@ -1,7 +1,9 @@
+import pageSetup from "./PageSetup.js";
+
 export default class Breadcrumb {
     constructor(container) {
         this.container = container;
-        this.route = [["JurusanListView", "active"]];
+        this.route = [];
 
         this.page_setup;
         this.nama_component = "Breadcrumb";
@@ -21,10 +23,14 @@ export default class Breadcrumb {
 
             ctx.load();
             console.log(ctx.route);
-            var element = ctx.page_setup.getComponent(
+            var element = pageSetup.getComponent(
                 ctx.route[$(this).data("index")][0]
             );
-            element.load();
+            if (ctx.route[$(this).data("index")][2] != undefined) {
+                ctx.route[$(this).data("index")][2](element);
+            } else {
+                element.load();
+            }
         });
     }
 

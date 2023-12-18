@@ -176,5 +176,19 @@ export default class Projek {
         return projek;
     }
 
-    tambahpenilaian(id) {}
+    static byRole(cb) {
+        var projek = [];
+        $.ajax({
+            url: "/projek",
+            type: "GET",
+            data: { byRole: 1 },
+            success: function (data) {
+                projek = data.map(function (e) {
+                    return Projek.parse(e);
+                });
+                cb(projek);
+            },
+        });
+        return projek;
+    }
 }

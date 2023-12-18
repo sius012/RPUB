@@ -5,13 +5,26 @@ export default class ProjekCard {
     }
 
     load() {
+        console.log(this.projek);
         this.elementStr = `
         
-        <div class="col-md-3 mb-3">
-        <a href="#" class='projek-card' data-id="${this.projek.id}">
+        <div class="col-md-3 mb-3 col-projek">
+        <a href="#" class='projek-card' data-id="${
+            this.projek.id
+        }" data-jurusan="${this.projek.jurusan
+            .map(function (e) {
+                return e.id;
+            })
+            .join(",")}">
         <div class="card h-100">
 
         <div class="card-body">
+        <div class='rows d-inline-block mb-2'>   ${this.projek.jurusan
+            .map(function (e) {
+                return `<span class="badge bg-primary mr-4">${e.jurusan}</span>`;
+            })
+            .join("")}</div>
+        
             <h5 class="card-title">${this.projek.nama}</h5>
             <p class="card-text">${this.projek.deskripsi}</p>
             <p class="card-text">

@@ -11,18 +11,25 @@ export default class SiswaJurusanView {
 
     load() {
         const ctx = this;
-        console.log(this.container);
+
+        pageSetup.componentList.forEach((element) => {
+            //Menyembunyikan element yang lainnya
+            if (element.isLayout == undefined && element.modal == undefined) {
+                element.container.hide();
+            }
+        });
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([this.nama_component, "active"]);
+
         this.container.find(".row").empty();
 
         this.jurusanList.forEach(function (e) {
             let jurusan = new JurusanCard(e);
 
-            ctx.container
-                .find(".row")
-                .append(
-                    jurusan.load()
-                );
+            ctx.container.find(".row").append(jurusan.load());
         });
+        this.container.show();
     }
 
     globalEventListener() {

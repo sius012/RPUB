@@ -7,8 +7,23 @@ export default class KonfigurasiView {
         this.nama_component = "KonfigurasiView";
     }
 
+    load() {
+        pageSetup.componentList.forEach((element) => {
+            //Menyembunyikan element yang lainnya
+            if (element.isLayout == undefined && element.modal == undefined) {
+                element.container.hide();
+            }
+        });
+
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([this.nama_component, "active"]);
+
+        this.container.show();
+    }
+
     globalEventListener() {
         const ctx = this;
+
         this.container.find(".konfigurasi-pengguna").click(function () {
             pageSetup.getComponent("KonfigurasiPenggunaView").load();
         });

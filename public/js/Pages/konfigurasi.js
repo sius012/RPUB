@@ -1,4 +1,5 @@
 import AngkatanModal from "../Component/AngkatanModal.js";
+import Breadcrumb from "../Component/Breadcrumb.js";
 import JenisModal from "../Component/JenisModal.js";
 import JurusanModal from "../Component/JurusanModal.js";
 import KonfigurasiAngkatanView from "../Component/KonfigurasiAngkatanView.js";
@@ -13,6 +14,7 @@ import SiswaModal from "../Component/SiswaModal.js";
 import UBJurusanModal from "../Component/UBJurusanModal.js";
 
 $(document).ready(function () {
+    var breadcrumb = new Breadcrumb($("#breadcrumb"));
     var konfigurasiPage = new KonfigurasiView($("#konfigurasi-page"));
     var kav = new KonfigurasiAngkatanView($("#konfigurasi_angkatan_view"));
     var kjv = new KonfigurasiJurusanView($("#konfigurasi_jurusan_view"));
@@ -44,6 +46,8 @@ $(document).ready(function () {
     pageSetup.add(uBJModal);
     pageSetup.add(jnsModal);
     pageSetup.add(swsModal);
+
+    pageSetup.add(breadcrumb);
 
     pageSetup.init();
 });

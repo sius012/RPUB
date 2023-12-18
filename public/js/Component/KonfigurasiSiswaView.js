@@ -18,6 +18,15 @@ export default class KonfigurasiSiswaView {
             }
         });
 
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([
+            this.nama_component,
+            "active",
+            function (component) {
+                component.load(params);
+            },
+        ]);
+
         this.siswaList = Siswa.all();
         this.siswaList.forEach(function (e, i) {
             table.append(`<tr data-id="${e.id}">

@@ -16,9 +16,12 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Versi\VersiController;
 use App\Models\PenilaianProjek;
 use App\Models\Penugasan;
+use App\Models\UBJurusan;
 use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Models\Projek;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +92,11 @@ Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
     Route::get('/pages/siswa/{jurusan}/{angkatan}/{id}', function ($jurusan, $angkatan, $id) {
         return view("pages.siswa.index");
     });
+
+
+    Route::get('/pages/projek/{id}', function ($id) {
+        return view("pages.projek.index");
+    });
 });
 
 
@@ -108,5 +116,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//MiddleWare
+Route::get('/checkubjurusan/{id}', function ($id) {
+    $query = UBJurusan::where("id_pengguna", Auth::user()->id)->pluck("id_jurusan")->toArray();
+    if (in_array($id, $query)) {
+        return true;
+    } else {
+        return false;
+    }
+});
+
+Route::get("/permissionprojek/{id}", function ($id) {
+    $query = Projek::where("id", $id)->whereHas("projek_jurusan.jurusan.ub_jurusan", function ($q) {
+        $q->where("id_pengguna", Auth::user()->id);
+    })->get();
+    if ($query->count() > 0) {
+        return response()->json(true);
+    } else {
+        return response()->json(false);
+    }
+});
 
 Route::view("/test", "output.output");

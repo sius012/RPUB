@@ -24,11 +24,6 @@
                         </button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#timeline" aria-controls="navs-top-messages" aria-selected="false">
-                            Timeline
-                        </button>
-                    </li>
-                    <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#konfigurasi-projek" aria-controls="navs-top-messages" aria-selected="false">
                             Konfigurasi Projek
                         </button>
