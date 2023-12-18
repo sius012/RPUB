@@ -1,6 +1,4 @@
 <!-- Modal Untuk Tambah Jurusan -->
-
-
 <div class="modal fade" id="versi-modal" tabindex="-1" aria-hidden="true">
   <form action="" method="" enctype="multipart/form-data">
     @csrf
@@ -29,21 +27,6 @@
               <input type="file" name="lampiran" class="form-control" placeholder="tambahkan lampiran">
             </div>
           </div>
-          <div class="row">
-            <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Status</label>
-              <select name="status" class="form-select" aria-label="Default select example">
-                <option value="Belum Dimulai">Belum Dimulai</option>
-                <option value="Siap Dikerjakan">Siap Dikerjakan</option>
-                <option value="Dalam Pengerjaan">Dalam Pengerjaan</option>
-                <option value="Revisi">Revisi</option>
-                <option value="Ditunda">Ditunda</option>
-                <option value="Ditinjau">Ditinjau</option>
-                <option value="Selesai">Selesai</option>
-              </select>
-            </div>
-          </div>
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             Close

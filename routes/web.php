@@ -69,7 +69,7 @@ Route::resource('/ubjurusan', UBJurusanController::class);
 Route::resource('/role', RoleController::class);
 Route::resource('/penilaianprojek', PenilaianProjekController::class);
 
-
+Route::get("/penilairaport", [SiswaController::class, "cetakraport"]);
 
 
 Route::get("/gettaskboardstudent", [TugasController::class, "getTaskBoard"]);

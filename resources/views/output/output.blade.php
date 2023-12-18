@@ -22,8 +22,8 @@
             <th>Komunikasi</th>
             <th>Etika & Sopan Santun</th>
             <th>Kecepatan, Ketepatan & Kerapian</th>
-            <th>Keterangan</th>
         </tr>
+        
         <tr>
             <td align="center" valign="middle" width="180" height="40">90</td>
             <td align="center" valign="middle">B</td>
@@ -35,8 +35,8 @@
             <td align="center" valign="middle">B</td>
             <td align="center" valign="middle">B</td>
             <td align="center" valign="middle">B</td>
-            <td align="center" valign="middle">Sangat Kompeten</td>
         </tr>
+        
     </table>
 </body>
 </html>

@@ -233,4 +233,6 @@ export default class DetailProjekView {
         //         );
         // });
     }
+
+    
 }

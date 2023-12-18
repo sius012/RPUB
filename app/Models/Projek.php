@@ -28,4 +28,9 @@ class Projek extends Model
     {
         return $this->hasMany(ProjekJurusan::class, "id_projek", "id");
     }
+
+    public function tugas()
+    {
+        return $this->hasMany(Tugas::class, "id_projek", "id");
+    }
 }

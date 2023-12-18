@@ -67,8 +67,7 @@ export default class SiswaDetailView {
         ctx.container.delegate(".raportcard", "click", function (e){
             e.preventDefault();
             let rM = pageSetup.getComponent("RaportModal")
-            rM.modal.show();
-            
+            rM.modal.show();  
         })
     }
 

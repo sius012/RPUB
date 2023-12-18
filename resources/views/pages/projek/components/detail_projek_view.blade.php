@@ -1,8 +1,5 @@
 {{-- ambil dari uitabspills  --}}
-
-
 <div class="containers" id="detail-projek-view" style="display: none;">
-
     <div class="row">
         <div class="container-fluid">
             <h6 class="text-muted">Basic</h6>
@@ -34,40 +31,44 @@
                         </button>
                     </li>
                 </ul>
+
                 <div class="tab-content">
-                    <div class="tab-pane fade  active " id="informasi-projek" role="tabpanel">
+                    <div class="tab-pane fade  show active " id="informasi-projek" role="tabpanel">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Nama Projek</label>
-                                    <input type="text" name="nama" class="nama-projek form-control" placeholder="tambahkan nama projek" />
+                                    <input type="text" name="nama" class="nama-projek form-control" placeholder="tambahkan nama projek" readonly />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Awal</label>
-                                    <input type="date" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" />
+                                    <input type="date" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" readonly />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Tanggal Akhir</label>
-                                    <input type="date" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="" />
+                                    <input type="date" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="" readonly />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Penanggung Jawab</label>
-                                    <input type="text" name="pj" class="penanggung_jawab form-control" placeholder="" />
+                                    <input type="text" name="pj" class="penanggung_jawab form-control" placeholder="" readonly />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Jenis Projek</label>
-                                    <input type="text" name="jenis-projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" />
+                                    <input type="text" name="jenis-projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" readonly />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Klien</label>
-                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama klien" />
+                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama klien" readonly />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Nilai Projek</label>
-                                    <input type="text" name="nominal" value="2000000" class="klien form-control" placeholder="tambahkan nama klien" />
+                                    <input type="text" name="nominal" value="2000000" class="klien form-control" placeholder="tambahkan nama klien" readonly />
                                 </div>
+                                <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Edit</button>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -94,8 +95,10 @@
                         </table>
                     </div>
 
-                    <div class="tab-pane fade" id="partisipan" role="tabpanel">
 
+
+
+                    <div class="tab-pane fade" id="partisipan" role="tabpanel">
                     </div>
                     <div class="tab-pane fade" id="timeline" role="tabpanel">
                         <canvas id="canvas" width="800" height="700" style="border: 1px solid whitesmoke"></canvas>
@@ -110,6 +113,7 @@
                                 <th>Kompetensi keahlian yang berpatisipasi</th>
                                 <td><button class="btn btn-danger"><i class="fa fa-danger"></i></button></td>
                             </tr>
+
                         </table>
                     </div>
                 </div>

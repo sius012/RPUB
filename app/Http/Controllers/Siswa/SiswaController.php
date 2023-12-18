@@ -10,6 +10,7 @@ use App\Models\ProjekJurusan;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\Tugas;
+use App\Models\PenilaianProjek;
 
 class SiswaController extends Controller
 {
@@ -150,5 +151,18 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Cetak Raport
+
+    public function cetakraport(Request $request)
+    {
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        $id_siswa = $request->id_siswa;
+        $rapor = Projek::whereHas("tugas.penugasan.siswa", function ($q) use ($id_siswa) {
+            $q->where("id", $id_siswa);
+        });
+        dd($rapor->get());
     }
 }

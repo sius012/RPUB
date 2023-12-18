@@ -22,12 +22,12 @@ export default class PenilaianProjekModal {
             ctx.parseFromElement();
             ctx.penilaianProjek.simpan(function (data) {
                 ctx.modal.hide();
-                Swal.fire({
-                    icon: "success",
-                    title: "success",
-                    text: "Data Berhasil dibuat",
-                    target: ctx.container[0],
-                });
+                // Swal.fire({
+                //     icon: "success",
+                //     title: "success",
+                //     text: "Data Berhasil dibuat",
+                //     target: ctx.container[0],
+                // });
                 pageSetup.getComponent("DetailProjekView").loadPartisipan();
             });
         });
@@ -38,7 +38,7 @@ export default class PenilaianProjekModal {
     }
 
     parseFromElement() {
-        this.penilaianProjek.idg_projek = this.getElement("id_projek").val();
+        this.penilaianProjek.id_projek = this.getElement("id_projek").val();
         this.penilaianProjek.id_siswa = this.getElement("id_siswa").val();
         this.penilaianProjek.id_penilai = this.getElement("id_penilai").val();
         this.penilaianProjek.n_nformal = this.getElement("n_nformal").val();
