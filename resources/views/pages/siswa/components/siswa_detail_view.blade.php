@@ -56,7 +56,6 @@
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="row row-view raportcard">
-
                         <a href="">
                             <div class="card h-100">
                                 <div class="card-body">

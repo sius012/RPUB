@@ -32,7 +32,7 @@ export default class Siswa {
                 siswa = data.map(function (e) {
                     return Siswa.parse(e);
                 });
-
+                alert("teds");
                 cb(siswa);
             },
             error: function (err) {
@@ -159,6 +159,25 @@ export default class Siswa {
                     cb(data);
                 }
                 console.log(data);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
+
+    static filter(query, cb) {
+        console.log(query);
+        let siswa = [];
+        $.ajax({
+            url: "/siswa",
+            data: query,
+            type: "get",
+            success: function (data) {
+                siswa = data.map(function (e) {
+                    return Siswa.parse(e);
+                });
+                cb(siswa);
             },
             error: function (err) {
                 alert(err.responseText);

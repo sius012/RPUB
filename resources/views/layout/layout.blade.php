@@ -18,15 +18,14 @@
   dir="ltr"
   data-theme="theme-default"
   dadashboard-assets-path="dashboard/assets/"
-  data-template="vertical-menu-template-free"
->
+  data-template="vertical-menu-template-free">
   <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sius012/dheracodelibrary@master/js/Timeliner/timeliner.css">
     <style>
-      *{
+      th,td{
         font-size: 8pt;
       }
         .board {
@@ -115,12 +114,40 @@
       font-size: 15pt;
     }
 
-    .card-projek{
-      transition: .2s;
-    }
-    .card-projek:hover{
-      box-shadow: 0px 0px 20px -10px black;
-    }
+
+
+.filter-bar, .search-bar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: right;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-bar, .search-bar {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 150px;
+    text-align: center;
+}
+  
+
     
 
 

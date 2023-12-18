@@ -81,12 +81,21 @@ export default class SiswaDetailView {
         const ctx = this;
         ctx.container.delegate(".raportcard", "click", function (e) {
             e.preventDefault();
+<<<<<<< HEAD
+            let rM = pageSetup.getComponent("RaportModal")
+            rM.modal.show();  
+        })
+=======
             let rM = pageSetup.getComponent("RaportModal");
             rM.modal.show();
         });
+<<<<<<< HEAD
 
         ctx.container.delegate(".card-projek", "click", function () {
             window.location = "/pages/projek/" + $(this).data("id");
         });
+=======
+>>>>>>> 6e22524469c9550b78425de07fa5c6edf354108b
+>>>>>>> bede66f3ec873bc94effe76fad9a8511d81d9e0a
     }
 }

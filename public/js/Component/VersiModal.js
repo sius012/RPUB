@@ -1,6 +1,7 @@
 import Helper from "../Helper/Helper.js";
 import Versi from "../Model/Versi.js";
 import pageSetup from "./PageSetup.js";
+
 export default class VersiModal {
     constructor(container) {
         this.container = container;

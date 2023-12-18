@@ -23,6 +23,13 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::with(["angkatan", "jurusan"]);
 
+
+        if ($req->has("filter")) {
+            if ($req->filter == 1) {
+                return $this->filter($req);
+            }
+        }
+
         if ($req->has("getClassMember")) {
             if ($req->getClassMember == 1) {
                 $siswa = Siswa::with(["angkatan", "jurusan"])->where("id_jurusan", $req->id_jurusan)->where("id_angkatan", $req->id_angkatan)->get();
@@ -37,20 +44,43 @@ class SiswaController extends Controller
 
 
         if ($req->has("byQuery")) {
+            if ($req->has("id_tugas")) {
+                $id_projek = Tugas::find($req->id_tugas)->id_projek;
+            }
 
-            $id_projek = Tugas::find($req->id_tugas)->id_projek;
 
-            $siswa = $siswa->with("penugasan", function ($q) use ($req) {
-                $q->where("id_tugas", $req->id_tugas);
-            })->whereIn("id_jurusan", $req->id_jurusan)->whereHas("penugasan", function ($q) use ($req) {
-                $q->where("id_tugas", $req->id_tugas);
-            });
+            if ($req->has("id_tugas")) {
+                $siswa = $siswa->with("penugasan", function ($q) use ($req) {
+                    $q->where("id_tugas", $req->id_tugas);
+                })->whereIn("id_jurusan", $req->id_jurusan)->whereHas("penugasan", function ($q) use ($req) {
+                    $q->where("id_tugas", $req->id_tugas);
+                });
+            }
+
             if ($req->filled("nama")) {
                 $siswa = $siswa->orWhere("nama", "LIKE", "%" . $req->nama . "%");
             }
+
+
             $siswa = $siswa->whereHas("angkatan", function ($q) {
                 $q->where("dari", "<", date("Y-m-d"))->where("sampai", ">", date("Y-m-d"));
-            })->whereIn("id_jurusan", $req->id_jurusan);
+            });
+
+
+            if (gettype($req->id_jurusan) == "array") {
+                $siswa =
+                    $siswa->whereIn("id_jurusan", $req->id_jurusan);
+            }
+
+
+
+            if ($req->has("id_angkatan")) {
+                if (gettype($req->id_angkatan) != "array") {
+                    $siswa = $siswa->where("id_angkatan", $req->id_angkatan);
+                } else {
+                    $siswa = $siswa->whereIn("id_angkatan", $req->id_angkatan);
+                }
+            }
 
             $siswa = $siswa->paginate(20)->map(function ($q) {
                 $sws = $q;
@@ -68,6 +98,41 @@ class SiswaController extends Controller
             $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
             return $sws;
         });
+        return response()->json($siswa);
+    }
+
+    public function filter(Request $req)
+    {
+        $siswa = new Siswa();
+
+
+
+
+
+
+        if ($req->filled("id_jurusan")) {
+            $siswa =
+                $siswa->where("id_jurusan", $req->id_jurusan);
+        }
+
+
+
+        if ($req->filled("id_angkatan")) {
+            $siswa = $siswa->where("id_angkatan", $req->id_angkatan);
+        }
+
+        if ($req->filled("nama")) {
+            $siswa = $siswa->where("nama", "LIKE", "%" . $req->nama . "%");
+        }
+
+
+        $siswa = $siswa->paginate(20)->map(function ($q) {
+            $sws = $q;
+            $sws->ikut_penugasan = $q->penugasan->count() > 0 ? true : false;
+            $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
+            return $sws;
+        });
+
         return response()->json($siswa);
     }
 
@@ -89,7 +154,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->has("id")) {
+        if (!$request->id != null) {
             $siswa = new Siswa();
             $siswaCount = Siswa::where("nis", $request->nis)->orWhere("email", $request->email)->get()->count();
             if ($siswaCount < 1) {
@@ -183,9 +248,14 @@ class SiswaController extends Controller
         $siswa->id_jurusan = $request->id_jurusan;
         $siswa->jk = $request->jk;
         $imageName = time() . '_' . $request->nama . "_" . $request->id_angkatan . "_" . $request->id_jurusan . ".png";
-        $siswa->fotoprofil = $imageName;
+        if ($request->hasFile("fotoprofil")) {
+            $request->fotoprofil->move(public_path('img/profilsiswa'), $imageName);
+            $siswa->fotoprofil = $imageName;
+        }
+
         $siswa->save();
-        $request->fotoprofil->move(public_path('img/profilsiswa'), $imageName);
+
+
         return response()->json(["keterangan" => "datanya adalah", "data" => $request->input()]);
     }
 
@@ -198,5 +268,18 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Cetak Raport
+
+    public function cetakraport(Request $request)
+    {
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        $id_siswa = $request->id_siswa;
+        $rapor = Projek::whereHas("tugas.penugasan.siswa", function ($q) use ($id_siswa) {
+            $q->where("id", $id_siswa);
+        });
+        dd($rapor->get());
     }
 }
