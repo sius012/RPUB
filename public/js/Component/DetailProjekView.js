@@ -96,6 +96,7 @@ export default class DetailProjekView {
         tugasView.empty();
 
         this.tugasList = Tugas.byProjek(this.projek.id);
+        console.log(this.tugasList);
         this.tugasList.forEach((element, i) => {
             tugasView.append(ctx.#rekursifTugas(element, 1 + i));
         });
@@ -274,7 +275,7 @@ export default class DetailProjekView {
             });
 
         this.container.find(".tambah-tugas").click(function () {
-            var tugasModal = ctx.page_setup.getComponent("TugasModal");
+            var tugasModal = pageSetup.getComponent("TugasModal");
             tugasModal.reset();
             tugasModal.modal.show();
         });

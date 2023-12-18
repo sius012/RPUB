@@ -29,6 +29,7 @@ export default class TugasModal {
 
         //     ctx.reset();
         // });
+        console.log(ctx);
     }
 
     attach(id) {
@@ -69,7 +70,7 @@ export default class TugasModal {
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.fromElement();
-            //  ctx.tugas.simpan();
+            ctx.tugas.simpan();
 
             ctx.modal.hide();
             var dpv = ctx.page_setup.getComponent("DetailProjekView");

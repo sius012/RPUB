@@ -36,6 +36,9 @@
                 <div class="tab-content">
                     <div class="tab-pane fade  show active " id="informasi-projek" role="tabpanel">
                         <div class="row">
+
+
+
                             <div class="col">
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Nama Projek</label>
@@ -101,7 +104,6 @@
                     </div>
 
                     <div class="tab-pane fade" id="laporan" role="tabpanel">
-                        <button class="tambah-tugas btn btn-primary">Tambah Tugas</button>
                         <table class="table table-hover">
                             <thead>
                                 <tr>

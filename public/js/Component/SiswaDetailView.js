@@ -26,16 +26,6 @@ export default class SiswaDetailView {
                 element.container.hide();
             }
         });
-
-        let breadcrumb = pageSetup.getComponent("Breadcrumb");
-        breadcrumb.add([
-            this.nama_component,
-            "active",
-            function (component) {
-                component.load(id_siswa);
-            },
-        ]);
-
         this.siswa = Siswa.find(id_siswa);
         this.siswa.getListProjek(function (data) {
             ctx.container.find(".container-projek").empty();
@@ -44,7 +34,7 @@ export default class SiswaDetailView {
                 ctx.container.find(
                     ".container-projek"
                 ).append(` <div class="row">
-            <div class="card card-projek" data-id=${e.id}>
+            <div class="card card-projek" data-id='${e.id}'>
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-7">

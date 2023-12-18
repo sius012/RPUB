@@ -154,12 +154,35 @@ export default class ProjekModal {
             }
         });
 
+        ctx.container.delegate("input[name=id_jurusan]", "click", function (e) {
+            let jurusanList = [];
+            let container = ctx.getElement("id_penanggung_jawab", "select");
+            container.empty();
+            ctx.getElement("id_jurusan").each(function (e) {
+                if ($(this).is(":checked")) {
+                    jurusanList.push($(this).val());
+                }
+            });
+
+            User.getListUBJurusan(jurusanList, function (data) {
+                console.log(jurusanList);
+                let userlist = data
+                    .map(function (e) {
+                        return `<option value='${e.id}'>${e.nama}</option>`;
+                    })
+                    .join("");
+                container.html(userlist);
+            });
+            $(this).parent().find(".pj-list");
+        });
+
         this.getElement("nama_penanggungjawab").keyup(function () {
             let jurusanList = [];
             let container = $(this).parent().find(".pj-list");
             let containerPj = $(this).parent().find(".container-pj");
             container.empty();
             containerPj.empty();
+
             ctx.getElement("id_jurusan").each(function (e) {
                 if ($(this).is(":checked")) {
                     jurusanList.push($(this).val());
@@ -169,7 +192,7 @@ export default class ProjekModal {
             User.getListUBJurusan(jurusanList, function (data) {
                 let userlist = data
                     .map(function (e) {
-                        return `<li><a href="#" class='pj-list-item' value='${e.id}'>${e.nama}</a></li>`;
+                        return `<option value='${e.id}'>${e.nama}</option>`;
                     })
                     .join("");
                 container.html(userlist);

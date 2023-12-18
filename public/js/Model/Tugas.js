@@ -38,7 +38,7 @@ export default class Tugas {
     }
 
     static byProjek(id, params = { rekursif: true }) {
-        //mengambil data tugas-tugas dar id projek
+        //mengambil data tugas-tugas dar id projek]
         var projekList = [];
         $.ajax({
             url: "/tugas/",
@@ -140,7 +140,6 @@ export default class Tugas {
             data: ctx.toJson(),
             success: function (data) {
                 console.log(data);
-                alert("lolz");
             },
             error: function (err) {
                 alert(err.responseText);

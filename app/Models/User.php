@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function ubjurusan()
     {
-        return $this->hasMany(UBJurusan::class, "id_jurusan", "id");
+        return $this->hasMany(UBJurusan::class,  "id_pengguna", "id");
     }
 }

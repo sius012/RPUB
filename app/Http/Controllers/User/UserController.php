@@ -13,7 +13,7 @@ class UserController extends Controller
     {
         $jurusan = $req->jurusan_list_id;
         if ($req->has("jurusan_list_id")) {
-            $user = User::whereHas("ubjurusan", function ($q) use ($req, $jurusan) {
+            $user = User::whereHas("ubjurusan", function ($q) use ($jurusan) {
                 $q->whereIn("id_jurusan", $jurusan);
             });
             return response()->json($user->get());

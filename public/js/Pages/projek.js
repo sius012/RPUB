@@ -118,8 +118,6 @@ $(document).ready(function () {
             detailProjekView.loadTugas();
         }
     );
-    pageSetup.add(tugasModal);
-
     contextMenuPartisipan.init([
         [
             "Beri Nilai",

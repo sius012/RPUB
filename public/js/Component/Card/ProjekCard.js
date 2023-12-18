@@ -1,3 +1,5 @@
+import Helper from "../../Helper/Helper.js";
+
 export default class ProjekCard {
     constructor(projek) {
         this.projek = projek;
@@ -8,7 +10,7 @@ export default class ProjekCard {
         console.log(this.projek);
         this.elementStr = `
         
-        <div class="col-md-3 mb-3 col-projek">
+        <div class="col-md-4 mb-3 col-projek">
         <a href="#" class='projek-card' data-id="${
             this.projek.id
         }" data-jurusan="${this.projek.jurusan
@@ -18,12 +20,17 @@ export default class ProjekCard {
             .join(",")}">
         <div class="card h-100">
 
-        <div class="card-body">
-        <div class='rows d-inline-block mb-2'>   ${this.projek.jurusan
+        <div class="card-body"><div class='row'><div class='col-6'>
+        <div class='rows d-flex mb-2'>   ${this.projek.jurusan
             .map(function (e) {
-                return `<span class="badge bg-primary mr-4">${e.jurusan}</span>`;
+                return `<div class=''><span class="badge bg-primary mr-4">${e.jurusan}</span></div><div class='m-2'></div>`;
             })
-            .join("")}</div>
+            .join(
+                ""
+            )}</div></div><div class='col-6 text-end'>${Helper.formatShortDate(
+            this.projek.tanggal_akhir
+        )}</div></div>
+    
         
             <h5 class="card-title">${this.projek.nama}</h5>
             <p class="card-text">${this.projek.deskripsi}</p>
