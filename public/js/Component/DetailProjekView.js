@@ -148,9 +148,11 @@ export default class DetailProjekView {
                 table.append(
                     `<tr><td>${i + 1}</td><td>${e.nama}</td><td>${
                         e.keterangan
-                    }</td><td>${e.id_tugas}</td><td>${
-                        e.timestamp.created_at
-                    }</td><td>${e.lampiran}</td><td>${e.id_siswa}</td></tr>`
+                    }</td><td>${Helper.status(e.status)}</td><td><td>${
+                        e.id_tugas
+                    }</td><td>${e.timestamp.created_at}</td><td>${
+                        e.lampiran
+                    }</td><td>${e.id_siswa}</td></tr>`
                 );
             });
         });

@@ -110,9 +110,10 @@
                                     <th>No</th>
                                     <th data-name="title">Judul</th>
                                     <th>Keterangan</th>
+                                    <th>Status</th>
                                     <th>Tugas</th>
-                                    <th data-name="start_date">Dari</th>
-                                    <th>Lampiran</th>
+                                    <th data-name="start_date">Tanggal</th>
+
                                     <th>Dikirim Oleh</th>
 
                                 </tr>
