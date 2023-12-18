@@ -89,4 +89,8 @@ export default class Helper {
 
         return formattedDate;
     }
+
+    static UBJurusanChecker() {
+        
+    }
 }
