@@ -56,6 +56,19 @@ export default class DetailProjekView {
         infoprojek
             .find(".penanggung_jawab")
             .val(this.projek.penanggung_jawab.name);
+
+        let jurusan = this.projek.jurusan
+            .map(function (e) {
+                return `<div class="form-check">
+            <input class="form-check-input" type="checkbox" value="${e.id}" name='id_jurusan' id="flexCheckIndeterminate">
+            <label class="form-check-label" for="flexCheckIndeterminate">
+              ${e.jurusan}
+            </label>
+          </div>`;
+            })
+            .join("");
+
+        infoprojek.find(".container-jurusan-row").html(jurusan);
     }
     loadTugas() {
         var ctx = this;
@@ -165,8 +178,10 @@ export default class DetailProjekView {
                 .find(".partisipan");
             cont.empty();
             data.forEach(function (e) {
+                console.log("datanya");
+                console.log(e);
                 cont.append(
-                    '<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg">' +
+                    `<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="${e.siswa.getFotoProfil()}">` +
                         ","
                 );
             });
@@ -177,13 +192,20 @@ export default class DetailProjekView {
         var ctx = this;
         this.container.delegate(".pp-item", "click", function (e) {
             e.preventDefault();
-            let id_projek = ctx.projek.id;
-            let id_siswa = $(this).closest(".profile-siswa").attr("data-id");
             let penilaianProjekModal = pageSetup.getComponent(
                 "PenilaianProjekModal"
             );
-            penilaianProjekModal.init(id_projek, id_siswa);
-            penilaianProjekModal.modal.show();
+            if ($(this).closest(".profile-siswa").attr("id-pp") != undefined) {
+                let id_pp = $(this).closest(".profile-siswa").attr("id-pp");
+                penilaianProjekModal.load(id_pp);
+            } else {
+                let id_projek = ctx.projek.id;
+                let id_siswa = $(this)
+                    .closest(".profile-siswa")
+                    .attr("data-id");
+                penilaianProjekModal.init(id_projek, id_siswa);
+                penilaianProjekModal.modal.show();
+            }
         });
 
         this.container.find("#tugas").delegate("td", "click", function (e) {

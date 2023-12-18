@@ -69,7 +69,6 @@ export default class TugasModal {
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.fromElement();
-            console.log(ctx.tugas);
             ctx.tugas.simpan();
 
             ctx.modal.hide();

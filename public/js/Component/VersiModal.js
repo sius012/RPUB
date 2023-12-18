@@ -18,12 +18,16 @@ export default class VersiModal {
     }
 
     parseFromElement() {
-        this.versi.id_tugas = this.getElement("id_tugas").val();
         this.versi.id_siswa = Helper.getCurrentAuthSiswa().id;
         this.versi.nama = this.getElement("nama").val();
         this.versi.keterangan = this.getElement("keterangan", "textarea").val();
-        this.versi.lampiran = this.getElement("lampiran")[0];
-        this.versi.nomor_versi = this.getElement("nomor_versi").val();
+        if (this.getElement("lampiran")[0] != undefined) {
+            this.versi.lampiran = this.getElement("lampiran")[0];
+        }
+        if (this.getElement("nomor_versi").val() != undefined) {
+            this.versi.nomor_versi = this.getElement("nomor_versi").val();
+        }
+
         this.versi.status = this.getElement("status", "select").val();
     }
 
@@ -33,6 +37,7 @@ export default class VersiModal {
             e.preventDefault();
             let form = this;
             ctx.parseFromElement();
+            console.log(ctx.versi);
             ctx.versi.simpan(function (ed) {
                 ctx.reset();
                 pageSetup.getComponent("TugasDetailView").loadversi();

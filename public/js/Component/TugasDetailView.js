@@ -70,9 +70,7 @@ export default class TugasDetailView {
                 versi.lampiran
             }'>
         </div>
-        <div class='col-10'><b>${
-            versi.nama + "_v" + versi.nomor_versi
-        }</b><br><span>
+        <div class='col-10'><b>${versi.nama}</b><br><span>
         ${versi.keterangan}</span>
         <div class='row'>
         <div class='col-6'>

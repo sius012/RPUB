@@ -54,23 +54,25 @@ export default class SiswaDetailView {
 
         this.container.find("#title-main").text(this.siswa.nama);
         this.container.find("#profile-nama").text(this.siswa.nama);
-        this.container.find("#profile-ttl").text("Bandung, 12 Januari 2005");
         this.container.find("#profile-jk").text(this.siswa.jk);
+        this.container.find("#profile-email").text(this.siswa.email);
         this.container.find("#profile-angkatan").text(this.siswa.id_angkatan);
-        this.container.find("#profile-jurusan").text(this.siswa.nama);
-        this.container.find("#profile-image").attr("src", "/img/avatars/1.png");
+        this.container
+            .find("#profile-jurusan")
+            .text(this.siswa.jurusan.jurusan);
+        this.container
+            .find("#profile-image")
+            .attr("src", this.siswa.getFotoProfil());
+        this.container.find("#kelas").text(this.siswa.kelasDanJurusan);
         this.container.show();
     }
 
-    globalEventListener(){
-        const ctx = this
-        ctx.container.delegate(".raportcard", "click", function (e){
+    globalEventListener() {
+        const ctx = this;
+        ctx.container.delegate(".raportcard", "click", function (e) {
             e.preventDefault();
-            let rM = pageSetup.getComponent("RaportModal")
+            let rM = pageSetup.getComponent("RaportModal");
             rM.modal.show();
-            
-        })
+        });
     }
-
-
 }

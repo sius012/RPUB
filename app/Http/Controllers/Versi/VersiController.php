@@ -43,7 +43,6 @@ class VersiController extends Controller
         $versi = new Versi;
         $versi->id_tugas = $request->id_tugas;
         $versi->id_siswa = $request->id_siswa;
-        $versi->nomor_versi = $request->nomor_versi;
         $versi->nama = $request->nama;
         $versi->keterangan = $request->keterangan;
         $imageName = time() . '.' . $request->nama . "." . $request->nomor_versi . ".png";

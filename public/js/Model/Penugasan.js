@@ -1,3 +1,4 @@
+import Siswa from "./Siswa.js";
 export default class Penugasan {
     constructor() {
         this.id;
@@ -5,6 +6,7 @@ export default class Penugasan {
         this.id_siswa;
         this.id_penugas;
         this.keterangan;
+        this.siswa;
         this.timestamp;
     }
 
@@ -27,6 +29,9 @@ export default class Penugasan {
         penugasan.id_siswa = json["id_siswa"];
         penugasan.id_tugas = json["id_tugas"];
         penugasan.id_tugas = json["id_tugas"];
+        if (json["siswa"] != undefined) {
+            penugasan.siswa = Siswa.parse(json["siswa"]);
+        }
         return penugasan;
     }
     static all() {
@@ -109,7 +114,7 @@ export default class Penugasan {
                     return Penugasan.parse(element);
                 });
                 if (cb != null) {
-                    cb(data);
+                    cb(penugasan);
                 }
             },
         });

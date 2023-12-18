@@ -35,7 +35,7 @@ export default class Projek {
         });
         return projek;
     }
-    c;
+
     static parse(json, params = { withEtc: false }) {
         var projek = new Projek();
 
@@ -74,16 +74,19 @@ export default class Projek {
         }
         return projek;
     }
-    static all() {
+    static all(params) {
         var projek = [];
         $.ajax({
             url: "/projek",
             type: "GET",
-            async: false,
+            async: params.cb == undefined ? false : true,
             success: function (data) {
                 projek = data.map(function (e) {
                     return Projek.parse(e);
                 });
+                if (params.cb != undefined) {
+                    params.cb(projek);
+                }
             },
         });
         return projek;

@@ -16,4 +16,9 @@ class Penugasan extends Model
     {
         return $this->hasOne(Tugas::class, "id", "id_tugas");
     }
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, "id", "id_siswa");
+    }
 }

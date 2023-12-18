@@ -5,9 +5,11 @@ import KonfigurasiAngkatanView from "../Component/KonfigurasiAngkatanView.js";
 import KonfigurasiJurusanView from "../Component/KonfigurasiJurusanView.js";
 import KonfigurasiKategoriJenisView from "../Component/KonfigurasiKategoriJenisView.js";
 import KonfigurasiPenggunaView from "../Component/KonfigurasiPenggunaView.js";
+import KonfigurasiSiswaView from "../Component/KonfigurasiSiswaView.js";
 import KonfigurasiView from "../Component/KonfigurasiView.js";
 import pageSetup from "../Component/PageSetup.js";
 import PenggunaModal from "../Component/PenggunaModal.js";
+import SiswaModal from "../Component/SiswaModal.js";
 import UBJurusanModal from "../Component/UBJurusanModal.js";
 
 $(document).ready(function () {
@@ -18,6 +20,7 @@ $(document).ready(function () {
     var kkjv = new KonfigurasiKategoriJenisView(
         $("#konfigurasi-kategori-jenis-view")
     );
+    var ksv = new KonfigurasiSiswaView($("#konfigurasi_siswa_view"));
 
     //Modal
     var angModal = new AngkatanModal($("#angkatan-modal"));
@@ -25,12 +28,14 @@ $(document).ready(function () {
     var pgnModal = new PenggunaModal($("#pengguna-modal"));
     var uBJModal = new UBJurusanModal($("#ub-jurusan-modal"));
     var jnsModal = new JenisModal($("#jenis-modal"));
+    var swsModal = new SiswaModal($("#siswa-modal"));
 
     pageSetup.add(konfigurasiPage);
     pageSetup.add(kav);
     pageSetup.add(kjv);
     pageSetup.add(kpv);
     pageSetup.add(kkjv);
+    pageSetup.add(ksv);
 
     //Add Modal
     pageSetup.add(angModal);
@@ -38,6 +43,7 @@ $(document).ready(function () {
     pageSetup.add(pgnModal);
     pageSetup.add(uBJModal);
     pageSetup.add(jnsModal);
+    pageSetup.add(swsModal);
 
     pageSetup.init();
 });

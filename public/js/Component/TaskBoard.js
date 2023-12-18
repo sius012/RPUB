@@ -1,6 +1,8 @@
 import TugasCard from "./Card/TugasCard.js";
 import Tugas from "../Model/Tugas.js";
 import pageSetup from "./PageSetup.js";
+import TaskboardCard from "./Card/TaskboardCard.js";
+import Helper from "../Helper/Helper.js";
 
 export default class TaskBoard {
     constructor(container) {
@@ -35,8 +37,7 @@ export default class TaskBoard {
             function (data) {
                 contBelumDikerjakan.html("");
                 data.forEach((element) => {
-                    let tugasCard = new TugasCard(element);
-                    contBelumDikerjakan.append(tugasCard.load());
+                    contBelumDikerjakan.append(TaskboardCard.render(element));
                 });
             }
         );
@@ -47,7 +48,7 @@ export default class TaskBoard {
                 contDalamPengerjaan.html("");
                 data.forEach((element) => {
                     let tugasCard = new TugasCard(element);
-                    contDalamPengerjaan.append(tugasCard.load());
+                    contDalamPengerjaan.append(TaskboardCard.render(element));
                 });
             }
         );
@@ -58,7 +59,7 @@ export default class TaskBoard {
                 contRevisi.html("");
                 data.forEach((element) => {
                     let tugasCard = new TugasCard(element);
-                    contRevisi.append(tugasCard.load());
+                    contRevisi.append(TaskboardCard.render(element));
                 });
             }
         );
@@ -69,7 +70,7 @@ export default class TaskBoard {
                 contSelesai.html("");
                 data.forEach((element) => {
                     let tugasCard = new TugasCard(element);
-                    contSelesai.append(tugasCard.load());
+                    contSelesai.append(TaskboardCard.render(element));
                 });
             }
         );
@@ -77,9 +78,7 @@ export default class TaskBoard {
 
     globalEventListener() {
         let ctx = this;
-        this.container.delegate(".tugas-card", "click", function () {
-            pageSetup.getComponent("TugasDetailView").load($(this).data("id"));
-        });
+
         this.container.delegate(".status", "click", function (e) {
             e.stopPropagation();
             console.log(pageSetup.getComponent("ContextMenuStatus"));
@@ -89,6 +88,55 @@ export default class TaskBoard {
                     $(this).closest(".task"),
                     $(this).closest(".task").data("id")
                 );
+        });
+
+        this.container.delegate(".tugas-card", "click", function () {
+            pageSetup.getComponent("TugasDetailView").load($(this).data("id"));
+        });
+
+        this.container.find("#taskStatus").change(function () {
+            var contBelumDikerjakan = ctx.container.find(
+                "#container-belum-dikerjakan"
+            );
+
+            var contDalamPengerjaan = ctx.container.find(
+                "#container-dalam-pengerjaan"
+            );
+
+            var contSelesai = ctx.container.find("#container-selesai");
+
+            var contRevisi = ctx.container.find("#container-revisi");
+
+            ctx.container.children(".col-md").each(function () {
+                $(this).hide();
+            });
+
+            let key = $(this).val();
+            switch (key) {
+                case "semua":
+                    ctx.container.children(".col-md").each(function () {
+                        $(this).show();
+                    });
+                    break;
+                case "todo":
+                    console.log(contBelumDikerjakan);
+                    contBelumDikerjakan.closest(".col-md").show();
+                    break;
+                case "onprogress":
+                    console.log(contDalamPengerjaan);
+                    contDalamPengerjaan.closest(".col-md").show();
+                    break;
+                case "selesai":
+                    console.log(contDalamPengerjaan);
+                    contSelesai.closest(".col-md").show();
+                    break;
+                case "revision":
+                    console.log(contDalamPengerjaan);
+                    contRevisi.closest(".col-md").show();
+                    break;
+                default:
+                    break;
+            }
         });
     }
 }
