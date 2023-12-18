@@ -214,7 +214,7 @@ export default class DetailProjekView {
             if ($(this).closest(".profile-siswa").attr("id-pp") != undefined) {
                 let id_pp = $(this).closest(".profile-siswa").attr("id-pp");
                 penilaianProjekModal.load(id_pp);
-            } else {
+            } else {    
                 let id_projek = ctx.projek.id;
                 let id_siswa = $(this)
                     .closest(".profile-siswa")

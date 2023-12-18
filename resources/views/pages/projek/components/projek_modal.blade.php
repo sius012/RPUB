@@ -102,8 +102,7 @@
                             <div class="row">
                                 <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Penanggung Jawab</label>
-                                    <input type="text" name="nama_penanggungjawab" class="form-control" placeholder="Masukkan Nama penanggung jawab" required />
-                                    <ul class="pj-list" style="list-style-type: none;position:absolute"></ul>
+                                    <select class="pj-list form-control"  name="id_penanggung_jawab"></select>
                                     <div class="container-pj">
 
                                     </div>

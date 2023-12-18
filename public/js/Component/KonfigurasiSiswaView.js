@@ -18,20 +18,7 @@ export default class KonfigurasiSiswaView {
             }
         });
 
-<<<<<<< HEAD
-        let breadcrumb = pageSetup.getComponent("Breadcrumb");
-        breadcrumb.add([
-            this.nama_component,
-            "active",
-            function (component) {
-                component.load(params);
-            },
-        ]);
-
-        this.siswaList = Siswa.all();
-=======
         this.siswaList = params.data == undefined ? Siswa.all() : params.data;
->>>>>>> bede66f3ec873bc94effe76fad9a8511d81d9e0a
         this.siswaList.forEach(function (e, i) {
             table.append(`<tr data-id="${e.id}">
             <td><img src='${e.getFotoProfil()}' style='width: 30px; aspect-ratio: 1/1; object-fit:cover;border-radius: 50%'></td>

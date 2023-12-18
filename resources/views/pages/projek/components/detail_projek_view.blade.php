@@ -21,6 +21,11 @@
                         </button>
                     </li>
                     <li class="nav-item">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#timeline" aria-controls="navs-top-messages" aria-selected="false">
+                            Timeline
+                        </button>
+                    </li>
+                    <li class="nav-item">
                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#konfigurasi-projek" aria-controls="navs-top-messages" aria-selected="false">
                             Konfigurasi Projek
                         </button>
@@ -30,6 +35,9 @@
                 <div class="tab-content">
                     <div class="tab-pane fade  show active " id="informasi-projek" role="tabpanel">
                         <div class="row">
+                            
+
+
                             <div class="col">
                                 <div class="form-group mb-3">
                                     <label for="" class="form-label">Nama Projek</label>

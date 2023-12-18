@@ -137,7 +137,11 @@ export default class User {
                 let user = data.map(function (e) {
                     return User.parse(e);
                 });
+                console.log(user);
                 cb(user);
+            },
+            error: function (err) {
+                alert(err.responseText);
             },
         });
     }
