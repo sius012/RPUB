@@ -15,7 +15,12 @@ class VersiController extends Controller
      */
     public function index(Request $req)
     {
-        $versi = new Versi;
+        $versi = Versi::with(["tugas", "siswa"]);
+        if ($req->has("id_projek")) {
+            $versi = $versi->whereHas("tugas.projek", function ($q) use ($req) {
+                $q->where("id_projek", $req->id_projek);
+            });
+        }
         if ($req->has("id_tugas")) {
             $versi = $versi->where("id_tugas", $req->id_tugas);
         }
@@ -45,10 +50,13 @@ class VersiController extends Controller
         $versi->id_siswa = $request->id_siswa;
         $versi->nama = $request->nama;
         $versi->keterangan = $request->keterangan;
-        $imageName = time() . '.' . $request->nama . "." . $request->nomor_versi . ".png";
-        $request->lampiran->move(public_path('versi'), $imageName);
-        $versi->lampiran = $imageName;
-        $versi->status = $request->status;
+        if ($request->hasFile("lampiran")) {
+            $imageName = time() . '.' . $request->nama . "." . $request->nomor_versi . ".png";
+            $request->lampiran->move(public_path('versi'), $imageName);
+            $versi->lampiran = $imageName;
+        }
+
+        $versi->status = "Belum dimulai";
         $versi->save();
 
         return response()->json(["data" => $request->files]);

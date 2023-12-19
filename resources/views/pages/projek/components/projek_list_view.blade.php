@@ -36,4 +36,5 @@
 
 <script type="text/javascript">
     var link = document.getElementById('click');
+    
 </script>

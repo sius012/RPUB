@@ -21,12 +21,11 @@ class PenilaianProjek extends Migration
             $table->integer("n_nformal");
             $table->char("antusias");
             $table->char("kejujuran");
-            $table->char("kreatifitas");
+            $table->char("kreativitas");
             $table->char("tanggung_jawab");
             $table->char("komunikasi");
             $table->char("etika_sopansantun");
             $table->char("k3");
-            $table->string("keterangan");
             $table->timestamps();
         });
     }

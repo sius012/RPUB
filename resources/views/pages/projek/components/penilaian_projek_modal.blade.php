@@ -90,9 +90,6 @@
               </td>
             </tr>
           </table>
-          <div class="row">
-            <textarea class="form-control" name="keterangan"></textarea>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

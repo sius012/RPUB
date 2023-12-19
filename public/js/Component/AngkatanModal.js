@@ -52,6 +52,7 @@ export default class AngkatanModal {
                 case "kirim":
                     ctx.parseFromElement();
                     ctx.angkatan.simpan();
+                    Swal.fire("Data berhasil dimasukan");
                     break;
 
                 default:

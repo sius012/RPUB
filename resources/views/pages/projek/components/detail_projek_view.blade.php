@@ -35,50 +35,60 @@
 
                 <div class="tab-content">
                     <div class="tab-pane fade  show active " id="informasi-projek" role="tabpanel">
-                        <div class="row">
-
-
-
-                            <div class="col">
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Nama Projek</label>
-                                    <input type="text" name="nama" class="nama-projek form-control" placeholder="tambahkan nama projek" readonly />
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Tanggal Awal</label>
-                                    <input type="date" name="tanggal-awal" class="tanggal-awal form-control" placeholder="" readonly />
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Tanggal Akhir</label>
-                                    <input type="date" name="tanggal-akhir" class="tanggal-akhir form-control" placeholder="" readonly />
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Penanggung Jawab</label>
-                                    <input type="text" name="pj" class="penanggung_jawab form-control" placeholder="" readonly />
-                                </div>
+                        <form action="">
+                            <div class="form-group mb-3">
+                                <button type="button" class="btn btn-warning btn-edit"><i class='fa fa-edit'></i> </button>
                             </div>
-                            <div class="col">
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Jenis Projek</label>
-                                    <input type="text" name="jenis-projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" readonly />
+                            <div class="row">
+                                <div class="col">
+                                    <input type="hidden" name="id" class="id-projek">
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Nama Projek</label>
+                                        <input type="text" name="nama" class="nama-projek form-control" placeholder="tambahkan nama projek" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Deskripsi</label>
+                                        <input type="text" name="deskripsi" class="deskripsi form-control" placeholder="tambahkan nama projek" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Tanggal Awal</label>
+                                        <input type="date" name="tanggal_awal" class="tanggal-awal form-control" placeholder="" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Tanggal Akhir</label>
+                                        <input type="date" name="tanggal_akhir" class="tanggal-akhir form-control" placeholder="" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Penanggung Jawab</label>
+                                        <select name="id_penanggung_jawab" readonly id=" " class="penanggung_jawab form-control">
+
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Klien</label>
-                                    <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama klien" readonly />
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Nilai Projek</label>
-                                    <input type="text" name="nominal" value="2000000" class="klien form-control" placeholder="tambahkan nama klien" readonly />
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="" class="form-label">Jurusan</label>
-                                    <div class="container-jurusan-row">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Jenis Projek</label>
+                                        <input type="text" name="jenis_projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Klien</label>
+                                        <input type="text" name="klien" class="klien form-control" placeholder="tambahkan nama klien" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Nilai Projek</label>
+                                        <input type="text" name="nominal" value="2000000" class="nominal form-control" placeholder="tambahkan nama klien" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Jurusan</label>
+                                        <div class="container-jurusan-row">
+
+                                        </div>
 
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Perbarui</button>
+                        </form>
                     </div>
 
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
@@ -118,7 +128,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody class="table-border-bottom-0">
+                            <tbody>
                                 <tr>
 
                                 </tr>
@@ -133,7 +143,7 @@
                     <div class="tab-pane fade" id="konfigurasi-projek" role="tabpanel">
                         <div class="row">
                             <div class="col">Arsipkan Projek</div>
-                            <div class="col"><button class="btn btn-primary"><i class="fa fa-archive"></i></button></div>
+                            <div class="col"><button class="btn btn-primary btn-arsip"><i class="fa fa-archive"></i></button></div>
                         </div>
                     </div>
                 </div>

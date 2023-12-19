@@ -7,6 +7,8 @@ import SiswaCard from "./Card/SiswaCard.js";
 import User from "../Model/User.js";
 import PenilaianProjek from "../Model/PenilaianProjek.js";
 import Versi from "../Model/Versi.js";
+import Jurusan from "../Model/Jurusan.js";
+
 export default class DetailProjekView {
     constructor(container) {
         this.container = container;
@@ -43,7 +45,6 @@ export default class DetailProjekView {
                 ctx.loadInfoProjek();
                 ctx.loadPartisipan();
                 ctx.loadTugas();
-                ctx.loadLaporan();
             } else {
                 Swal.fire(
                     "Gagal",
@@ -59,9 +60,12 @@ export default class DetailProjekView {
     }
 
     loadInfoProjek() {
+        const ctx = this;
         var infoprojek = this.container.find("#informasi-projek");
         console.log(this.projek);
         infoprojek.find(".nama-projek").val(this.projek.nama);
+        infoprojek.find(".deskripsi").val(this.projek.deskripsi);
+        infoprojek.find(".id-projek").val(this.projek.id);
         infoprojek.find(".tanggal-awal").val(this.projek.tanggal_awal);
         infoprojek.find(".tanggal-akhir").val(this.projek.tanggal_akhir);
 
@@ -69,23 +73,42 @@ export default class DetailProjekView {
         infoprojek.find(".klien").val(this.projek.klien);
         infoprojek.find(".deskripsi").val(this.projek.deskripsi);
         infoprojek.find(".status").val(this.projek.status);
+        infoprojek.find(".nominal").val(this.projek.nominal);
 
         infoprojek
             .find(".penanggung_jawab")
             .val(this.projek.penanggung_jawab.name);
 
-        let jurusan = this.projek.jurusan
-            .map(function (e) {
-                return `<div class="form-check">
-            <input class="form-check-input" type="checkbox" value="${e.id}" name='id_jurusan' id="flexCheckIndeterminate">
-            <label class="form-check-label" for="flexCheckIndeterminate">
-              ${e.jurusan}
-            </label>
-          </div>`;
-            })
-            .join("");
+        Jurusan.all({ ubjurusan: true }, function (jurusan) {
+            jurusan.forEach(function (e) {
+                infoprojek.find(".container-jurusan-row").append(
+                    `<div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="${e.id}" name='id_jurusan' id="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate">
+                      ${e.jurusan}
+                    </label>
+                  </div>`
+                );
+            });
 
-        infoprojek.find(".container-jurusan-row").html(jurusan);
+            infoprojek
+                .find(".container-jurusan-row")
+                .children(".form-check")
+                .each(function (e) {
+                    if (
+                        ctx.projek.jurusan
+                            .map(function (e) {
+                                return e.id;
+                            })
+                            .includes(parseInt($(this).find("input").val()))
+                    ) {
+                        $(this).find("input").attr("checked", "checked");
+                    } else {
+                    }
+                });
+        });
+
+        ctx.initPj();
     }
     loadTugas() {
         var ctx = this;
@@ -144,17 +167,23 @@ export default class DetailProjekView {
         const ctx = this;
         Versi.all(function (data) {
             let table = ctx.container.find("#laporan").find("tbody");
+            table.empty("");
             data.forEach(function (e, i) {
                 table.append(
                     `<tr><td>${i + 1}</td><td>${e.nama}</td><td>${
                         e.keterangan
-                    }</td><td>${Helper.status(e.status)}</td><td><td>${
-                        e.id_tugas
-                    }</td><td>${e.timestamp.created_at}</td><td>${
-                        e.lampiran
-                    }</td><td>${e.id_siswa}</td></tr>`
+                    }</td><td>${Helper.status(e.status)}</td><td>${
+                        e.tugas.nama
+                    }</td><td>${Helper.formatShortDate(
+                        e.timestamp.created_at
+                    )}</td><td>${e.siswa.nama}</td></tr>`
                 );
             });
+            console.log(table);
+            // table.closest("table").DataTable({
+            //     searching: false,
+            // });
+            // table.Data
         });
     }
 
@@ -256,8 +285,15 @@ export default class DetailProjekView {
             .find("#tugas")
             .delegate(".status", "click", function (e) {
                 e.preventDefault();
+
                 var ctxmenu = pageSetup.getComponent("ContextMenuStatus");
                 ctxmenu.trigger($(this), $(this).closest("tr").attr("data-id"));
+            });
+
+        this.container
+            .find("#laporan")
+            .delegate(".status", "click", function (e) {
+                e.preventDefault();
             });
 
         this.container
@@ -290,5 +326,181 @@ export default class DetailProjekView {
         //             $(this).closest("tr").data("id")
         //         );
         // });
+        ctx.container.find("button").click(function () {
+            if ($(this).attr("data-bs-target") == "#laporan") {
+                ctx.loadLaporan();
+            }
+        });
+
+        ctx.container
+            .find("#informasi-projek")
+            .find(".btn-edit")
+            .click(function () {
+                let infoprojek = ctx.container.find("#informasi-projek");
+                infoprojek
+                    .find(".nama-projek")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+                infoprojek
+                    .find(".tanggal-awal")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+                infoprojek
+                    .find(".tanggal-akhir")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+                infoprojek
+                    .find(".klien")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+                infoprojek
+                    .find(".deskripsi")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+                infoprojek
+                    .find(".status")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+                infoprojek
+                    .find(".penanggung_jawab")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+            });
+
+        ctx.container.delegate("input[name=id_jurusan]", "click", function (e) {
+            let jurusanList = [];
+            let container = ctx.getElement("id_penanggung_jawab", "select");
+            container.empty();
+            ctx.getElement("id_jurusan").each(function (e) {
+                if ($(this).is(":checked")) {
+                    jurusanList.push($(this).val());
+                }
+            });
+
+            User.getListUBJurusan(jurusanList, function (data) {
+                console.log(jurusanList);
+                let userlist = data
+                    .map(function (e) {
+                        return `<option value='${e.id}'>${e.nama}</option>`;
+                    })
+                    .join("");
+                container.html(userlist);
+
+                ctx.initPj();
+            });
+            $(this).parent().find(".pj-list");
+        });
+
+        ctx.container
+            .find("#informasi-projek")
+            .find("form")
+            .submit(function (e) {
+                e.preventDefault();
+
+                // Create FormData object
+                var formData = new FormData(this);
+
+                // Convert FormData to an array
+                var dataArray = Array.from(formData.entries());
+
+                // Display the array in the console (you can remove this line in a real application)
+                let params = {};
+                dataArray.forEach(function (value, key) {
+                    if (params.hasOwnProperty(value[0])) {
+                        // If it does, convert the value to an array
+                        if (!Array.isArray(params[value[0]])) {
+                            params[value[0]] = [params[value[0]]]; // Convert to array
+                        }
+                        params[value[0]].push(value[1]); // Add the new value to the array
+                    } else {
+                        params[value[0]] = value[1]; // Add new key-value pair
+                    }
+                });
+                let projek = Projek.parse(params);
+                projek.simpan();
+            });
+
+        ctx.container
+            .find("#konfigurasi-projek")
+            .find(".btn-arsip")
+            .click(function () {
+                Swal.fire({
+                    title: "Apakah yakin ingin mengarsipan projek?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        Swal.fire("Projek berhasil diarsipkan", "", "success");
+                        ctx.projek.arsipan(function () {
+                            window.location = "/pages/projek";
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                    }
+                });
+            });
+    }
+
+    initPj() {
+        const ctx = this;
+        let jurusanList = [];
+        let container = ctx.getElement("id_penanggung_jawab", "select");
+        container.empty();
+        ctx.getElement("id_jurusan").each(function (e) {
+            if ($(this).is(":checked")) {
+                jurusanList.push($(this).val());
+            }
+        });
+
+        User.getListUBJurusan(jurusanList, function (data) {
+            console.log(jurusanList);
+            let userlist = data
+                .map(function (e) {
+                    return `<option value='${e.id}'>${e.nama}</option>`;
+                })
+                .join("");
+            container.html(userlist);
+
+            container.children("option").each(function (e) {
+                if (ctx.projek.penanggung_jawab.id == $(this).attr("value")) {
+                    $(this).attr("selected", "selected");
+                }
+            });
+        });
+        $(this).parent().find(".pj-list");
+    }
+
+    filterLaporan() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = this.container.find("#laporan").find("table").find("tbody");
+        switching = true;
+
+        while (switching) {
+            switching = false;
+            rows = table.children("tr");
+
+            for (i = 0; i < rows.length; i++) {
+                alert("tes");
+            }
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    getElement(name, type = "input") {
+        return this.container.find(`${type}[name=${name}]`);
     }
 }

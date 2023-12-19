@@ -1,11 +1,11 @@
 <div class="content-wrapper" id="konfigurasi_pengguna_view" style="display: none;">
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-fluid">
         <div class="row">
-            <div class="button"><button type="button" class="btn btn-primary" id="btn-pengguna">
+            <div class="button"><button type="button" class="btn btn-primary mb-3" id="btn-pengguna">
                     Tambah Pengguna
                 </button></div>
 
-            <div class=" ">
+            <div class="card">
                 <table class="table table-hover pengguna-table">
                     <thead>
                         <tr>

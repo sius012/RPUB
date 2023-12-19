@@ -40,7 +40,6 @@ class PenilaianProjekController extends Controller
         $pp->komunikasi = $req->komunikasi;
         $pp->etika_sopansantun = $req->etika_sopansantun;
         $pp->k3 = $req->k3;
-        $pp->keterangan = $req->keterangan;
         $pp->save();
         return response()->json($siswa);
     }
@@ -60,7 +59,6 @@ class PenilaianProjekController extends Controller
         $pp->komunikasi = $req->komunikasi;
         $pp->etika_sopansantun = $req->etika_sopansantun;
         $pp->k3 = $req->k3;
-        $pp->keterangan = $req->keterangan;
         $pp->save();
         return response()->json($siswa);
     }

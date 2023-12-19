@@ -73,6 +73,9 @@ class ProjekController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has("id")) {
+            return $this->update($request, $request->id);
+        }
         $projek = $request->input();
         $projek["id_pembuat"] = Auth::user()->id;
         $newprojek  = $projek;
@@ -138,7 +141,25 @@ class ProjekController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $projek = Projek::find($id);
+        $projek->nama = $request->nama;
+        $projek->deskripsi = $request->deskripsi;
+        $projek->tanggal_awal = $request->tanggal_awal;
+        $projek->tanggal_akhir = $request->tanggal_akhir;
+        $projek->id_penanggung_jawab = $request->id_penanggung_jawab;
+        $projek->klien = $request->klien;
+        $projek->jenis_projek = $request->jenis_projek;
+        $projek->save();
+
+        //clear projekJurusan
+        ProjekJurusan::where("id_projek", $id)->delete();
+        foreach ($request->id_jurusan as $prj) {
+            ProjekJurusan::create([
+                "id_projek" => $projek->id,
+                "id_jurusan" => $prj
+            ]);
+        }
+        return 0;
     }
 
     /**
@@ -149,6 +170,8 @@ class ProjekController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $projek = Projek::find($id);
+        $projek->delete();
+        return response()->json(["keterangan" => "berhasil"]);
     }
 }

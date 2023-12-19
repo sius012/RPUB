@@ -1,5 +1,6 @@
 import Jurusan from "./Jurusan.js";
 import Siswa from "./Siswa.js";
+import User from "./User.js";
 
 export default class Projek {
     constructor() {
@@ -50,6 +51,9 @@ export default class Projek {
         projek.status = json["status"];
         projek.pembuat = json["pembuat"];
         projek.id_jurusan = json["id_jurusan"];
+        if (json["penanggung_jawab"]) {
+            projek.penanggung_jawab = User.parse(json["penanggung_jawab"]);
+        }
 
         if (json["image"] != undefined) {
             projek.image = json["image"];
@@ -71,6 +75,10 @@ export default class Projek {
             projek.jurusan = json["projek_jurusan"].map(function (e) {
                 return Jurusan.parse(e["jurusan"]);
             });
+        }
+
+        if (json["id_penanggung_jawab"] != undefined) {
+            projek.id_penanggung_jawab = json["id_penanggung_jawab"];
         }
         return projek;
     }
@@ -94,6 +102,9 @@ export default class Projek {
 
     toJson() {
         var json = {};
+        if (this.id != undefined) {
+            json["id"] = this.id;
+        }
         json["nama"] = this.nama;
         json["tanggal_awal"] = this.tanggal_awal;
         json["tanggal_akhir"] = this.tanggal_akhir;
@@ -118,6 +129,9 @@ export default class Projek {
             async: false,
             success: function (response) {
                 console.log(response);
+                if (params.cb != undefined) {
+                    params.cb();
+                }
             },
             error: function (err) {
                 alert(err.responseText);
@@ -128,6 +142,20 @@ export default class Projek {
                 this.simpanJurusan();
             }
         }
+    }
+
+    arsipan(cb) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/projek/" + this.id,
+            type: "delete",
+            success: function () {
+                Swal.fire("Data berhasil diarsipkan");
+                cb();
+            },
+        });
     }
 
     static byJurusan(id) {

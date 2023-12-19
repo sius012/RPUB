@@ -126,7 +126,7 @@ export default class TaskBoard {
                     console.log(contDalamPengerjaan);
                     contDalamPengerjaan.closest(".col-md").show();
                     break;
-                case "selesai":
+                case "done":
                     console.log(contDalamPengerjaan);
                     contSelesai.closest(".col-md").show();
                     break;

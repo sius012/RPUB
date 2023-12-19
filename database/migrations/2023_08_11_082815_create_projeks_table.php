@@ -21,6 +21,7 @@ class CreateProjeksTable extends Migration
             $table->bigInteger("id_penanggung_jawab");
             $table->string("jenis_projek");
             $table->string("klien");
+            $table->integer("nominal")->nullable();
             $table->text("deskripsi");
             $table->enum("status", ["Belum Dimulai", "Siap Dikerjakan", "Sedang Dikerjakan", "Selesai", "Revisi", "Ditunda"]);
             $table->bigInteger("id_pembuat");

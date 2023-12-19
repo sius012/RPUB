@@ -20,8 +20,8 @@ class CreateVersisTable extends Migration
             $table->bigInteger("nomor_versi");
             $table->string("nama");
             $table->string("keterangan");
-            $table->string("lampiran");
-            $table->enum('status',['Belum dimulai', 'Siap dikerjakan', 'Dalam Pengerjaan','Revisi', 'Ditunda','Ditinjau','Selesai']);
+            $table->string("lampiran")->nullable();
+            $table->enum('status', ['Belum dimulai', 'Siap dikerjakan', 'Dalam Pengerjaan', 'Revisi', 'Ditunda', 'Ditinjau', 'Selesai']);
             $table->timestamps();
         });
     }

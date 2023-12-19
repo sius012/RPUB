@@ -54,6 +54,7 @@ export default class JurusanModal {
                     ctx.jurusan.simpan(function (data) {
                         ctx.modal.hide();
                         pageSetup.getComponent("KonfigurasiJurusanView").load();
+                        Swal.fire("Data berhasil dimasukan");
                     });
                     break;
 

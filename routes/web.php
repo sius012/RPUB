@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Models\Projek;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +100,10 @@ Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
     });
 });
 
-
+Route::get("/danger/init", function () {
+    Artisan::call("migrate:fresh");
+    Artisan::call("db:seed");
+});
 
 Auth::routes();
 

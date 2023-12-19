@@ -23,6 +23,10 @@ class Angkatan extends Model
         $jarak = abs(strtotime($angkatan->dari) - strtotime(date("Y-m-d")));
         $tahun = floor($jarak / (365 * 60 * 60 * 24));
         $kelas = $tahun + 10;
-        return $kelas;
+        if ($kelas <= 12) {
+            return $kelas;
+        } else {
+            return "Lulusan";
+        }
     }
 }

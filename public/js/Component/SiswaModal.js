@@ -62,6 +62,7 @@ export default class SiswaModal {
                 if (data["keterangan"] == "berhasil") {
                     Swal.fire("success", "Berhasil dimasukan");
                     ctx.modal.hide();
+                    pageSetup.getComponent("KonfigurasiSiswaView").load();
                 } else {
                     Swal.fire("error", "Data gagal dimasukan");
                 }

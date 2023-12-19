@@ -1,4 +1,5 @@
 import Siswa from "./Siswa.js";
+import Tugas from "./Tugas.js";
 export default class Versi {
     constructor() {
         this.id_versi;
@@ -11,6 +12,8 @@ export default class Versi {
         this.status;
         this.timestamp;
         this.siswa;
+
+        this.tugas;
     }
 
     static find(id) {
@@ -40,6 +43,12 @@ export default class Versi {
             created_at: json["created_at"],
             updated_at: json["updated_at"],
         };
+        if (json["tugas"] != undefined) {
+            versi.tugas = Tugas.parse(json["tugas"]);
+        }
+        if (json["siswa"] != undefined) {
+            versi.siswa = Siswa.parse(json["siswa"]);
+        }
         versi.siswa = Siswa.find(versi.id_siswa);
         return versi;
     }
@@ -125,5 +134,26 @@ export default class Versi {
                 alert(err.responseText);
             },
         });
+    }
+
+    byProjek(id) {
+        var versi = [];
+        $.ajax({
+            url: "/versis/",
+            type: "GET",
+            data: {
+                id_projek: id,
+            },
+            async: cb == null ? false : true,
+            success: function (data) {
+                versi = data.map(function (e) {
+                    return Versi.parse(e);
+                });
+                if (cb != null) {
+                    cb(versi);
+                }
+            },
+        });
+        return versi;
     }
 }

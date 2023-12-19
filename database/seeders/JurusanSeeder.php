@@ -14,14 +14,14 @@ class JurusanSeeder extends Seeder
      */
     public function run()
     {
-        $jurusan = ["PPLG","DKV 1","DKV 2","TKP","TP","KR"];
-        $keterangan = ["Pengembangan Perangkat Lunak dan Gim","Desain Komunikasi Visual 1","Desain Komunikasi Visual 2","Teknik Konstruksi Perumahan","Teknik Pengelasan","Kuliner"];
-        
-        foreach ($jurusan as $j =>$jrs){
+        $jurusan = ["RPL", "DKV 1", "DKV 2", "TKP", "TP", "KR"];
+        $keterangan = ["Rekayasa Perangkat Lunak", "Desain Komunikasi Visual 1", "Desain Komunikasi Visual 2", "Teknik Konstruksi Perumahan", "Teknik Pengelasan", "Kuliner"];
+
+        foreach ($jurusan as $j => $jrs) {
             Jurusan::create([
-                "jurusan" =>$jrs,
-                "keterangan" =>$keterangan[$j]
-            ]); 
+                "jurusan" => $jrs,
+                "keterangan" => $keterangan[$j]
+            ]);
         }
     }
 }

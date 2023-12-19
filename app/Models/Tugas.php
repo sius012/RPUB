@@ -81,4 +81,9 @@ class Tugas extends Model
     {
         return $this->hasOne(Penugasan::class, "id_tugas", "id");
     }
+
+    public function projek()
+    {
+        return $this->belongsTo(Projek::class, "id_projek", "id");
+    }
 }

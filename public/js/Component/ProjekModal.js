@@ -18,7 +18,7 @@ export default class ProjekModal {
                 cjr.append(
                     `<div class="form-check">
                     <input class="form-check-input" type="checkbox" value="${e.id}" name='id_jurusan' id="flexCheckIndeterminate">
-                    <label class="form-check-label" for="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate"></label>
                       ${e.jurusan}
                     </label>
                   </div>`

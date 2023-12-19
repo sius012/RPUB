@@ -1,6 +1,6 @@
 <div class="container flex-grow-1 container">
     <div class="row">
-        <div class="button"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-angkatan">
+        <div class="button"><button type="button" class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-angkatan">
                 Tambah
             </button></div>
 

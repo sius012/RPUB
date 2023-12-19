@@ -31,7 +31,7 @@ export default class ProjekListView {
                 if (i == 0) {
                     ctx.container
                         .find(".filter-jurusan")
-                        .append("<option>Semua</option>");
+                        .append("<option value='semua'>Semua</option>");
                 }
                 ctx.container
                     .find(".filter-jurusan")
@@ -105,4 +105,5 @@ export default class ProjekListView {
             }
         });
     }
+    
 }
