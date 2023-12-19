@@ -1,9 +1,5 @@
   {{-- @extends('layout.layout')
 @section('main-content')    --}}
-  <style>
-      .modal-content {
-          background: rgba(0, 0, 0, 0);
-      }
   </style>
   <div class="modal fade" id="tugas-detail-view">
       <div class="modal-dialog flex-grow-1 container-p-y">
