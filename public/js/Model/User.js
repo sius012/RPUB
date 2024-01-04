@@ -145,4 +145,17 @@ export default class User {
             },
         });
     }
+
+    hapus(cb) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/user/" + this.id,
+            type: "delete",
+            success: function () {
+                cb();
+            },
+        });
+    }
 }

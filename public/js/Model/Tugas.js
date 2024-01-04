@@ -19,6 +19,7 @@ export default class Tugas {
         this.tugasCount;
         this.tugasStatusArr = [];
         this.statusArr = [];
+        this.nilai_max = null;
         this.data_jenis;
         this.partisipan;
     }
@@ -99,6 +100,9 @@ export default class Tugas {
         if (json["image"] != undefined) {
             tugas.image = json["image"];
         }
+        if (json["nilai_max"] != null) {
+            tugas.nilai_max = json["nilai_max"];
+        }
         tugas.tipe = json["tipe"];
 
         return tugas;
@@ -125,6 +129,9 @@ export default class Tugas {
         json["tanggal_akhir"] = this.tanggal_akhir;
         json["status"] = this.status;
         json["tipe"] = this.tipe;
+        if (this.nilai_max != null) {
+            json["nilai_max"] = this.nilai_max;
+        }
         console.log(json);
         return json;
     }
@@ -140,6 +147,28 @@ export default class Tugas {
             data: ctx.toJson(),
             success: function (data) {
                 console.log(data);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
+
+    duplikat(cb = null) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/tugas",
+            type: "post",
+            data: {
+                id: this.id_tugas,
+                duplikat: 1,
+            },
+            success: function (data) {
+                if (cb != null) {
+                    cb(data);
+                }
             },
             error: function (err) {
                 alert(err.responseText);
@@ -214,6 +243,25 @@ export default class Tugas {
                 params: "version_image",
             },
             success: function (data) {},
+        });
+    }
+
+    getIndikator(cb) {
+        $.ajax({
+            url: "/tugas/" + this.id_tugas,
+            data: {
+                getIndikator: 1,
+            },
+            type: "get",
+            success: function (data) {
+                let indikator = data.map(function (e) {
+                    return Tugas.parse(e);
+                });
+                cb(indikator);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
         });
     }
 }

@@ -11,6 +11,8 @@ export default class KonfigurasiAngkatanView {
     }
 
     load() {
+
+        
         const ctx = this;
         pageSetup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
@@ -39,6 +41,7 @@ export default class KonfigurasiAngkatanView {
             </tr>
             `);
         });
+        table.closest("table").DataTable();
         this.container.show();
     }
 

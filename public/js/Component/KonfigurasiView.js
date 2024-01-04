@@ -1,3 +1,4 @@
+import Helper from "../Helper/Helper.js";
 import pageSetup from "./PageSetup.js";
 
 export default class KonfigurasiView {
@@ -8,17 +9,25 @@ export default class KonfigurasiView {
     }
 
     load() {
+        const ctx = this;
         pageSetup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
             if (element.isLayout == undefined && element.modal == undefined) {
                 element.container.hide();
             }
         });
+        Helper.isSuperAdmin(
+            function () {
+                let breadcrumb = pageSetup.getComponent("Breadcrumb");
+                breadcrumb.add([ctx.nama_component, "active"]);
 
-        let breadcrumb = pageSetup.getComponent("Breadcrumb");
-        breadcrumb.add([this.nama_component, "active"]);
-
-        this.container.show();
+                ctx.container.show();
+            },
+            function () {
+                Swal.fire("Anda tidak memiliki Akses di menu Konfigurasi");
+                // ctx.container.empty();
+            }
+        );
     }
 
     globalEventListener() {

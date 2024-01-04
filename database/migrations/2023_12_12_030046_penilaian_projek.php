@@ -15,17 +15,9 @@ class PenilaianProjek extends Migration
     {
         Schema::create('penilaian_projek', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("id_projek");
             $table->bigInteger("id_penilai");
             $table->bigInteger("id_siswa");
-            $table->integer("n_nformal");
-            $table->char("antusias");
-            $table->char("kejujuran");
-            $table->char("kreativitas");
-            $table->char("tanggung_jawab");
-            $table->char("komunikasi");
-            $table->char("etika_sopansantun");
-            $table->char("k3");
+            $table->bigInteger("id_tugas");
             $table->timestamps();
         });
     }

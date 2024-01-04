@@ -111,8 +111,8 @@ class ProjekController extends Controller
                 })->get();
                 $partisipan = $partisipan->map(function ($q) use ($id) {
                     $q->kelasDanJurusan = $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
-                    $hasPenilaian = PenilaianProjek::where("id_penilai", Auth::user()->id)->where("id_projek", $id)->where("id_siswa", $q->id);
-                    $q->penilaianProjek = $hasPenilaian->first();
+                    // $hasPenilaian = PenilaianProjek::where("id_penilai", Auth::user()->id)->where("id_projek", $id)->where("id_siswa", $q->id);
+                    //$q->penilaianProjek = 
                     return $q;
                 });
                 $projek->partisipan = $partisipan;

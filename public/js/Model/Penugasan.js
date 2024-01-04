@@ -1,4 +1,6 @@
+import PenilaianProjek from "./PenilaianProjek.js";
 import Siswa from "./Siswa.js";
+import Tugas from "./Tugas.js";
 export default class Penugasan {
     constructor() {
         this.id;
@@ -8,6 +10,8 @@ export default class Penugasan {
         this.keterangan;
         this.siswa;
         this.timestamp;
+        this.tugas = null;
+        this.penilaian = null;
     }
 
     static find(id) {
@@ -31,6 +35,14 @@ export default class Penugasan {
         penugasan.id_tugas = json["id_tugas"];
         if (json["siswa"] != undefined) {
             penugasan.siswa = Siswa.parse(json["siswa"]);
+        }
+        if (json["tugas"] != undefined) {
+            penugasan.tugas = Tugas.parse(json["tugas"]);
+        }
+        if (json["penilaian"] != undefined) {
+            penugasan.penilaian = json["penilaian"].map(function (e) {
+                return PenilaianProjek.parse(e);
+            });
         }
         return penugasan;
     }

@@ -10,6 +10,8 @@ export default class Breadcrumb {
 
         this.isLayout = true;
         this.load();
+
+        //sthis.container.closest(".row").hide();
     }
 
     globalEventListener() {

@@ -9,6 +9,10 @@ export default class KonfigurasiSiswaView {
     }
 
     load(params = {}) {
+        const ctx = this;
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([ctx.nama_component, "active"]);
+
         let table = this.container.find("table").find("tbody");
         table.empty();
         pageSetup.componentList.forEach((element) => {
@@ -34,6 +38,8 @@ export default class KonfigurasiSiswaView {
           </div></td>
             </tr>`);
         });
+
+        table.closest("table").DataTable();
         this.container.show();
     }
 
@@ -42,6 +48,21 @@ export default class KonfigurasiSiswaView {
         ctx.container.find(".btn-tambah-siswa").click(function () {
             let siswaModal = pageSetup.getComponent("SiswaModal");
             siswaModal.init();
+        });
+        ctx.container.find(".btn-raporkarakter").click(function () {
+            Swal.fire({
+                title: "Import data siswa dari rapor karakter",
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Siswa.importFromRaporKarakter(function () {
+                        ctx.load();
+                    });
+                }
+            });
         });
         ctx.container.delegate(".btn-delete", "click", function () {
             let siswaModal = pageSetup.getComponent("SiswaModal");

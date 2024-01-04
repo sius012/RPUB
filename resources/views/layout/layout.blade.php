@@ -341,7 +341,7 @@ body {
         <div class="layout-page">
           <!-- ---------------------Navbar-------------------- -->
           <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            class="layout-navbar  navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
           >
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
@@ -362,6 +362,7 @@ body {
                     aria-label="Search..."
                   />
                 </div>
+                
               </div>
               <!-- /Search -->
 
@@ -382,7 +383,9 @@ body {
 
             <!-- -----------Content------- -->
             <div class="container-fluid p-3">
+                <div class="container-fluid">
                 @include("maincomponent.breadcrumb")
+                </div>
                 @yield('main-content')
             </div>
             <!-- ----------/Content------- -->

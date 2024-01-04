@@ -50,14 +50,18 @@ export default class PenggunaModal {
             switch (ctx.mode) {
                 case "simpan":
                     ctx.parseFromElement();
-                    ctx.pengguna.simpan(function () {});
+                    ctx.pengguna.simpan(function () {
+                        pageSetup
+                            .getComponent("KonfigurasiPenggunaView")
+                            .load();
+                    });
                     break;
 
                 case "edit":
                     ctx.parseFromElement();
                     ctx.pengguna.simpan(function () {
                         pageSetup
-                            .getComponent("KonfigurasiPenggunaModal")
+                            .getComponent("KonfigurasiPenggunaView")
                             .load();
                     });
                     break;

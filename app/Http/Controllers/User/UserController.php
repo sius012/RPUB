@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -63,5 +64,13 @@ class UserController extends Controller
         $user->save();
 
         $user->syncRoles([$req->selected_role]);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->syncRoles([]);
+        $user->delete();
+        return response()->json(["keterangan" => "berhasil"]);
     }
 }

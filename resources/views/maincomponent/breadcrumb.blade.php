@@ -1,4 +1,4 @@
-<div class="row p-3">
+<div class="row">
     <nav aria-label="breadcrumb p-3" id="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>

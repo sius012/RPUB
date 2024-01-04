@@ -136,7 +136,7 @@ export default class Versi {
         });
     }
 
-    byProjek(id) {
+    static byProjek(id, cb = null) {
         var versi = [];
         $.ajax({
             url: "/versis/",

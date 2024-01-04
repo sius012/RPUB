@@ -17,6 +17,9 @@ export default class KonfigurasiJurusanView {
             }
         });
 
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        breadcrumb.add([this.nama_component, "active"]);
+
         let table = this.container.find(".jurusan-table").find("tbody");
         table.empty();
         console.log(table);
@@ -26,12 +29,13 @@ export default class KonfigurasiJurusanView {
                 <td>${i + 1}</td>
                 <td>${e.jurusan}</td>
                 <td>${e.keterangan}</td>
-                <td><button class='btn btn-sm btn-danger'><i class='bi bi-trash'></i></button>
+                <td>
                 <button class='btn btn-sm btn-edit btn-warning'><i class='bi bi-pencil'></i></button>
                 </td>
              </tr>
             `);
         });
+        table.closest("table").DataTable();
         this.container.show();
     }
 

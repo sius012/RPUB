@@ -57,11 +57,7 @@
                               </div>
                               <div class="tab-pane fade" id="partisipan1" role="tabpanel">
                                   <div class="container-fluid" id="partisipan-container">
-                                      <div class="card p-2">
-                                          <div class="row">
-                                              <div class="col">Dion</div>
-                                          </div>
-                                      </div>
+                                      <p>Comming soon..</p>
                                   </div>
                               </div>
                           </div>

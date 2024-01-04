@@ -14,7 +14,7 @@
           <input type="hidden" name="id_projek" class="form-control" placeholder="tambahkan id projek" />
           <div class="row">
             <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Nama Tugas</label>
+              <label for="nameBasic" class="form-label" id='nama-tugas-label'>Nama Tugas</label>
               <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Tugas" required />
             </div>
           </div>
@@ -38,15 +38,6 @@
           </div>
           <div class="row">
             <div class="col mb-3">
-              <label for="nameBasic" class="form-label">Jenis</label>
-              <select name="tipe" class="form-select" aria-label="Default select example">
-                <option value="tugas">Tugas</option>
-                <option value="grup">Grup</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-3">
               <label for="nameBasic" class="form-label">Status</label>
 
               <select name="status" class="form-select" aria-label="Default select example">
@@ -59,6 +50,12 @@
                 <option value="Ditinjau">Ditinjau</option>
                 <option value="Selesai">Selesai</option>
               </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="" class="form-label">Nilai Maksimal</label>
+              <input type="number" class="form-control" name="nilai_max">
             </div>
           </div>
         </div>

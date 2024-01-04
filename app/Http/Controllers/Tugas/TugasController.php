@@ -43,7 +43,18 @@ class TugasController extends Controller
     public function store(Request $request)
     {
         //  return response()->json($request->input());
-        Tugas::create($request->input());
+        if ($request->has("duplikat")) {
+            if ($request->duplikat == 1) {
+                $tugas = Tugas::find($request->id);
+                $json = $tugas->toArray();
+                unset($json['id']);
+                unset($json["created_at"]);
+                unset($json["updated_at"]);
+                $newTugas = Tugas::insert($json);
+                return response()->json($newTugas);
+            }
+        }
+        $tugas = Tugas::create($request->input());
     }
 
     /**
@@ -54,13 +65,19 @@ class TugasController extends Controller
      */
     public function show($id, Request $req)
     {
+        if ($req->has("getIndikator")) {
+            if ($req->getIndikator == 1) {
+                $indikator = Tugas::where("id_parent", $id)->where("tipe", "indikator")->get();
+                return response()->json($indikator);
+            }
+        }
         if ($req->has('params')) {
             if ($req->params == ("version-image")) {
                 $versi = Versi::where("id_tugas", $id)->get()->pluck("lampiran");
                 return response()->json($versi);
             }
         }
-        return response()->json(Tugas::wfind($id));
+        return response()->json(Tugas::find($id));
     }
 
     /**

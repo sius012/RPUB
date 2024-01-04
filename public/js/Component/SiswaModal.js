@@ -13,6 +13,7 @@ export default class SiswaModal {
 
     init(load = false) {
         const ctx = this;
+        ctx.reset();
         this.mode = "simpan";
         let angkatan = Angkatan.all();
         ctx.getElement("id_angkatan", "select").empty();
@@ -41,16 +42,28 @@ export default class SiswaModal {
         this.siswa = Siswa.find(id);
         console.log(this.siswa);
         this.getElement("nama").val(this.siswa.nama);
-        this.getElement("email").val(this.siswa.nama);
+        this.getElement("email").val(this.siswa.email);
         this.getElement("id_jurusan", "select").val(this.siswa.id_jurusan);
         this.getElement("id_angkatan", "select").val(this.siswa.id_angkatan);
         this.getElement("jk", "select").val(this.siswa.jk);
         this.getElement("id").val(this.siswa.id);
         this.getElement("nis").val(this.siswa.nis);
+        this.container.find(".pp-viewer").show();
         this.container
             .find(".pp-viewer")
             .attr("src", this.siswa.getFotoProfil());
         this.modal.show();
+    }
+
+    reset() {
+        this.getElement("nama").val("");
+        this.getElement("email").val("");
+        this.getElement("id_jurusan", "select").val("");
+        this.getElement("id_angkatan", "select").val("");
+        this.getElement("jk", "select").val("");
+        this.getElement("id").val("");
+        this.getElement("nis").val("");
+        this.container.find(".pp-viewer").hide();
     }
 
     globalEventListener() {
@@ -64,6 +77,7 @@ export default class SiswaModal {
                     ctx.modal.hide();
                     pageSetup.getComponent("KonfigurasiSiswaView").load();
                 } else {
+                    ctx.modal.hide();
                     Swal.fire("error", "Data gagal dimasukan");
                 }
             }, form);

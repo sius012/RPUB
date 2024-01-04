@@ -13,73 +13,68 @@
 </style>
 
 
-<div class="container py-5" id="konfigurasi-page">
+<div class="container-fluid" id="konfigurasi-view">
     <div class="row">
-        <div class="col-md-4 mb-2 ">
-            <a href="#" class='konfigurasi-angkatan'>
-                <div class="card card-konfigurasi">
-                    <div class="card-body">
-                        <div class="media d-flex">
-                            <div class="media-body text-right">
-                                Konfigurasi Angkatan
-                            </div>
-                            <div class="align-self-center" style="padding-left: 110px;">
-                                <i class="bi bi-person-circle iconn"></i>
-                            </div>
+        <div class="col-md-4 mb-3">
+            <div class="card p-3 konfigurasi-angkatan">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="m-0">Konfigurasi</p>
+                        <h4 class="m-0">Angkatan</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="container">
+                            <i class="fa fa-gear" style="font-size: 40pt"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-md-4 mb-2 ">
-            <a href="#" class='konfigurasi-jurusan'>
-                <div class="card card-konfigurasi">
-                    <div class="card-body">
-                        <div class="media d-flex">
-                            <div class="media-body text-right">
-                                Konfigurasi Kompetensi Keahlian
-                            </div>
-                            <div class="align-self-center" style="padding-left: 110px;">
-                                <i class="bi bi-person-circle iconn"></i>
-                            </div>
+        <div class="col-md-4">
+            <div class="card p-3 konfigurasi-jurusan">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="m-0">Konfigurasi</p>
+                        <h4 class="m-0">Jurusan</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="container">
+                            <i class="fa fa-gear" style="font-size: 40pt"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-md-4 mb-2 ">
-            <a href="#" class='konfigurasi-pengguna'>
-                <div class="card card-konfigurasi">
-                    <div class="card-body">
-                        <div class="media d-flex">
-                            <div class="media-body text-right">
-                                Konfigurasi Pengguna
-                            </div>
-                            <div class="align-self-center" style="padding-left: 110px;">
-                                <i class="bi bi-person-circle iconn"></i>
-                            </div>
+        <div class="col-md-4">
+            <div class="card p-3 konfigurasi-pengguna">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="m-0">Konfigurasi</p>
+                        <h4 class="m-0">Pengguna</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="container">
+                            <i class="fa fa-gear" style="font-size: 40pt"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-md-4 mb-2 ">
-            <a href="#" class='konfigurasi-siswa'>
-                <div class="card card-konfigurasi">
-                    <div class="card-body">
-                        <div class="media d-flex">
-                            <div class="media-body text-right">
-                                Konfigurasi Siswa
-                            </div>
-                            <div class="align-self-center" style="padding-left: 110px;">
-                                <i class="bi bi-person-circle iconn"></i>
-                            </div>
+        <div class="col-md-4">
+            <div class="card p-3 konfigurasi-siswa">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="m-0">Konfigurasi</p>
+                        <h4 class="m-0">Siswa</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="container">
+                            <i class="fa fa-gear" style="font-size: 40pt"></i>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
-
     </div>
 
 

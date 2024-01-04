@@ -11,6 +11,9 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\Tugas;
 use Illuminate\Support\Facades\Hash;
+use App\Models\PenilaianProjek;
+
+use Auth;
 
 class SiswaController extends Controller
 {
@@ -92,7 +95,7 @@ class SiswaController extends Controller
             return response()->json($siswa);
         }
 
-        $siswa = $siswa->paginate(50)->map(function ($q) {
+        $siswa = $siswa->get()->map(function ($q) {
             $sws = $q;
             $sws->ikut_penugasan = $q->penugasan->count() > 0 ? true : false;
             $sws->kelasDanJurusan =  $q->angkatan->kelas() . " " . $q->jurusan->jurusan;
@@ -187,6 +190,57 @@ class SiswaController extends Controller
      */
     public function show(Request $req, $id)
     {
+        $ctx = $this;
+
+        if ($req->has("tugasByProjek")) {
+            $siswa = Siswa::query()->with("penugasan", function ($q) use ($req) {
+                $q->with("tugas")->whereHas("tugas", function ($j) use ($req) {
+                    $j->where("id_projek", $req->id_projek);
+                });
+            })->find($id);
+
+            $siswa->penugasan = $siswa->penugasan->map(function ($q) use ($id) {
+                $sis = PenilaianProjek::where("id_tugas", $q->id_tugas)->where("id_siswa", $id)->where("id_penilai", Auth::user()->id)->get();
+                $q->penilaian = $sis;
+                return $q;
+            });
+
+            return response()->json($siswa);
+        }
+        if ($req->has("projek_semester")) {
+            $projek = Projek::whereHas("tugas.penugasan", function ($q) use ($id) {
+                $q->where("id_siswa", $id);
+            })->get();
+            $projek = $projek->map(function ($e) use ($id, $ctx) {
+                $e->penilaian_projek = PenilaianProjek::where("id_siswa", $id)->where("id_projek", $e->id)->get();
+                if ($e->penilaian_projek->count() > 0) {
+                    $e->penilaian_projek = $e->penilaian_projek->map(function ($j) use ($ctx) {
+                        return  ["n_nformal" => $j->n_nformal, "inisiatif" => $ctx->textToNum($j->antusias), "antusias" => $ctx->textToNum($j->antusias), "kejujuran" => $ctx->textToNum($j->kejujuran), "kreativitas" => $ctx->textToNum($j->kreativitas), "tanggung_jawab" => $ctx->textToNum($j->tanggung_jawab), "komunikasi" => $ctx->textToNum($j->komunikasi), "etika_sopansantun" => $ctx->textToNum($j->etika_sopansantun), "k3" => $ctx->textToNum($j->k3)];
+                    });
+
+                    $columnAverages = ["n_nformal" => 0, "inisiatif" => 0, "antusias" => 0, "kejujuran" => 0, "kreativitas" => 0, "tanggung_jawab" => 0, "komunikasi" => 0, "etika_sopansantun" => 0, "k3" => 0];
+
+                    foreach ($e->penilaian_projek as $row) {
+                        foreach ($row as $columnIndex => $value) {
+                            $columnAverages[$columnIndex] += $value;
+                        }
+                    }
+
+                    foreach ($columnAverages as &$sum) {
+                        $sum /= count($e->penilaian_projek);
+                    }
+
+                    $e->penilaian_projek_avg = $columnAverages;
+                }
+
+
+
+                return $e;
+            });
+            $siswa = Siswa::find($id);
+            $siswa->penilaian_projek_rapor = $projek;
+            return response()->json($siswa);
+        }
 
         if ($req->has("withProjek")) {
             if ($req->withProjek == 1) {
@@ -281,5 +335,26 @@ class SiswaController extends Controller
             $q->where("id", $id_siswa);
         });
         dd($rapor->get());
+    }
+
+    public function textToNum($text)
+    {
+        switch ($text) {
+            case 'A':
+                return 100;
+                break;
+            case 'B':
+                return 80;
+                break;
+            case 'C':
+                return 60;
+                break;
+            case 'D':
+                return 40;
+                break;
+            default:
+                # code...
+                break;
+        }
     }
 }

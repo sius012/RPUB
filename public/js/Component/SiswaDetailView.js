@@ -33,7 +33,7 @@ export default class SiswaDetailView {
             data.forEach(function (e) {
                 ctx.container.find(
                     ".container-projek"
-                ).append(` <div class="row">
+                ).append(` <div class="row mb-2">
             <div class="card card-projek" data-id='${e.id}'>
                 <div class="card-body ">
                     <div class="row">
@@ -41,9 +41,9 @@ export default class SiswaDetailView {
                         <b>${e.nama}</b> <p class='m-0'> ${e.tanggal_awal} s/d ${e.tanggal_akhir}</p></div>
                         <div class='col text-center'>
                         <b>Tugas</b><div class='row'>
-                        <div class="col" style='font-size:8pt'>${e.etc.jumlah_tugas}<p>Total</p> </div>
-                        <div class="col" style='font-size:8pt'>${e.etc.tugas_selesai}<p>Selesai</p></div>
-                        <div class="col" style='font-size:8pt'>${e.etc.proses}<p>Proses</p></div>
+                        <div class="col" style='font-size:8pt'>${e.etc.jumlah_tugas}<p class='m-0'>Total</p> </div>
+                        <div class="col" style='font-size:8pt'>${e.etc.tugas_selesai}<p class='m-0'>Selesai</p></div>
+                        <div class="col" style='font-size:8pt'>${e.etc.proses}<p class='m-0'>Proses</p></div>
                         </div></div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ export default class SiswaDetailView {
         ctx.container.delegate(".raportcard", "click", function (e) {
             e.preventDefault();
             let rM = pageSetup.getComponent("RaportModal");
-            rM.modal.show();
+            rM.load(ctx.siswa.id);
         });
 
         ctx.container.delegate(".card-projek", "click", function () {

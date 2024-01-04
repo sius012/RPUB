@@ -55,13 +55,13 @@
 
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <div class="row row-view raportcard">
-                        <a href="">
+                    <div class="container-fluid">
+                        @for($i = 0; $i < 6;$i++) <div class="row row-view raportcard mb-2" data-semester="{{$i+1}}">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row m-0">
                                         <div class="col-7">
-                                            <h5 class="card-title">Semester 1</h5>
+                                            <h5 class="card-title m-0">Semester {{$i+1}}</h5>
                                         </div>
                                         <div class="col-5 text-end">
                                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -72,17 +72,26 @@
                                     </div>
 
                                 </div>
-                        </a>
 
+                            </div>
                     </div>
-
+                    @endfor
                 </div>
+
+
+
+
+
 
             </div>
 
 
         </div>
+
+
+
     </div>
+</div>
 </div>
 </div>
 </div>

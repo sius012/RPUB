@@ -32,6 +32,8 @@ export default class AssigmentSiswaModal {
             datas.nama = kw;
         }
 
+        console.log(datas);
+
         this.container.find(".siswa-container").empty();
         Siswa.byQuery(datas, function (data) {
             ctx.siswaList = data;

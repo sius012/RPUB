@@ -1,6 +1,7 @@
 import Projek from "../Model/Projek.js";
 import Jurusan from "../Model/Jurusan.js";
 import PenilaianProjek from "./PenilaianProjek.js";
+import Penugasan from "./Penugasan.js";
 export default class Siswa {
     constructor() {
         this.id;
@@ -18,6 +19,7 @@ export default class Siswa {
         this.kelasDanJurusan;
         this.jurusan;
         this.penilaianProjek = null;
+        this.penilaian_projek_rapor;
     }
 
     static byQuery(query, cb) {
@@ -40,14 +42,24 @@ export default class Siswa {
         });
     }
 
-    static find(id) {
+    static find(id, params = {}) {
         var siswa = new Siswa();
+        let data = { projek_semester: params.projek_semester };
         $.ajax({
             url: "/siswa/" + id,
             type: "GET",
-            async: false,
+            data: data,
+            async: params.cb != undefined ? true : false,
             success: function (data) {
                 siswa = Siswa.parse(data);
+                console.log("newdata");
+                console.log(siswa);
+                if (params.cb != undefined) {
+                    params.cb(siswa);
+                }
+            },
+            error: function (err) {
+                alert(err.responseText);
             },
         });
         return siswa;
@@ -93,6 +105,10 @@ export default class Siswa {
             siswa.penilaianProjek = PenilaianProjek.parse(
                 json["penilaianProjek"]
             );
+        }
+
+        if (json["penilaian_projek_rapor"] != undefined) {
+            siswa.penilaian_projek_rapor = json["penilaian_projek_rapor"];
         }
 
         return siswa;
@@ -165,6 +181,24 @@ export default class Siswa {
         });
     }
 
+    static importFromRaporKarakter(cb) {
+        Swal.showLoading();
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/api/siswa",
+            type: "post",
+            success: function (data) {
+                if (data["keterangan"] == "berhasil") {
+                    cb();
+                } else {
+                    // alert("");
+                }
+            },
+        });
+    }
+
     static filter(query, cb) {
         console.log(query);
         let siswa = [];
@@ -180,6 +214,23 @@ export default class Siswa {
             },
             error: function (err) {
                 alert(err.responseText);
+            },
+        });
+    }
+
+    tugasByProjek(id_projek, cb) {
+        $.ajax({
+            url: "/siswa/" + this.id,
+            data: {
+                tugasByProjek: 1,
+                id_projek: id_projek,
+            },
+            type: "get",
+            success: function (data) {
+                let penugasan = data.penugasan.map(function (e) {
+                    return Penugasan.parse(e);
+                });
+                cb(penugasan);
             },
         });
     }

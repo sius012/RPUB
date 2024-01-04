@@ -15,7 +15,7 @@ import UBJurusanModal from "../Component/UBJurusanModal.js";
 
 $(document).ready(function () {
     var breadcrumb = new Breadcrumb($("#breadcrumb"));
-    var konfigurasiPage = new KonfigurasiView($("#konfigurasi-page"));
+    var konfigurasiPage = new KonfigurasiView($("#konfigurasi-view"));
     var kav = new KonfigurasiAngkatanView($("#konfigurasi_angkatan_view"));
     var kjv = new KonfigurasiJurusanView($("#konfigurasi_jurusan_view"));
     var kpv = new KonfigurasiPenggunaView($("#konfigurasi_pengguna_view"));
@@ -48,6 +48,8 @@ $(document).ready(function () {
     pageSetup.add(swsModal);
 
     pageSetup.add(breadcrumb);
+
+    konfigurasiPage.load();
 
     pageSetup.init();
 });

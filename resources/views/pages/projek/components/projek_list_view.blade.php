@@ -1,4 +1,4 @@
-<div class="container flex-grow-1 container-p-y" id="projek-list-view">
+<div class="container-fluid" id="projek-list-view">
 
     <div class="row">
         <div class="col-md-12">
@@ -36,5 +36,4 @@
 
 <script type="text/javascript">
     var link = document.getElementById('click');
-    
 </script>

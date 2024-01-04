@@ -16,6 +16,7 @@
 <div class="content-wrapper" style="display: none;" id="konfigurasi_angkatan_view">
     <div class=" container-xxl">
         <div class="row">
+
             <div class="button"><button type="button" class="btn btn-primary btn-tambah-angkatan mb-4" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
                     Tambah Angkatan
                 </button></div>

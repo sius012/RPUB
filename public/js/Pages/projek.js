@@ -5,7 +5,7 @@ import JurusanListView from "../Component/JurusanListView.js";
 import ProjekListView from "../Component/ProjekListView.js";
 import ProjekModal from "../Component/ProjekModal.js";
 import DetailProjekView from "../Component/DetailProjekView.js";
-import TugasModal from "../Component/TugasModal.js";
+import TugasModal from "../Component/Tugasmodal.js";
 import ContextMenu from "../Component/ContextMenu.js";
 import TugasDetailView from "../Component/TugasDetailView.js";
 import AssignmentSiswaModal from "../Component/AssignmentSiswaModal.js";
@@ -62,12 +62,26 @@ $(document).ready(function () {
             },
         ],
         [
-            "Subtugas",
+            "Indikator",
             function (id) {
                 pageSetup.getComponent("TugasModal").attach(id);
             },
+            function (id) {
+                let tugas = pageSetup.getTugasCache(id);
+                if (tugas.tipe == "indikator") {
+                    return false;
+                }
+            },
         ],
-        ["Duplikat"],
+        [
+            "Duplikat",
+            function (id) {
+                console.log(pageSetup.getTugasCache(id));
+                pageSetup.getTugasCache(id).duplikat(function (data) {
+                    detailProjekView.loadTugas();
+                });
+            },
+        ],
     ]);
 
     contextMenuStatus.init(

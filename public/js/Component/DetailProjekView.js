@@ -165,7 +165,7 @@ export default class DetailProjekView {
 
     loadLaporan() {
         const ctx = this;
-        Versi.all(function (data) {
+        Versi.byProjek(ctx.projek.id, function (data) {
             let table = ctx.container.find("#laporan").find("tbody");
             table.empty("");
             data.forEach(function (e, i) {
@@ -202,18 +202,22 @@ export default class DetailProjekView {
         var tugasStr = `
      <tr data-id='${tugas.id_tugas}'>
         <td class="no">${index}</td>
-        <td style="padding-left: ${tugas.indent_level * 20}px">${tugas.nama}
-        <img src='' style='width: 15px'>
+        <td style="padding-left: ${tugas.indent_level * 20}px"><span>
+        ${
+            tugas.tipe == "tugas"
+                ? "<i class='fa fa-tasks mx-2'></i>"
+                : "<i class='fa fa-circle-o mx-2'></i>"
+        }${tugas.nama}</span>
         </td>
         <td class='status'>${
-            tugas.tipe == "grup" ? barStr : Helper.status(tugas.status)
+            tugas.tipe == "indikator" ? "" : Helper.status(tugas.status)
         }</td>
         <td>${tugas.keterangan}</td>
-        <td>${tugas.tanggal_awal}</td>
-        <td>${tugas.tanggal_akhir}</td>
+        <td>${tugas.tanggal_awal != null ? tugas.tanggal_awal : ""}</td>
+        <td>${tugas.tanggal_akhir != null ? tugas.tanggal_akhir : ""}</td>
         <td class='partisipan'>
         <div>
-
+            
         </div>
         </td>
      </tr>
@@ -242,14 +246,25 @@ export default class DetailProjekView {
                 .find("tr[data-id=" + id + "]")
                 .find(".partisipan");
             cont.empty();
-            data.forEach(function (e) {
-                console.log("datanya");
-                console.log(e);
-                cont.append(
-                    `<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="${e.siswa.getFotoProfil()}">` +
-                        ","
-                );
-            });
+
+            let tugas = pageSetup.getTugasCache(id);
+
+            if (tugas.tipe == "tugas") {
+                if (data.length > 0) {
+                    data.forEach(function (e) {
+                        console.log("datanya");
+                        console.log(e);
+                        cont.append(
+                            `<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="${e.siswa.getFotoProfil()}">` +
+                                ","
+                        );
+                    });
+                } else {
+                    cont.html(
+                        "<button class='btn btn-sm btn-primary'>Tambah Partisipan</button>"
+                    );
+                }
+            }
         });
     }
 
@@ -423,6 +438,7 @@ export default class DetailProjekView {
                         params[value[0]] = value[1]; // Add new key-value pair
                     }
                 });
+                console.log(params);
                 let projek = Projek.parse(params);
                 projek.simpan();
             });
@@ -489,9 +505,7 @@ export default class DetailProjekView {
             switching = false;
             rows = table.children("tr");
 
-            for (i = 0; i < rows.length; i++) {
-                alert("tes");
-            }
+            for (i = 0; i < rows.length; i++) {}
 
             if (shouldSwitch) {
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);

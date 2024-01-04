@@ -17,7 +17,6 @@ class CreateVersisTable extends Migration
             $table->id();
             $table->bigInteger("id_tugas");
             $table->bigInteger("id_siswa");
-            $table->bigInteger("nomor_versi");
             $table->string("nama");
             $table->string("keterangan");
             $table->string("lampiran")->nullable();

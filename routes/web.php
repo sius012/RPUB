@@ -9,6 +9,7 @@ use App\Http\Controllers\Penugasan\PenugasanController;
 use App\Http\Controllers\Projek\ProjekController;
 use App\Http\Controllers\Register\RegisterController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Siswa\API_SiswaController;
 use App\Http\Controllers\Siswa\SiswaController;
 use App\Http\Controllers\Tugas\TugasController;
 use App\Http\Controllers\UBJurusan\UBJurusanController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Models\Projek;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,11 +138,27 @@ Route::get("/permissionprojek/{id}", function ($id) {
     $query = Projek::where("id", $id)->whereHas("projek_jurusan.jurusan.ub_jurusan", function ($q) {
         $q->where("id_pengguna", Auth::user()->id);
     })->get();
-    if ($query->count() > 0) {
+    $rolesName = Auth::user()->roles->pluck("name")->toArray();
+    // dd($rolesName);
+    if ($query->count() > 0 || in_array("Super Admin", $rolesName)) {
         return response()->json(true);
     } else {
         return response()->json(false);
     }
+});
+
+Route::prefix("api")->group(function () {
+    Route::resource("siswa", API_SiswaController::class);
+    Route::get("/issuperadmin", function () {
+        return response()->json(Auth::user()->hasRole("Super Admin"));
+    });
+});
+
+
+Route::get("/dangerzone/init", function () {
+    Artisan::call("migrate:fresh");
+    Artisan::call(("db:seed"));
+    return redirect("/");
 });
 
 Route::view("/test", "output.output");

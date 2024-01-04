@@ -1,11 +1,11 @@
 <div class="row" id="konfigurasi_siswa_view" style="display: none;">
-    <div class="container d-flex">
-        <div class="button">
-            <button type="button" class="btn btn-primary btn-tambah-siswa mb-2" data-bs-toggle="modal" data-bs-target="#basicModal" id="tambah-jurusan">
-                Tambah Data Siswa
-            </button>
+    <div class="container ">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-tambah-siswa">Tambah Siswa</button>
+            <button type="button" class="btn btn-success btn-raporkarakter"><i class='fa fa-book'></i></button>
+        </div>
 
-            <form id="searchForm">
+        <!-- <form id="searchForm">
                 <label for="siswa">Nama siswa:</label>
                 <input type="text" name="siswa" placeholder="Cari Nama Siswa..">
 
@@ -38,43 +38,37 @@
                 </select>
 
                 <button type="submit">Search</button>
-            </form>
+            </form> -->
 
-            <!-- Display results here -->
-            <div id="results"></div>
-
-            <script>
-                // Handle form submission
-                document.getElementById('searchForm').addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    // Fetch and display results using JavaScript (e.g., Fetch API)
-                });
-            </script>
+        <!-- Display results here -->
+        <div id="results"></div>
 
 
-            <div class="container-siswa">
-                <div class="card">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Angkatan</th>
-                                <th>Jurusan</th>
-                                <th>Kelas dan Jurusan</th>
-                                <th>Email</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                        </tbody>
-                    </table>
-                </div>
+
+        <div class="container-siswa mt-3">
+            <div class="card p-1">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Angkatan</th>
+                            <th>Jurusan</th>
+                            <th>Kelas dan Jurusan</th>
+                            <th>Email</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 </div>
 </div>
 </div>

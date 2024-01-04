@@ -1,6 +1,7 @@
 import Projek from "../Model/Projek.js";
 import Jurusan from "../Model/Jurusan.js";
 import User from "../Model/User.js";
+import Helper from "../Helper/Helper.js";
 export default class ProjekModal {
     constructor(container) {
         this.container = container;
@@ -131,7 +132,7 @@ export default class ProjekModal {
             formData.forEach(function (e) {
                 newFormData[e["name"]] = e["value"];
             });
-
+            console.log(newFormData);
             ctx.fastParse(newFormData);
 
             if (newFormData["id_penanggung_jawab"].length > 0) {
@@ -149,8 +150,12 @@ export default class ProjekModal {
         this.getElement("jenis_projek", "select").change(function () {
             if ($(this).val() == "Projek Eksternal") {
                 ctx.getElement("nilai_projek").closest(".row").show();
+                ctx.getElement("klien").closest(".row").show();
+                ctx.getElement("klien").removeAttr("disabled");
             } else {
                 ctx.getElement("nilai_projek").closest(".row").hide();
+                ctx.getElement("klien").closest(".row").hide();
+                ctx.getElement("klien").attr("disabled", "disabled");
             }
         });
 
@@ -210,9 +215,13 @@ export default class ProjekModal {
             );
             console.log(containerPj);
         });
+
+        Helper.validasiTanggal(ctx);
     }
 
     getElement(name, type = "input") {
         return this.container.find(`${type}[name=${name}]`);
     }
+
+    validasi(cb) {}
 }

@@ -5,7 +5,7 @@ export default class Helper {
     static status(status, onlytext = false) {
         var statusStr = "";
         switch (status) {
-            case "Belum Dimulai":
+            case "Belum Dimulai" || "Belum dimulai ":
                 statusStr = "bg-secondary";
                 break;
 
@@ -106,6 +106,52 @@ export default class Helper {
             type: "get",
             success: function (data) {
                 cb(data);
+            },
+        });
+    }
+
+    static validasiTanggal(ctx, params = { min: null, max: null }) {
+        ctx.getElement("tanggal_akhir").change(function (e) {
+            if ($(this).val() < ctx.getElement("tanggal_awal").val()) {
+                $(this).val(ctx.getElement("tanggal_awal").val());
+            }
+
+            if (params.min != null && params.max != null) {
+                if ($(this).val() > params.max) {
+                    $(this).val(params.max);
+                }
+                if ($(this).val() < params.min) {
+                    $(this).val(params.min);
+                }
+            }
+        });
+
+        ctx.getElement("tanggal_awal").change(function () {
+            if ($(this).val() > ctx.getElement("tanggal_akhir").val()) {
+                $(this).val(ctx.getElement("tanggal_akhir").val());
+            }
+
+            if (params.min != null && params.max != null) {
+                if ($(this).val() > params.max) {
+                    $(this).val(params.max);
+                }
+                if ($(this).val() < params.min) {
+                    $(this).val(params.min);
+                }
+            }
+        });
+    }
+
+    static isSuperAdmin(cb, cb2) {
+        $.ajax({
+            url: "/api/issuperadmin",
+            type: "get",
+            success: function (data) {
+                if (data == true) {
+                    cb();
+                } else {
+                    cb2();
+                }
             },
         });
     }

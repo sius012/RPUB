@@ -21,19 +21,23 @@
                             <div class='form-group mb-3' draggable='true'><label class='form-label'>Angkatan</label><select name="id_angkatan" class='form-control' id="">
                                     <option value=""></option>
                                 </select></div>
+
                         </div>
                         <div class="col">
                             <div class='form-group mb-3' draggable='true'><label class='form-label'>Jurusan</label><select name="id_jurusan" class='form-control' id="">
                                     <option value=""></option>
                                 </select></div>
-                            <div class='form-group mb-3' draggable='true'><label class='form-label'>email</label><input class='form-control' name='email' type='text'></div>
+                            <div class='form-group mb-3' draggable='true'><label class='form-label'>email</label><input class='form-control' name='email' type='email'></div>
                             <div class='form-group mb-3' draggable='true'><label class='form-label'>password</label><input class='form-control' name='password' type='text'>
 
                             </div>
                             <div class='form-group mb-3' draggable='true'>
-                                <div class="row">
+                                <div class="row mb-3">
                                     <div class="col"><label class='form-label'>fotoprofil</label><input class='form-control' name='fotoprofil' type='file'></div>
-                                    <div class="col"> <img src="" alt="" class='pp-viewer'></div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col"> <img src="" alt="" class='pp-viewer' style="width: 100px; height: 100px; object-fit: cover"></div>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +48,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Kirim</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </div>

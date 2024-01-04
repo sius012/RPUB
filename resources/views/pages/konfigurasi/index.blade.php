@@ -19,4 +19,3 @@
 @push('script')
 <script src="{{ asset('js/Pages/konfigurasi.js') }}" type="module"></script>
 @endpush
-+

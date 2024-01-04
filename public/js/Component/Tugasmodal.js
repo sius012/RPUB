@@ -1,5 +1,6 @@
 import Tugas from "../Model/Tugas.js";
 import Jenis from "../Model/Jenis.js";
+import Helper from "../Helper/Helper.js";
 export default class TugasModal {
     constructor(container) {
         this.container = container;
@@ -8,11 +9,17 @@ export default class TugasModal {
         this.tugas = new Tugas();
         this.page_setup;
         this.nama_component = "TugasModal";
+        this.tipe = "tugas";
     }
 
     init(projekdata) {
         let ctx = this;
         this.projek_data = projekdata;
+
+        Helper.validasiTanggal(this, {
+            min: ctx.projek_data.tanggal_awal,
+            max: ctx.projek_data.tanggal_akhir,
+        });
         this.getElement("id_projek").val(this.projek_data.id);
 
         var jenis = this.getElement("id_jenis", "select");
@@ -36,7 +43,21 @@ export default class TugasModal {
         this.reset();
         this.tugas = Tugas.find(id, { jenis: true });
         this.getElement("id_parent").val(id);
+        this.container.find(".modal-title").text("Tambah Indikator Penilaian");
+
+        this.getElement("tanggal_awal").closest(".row").hide();
+        this.getElement("tanggal_akhir").closest(".row").hide();
+
+        this.getElement("tanggal_awal").removeAttr("required");
+        this.getElement("tanggal_akhir").removeAttr("required");
+
+        this.getElement("nilai_max").closest(".row").show();
+        this.getElement("nilai_max").attr("required", "required");
+
+        this.container.find("#nama-tugas-label").text("Indikator");
         this.modal.show();
+
+        this.tipe = "indikator";
     }
 
     fromElement() {
@@ -45,12 +66,23 @@ export default class TugasModal {
         this.tugas.id_projek = this.getElement("id_projek").val();
         this.tugas.nama = this.getElement("nama").val();
         this.tugas.keterangan = this.getElement("keterangan", "textarea").val();
-        this.tugas.tipe = this.getElement("tipe", "select").val();
-        this.tugas.tanggal_awal = this.getElement("tanggal_awal").val();
-        this.tugas.tanggal_akhir = this.getElement("tanggal_akhir").val();
+
+        this.tugas.tipe = this.tipe == "tugas" ? "tugas" : "indikator";
+
+        this.tugas.tanggal_awal =
+            this.tipe == "tugas" ? this.getElement("tanggal_awal").val() : null;
+        this.tugas.tanggal_akhir =
+            this.tipe == "tugas"
+                ? this.getElement("tanggal_akhir").val()
+                : null;
         this.tugas.status = this.getElement("status", "select").val();
+
+        if (this.tipe == "indikator") {
+            this.tugas.nilai_max = this.getElement("nilai_max").val();
+        }
         console.log(this.getElement("id_jenis", "select"));
-        console.log(this.tugas);
+        console.log("setelah diparsing");
+        console.log(this);
     }
 
     reset() {
@@ -61,7 +93,22 @@ export default class TugasModal {
         this.getElement("id_jenis", "select").val("");
         this.getElement("tanggal_awal").val("");
         this.getElement("tanggal_akhir").val("");
+
+        this.getElement("tanggal_awal").attr("required", "required");
+        this.getElement("tanggal_akhir").attr("required", "required");
+
         this.getElement("status", "select").val("Belum Dimulai");
+
+        this.container.find(".modal-title").text("Tambah Tugas/Kompetensi");
+
+        this.container.find("#nama-tugas-label").text("Nama Tugas");
+
+        this.getElement("tanggal_awal").closest(".row").show();
+        this.getElement("tanggal_akhir").closest(".row").show();
+        this.getElement("nilai_max").closest(".row").hide();
+        this.getElement("nilai_max").removeAttr("required");
+
+        this.tipe = "tugas";
     }
 
     globalEventListener() {
