@@ -79,7 +79,7 @@ class Tugas extends Model
 
     public function penugasan()
     {
-        return $this->hasOne(Penugasan::class, "id_tugas", "id");
+        return $this->hasMany(Penugasan::class, "id_tugas", "id");
     }
 
     public function projek()

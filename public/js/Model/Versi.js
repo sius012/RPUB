@@ -2,7 +2,7 @@ import Siswa from "./Siswa.js";
 import Tugas from "./Tugas.js";
 export default class Versi {
     constructor() {
-        this.id_versi;
+        this.id;
         this.id_tugas;
         this.id_siswa;
         this.nomor_versi;
@@ -31,7 +31,7 @@ export default class Versi {
     static parse(json) {
         var versi = new Versi();
 
-        versi.id_versi = json["id_versi"];
+        versi.id = json["id"];
         versi.id_tugas = json["id_tugas"];
         versi.id_siswa = json["id_siswa"];
         versi.nomor_versi = json["nomor_versi"];
@@ -155,5 +155,21 @@ export default class Versi {
             },
         });
         return versi;
+    }
+
+    changeStatus(status, cb) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/versis/" + this.id,
+            type: "put",
+            data: {
+                status: status,
+            },
+            success: function (data) {
+                cb(data);
+            },
+        });
     }
 }

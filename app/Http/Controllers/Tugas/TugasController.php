@@ -65,6 +65,10 @@ class TugasController extends Controller
      */
     public function show($id, Request $req)
     {
+        if ($req->has("partisipan")) {
+            $tugas = Tugas::with("penugasan.siswa")->find($id);
+            return response()->json($tugas);
+        }
         if ($req->has("getIndikator")) {
             if ($req->getIndikator == 1) {
                 $indikator = Tugas::where("id_parent", $id)->where("tipe", "indikator")->get();
@@ -113,6 +117,9 @@ class TugasController extends Controller
     public function destroy($id)
     {
         $tugas = Tugas::find($id);
+
+        //hapusindikator
+        
         $tugas->delete();
     }
 

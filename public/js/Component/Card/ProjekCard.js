@@ -25,11 +25,7 @@ export default class ProjekCard {
             .map(function (e) {
                 return `<div class=''><span class="badge bg-primary mr-4">${e.jurusan}</span></div><div class='m-2'></div>`;
             })
-            .join(
-                ""
-            )}</div></div><div class='col-6 text-end'>${Helper.formatShortDate(
-            this.projek.tanggal_akhir
-        )}</div></div>
+            .join("")}</div></div></div>
     
         
             <h5 class="card-title">${this.projek.nama}</h5>
@@ -37,6 +33,7 @@ export default class ProjekCard {
             <p class="card-text">
                 <small class="text-muted">${this.projek.jenis_projek}</small>
             </p>
+            <span>${Helper.formatShortDate(this.projek.tanggal_akhir)}</span>
       </div>
     </div>
         </a>

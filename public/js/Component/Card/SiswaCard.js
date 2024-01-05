@@ -15,7 +15,7 @@ export default class SiswaCard {
               }"
               data-bs-dismiss="modal"
           >
-              <i class="fa fa-star"></i>
+              <i class="fa fa-sticky-note"></i>
           </button>
          
       </div>`;

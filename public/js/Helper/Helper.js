@@ -2,10 +2,14 @@ import Siswa from "../Model/Siswa.js";
 import pageSetup from "../Component/PageSetup.js";
 
 export default class Helper {
-    static status(status, onlytext = false) {
-        var statusStr = "";
+    static status(status, onlytext = false, params = { class: "status" }) {
+        let statusStr = "";
         switch (status) {
-            case "Belum Dimulai" || "Belum dimulai ":
+            case "Belum dimulai":
+                statusStr = "bg-secondary";
+                break;
+
+            case "Belum Dimulai":
                 statusStr = "bg-secondary";
                 break;
 
@@ -33,7 +37,7 @@ export default class Helper {
         if (onlytext) {
             return statusStr;
         }
-        return `<span class='badge status ${statusStr}'>${status}</span>`;
+        return `<span class='badge ${statusStr} ${params.class}'>${status}</span>`;
     }
 
     static getCurrentAuthSiswa() {
@@ -152,6 +156,16 @@ export default class Helper {
                 } else {
                     cb2();
                 }
+            },
+        });
+    }
+
+    static checkGuard(cb) {
+        $.ajax({
+            url: "/api/checkguard",
+            type: "get",
+            success: function (data) {
+                cb(data);
             },
         });
     }

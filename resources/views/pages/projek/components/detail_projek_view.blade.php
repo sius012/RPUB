@@ -2,8 +2,21 @@
 <div class="containers" id="detail-projek-view" style="display: none;">
     <div class="row">
         <div class="container-fluid">
-            <h6 class="text-muted">Basic</h6>
+
+
             <div class="nav-align-top mb-4">
+                <div class="mb-3">
+                    <div class="card p-3">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class='main-title m-0'></h4>
+                            </div>
+                            <div class="col">
+                                <div class="container-status-main"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#informasi-projek" aria-controls="navs-top-home" aria-selected="true">
@@ -60,7 +73,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Penanggung Jawab</label>
-                                        <select name="id_penanggung_jawab" readonly id=" " class="penanggung_jawab form-control">
+                                        <select disabled name="id_penanggung_jawab" id=" " class="penanggung_jawab form-control">
 
                                         </select>
                                     </div>
@@ -78,6 +91,18 @@
                                         <label for="" class="form-label">Nilai Projek</label>
                                         <input type="text" name="nominal" value="2000000" class="nominal form-control" placeholder="tambahkan nama klien" readonly />
                                     </div>
+                                    <div class="form-group">
+                                        <label for="nameBasic" class="form-label">Status</label>
+                                        <select name="status" class="status form-select" disabled aria-label="Default select example">
+                                            <option value="Belum Dimulai">Belum Dimulai</option>
+                                            <option value="Siap Dikerjakan">Siap Dikerjakan</option>
+                                            <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
+                                            <option value="Revisi">Revisi</option>
+                                            <option value="Ditunda">Ditunda</option>
+                                            <option value="Ditinjau">Ditinjau</option>
+                                            <option value="Selesai">Selesai</option>
+                                        </select>
+                                    </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Jurusan</label>
                                         <div class="container-jurusan-row">
@@ -87,7 +112,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Perbarui</button>
+                            <button type="submit" class="btn btn-primary perbarui-informasi">Perbarui</button>
                         </form>
                     </div>
 

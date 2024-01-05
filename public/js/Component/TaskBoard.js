@@ -79,17 +79,6 @@ export default class TaskBoard {
     globalEventListener() {
         let ctx = this;
 
-        this.container.delegate(".status", "click", function (e) {
-            e.stopPropagation();
-            console.log(pageSetup.getComponent("ContextMenuStatus"));
-            pageSetup
-                .getComponent("ContextMenuStatus")
-                .trigger(
-                    $(this).closest(".task"),
-                    $(this).closest(".task").data("id")
-                );
-        });
-
         this.container.delegate(".tugas-card", "click", function () {
             pageSetup.getComponent("TugasDetailView").load($(this).data("id"));
         });

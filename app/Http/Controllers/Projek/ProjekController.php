@@ -149,6 +149,7 @@ class ProjekController extends Controller
         $projek->id_penanggung_jawab = $request->id_penanggung_jawab;
         $projek->klien = $request->klien;
         $projek->jenis_projek = $request->jenis_projek;
+        $projek->status = $request->status;
         $projek->save();
 
         //clear projekJurusan

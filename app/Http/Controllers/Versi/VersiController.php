@@ -93,7 +93,16 @@ class VersiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $versi = Versi::find($id);
+
+
+        if ($request->filled("status")) {
+            $versi->status = $request->status;
+        }
+
+        $versi->save();
+
+        return response()->json($versi);
     }
 
     /**

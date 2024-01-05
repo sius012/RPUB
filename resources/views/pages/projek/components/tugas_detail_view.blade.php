@@ -20,6 +20,11 @@
                                   </button>
                               </li>
                               <li class="nav-item">
+                                  <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#indikator-kompetensi" aria-controls="navs-top-profile" aria-selected="false">
+                                      Indikator Kompetensi
+                                  </button>
+                              </li>
+                              <li class="nav-item">
                                   <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#partisipan1" aria-controls="navs-top-profile" aria-selected="false">
                                       Partisipan
                                   </button>
@@ -51,15 +56,33 @@
 
                               <div class="tab-pane fade" id="versi1" role="tabpanel">
                                   <button type="button" class="btn btn-primary tombol-tambah-versi mb-3" id="tombol-tambah-versi">
-                                      Buat Versi
+                                      Buat Laporan
                                   </button>
                                   <div id="versi-list"></div>
                               </div>
-                              <div class="tab-pane fade" id="partisipan1" role="tabpanel">
-                                  <div class="container-fluid" id="partisipan-container">
-                                      <p>Comming soon..</p>
+                              <div class="tab-pane fade" id="indikator-kompetensi" role="tabpanel">
+                                  <div class="container-fluid ">
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th>No</th>
+                                                  <th>Indikator</th>
+                                                  <th>Nilai Maksimal</th>
+                                                  <th></th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+
+                                          </tbody>
+                                      </table>
                                   </div>
                               </div>
+                              <div class="tab-pane fade" id="partisipan1" role="tabpanel">
+                                  <div class="container-fluid" id="partisipan-container">
+
+                                  </div>
+                              </div>
+
                           </div>
                       </div>
                   </div>

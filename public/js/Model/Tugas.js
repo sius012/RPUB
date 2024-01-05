@@ -1,6 +1,7 @@
 import Jenis from "./Jenis.js";
 import pageSetup from "../Component/PageSetup.js";
 import Penugasan from "./Penugasan.js";
+import Siswa from "./Siswa.js";
 export default class Tugas {
     constructor() {
         this.id_tugas;
@@ -154,6 +155,25 @@ export default class Tugas {
         });
     }
 
+    update(cb) {
+        let ctx = this;
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/tugas/" + this.id_tugas,
+            type: "put",
+            data: ctx.toJson(),
+            success: function (data) {
+                console.log(data);
+                cb(data);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
+
     duplikat(cb = null) {
         $.ajax({
             headers: {
@@ -261,6 +281,25 @@ export default class Tugas {
             },
             error: function (err) {
                 alert(err.responseText);
+            },
+        });
+    }
+
+    getPartisipan(cb) {
+        let ctx = this;
+        $.ajax({
+            url: "/tugas/" + this.id_tugas,
+            data: {
+                partisipan: 1,
+            },
+            type: "get",
+            success: function (data) {
+                console.log(data);
+                let partisipan = data["penugasan"].map(function (e) {
+                    return Siswa.parse(e["siswa"]);
+                });
+                ctx.partisipan = partisipan;
+                cb(partisipan);
             },
         });
     }

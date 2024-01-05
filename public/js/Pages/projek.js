@@ -11,9 +11,7 @@ import TugasDetailView from "../Component/TugasDetailView.js";
 import AssignmentSiswaModal from "../Component/AssignmentSiswaModal.js";
 import PenilaianProjekModal from "../Component/PenilaianProjekModal.js";
 import Helper from "../Helper/Helper.js";
-
-import Jurusan from "../Model/Jurusan.js";
-import Projek from "../Model/Projek.js";
+import Versi from "../Model/Versi.js";
 
 $(document).ready(function () {
     var breadcrumb = new Breadcrumb($("#breadcrumb"));
@@ -35,10 +33,12 @@ $(document).ready(function () {
     var contextMenuTugas = new ContextMenu();
     var contextMenuStatus = new ContextMenu();
     var contextMenuPartisipan = new ContextMenu();
+    var contextMenuStatusLaporan = new ContextMenu();
 
     contextMenuTugas.nama_component = "ContextMenuTugas";
     contextMenuStatus.nama_component = "ContextMenuStatus";
     contextMenuPartisipan.nama_component = "ContextMenuPartisipan";
+    contextMenuStatusLaporan.nama_component = "ContextMenuStatusLaporan";
     contextMenuTugas.init([
         [
             "Buka",
@@ -47,7 +47,7 @@ $(document).ready(function () {
             },
             function (id) {
                 let tugas = pageSetup.getTugasCache(id);
-                if (tugas.tipe == "grup") {
+                if (tugas.tipe == "indikator") {
                     return false;
                 }
             },
@@ -80,6 +80,12 @@ $(document).ready(function () {
                 pageSetup.getTugasCache(id).duplikat(function (data) {
                     detailProjekView.loadTugas();
                 });
+            },
+        ],
+        [
+            "Edit",
+            function (id) {
+                pageSetup.getComponent("TugasModal").loadTugas(id);
             },
         ],
     ]);
@@ -141,6 +147,58 @@ $(document).ready(function () {
             },
         ],
     ]);
+
+    contextMenuStatusLaporan.init(
+        [
+            [
+                "Selesai",
+                function (id) {
+                    let versi = Versi.find(id);
+                    versi.changeStatus("Selesai", function () {
+                        pageSetup
+                            .getComponent("TugasDetailView")
+                            .load(versi.id_tugas);
+                    });
+                },
+            ],
+            [
+                "Belum Dimulai",
+                function (id) {
+                    let versi = Versi.find(id);
+                    versi.changeStatus("Belum Dimulai", function () {
+                        pageSetup
+                            .getComponent("TugasDetailView")
+                            .load(versi.id_tugas);
+                    });
+                },
+            ],
+            [
+                "Dalam Pengerjaan",
+                function (id) {
+                    let versi = Versi.find(id);
+                    versi.changeStatus("Dalam Pengerjaan", function () {
+                        pageSetup
+                            .getComponent("TugasDetailView")
+                            .load(versi.id_tugas);
+                    });
+                },
+            ],
+            [
+                "Siap Dikerjakan",
+                function (id) {
+                    let versi = Versi.find(id);
+                    versi.changeStatus("Siap Dikerjakan", function () {
+                        pageSetup
+                            .getComponent("TugasDetailView")
+                            .load(versi.id_tugas);
+                    });
+                },
+            ],
+        ],
+        function () {
+            taskboard.load();
+        }
+    );
     pageSetup.add(projekListView);
     pageSetup.add(projekModal);
     pageSetup.add(detailProjekView);
@@ -153,13 +211,14 @@ $(document).ready(function () {
     pageSetup.add(breadcrumb);
     pageSetup.add(penilaianProjekModal);
     pageSetup.add(tugasModal);
+    pageSetup.add(contextMenuStatusLaporan);
 
     //Check jika ada projek yang redirect
     if (Helper.exurl().length == 3) {
         detailProjekView.load(Helper.exurl()[2]);
     } else {
         projekListView.load();
-    }
+    }   
 
     pageSetup.init();
 });

@@ -152,6 +152,13 @@ Route::prefix("api")->group(function () {
     Route::get("/issuperadmin", function () {
         return response()->json(Auth::user()->hasRole("Super Admin"));
     });
+    Route::get('/checkguard', function () {
+        if (Auth::guard("student")->check()) {
+            return response()->json("student");
+        } else {
+            return response()->json("admin");
+        }
+    });
 });
 
 

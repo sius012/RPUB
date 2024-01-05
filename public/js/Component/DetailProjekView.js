@@ -40,6 +40,7 @@ export default class DetailProjekView {
                     }
                 });
 
+                ctx.container.find(".perbarui-informasi").hide();
                 ctx.container.show();
                 ctx.loadData(id);
                 ctx.loadInfoProjek();
@@ -62,7 +63,27 @@ export default class DetailProjekView {
     loadInfoProjek() {
         const ctx = this;
         var infoprojek = this.container.find("#informasi-projek");
+        //ubah semua kolom inputan menjadi readonly
+        infoprojek.find("input").each(function () {
+            $(this).attr("readonly", "readonly");
+        });
+
+        //ubah semua kolom inputan menjadi disable
+        infoprojek.find("select,input[type=checkbox").each(function () {
+            $(this).attr("disabled", "disabled");
+        });
+
         console.log(this.projek);
+        this.container.find(".main-title").text(this.projek.nama);
+        this.container
+            .find(".container-status-main")
+            .html(
+                `<span class='badge status ${Helper.status(
+                    this.projek.status,
+                    true
+                )}'>${this.projek.status}</span>`
+            );
+
         infoprojek.find(".nama-projek").val(this.projek.nama);
         infoprojek.find(".deskripsi").val(this.projek.deskripsi);
         infoprojek.find(".id-projek").val(this.projek.id);
@@ -78,6 +99,22 @@ export default class DetailProjekView {
         infoprojek
             .find(".penanggung_jawab")
             .val(this.projek.penanggung_jawab.name);
+
+        if (this.projek.jenis_projek == "Projek Eksternal") {
+            infoprojek.find("input[name=klien]").closest(".form-group").hide();
+            infoprojek
+                .find("input[name=nominal]")
+                .closest(".form-group")
+                .hide();
+        } else {
+            infoprojek.find("input[name=klien]").closest(".form-group").hide();
+            infoprojek
+                .find("input[name=nominal]")
+                .closest(".form-group")
+                .hide();
+        }
+
+        infoprojek.find(".container-jurusan-row").empty();
 
         Jurusan.all({ ubjurusan: true }, function (jurusan) {
             jurusan.forEach(function (e) {
@@ -105,6 +142,7 @@ export default class DetailProjekView {
                         $(this).find("input").attr("checked", "checked");
                     } else {
                     }
+                    $(this).find("input").attr("disabled", "disabled");
                 });
         });
 
@@ -170,11 +208,15 @@ export default class DetailProjekView {
             table.empty("");
             data.forEach(function (e, i) {
                 table.append(
-                    `<tr><td>${i + 1}</td><td>${e.nama}</td><td>${
+                    `<tr ><td>${i + 1}</td><td>${e.nama}</td><td>${
                         e.keterangan
-                    }</td><td>${Helper.status(e.status)}</td><td>${
-                        e.tugas.nama
-                    }</td><td>${Helper.formatShortDate(
+                    }</td><td data-id='${e.id}'>${Helper.status(
+                        e.status,
+                        false,
+                        {
+                            class: "status-laporan",
+                        }
+                    )}</td><td>${e.tugas.nama}</td><td>${Helper.formatShortDate(
                         e.timestamp.created_at
                     )}</td><td>${e.siswa.nama}</td></tr>`
                 );
@@ -259,6 +301,7 @@ export default class DetailProjekView {
                                 ","
                         );
                     });
+                    cont.append(`<span>${data.length}</span>`);
                 } else {
                     cont.html(
                         "<button class='btn btn-sm btn-primary'>Tambah Partisipan</button>"
@@ -266,6 +309,63 @@ export default class DetailProjekView {
                 }
             }
         });
+    }
+
+    validasiInformasi() {
+        let ctx = this;
+
+        let jurusanCount = 0;
+        let inputFieldCheck = true;
+        let selectFieldCheck = true;
+
+        ctx.container
+            .find(".container-jurusan-row")
+            .children(".form-check")
+            .each(function () {
+                if ($(this).find("input").is(":checked")) {
+                    jurusanCount += 1;
+                }
+            });
+
+        let projekEksternalField = ["nominal", "klien"];
+
+        ctx.container
+            .find("#informasi-projek")
+            .find("input")
+            .each(function () {
+                if ($(this).attr("type") != "checkbox") {
+                    console.log($(this).attr("name"));
+                    if ($(this).val().length < 1) {
+                        if (
+                            ctx.projek.jenis_projek != "Projek Eksternal" &&
+                            projekEksternalField.includes($(this).attr("name"))
+                        ) {
+                        } else {
+                            alert(ctx.projek.jenis_projek);
+                            inputFieldCheck = false;
+                        }
+                    }
+                }
+            });
+
+        //Mengecek inputan <select> apakah ada yang kosong
+        this.container
+            .find("#informasi-projek")
+            .find("select")
+            .each(function () {
+                if (
+                    $(this).val() == null &&
+                    $(this).attr("name") != "jenis_projek"
+                ) {
+                    selectFieldCheck = false;
+                }
+            });
+
+        if (jurusanCount > 0 && inputFieldCheck && selectFieldCheck) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     globalEventListener() {
@@ -379,14 +479,26 @@ export default class DetailProjekView {
                     });
                 infoprojek
                     .find(".status")
-                    .attr("readonly", function (index, attr) {
-                        return attr == "readonly" ? null : "readonly";
+                    .attr("disabled", function (index, attr) {
+                        return attr == "disabled" ? null : "disabled";
                     });
                 infoprojek
                     .find(".penanggung_jawab")
-                    .attr("readonly", function (index, attr) {
-                        return attr == "readonly" ? null : "readonly";
+                    .attr("disabled", function (index, attr) {
+                        return attr == "disabled" ? null : "disabled";
                     });
+
+                if (ctx.container.find(".perbarui-informasi").is(":hidden")) {
+                    ctx.container.find(".perbarui-informasi").show();
+                } else {
+                    ctx.container.find(".perbarui-informasi").hide();
+                }
+
+                infoprojek.find("input[type=checkbox]").each(function () {
+                    $(this).attr("disabled", function (index, attr) {
+                        return attr == "disabled" ? null : "disabled";
+                    });
+                });
             });
 
         ctx.container.delegate("input[name=id_jurusan]", "click", function (e) {
@@ -419,28 +531,38 @@ export default class DetailProjekView {
             .submit(function (e) {
                 e.preventDefault();
 
-                // Create FormData object
-                var formData = new FormData(this);
-
-                // Convert FormData to an array
-                var dataArray = Array.from(formData.entries());
-
-                // Display the array in the console (you can remove this line in a real application)
-                let params = {};
-                dataArray.forEach(function (value, key) {
-                    if (params.hasOwnProperty(value[0])) {
-                        // If it does, convert the value to an array
-                        if (!Array.isArray(params[value[0]])) {
-                            params[value[0]] = [params[value[0]]]; // Convert to array
+                if (ctx.validasiInformasi()) {
+                    // Create FormData object
+                    var formData = new FormData(this);
+                    // Convert FormData to an array
+                    var dataArray = Array.from(formData.entries());
+                    // Display the array in the console (you can remove this line in a real application)
+                    let params = {};
+                    dataArray.forEach(function (value, key) {
+                        if (params.hasOwnProperty(value[0])) {
+                            // If it does, convert the value to an array
+                            if (!Array.isArray(params[value[0]])) {
+                                params[value[0]] = [params[value[0]]]; // Convert to array
+                            }
+                            params[value[0]].push(value[1]); // Add the new value to the array
+                        } else {
+                            params[value[0]] = value[1]; // Add new key-value pair
                         }
-                        params[value[0]].push(value[1]); // Add the new value to the array
-                    } else {
-                        params[value[0]] = value[1]; // Add new key-value pair
-                    }
-                });
-                console.log(params);
-                let projek = Projek.parse(params);
-                projek.simpan();
+                    });
+                    console.log("the params");
+                    console.log(params);
+                    let projek = Projek.parse(params);
+                    projek.simpan({
+                        cb: function () {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Data berhasil diperbarui",
+                                target: ctx.container[0],
+                            });
+                            ctx.load(ctx.projek.id);
+                        },
+                    });
+                }
             });
 
         ctx.container
@@ -465,6 +587,14 @@ export default class DetailProjekView {
                     }
                 });
             });
+
+        this.container.delegate(".status-laporan", "click", function () {
+            let container = $(this).closest("td");
+            console.log(pageSetup.getComponent("ContextMenuStatusLaporan"));
+            pageSetup
+                .getComponent("ContextMenuStatusLaporan")
+                .trigger(container, container.data("id"));
+        });
     }
 
     initPj() {
