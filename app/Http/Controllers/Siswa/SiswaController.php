@@ -60,9 +60,9 @@ class SiswaController extends Controller
                 });
             }
 
-            if ($req->filled("nama")) {
-                $siswa = $siswa->orWhere("nama", "LIKE", "%" . $req->nama . "%");
-            }
+
+            $siswa = $siswa->orWhere("nama", "LIKE", "%" . $req->nama . "%");
+
 
 
             $siswa = $siswa->whereHas("angkatan", function ($q) {
@@ -73,6 +73,10 @@ class SiswaController extends Controller
             if (gettype($req->id_jurusan) == "array") {
                 $siswa =
                     $siswa->whereIn("id_jurusan", $req->id_jurusan);
+            }
+
+            if ($req->filled("kelas")) {
+                $siswa = $siswa->whereIn("id_angkatan", $req->kelas);
             }
 
 
@@ -127,6 +131,9 @@ class SiswaController extends Controller
         if ($req->filled("nama")) {
             $siswa = $siswa->where("nama", "LIKE", "%" . $req->nama . "%");
         }
+
+
+
 
 
         $siswa = $siswa->paginate(20)->map(function ($q) {
@@ -192,6 +199,13 @@ class SiswaController extends Controller
     {
         $ctx = $this;
 
+        if ($req->has("kelasDanJurusan")) {
+            if ($req->kelasDanJurusan == 1) {
+                $siswa = Siswa::with(["angkatan", "jurusan"])->find($id);
+                return $siswa->angkatan->kelas() . " " . $siswa->jurusan->jurusan;
+            }
+        }
+
         if ($req->has("tugasByProjek")) {
             $siswa = Siswa::query()->with("penugasan", function ($q) use ($req) {
                 $q->with("tugas")->whereHas("tugas", function ($j) use ($req) {
@@ -208,35 +222,22 @@ class SiswaController extends Controller
             return response()->json($siswa);
         }
         if ($req->has("projek_semester")) {
-            $projek = Projek::whereHas("tugas.penugasan", function ($q) use ($id) {
-                $q->where("id_siswa", $id);
-            })->get();
-            $projek = $projek->map(function ($e) use ($id, $ctx) {
-                $e->penilaian_projek = PenilaianProjek::where("id_siswa", $id)->where("id_projek", $e->id)->get();
-                if ($e->penilaian_projek->count() > 0) {
-                    $e->penilaian_projek = $e->penilaian_projek->map(function ($j) use ($ctx) {
-                        return  ["n_nformal" => $j->n_nformal, "inisiatif" => $ctx->textToNum($j->antusias), "antusias" => $ctx->textToNum($j->antusias), "kejujuran" => $ctx->textToNum($j->kejujuran), "kreativitas" => $ctx->textToNum($j->kreativitas), "tanggung_jawab" => $ctx->textToNum($j->tanggung_jawab), "komunikasi" => $ctx->textToNum($j->komunikasi), "etika_sopansantun" => $ctx->textToNum($j->etika_sopansantun), "k3" => $ctx->textToNum($j->k3)];
-                    });
+            $penilaian = PenilaianProjek::with("tugas.projek")->where("id_siswa", $id)->get();
+            $listProjek = array_unique($penilaian->map(function ($q) {
+                return $q->tugas->id_projek;
+            })->toArray());
+            $projek = Projek::whereIn("id", $listProjek)->get();
 
-                    $columnAverages = ["n_nformal" => 0, "inisiatif" => 0, "antusias" => 0, "kejujuran" => 0, "kreativitas" => 0, "tanggung_jawab" => 0, "komunikasi" => 0, "etika_sopansantun" => 0, "k3" => 0];
-
-                    foreach ($e->penilaian_projek as $row) {
-                        foreach ($row as $columnIndex => $value) {
-                            $columnAverages[$columnIndex] += $value;
-                        }
-                    }
-
-                    foreach ($columnAverages as &$sum) {
-                        $sum /= count($e->penilaian_projek);
-                    }
-
-                    $e->penilaian_projek_avg = $columnAverages;
-                }
-
-
-
+            //isi SETIAP data projek dengan data penilian projek
+            $projek = $projek->map(function ($e) use ($id) {
+                $e->penilaian_projek = PenilaianProjek::with(["penilaian_non_formal", "penilaian_informal"])->where("id_siswa", $id)->whereHas("tugas.projek", function ($q) use ($e) {
+                    $q->where("id_projek", $e->id);
+                })->get();
                 return $e;
             });
+
+            dd($projek);
+
             $siswa = Siswa::find($id);
             $siswa->penilaian_projek_rapor = $projek;
             return response()->json($siswa);

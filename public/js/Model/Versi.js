@@ -113,13 +113,42 @@ export default class Versi {
         formdata.append("keterangan", this.keterangan);
         formdata.append("status", this.status);
 
-        console.log(formdata);
-
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
             },
             url: "/versis",
+            type: "post",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (cb != null) {
+                    cb(data);
+                }
+                console.log(data);
+            },
+            error: function (err) {
+                alert(err.responseText);
+            },
+        });
+    }
+
+    update(cb = null, e = null) {
+        var formdata = new FormData(e);
+
+        formdata.append("nama", this.nama);
+        formdata.append("keterangan", this.keterangan);
+        formdata.append("id", this.id);
+
+        console.log("idnya: ");
+
+        console.log(formdata);
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            url: "/versis/",
             type: "post",
             data: formdata,
             processData: false,
@@ -169,6 +198,37 @@ export default class Versi {
             },
             success: function (data) {
                 cb(data);
+            },
+        });
+    }
+
+    static byTugasDanSiswa(idtugas, idsiswa, cb) {
+        $.ajax({
+            url: "/versis/",
+            data: {
+                byTugasDanSiswa: 1,
+                id_siswa: idsiswa,
+                id_tugas: idtugas,
+            },
+            type: "get",
+            success: function (data) {
+                let versi = data.map(function (e) {
+                    return Versi.parse(e);
+                });
+                cb(versi);
+            },
+        });
+    }
+
+    hapus(cb) {
+        $.ajax({
+            url: "/versis/" + this.id,
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
+            },
+            type: "delete",
+            success: function (data) {
+                cb();
             },
         });
     }

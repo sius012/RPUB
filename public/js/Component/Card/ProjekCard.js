@@ -28,12 +28,16 @@ export default class ProjekCard {
             .join("")}</div></div></div>
     
         
-            <h5 class="card-title">${this.projek.nama}</h5>
-            <p class="card-text">${this.projek.deskripsi}</p>
-            <p class="card-text">
-                <small class="text-muted">${this.projek.jenis_projek}</small>
+            <h4 class="card-title mx-0 my-2">${this.projek.nama}</h4>
+            <p class="card-text m-0">${this.projek.deskripsi}</p>
+            <p class="card-text m-0">
+                <small class="text-muted m-0">${
+                    this.projek.jenis_projek
+                }</small>
             </p>
-            <span>${Helper.formatShortDate(this.projek.tanggal_akhir)}</span>
+            <span class='m-0'>${Helper.formatShortDate(
+                this.projek.tanggal_akhir
+            )}</span>
       </div>
     </div>
         </a>

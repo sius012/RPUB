@@ -12,6 +12,10 @@ import AssignmentSiswaModal from "../Component/AssignmentSiswaModal.js";
 import PenilaianProjekModal from "../Component/PenilaianProjekModal.js";
 import Helper from "../Helper/Helper.js";
 import Versi from "../Model/Versi.js";
+import LaporanDetailModal from "../Component/LaporanDetailModal.js";
+import LaporanListModal from "../Component/LaporanListModal.js";
+import Tugas from "../Model/Tugas.js";
+import VersiModal from "../Component/VersiModal.js";
 
 $(document).ready(function () {
     var breadcrumb = new Breadcrumb($("#breadcrumb"));
@@ -28,6 +32,9 @@ $(document).ready(function () {
     var penilaianProjekModal = new PenilaianProjekModal(
         $("#penilaian-projek-modal")
     );
+    var laporanDetailModal = new LaporanDetailModal($("#laporan-detail-modal"));
+    var laporanListModal = new LaporanListModal($("#laporan-list-modal"));
+    var versiModal = new VersiModal($("#versi-modal"));
 
     //ContextMenu
     var contextMenuTugas = new ContextMenu();
@@ -211,14 +218,21 @@ $(document).ready(function () {
     pageSetup.add(breadcrumb);
     pageSetup.add(penilaianProjekModal);
     pageSetup.add(tugasModal);
+    pageSetup.add(laporanDetailModal);
+    pageSetup.add(laporanListModal);
     pageSetup.add(contextMenuStatusLaporan);
+    pageSetup.add(versiModal);
 
     //Check jika ada projek yang redirect
     if (Helper.exurl().length == 3) {
         detailProjekView.load(Helper.exurl()[2]);
+    } else if (Helper.exurl().length == 4) {
+        let tugas = Tugas.find(Helper.exurl()[3]);
+        detailProjekView.load(tugas.id_projek);
+        tugasModal.loadTugas(tugas.id_tugas);
     } else {
         projekListView.load();
-    }   
+    }
 
     pageSetup.init();
 });

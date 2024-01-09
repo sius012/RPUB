@@ -18,7 +18,7 @@ class PenilaianProjek extends Model
 
     public function penilai()
     {
-        return $this->hasOne(Siswa::class, "id", "id_penilai");
+        return $this->hasOne(User::class, "id", "id_penilai");
     }
     public function tugas()
     {

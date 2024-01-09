@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Projek;
 
+use App\Exports\ExportProjek;
+use App\Exports\ExportProjekMaster;
 use App\Http\Controllers\Controller;
 use App\Models\Penugasan;
 use App\Models\Projek;
@@ -102,6 +104,13 @@ class ProjekController extends Controller
     public function show(Request $req, $id)
     {
         $projek = Projek::with("penanggung_jawab")->with("projek_jurusan.jurusan")->find($id);
+        if ($req->has("download")) {
+            if ($req->download == 1) {
+                ob_end_clean();
+                ob_start();
+                return (new ExportProjekMaster($id))->download($projek->nama . ".xlsx");
+            }
+        }
         if ($req->has("partisipan")) {
             if ($req->partisipan == 1) {
                 $partisipan = Siswa::with(["angkatan", "jurusan"])->whereHas("penugasan", function ($q) use ($id) {
@@ -150,6 +159,7 @@ class ProjekController extends Controller
         $projek->klien = $request->klien;
         $projek->jenis_projek = $request->jenis_projek;
         $projek->status = $request->status;
+        $projek->lokasi_projek = $request->lokasi_projek;
         $projek->save();
 
         //clear projekJurusan

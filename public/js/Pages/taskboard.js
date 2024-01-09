@@ -6,15 +6,21 @@ import Helper from "../Helper/Helper.js";
 import VersiModal from "../Component/VersiModal.js";
 import ContextMenu from "../Component/ContextMenu.js";
 import Versi from "../Model/Versi.js";
+import LaporanDetailModal from "../Component/LaporanDetailModal.js";
 
 $(document).ready(function () {
     const taskboard = new Taskboard($("#taskboard"));
     const tugasDetailView = new TugasDetailView($("#tugas-detail-view"));
     const versiModal = new VersiModal($("#versi-modal"));
+    const laporanDetailModal = new LaporanDetailModal(
+        $("#laporan-detail-modal")
+    );
     const contextMenuStatus = new ContextMenu();
     const contextMenuStatusLaporan = new ContextMenu();
+    const contextMenuLaporan = new ContextMenu();
     contextMenuStatus.nama_component = "ContextMenuStatus";
     contextMenuStatusLaporan.nama_component = "ContextMenuStatusLaporan";
+    contextMenuLaporan.nama_component = "ContextMenuLaporan";
 
     contextMenuStatus.init(
         [
@@ -100,12 +106,23 @@ $(document).ready(function () {
         }
     );
 
+    contextMenuLaporan.init(
+        [
+            ["Buka", function (id) {}],
+            ["Edit", function (id) {}],
+            ["Hapus", function (id) {}],
+        ],
+        function () {}
+    );
+
     //taskboard.load(40);
     taskboard.load(Helper.getCurrentAuthSiswa().id);
     pageSetup.add(taskboard);
     pageSetup.add(tugasDetailView);
     pageSetup.add(versiModal);
+    pageSetup.add(laporanDetailModal);
     pageSetup.add(contextMenuStatus);
     pageSetup.add(contextMenuStatusLaporan);
+    pageSetup.add(contextMenuLaporan);
     pageSetup.init();
 });

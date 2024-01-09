@@ -147,7 +147,15 @@ body {
     width: 150px;
     text-align: center;
 }
-  
+
+
+.list-item-search:hover{
+  background-color: whitesmoke;
+}
+
+.list-item-search{
+  padding: 3px;
+}
 
     
 
@@ -202,6 +210,12 @@ body {
     <style>
       td,th{
         font-size: 8pt;
+      }
+
+
+      .container-pencarian{
+        width: 70%;
+        top: 90px;
       }
     </style>
 
@@ -350,18 +364,21 @@ body {
               </a>
             </div>
 
-            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <div class="navbar-nav-right align-items-center" id='pencarian-menu'>
               <!-- Search -->
               <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
+                <div class="nav-item d-flex align-items-center" >
                   <i class="bx bx-search fs-4 lh-0"></i>
                   <input
                     type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
+                    class="form-control border-0 shadow-none cari-sesuatu"
+                    placeholder="Cari sesuatu..."
                     aria-label="Search..."
+
                   />
+                 
                 </div>
+                <ul class='container-pencarian p-2 card' style="position:absolute;display:none"></ul>
                 
               </div>
               <!-- /Search -->
@@ -449,6 +466,7 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     @stack('script')
+    <script src="{{ asset('js/Pages/layout.js') }}" type="module"></script>
     <script src="{{asset('js/lib/Timeliner.js')}}"></script>
 </body>
 </html>

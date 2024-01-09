@@ -81,6 +81,12 @@
                             </div>
                             <div class="row">
                                 <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Lokasi Projek</label>
+                                    <input type="text" name="lokasi_projek" class="form-control" placeholder="Masukkan lokasi projek" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Status</label>
                                     <select name="status" class="form-select" aria-label="Default select example">
                                         <option value="Belum Dimulai">Belum Dimulai</option>
@@ -102,7 +108,7 @@
                             <div class="row">
                                 <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Penanggung Jawab</label>
-                                    <select class="pj-list form-control"  name="id_penanggung_jawab"></select>
+                                    <select class="pj-list form-control" name="id_penanggung_jawab"></select>
                                     <div class="container-pj">
 
                                     </div>

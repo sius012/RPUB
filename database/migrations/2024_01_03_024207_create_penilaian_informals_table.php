@@ -16,6 +16,7 @@ class CreatePenilaianInformalsTable extends Migration
         Schema::create('penilaian_informal', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("id_penilaian");
+            $table->integer("inisiatif");
             $table->integer("antusias");
             $table->integer("kejujuran");
             $table->integer("kreativitas");

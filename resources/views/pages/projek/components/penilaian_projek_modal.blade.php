@@ -53,6 +53,15 @@
                     </thead>
                     <tbody>
                       <tr>
+                        <td>Inisiatif</td>
+                        <td><select name="inisiatif" id="" class="form-control">
+                            <option value="3">Baik</option>
+                            <option value="2">Cukup</option>
+                            <option value="1">Kurang</option>
+                          </select></td>
+                      </tr>
+                      <tr>
+                      <tr>
                         <td>Antusias</td>
                         <td><select name="antusias" id="" class="form-control">
                             <option value="3">Baik</option>

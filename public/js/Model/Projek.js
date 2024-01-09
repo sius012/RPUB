@@ -14,6 +14,7 @@ export default class Projek {
         this.deskripsi;
         this.status;
         this.pembuat;
+        this.lokasi_projek;
         this.id_jurusan = [];
         this.image;
         this.jurusan = [];
@@ -51,6 +52,7 @@ export default class Projek {
         projek.status = json["status"];
         projek.pembuat = json["pembuat"];
         projek.id_jurusan = json["id_jurusan"];
+        projek.lokasi_projek = json["lokasi_projek"];
         if (json["penanggung_jawab"]) {
             projek.penanggung_jawab = User.parse(json["penanggung_jawab"]);
         }
@@ -115,6 +117,7 @@ export default class Projek {
         json["status"] = this.status;
         json["id_jurusan"] = this.id_jurusan;
         json["id_pembuat"] = 0;
+        json["lokasi_projek"] = this.lokasi_projek;
         return json;
     }
 

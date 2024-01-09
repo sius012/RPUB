@@ -117,9 +117,11 @@ class TugasController extends Controller
     public function destroy($id)
     {
         $tugas = Tugas::find($id);
+        $versi = Versi::where("id_tugas", $id)->delete();
+        $indikator = Tugas::where("id_parent", $id)->delete();
 
         //hapusindikator
-        
+
         $tugas->delete();
     }
 

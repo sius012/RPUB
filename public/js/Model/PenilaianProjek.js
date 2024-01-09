@@ -84,6 +84,7 @@ export default class PenilaianProjek {
         });
 
         json["penilaian_informal"] = {
+            inisiatif: this.penilaian_informal.inisiatif,
             antusias: this.penilaian_informal.antusias,
             kejujuran: this.penilaian_informal.kejujuran,
             kreativitas: this.penilaian_informal.kreativitas,

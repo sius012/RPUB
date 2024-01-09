@@ -234,4 +234,33 @@ export default class Siswa {
             },
         });
     }
+
+    getUrl() {
+        return (
+            "/pages/siswa/" +
+            this.id_jurusan +
+            "/" +
+            this.id_angkatan +
+            "/" +
+            this.id
+        );
+    }
+
+    getKelasDanJurusan() {
+        let ctx = this;
+        let kelasDanJurusan = "";
+        $.ajax({
+            url: "/siswa/" + this.id,
+            type: "get",
+            data: {
+                kelasDanJurusan: 1,
+            },
+            async: false,
+            success: function (data) {
+                ctx.kelasDanJurusan = data;
+                kelasDanJurusan = data;
+            },
+        });
+        return kelasDanJurusan;
+    }
 }

@@ -24,6 +24,10 @@ class VersiController extends Controller
         if ($req->has("id_tugas")) {
             $versi = $versi->where("id_tugas", $req->id_tugas);
         }
+        if ($req->has("byTugasDanSiswa")) {
+            $versi = Versi::where("id_siswa", $req->id_siswa)->where("id_tugas", $req->id_tugas)->get();
+            return response()->json($versi);
+        }
         return response()->json($versi->get());
     }
 
@@ -45,13 +49,16 @@ class VersiController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has("id")) {
+            return $this->update($request, $request->id);
+        }
         $versi = new Versi;
         $versi->id_tugas = $request->id_tugas;
         $versi->id_siswa = $request->id_siswa;
         $versi->nama = $request->nama;
         $versi->keterangan = $request->keterangan;
         if ($request->hasFile("lampiran")) {
-            $imageName = time() . '.' . $request->nama . "." . $request->nomor_versi . ".png";
+            $imageName = time() . '.' . $request->nama . "." . date("dmyhis") . ".png";
             $request->lampiran->move(public_path('versi'), $imageName);
             $versi->lampiran = $imageName;
         }
@@ -100,6 +107,24 @@ class VersiController extends Controller
             $versi->status = $request->status;
         }
 
+        if ($request->filled("nama")) {
+            $versi->nama = $request->nama;
+        }
+        if ($request->filled("keterangan")) {
+            $versi->keterangan = $request->keterangan;
+        }
+
+
+        if ($request->hasFile("lampiran")) {
+            if ($versi->lampiran != null) {
+                unlink(public_path("versi/" . $versi->lampiran));
+            }
+            $imageName = time() . '.' . $request->nama . "." . date("dmyhis") . ".png";
+            $request->lampiran->move(public_path('versi'), $imageName);
+            $versi->lampiran = $imageName;
+        }
+
+
         $versi->save();
 
         return response()->json($versi);
@@ -113,6 +138,9 @@ class VersiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $versi = Versi::find($id);
+        $versi->delete();
+
+        return;
     }
 }

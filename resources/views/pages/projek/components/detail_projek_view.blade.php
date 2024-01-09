@@ -81,7 +81,11 @@
                                 <div class="col">
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Jenis Projek</label>
-                                        <input type="text" name="jenis_projek" class="jenis-projek form-control" placeholder="tambahkan nama projek" readonly />
+                                        <input type="text" name="jenis_projek" class="jenis-projek form-control" placeholder="tambahkan jenis projek" readonly />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="" class="form-label">Lokasi Projek</label>
+                                        <input type="text" name="lokasi_projek" class="lokasi-projek form-control" placeholder="tambahkan lokasi projek" readonly />
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="" class="form-label">Klien</label>
@@ -118,24 +122,27 @@
 
                     <div class="tab-pane fade" id="tugas" role="tabpanel">
                         <button class="tambah-tugas btn btn-primary">Tambah Tugas</button>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th data-name="title">Nama Tugas</th>
-                                    <th>Status</th>
-                                    <th>Keterangan</th>
-                                    <th data-name="start_date">Dari</th>
-                                    <th data-name="end_date">Sampai</th>
-                                    <th>Partisipan</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                                <tr>
+                        <div class="container-fluids mt-4">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th data-name="title">Nama Tugas</th>
+                                        <th>Status</th>
+                                        <th>Keterangan</th>
+                                        <th data-name="start_date">Dari</th>
+                                        <th data-name="end_date">Sampai</th>
+                                        <th>Partisipan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                    <tr>
 
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                     <div class="tab-pane fade" id="laporan" role="tabpanel">
@@ -166,9 +173,13 @@
                     </div>
 
                     <div class="tab-pane fade" id="konfigurasi-projek" role="tabpanel">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col">Arsipkan Projek</div>
                             <div class="col"><button class="btn btn-primary btn-arsip"><i class="fa fa-archive"></i></button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Export Laporan</div>
+                            <div class="col"><button class="btn btn-success btn-export"><i class="fa fa-file-excel-o"></i></button></div>
                         </div>
                     </div>
                 </div>

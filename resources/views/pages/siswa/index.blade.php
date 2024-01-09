@@ -7,6 +7,7 @@
 @include("pages.siswa.components.raport_modal")
 
 
+
 @endsection
 @push("script")
 <script src="{{asset('js/Pages/siswa.js')}}" type="module"></script>

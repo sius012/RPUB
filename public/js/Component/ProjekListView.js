@@ -50,6 +50,7 @@ export default class ProjekListView {
             <span class="sr-only">Loading...</span>
           </div>`);
             this.projekList = Projek.byRole(function (data) {
+                console.log(data);
                 ctx.container.find(".row-view").html("");
                 data.forEach((element) => {
                     var projekCard = new ProjekCard(element);
@@ -105,7 +106,4 @@ export default class ProjekListView {
             }
         });
     }
-    
-
-    
 }

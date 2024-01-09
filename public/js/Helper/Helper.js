@@ -2,40 +2,48 @@ import Siswa from "../Model/Siswa.js";
 import pageSetup from "../Component/PageSetup.js";
 
 export default class Helper {
-    static status(status, onlytext = false, params = { class: "status" }) {
+    static status(
+        status,
+        onlytext = false,
+        params = { class: "status", type: "span" }
+    ) {
         let statusStr = "";
+        let typeOfElement = params.type == "span" ? "bg" : "btn";
         switch (status) {
             case "Belum dimulai":
-                statusStr = "bg-secondary";
+                statusStr = typeOfElement + "-secondary";
                 break;
 
             case "Belum Dimulai":
-                statusStr = "bg-secondary";
+                statusStr = typeOfElement + "-secondary";
                 break;
 
             case "Dalam Pengerjaan":
-                statusStr = "bg-warning";
+                statusStr = typeOfElement + "-warning";
                 break;
 
             case "Revisi":
-                statusStr = "bg-danger";
+                statusStr = typeOfElement + "-danger";
                 break;
 
             case "Siap Dikerjakan":
-                statusStr = "bg-ready";
+                statusStr = typeOfElement + "-ready";
                 break;
 
             case "Ditinjau":
-                statusStr = "bg-review";
+                statusStr = typeOfElement + "-review";
                 break;
             case "Selesai":
-                statusStr = "bg-primary";
+                statusStr = typeOfElement + "-primary";
                 break;
             default:
                 break;
         }
         if (onlytext) {
             return statusStr;
+        }
+        if (params.type == "button") {
+            return `<button class='btn btn-sm ${params.class} ${statusStr}'>${status}</button>`;
         }
         return `<span class='badge ${statusStr} ${params.class}'>${status}</span>`;
     }
@@ -160,13 +168,29 @@ export default class Helper {
         });
     }
 
-    static checkGuard(cb) {
+    static checkGuard(cb = null, params = { async: true }) {
+        let result;
         $.ajax({
             url: "/api/checkguard",
             type: "get",
+            async: params.async,
             success: function (data) {
-                cb(data);
+                if (cb != null) {
+                    cb(data);
+                }
+                result = data;
             },
         });
+        if (params.async == false) {
+            return result;
+        }
+    }
+
+    static shortText(text, length = 25) {
+        let str = text;
+        if (str.length >= length) {
+            str = str.substring(0, length) + "...";
+        }
+        return str;
     }
 }

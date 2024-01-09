@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\PenilaianProjek;
 
+use App\Exports\ExportLPP;
+use App\Exports\ExportLPPNF;
 use App\Http\Controllers\Controller;
 use App\Models\PenilaianInformal;
 use App\Models\PenilaianNonFormal;
@@ -9,6 +11,7 @@ use App\Models\PenilaianProjek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenilaianProjekController extends Controller
 {
@@ -70,6 +73,7 @@ class PenilaianProjekController extends Controller
 
             $penilaian_informal = new PenilaianInformal();
             $penilaian_informal->id_penilaian = $penilaian->id;
+            $penilaian_informal->inisiatif = $pnf['inisiatif'];
             $penilaian_informal->antusias = $pnf['antusias'];
             $penilaian_informal->kejujuran = $pnf['kejujuran'];
             $penilaian_informal->kreativitas = $pnf['kreativitas'];
@@ -112,6 +116,7 @@ class PenilaianProjekController extends Controller
 
         $penilaian_informal = PenilaianInformal::find($pnf["id"]);
         $penilaian_informal->id_penilaian = $penilaian->id;
+        $penilaian_informal->inisiatif = $pnf['inisiatif'];
         $penilaian_informal->antusias = $pnf['antusias'];
         $penilaian_informal->kejujuran = $pnf['kejujuran'];
         $penilaian_informal->kreativitas = $pnf['kreativitas'];
@@ -131,8 +136,14 @@ class PenilaianProjekController extends Controller
     }
 
 
-    public function show($id)
+    public function show($id, Request $req)
     {
+        if ($req->has("download")) {
+            $penilaian = PenilaianProjek::with(["penilaian_non_formal.indikator", "penilaian_informal", "siswa", "penilai", "tugas.projek"])->find($id);
+            ob_end_clean();
+            ob_start();
+            return Excel::download(new ExportLPP($penilaian), "Penilaian.xlsx");
+        }
         return response()->json(PenilaianProjek::with(["penilaian_non_formal.indikator", "penilaian_informal"])->find($id));
     }
 

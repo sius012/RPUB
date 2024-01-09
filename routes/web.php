@@ -4,6 +4,7 @@ use App\Http\Controllers\Angkatan\AngkatanController;
 use App\Http\Controllers\Jenis\JenisController;
 use App\Http\Controllers\Jurusan\JurusanController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Pencarian\PencarianController;
 use App\Http\Controllers\PenilaianProjek\PenilaianProjekController;
 use App\Http\Controllers\Penugasan\PenugasanController;
 use App\Http\Controllers\Projek\ProjekController;
@@ -100,7 +101,13 @@ Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
     Route::get('/pages/projek/{id}', function ($id) {
         return view("pages.projek.index");
     });
+
+    Route::get('/pages/projek/tugas/{id}', function ($id) {
+        return view("pages.projek.index");
+    });
 });
+
+Route::resource('pencarian', PencarianController::class);
 
 Route::get("/danger/init", function () {
     Artisan::call("migrate:fresh");
@@ -113,6 +120,9 @@ Auth::routes();
 Route::get('/loginsiswa', [LoginController::class, "index"])->name("siswa.login");
 Route::post('/loginsiswa', [LoginController::class, "authenticate"])->name("siswa.login");
 Route::get('/getcurrentauthsiswa', [LoginController::class, "getcurrentauthsiswa"])->name("siswa.authdata");
+
+
+
 
 Route::get('/teshash', function () {
     dd(Hash::make("password"));
@@ -169,3 +179,6 @@ Route::get("/dangerzone/init", function () {
 });
 
 Route::view("/test", "output.output");
+
+
+Route::view("/LPP", "output.lembar_penilaian_projek");

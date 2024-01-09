@@ -44,6 +44,7 @@ export default class ProjekModal {
         projek.id_pembuat = this.getElement("id_pembuat").val();
         projek.id_jurusan = this.getElement("id_jurusan").val();
         projek.id_penanggung_jawab = this.getElement("id_penanggung_jawab");
+        projek.lokasi_projek = this.getElement("lokasi_projek");
         this.ProjekData = projek;
     }
 
@@ -59,6 +60,7 @@ export default class ProjekModal {
         projek.status = json["status"];
         projek.id_pembuat = 0;
         projek.id_jurusan = json["id_jurusan"];
+        projek.lokasi = json["lokasi_projek"];
         this.ProjekData = projek;
     }
 

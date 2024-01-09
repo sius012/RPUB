@@ -95,7 +95,7 @@ export default class DetailProjekView {
         infoprojek.find(".deskripsi").val(this.projek.deskripsi);
         infoprojek.find(".status").val(this.projek.status);
         infoprojek.find(".nominal").val(this.projek.nominal);
-
+        infoprojek.find(".lokasi-projek").val(this.projek.lokasi_projek);
         infoprojek
             .find(".penanggung_jawab")
             .val(this.projek.penanggung_jawab.name);
@@ -162,6 +162,8 @@ export default class DetailProjekView {
             tugasView.append(ctx.#rekursifTugas(element, 1 + i));
         });
 
+        tugasView.closest("table").DataTable();
+
         tugasView.children("tr").each(function (i) {
             let id = $(this).data("id");
             $(this)
@@ -208,7 +210,9 @@ export default class DetailProjekView {
             table.empty("");
             data.forEach(function (e, i) {
                 table.append(
-                    `<tr ><td>${i + 1}</td><td>${e.nama}</td><td>${
+                    `<tr class='laporan-row' data-id='${e.id}'><td>${
+                        i + 1
+                    }</td><td>${e.nama}</td><td>${
                         e.keterangan
                     }</td><td data-id='${e.id}'>${Helper.status(
                         e.status,
@@ -221,6 +225,7 @@ export default class DetailProjekView {
                     )}</td><td>${e.siswa.nama}</td></tr>`
                 );
             });
+            table.closest("table").DataTable();
             console.log(table);
             // table.closest("table").DataTable({
             //     searching: false,
@@ -254,7 +259,11 @@ export default class DetailProjekView {
         <td class='status'>${
             tugas.tipe == "indikator" ? "" : Helper.status(tugas.status)
         }</td>
-        <td>${tugas.keterangan}</td>
+        <td ><span style='overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;'>${Helper.shortText(
+            tugas.keterangan
+        )}  </span></td>
         <td>${tugas.tanggal_awal != null ? tugas.tanggal_awal : ""}</td>
         <td>${tugas.tanggal_akhir != null ? tugas.tanggal_akhir : ""}</td>
         <td class='partisipan'>
@@ -293,13 +302,15 @@ export default class DetailProjekView {
 
             if (tugas.tipe == "tugas") {
                 if (data.length > 0) {
-                    data.forEach(function (e) {
-                        console.log("datanya");
-                        console.log(e);
-                        cont.append(
-                            `<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="${e.siswa.getFotoProfil()}">` +
-                                ","
-                        );
+                    data.forEach(function (e, i) {
+                        if (i < 5) {
+                            console.log("datanya");
+                            console.log(e);
+                            cont.append(
+                                `<img style="width: 20px;height: 20px; object-fit: cover; border-radius: 50%" src="${e.siswa.getFotoProfil()}">` +
+                                    ","
+                            );
+                        }
                     });
                     cont.append(`<span>${data.length}</span>`);
                 } else {
@@ -424,6 +435,7 @@ export default class DetailProjekView {
                     }),
                     pageSetup.getTugasCache(id)
                 );
+                aSM.loadContext();
                 aSM.modal.show();
             });
 
@@ -486,6 +498,11 @@ export default class DetailProjekView {
                     .find(".penanggung_jawab")
                     .attr("disabled", function (index, attr) {
                         return attr == "disabled" ? null : "disabled";
+                    });
+                infoprojek
+                    .find(".lokasi-projek")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
                     });
 
                 if (ctx.container.find(".perbarui-informasi").is(":hidden")) {
@@ -594,6 +611,12 @@ export default class DetailProjekView {
             pageSetup
                 .getComponent("ContextMenuStatusLaporan")
                 .trigger(container, container.data("id"));
+        });
+
+        this.container.delegate(".laporan-row", "click", function () {
+            let laporanDetailModal =
+                pageSetup.getComponent("LaporanDetailModal");
+            laporanDetailModal.load($(this).data("id"));
         });
     }
 

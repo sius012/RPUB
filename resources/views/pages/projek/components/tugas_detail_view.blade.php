@@ -8,7 +8,7 @@
               <div class="row mt-2">
                   <div class="col">
                       <div class="nav-align-top mb-4">
-                          <ul class="nav nav-tabs" role="tablist">
+                          <ul class="nav nav-tabs" role="tablist" id='tab-tugas-detail-view'>
                               <li class="nav-item">
                                   <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#tugas1" aria-controls="navs-top-home" aria-selected="false">
                                       Informasi Tugas

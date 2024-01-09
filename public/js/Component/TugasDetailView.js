@@ -1,6 +1,8 @@
 import pageSetup from "./PageSetup.js";
 import Versi from "../Model/Versi.js";
 import Helper from "../Helper/Helper.js";
+import Tugas from "../Model/Tugas.js";
+import Siswa from "../Model/Siswa.js";
 
 export default class TugasDetailView {
     constructor(container) {
@@ -48,8 +50,10 @@ export default class TugasDetailView {
             );
             this.getElement("tanggal_awal").val(this.tugas.tanggal_awal);
             this.getElement("tanggal_akhir").val(this.tugas.tanggal_akhir);
+
             this.loadversi();
             this.loadPartisipan();
+            this.loadIndikatorKompetensi();
             this.modal.show();
         }
     }
@@ -72,27 +76,63 @@ export default class TugasDetailView {
         });
     }
 
+    loadIndikatorKompetensi() {
+        let ctx = this;
+        this.tugas.getIndikator(function (data) {
+            let table = ctx.container
+                .find("#indikator-kompetensi")
+                .find("tbody");
+            table.empty();
+            data.forEach(function (e, i) {
+                table.append(`<tr>
+            <td>${1 + (i + 1) / 10}</td>
+            <td>${e.nama}</td>
+            <td>${e.nilai_max}</td>
+            <td></td>
+        </tr>`);
+            });
+        });
+    }
+
     versiCard(versi) {
-        console.log(versi);
+        console.log(versi.lampiran);
         return `
-        <div class='card mb-2 versi-card' data-id='${versi.id}'>
+        <div class='card mb-2 versi-card row-laporan' data-id='${versi.id}'>
         <div class='row  p-3' >
-        <div class='col-2'>
-            <img style="width: 100%; height: 100%; object-fit: cover;" src='/versi/${
-                versi.lampiran
+        <div class='col-3'>
+            <img style="width: 100%; height: 100%; object-fit: cover;" src='${
+                versi.lampiran != null
+                    ? "/versi/" + versi.lampiran
+                    : "/img/logo/logo1.svg"
             }'>
         </div>
-        <div class='col-10'><b>${versi.nama}</b> ${Helper.formatShortDate(
+       
+        <div class='col-9'>
+        <span class='text-sm'>${versi.siswa.nama} ${
+            versi.siswa.kelasDanJurusan
+        }</span><b><br>${versi.nama}</b> ${Helper.formatShortDate(
             versi.timestamp.created_at
         )}<br><span>
         ${versi.keterangan}</span>
         <div class='row'>
-        <div class='col-6'>
-        ${Helper.status(versi.status, false, { class: "status-laporan" })}
+        <div class='col-12'>
+        <div class="btn-group" role="group" aria-label="Basic example">
+        ${Helper.status(versi.status, false, {
+            class: "status-laporan",
+            type: "button",
+        })}
+        ${
+            Helper.getCurrentAuthSiswa().id == versi.id_siswa ||
+            Helper.checkGuard(null, { async: false }) == "admin"
+                ? `<button type="button" class="btn btn-sm btn-danger btn-hapus-laporan"><i class='fa fa-trash'></i></button>
+        <button type="button" class="btn btn-sm btn-warning btn-edit-laporan"><i class='fa fa-edit'></i></button>
+        <button type="button" class="btn btn-sm btn-info btn-info-laporan"><i class='fa fa-info'></i></button>`
+                : ""
+        }
+
+</div>
         </div>
-        <div class='col-6'>
-            ${versi.siswa.nama}
-        </div>
+
         </div>
         </div>
         </div>
@@ -105,6 +145,7 @@ export default class TugasDetailView {
 
         this.container.delegate(".tombol-tambah-versi", "click", function (e) {
             const versimodal = ctx.page_setup.getComponent("VersiModal");
+            versimodal.reset();
             versimodal.load(ctx.tugas.id_tugas);
         });
 
@@ -117,5 +158,63 @@ export default class TugasDetailView {
                     $(this).closest(".versi-card").data("id")
                 );
         });
+
+        this.container.delegate(".btn-hapus-laporan", "click", function () {
+            let id = $(this).closest(".row-laporan").data("id");
+            Swal.fire({
+                title: "Apakah anda yakin ingin menghapus versi?",
+                showCancelButton: true,
+                confirmButtonText: "Hapus",
+                target: ctx.container[0],
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    let versi = Versi.find(id);
+                    versi.hapus(function () {
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Data Berhasil dihapus",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            target: ctx.container[0],
+                        });
+                        ctx.loadversi();
+                    });
+                }
+            });
+            s;
+        });
+
+        this.container.delegate(".btn-info-laporan", "click", function () {
+            let id = $(this).closest(".row-laporan").data("id");
+            let lDM = pageSetup.getComponent("LaporanDetailModal");
+
+            lDM.load(id);
+        });
+
+        this.container.delegate(".btn-edit-laporan", "click", function () {
+            let id = $(this).closest(".row-laporan").data("id");
+            pageSetup.getComponent("VersiModal").editVersi(id);
+        });
+
+        this.container
+            .find("#tab-tugas-detail-view")[0]
+            .addEventListener("show.bs.tab", function (event) {
+                var btn = $(event.target);
+                let tab = btn.data("bs-target");
+                // switch (tab) {
+                //     case "#versi1":
+                //         ctx.loadversi();
+                //         break;
+                //     case "#partisipan1":
+                //         ctx.loadPartisipan();
+                //         break;
+                //     case "#indikator-kompetensi":
+                //         ctx.loadIndikatorKompetensi();
+                //     default:
+                //         break;
+                // }
+            });
     }
 }

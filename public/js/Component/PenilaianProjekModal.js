@@ -50,15 +50,21 @@ export default class PenilaianProjekModal {
                               element.penilaian[0].id +
                               "'"
                             : ""
-                    } class='btn ${
+                    } class='btn btn-sm ${
                         element.penilaian.length > 0
                             ? "btn-primary"
                             : "btn-secondary"
                     } tugas-siswa' type='button' data-id='${
                         element.tugas.id_tugas
-                    }'>Beri Nilai</button>${
+                    }'>Beri Nilai</button>
+                    <button class='btn btn-sm btn-primary buka-laporan' data-id-siswa='${
+                        element.id_siswa
+                    }' data-id-tugas='${
+                        element.id_tugas
+                    }'>Lihat Laporan</button>
+                    ${
                         element.penilaian.length > 0
-                            ? `<button data-id-penilaian='${element.penilaian[0].id}' type='button' class='btn btn-danger hapus-penugasan'>Hapus</button>`
+                            ? `<button data-id-penilaian='${element.penilaian[0].id}' type='button' class='btn  btn-sm btn-danger hapus-penugasan'>Hapus</button><button data-id-penilaian='${element.penilaian[0].id}' class='btn btn-sm btn-success download-penilaian'><i class='fa fa-download'></i></button>`
                             : ""
                     }</div></div>
                     </div>
@@ -93,7 +99,7 @@ export default class PenilaianProjekModal {
         //penilaian non formal
         penilaian.penilaian_non_formal.forEach(function (e) {
             containerIndikator.append(
-                `<tr><th>${e.indikator.nama}</th><th><input class='form-control' readonly value='${e.indikator.nilai_max}'></th><th><input name='indikator' data-id-pnf='${e.id}' data-id='${e.indikator.id}' class='form-control' readonly value='${e.nilai}'></th></tr>`
+                `<tr><th>${e.indikator.nama}</th><th><input class='form-control nilai-max' readonly value='${e.indikator.nilai_max}'></th><th><input name='indikator' data-id-pnf='${e.id}' data-id='${e.indikator.id}' class='form-control' readonly value='${e.nilai}'></th></tr>`
             );
         });
 
@@ -102,9 +108,12 @@ export default class PenilaianProjekModal {
 
         this.getElement("id_pif").val(penilaian.penilaian_informal.id);
 
-        this.getElement("antusias", "select").val(
-            penilaian.penilaian_informal.antusias
+        this.getElement("inisiatif", "select").val(
+            penilaian.penilaian_informal.inisiatif
         ),
+            this.getElement("antusias", "select").val(
+                penilaian.penilaian_informal.antusias
+            ),
             this.getElement("kejujuran", "select").val(
                 penilaian.penilaian_informal.antusias
             ),
@@ -146,6 +155,7 @@ export default class PenilaianProjekModal {
         this.getElement("id_siswa").val("");
         this.getElement("id_penilai").val("");
         this.getElement("n_nformal").val("");
+        this.getElement("inisiatif", "select").val("");
         this.getElement("antusias", "select").val("");
         this.getElement("kejujuran", "select").val("");
         this.getElement("kreativitas", "select").val("");
@@ -210,6 +220,7 @@ export default class PenilaianProjekModal {
         });
 
         penilaian.penilaian_informal = {
+            inisiatif: this.getElement("inisiatif", "select").val(),
             antusias: this.getElement("antusias", "select").val(),
             kejujuran: this.getElement("kejujuran", "select").val(),
             kreativitas: this.getElement("kreativitas", "select").val(),
@@ -237,6 +248,7 @@ export default class PenilaianProjekModal {
             e.preventDefault();
             ctx.parsing();
             let validasi = ctx.validasi();
+            console.log(ctx.penilaianProjek);
             if (validasi) {
                 switch (ctx.mode) {
                     case "edit":
@@ -326,6 +338,18 @@ export default class PenilaianProjekModal {
                 ctx.modal.hide();
             });
         });
+
+        this.container.delegate(".download-penilaian", "click", function () {
+            window.location =
+                "/penilaianprojek/" +
+                $(this).data("id-penilaian") +
+                "?download=1";
+        });
+
+        this.container.delegate(".buka-laporan", "click", function () {
+            let lLM = pageSetup.getComponent("LaporanListModal");
+            lLM.load($(this).data("id-tugas"), $(this).data("id-siswa"));
+        });
     }
 
     validasi() {
@@ -336,6 +360,13 @@ export default class PenilaianProjekModal {
 
         ctx.getElement("indikator").each(function () {
             if ($(this).val().length < 1) {
+                validasiPenilaianNonFormal = false;
+            }
+
+            if (
+                parseInt($(this).closest("tr").find(".nilai-max").val()) <
+                parseInt($(this).val())
+            ) {
                 validasiPenilaianNonFormal = false;
             }
         });
@@ -349,7 +380,7 @@ export default class PenilaianProjekModal {
                 }
             });
 
-        if (validasiPenilaianInformal && validasiPenilaianInformal) {
+        if (validasiPenilaianInformal && validasiPenilaianNonFormal) {
             return true;
         } else {
             return false;
@@ -365,6 +396,10 @@ export default class PenilaianProjekModal {
         this.penilaianProjek.id_siswa = this.getElement("id_siswa").val();
         this.penilaianProjek.id_penilai = this.getElement("id_penilai").val();
         this.penilaianProjek.n_nformal = this.getElement("n_nformal").val();
+        this.penilaianProjek.antusias = this.getElement(
+            "inisiatif",
+            "select"
+        ).val();
         this.penilaianProjek.antusias = this.getElement(
             "antusias",
             "select"

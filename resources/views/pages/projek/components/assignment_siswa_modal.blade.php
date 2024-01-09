@@ -9,6 +9,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="container-kelas">
+
+                    </div>
+
+
+                    <div class="form-check form-switch mt-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name='pilih_semua'>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Pilih semua</label>
+                    </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Nama Siswa</label>
