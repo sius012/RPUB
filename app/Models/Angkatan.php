@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Angkatan extends Model
 {
@@ -16,6 +17,10 @@ class Angkatan extends Model
         return Angkatan::where("dari", "<", date("Y-m-d"))->where("sampai", ">", date("Y-m-d"))->get();
     }
 
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, "id_angkatan", "id");
+    }
 
     public function kelas()
     {

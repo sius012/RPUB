@@ -25,8 +25,8 @@ class ExportLPP implements WithMultipleSheets
         $sheets = [];
 
         // Add sheets as needed
-        $sheets[] = new ExportLPPNF($this->data);
-        $sheets[] = new ExportLPPIF($this->data);
+        $sheets["projek"] = new ExportLPPNF($this->data);
+        $sheets["tugas"] = new ExportLPPIF($this->data);
 
 
         return $sheets;

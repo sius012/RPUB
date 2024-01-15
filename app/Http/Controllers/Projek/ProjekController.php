@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Projek;
 use App\Exports\ExportProjek;
 use App\Exports\ExportProjekMaster;
 use App\Http\Controllers\Controller;
+use App\Imports\ImportProjek;
+use App\Models\Angkatan;
+use App\Models\Jurusan;
 use App\Models\Penugasan;
 use App\Models\Projek;
 use App\Models\ProjekJurusan;
@@ -14,6 +17,8 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PenilaianProjek;
+use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjekController extends Controller
 {
@@ -24,7 +29,7 @@ class ProjekController extends Controller
      */
     public function index(Request $request)
     {
-        $projek = Projek::with("projek_jurusan.jurusan");
+        $projek = Projek::with(["projek_jurusan.jurusan", "penanggung_jawab"]);
 
         if ($request->has("byRole")) {
             if ($request->byRole == 1) {
@@ -75,6 +80,11 @@ class ProjekController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has("import")) {
+            if ($request->import == 1) {
+                return $this->importFromExcel($request);
+            }
+        }
         if ($request->has("id")) {
             return $this->update($request, $request->id);
         }
@@ -184,5 +194,100 @@ class ProjekController extends Controller
         $projek = Projek::find($id);
         $projek->delete();
         return response()->json(["keterangan" => "berhasil"]);
+    }
+
+    public function importFromExcel(Request $req)
+    {
+        $file = $req->file('file-excel');
+
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move(public_path("/projekdata"), $nama_file);
+        $data = Excel::toArray(new ImportProjek, public_path("/projekdata/" . $nama_file));
+        // dd($data);
+
+        //CHECK APAKAH Angkatan tersedia
+        $approveAngkatan = true;
+        //dd($data);
+
+        foreach ($data[9] as $key => $value) {
+            if ($key > 0) {
+                $countAngkatan = Angkatan::find($value[0]);
+                if (!$countAngkatan) {
+                    $approveAngkatan = false;
+                    $let = [];
+                    foreach ($value as $j => $vl) {
+                        echo $j;
+                        $let[$data[9][0][$j]] = $vl;
+                    }
+                    $angkatan = Angkatan::create($let);
+                } else {
+                }
+            }
+        }
+
+        $approveJurusan = true;
+
+        foreach ($data[8] as $key => $value) {
+            if ($key > 0) {
+                $countJurusan = Jurusan::find($value[0]);
+                if (!$countJurusan) {
+                    $approveJurusan = false;
+                    $let = [];
+                    foreach ($value as $j => $vl) {
+                        echo $j;
+                        $let[$data[8][0][$j]] = $vl;
+                    }
+                    // $jurusan = Jurusan::create($let);
+                } else {
+                }
+            }
+        }
+
+        foreach ($data[7] as $key => $value) {
+
+            if ($key > 0) {
+                $countSiswa = Siswa::find($value[0]) or Siswa::where("nama", "LIKE", "%" . $value[2] . "%")->first();
+
+                if (!$countSiswa) {
+                    $approveSiswa = false;
+                    $let = [];
+                    foreach ($value as $j => $vl) {
+                        echo $j;
+                        $let[$data[7][0][$j]] = $vl;
+                    }
+
+                    $siswa = Siswa::create($let);
+                } else {
+                    // echo $countSiswa;
+                }
+            }
+        }
+
+        $penanggungJawab = null;
+        foreach ($data[10] as $key => $value) {
+
+            if ($key > 0) {
+                $countPenanggungJawab = User::find($value[0]) or User::where("name", "LIKE", "%" . $value[2] . "%")->first();
+                print_r($countPenanggungJawab);
+                if (!$countPenanggungJawab) {
+                    $approvePenanggungJawab = false;
+                    $let = [];
+                    foreach ($value as $j => $vl) {
+                        echo $j;
+                        $let[$data[10][0][$j]] = $vl;
+                    }
+                    dd($let);
+                    $user = User::create($let);
+                } else {
+                    echo $countPenanggungJawab;
+                    $penanggungJawab = $countPenanggungJawab;
+                }
+            }
+        }
+
+        //TambahProjek
+        //Projek
     }
 }

@@ -33,7 +33,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        
         'remember_token',
     ];
 
@@ -49,5 +49,10 @@ class User extends Authenticatable
     public function ubjurusan()
     {
         return $this->hasMany(UBJurusan::class,  "id_pengguna", "id");
+    }
+
+    public function penanggung_jawab()
+    {
+        return $this->hasMany(Projek::class, "id_penanggung_jawab", "id");
     }
 }

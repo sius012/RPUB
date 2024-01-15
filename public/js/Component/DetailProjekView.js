@@ -25,6 +25,8 @@ export default class DetailProjekView {
         //curl
         Helper.curl("/pages/projek/" + id);
 
+        //Caching
+
         Helper.permissionProjek(id, function (result) {
             if (result) {
                 let breadcrumb = pageSetup.getComponent("Breadcrumb");
@@ -57,6 +59,7 @@ export default class DetailProjekView {
 
     loadData(id) {
         this.projek = Projek.find(id);
+        pageSetup.tambahCacheProjek(this.projek);
         this.tugasList = Tugas.byProjek(id);
     }
 
@@ -194,7 +197,10 @@ export default class DetailProjekView {
 
     loadPartisipan() {
         let partisipan = Projek.find(this.projek.id, { partisipan: true });
-        console.log(partisipan.partisipan);
+        partisipan.partisipan.forEach(function (event) {
+            pageSetup.tambahSiswaLaporan(event);
+        });
+
         this.container.find("#partisipan").html(
             SiswaCard.autoList(partisipan.partisipan, {
                 redirect: true,
@@ -205,33 +211,37 @@ export default class DetailProjekView {
 
     loadLaporan() {
         const ctx = this;
-        Versi.byProjek(ctx.projek.id, function (data) {
-            let table = ctx.container.find("#laporan").find("tbody");
-            table.empty("");
-            data.forEach(function (e, i) {
-                table.append(
-                    `<tr class='laporan-row' data-id='${e.id}'><td>${
-                        i + 1
-                    }</td><td>${e.nama}</td><td>${
-                        e.keterangan
-                    }</td><td data-id='${e.id}'>${Helper.status(
-                        e.status,
-                        false,
-                        {
-                            class: "status-laporan",
-                        }
-                    )}</td><td>${e.tugas.nama}</td><td>${Helper.formatShortDate(
-                        e.timestamp.created_at
-                    )}</td><td>${e.siswa.nama}</td></tr>`
-                );
+
+        if (pageSetup.cache.laporan.length < 1) {
+            Swal.showLoading();
+            Versi.byProjek(ctx.projek.id, function (data) {
+                ctx.renderLaporan(data);
+                Swal.hideLoading();
             });
-            table.closest("table").DataTable();
-            console.log(table);
-            // table.closest("table").DataTable({
-            //     searching: false,
-            // });
-            // table.Data
+        } else {
+            ctx.renderLaporan(pageSetup.cache.laporan);
+        }
+    }
+
+    renderLaporan(data) {
+        let ctx = this;
+        let table = ctx.container.find("#laporan").find("tbody");
+        table.empty("");
+        data.forEach(function (e, i) {
+            pageSetup.tambahCacheLaporan(e);
+            table.append(
+                `<tr class='laporan-row' data-id='${e.id}'><td>${
+                    i + 1
+                }</td><td>${e.nama}</td><td>${e.keterangan}</td><td data-id='${
+                    e.id
+                }'>${Helper.status(e.status, false, {
+                    class: "status-laporan",
+                })}</td><td>${e.tugas.nama}</td><td>${Helper.formatShortDate(
+                    e.timestamp.created_at
+                )}</td><td>${e.siswa.nama}</td></tr>`
+            );
         });
+        table.closest("table").DataTable();
     }
 
     #rekursifTugas(tugas, index) {
@@ -249,12 +259,15 @@ export default class DetailProjekView {
         var tugasStr = `
      <tr data-id='${tugas.id_tugas}'>
         <td class="no">${index}</td>
-        <td style="padding-left: ${tugas.indent_level * 20}px"><span>
+        <td style="padding-left: ${
+            tugas.indent_level * 10
+        }px"><div class='row'><div class='col-1'>
         ${
             tugas.tipe == "tugas"
                 ? "<i class='fa fa-tasks mx-2'></i>"
                 : "<i class='fa fa-circle-o mx-2'></i>"
-        }${tugas.nama}</span>
+        }</div><div class='col'>${tugas.nama}</div></div><span>
+       </span>
         </td>
         <td class='status'>${
             tugas.tipe == "indikator" ? "" : Helper.status(tugas.status)
@@ -587,7 +600,7 @@ export default class DetailProjekView {
             .find(".btn-arsip")
             .click(function () {
                 Swal.fire({
-                    title: "Apakah yakin ingin mengarsipan projek?",
+                    title: "Apakah yakin ingin menghapus projek?",
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: "Save",
@@ -603,6 +616,13 @@ export default class DetailProjekView {
                         Swal.fire("Changes are not saved", "", "info");
                     }
                 });
+            });
+
+        ctx.container
+            .find("#konfigurasi-projek")
+            .find(".btn-export")
+            .click(function () {
+                window.location = "/projek/" + ctx.projek.id + "?download=1";
             });
 
         this.container.delegate(".status-laporan", "click", function () {

@@ -15,4 +15,8 @@ class Jurusan extends Model
     {
         return $this->hasMany(UBJurusan::class, "id_jurusan", "id");
     }
+    public function projekJurusan()
+    {
+        return $this->hasMany(ProjekJurusan::class, "id_jurusan", "id");
+    }
 }

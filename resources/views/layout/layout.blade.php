@@ -336,6 +336,11 @@ body {
                 <div data-i18n="Account Settings">Akun</div>
               </a>
               <ul class="menu-sub">
+              @if(Auth::guard('student')->check())
+                <li class="menu-item">
+                  <a href="" class="menu-link">Profil</a>
+                </li>
+              @endif
                 <li class="menu-item">
                   <a href="pages-account-settings-account.html" class="menu-link">
                     <form action="/logout" method="post">

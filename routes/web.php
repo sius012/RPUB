@@ -83,6 +83,7 @@ Route::get("/gettaskboardstudent", [TugasController::class, "getTaskBoard"]);
 
 Route::group(['middleware' => ['auth:student']], function () {
     Route::view('/pages/taskboard', "pages.taskboard.index");
+    Route::view("/pages/profil", "pages.profil_akun_siswa.index");
 });
 
 Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
@@ -120,8 +121,8 @@ Auth::routes();
 Route::get('/loginsiswa', [LoginController::class, "index"])->name("siswa.login");
 Route::post('/loginsiswa', [LoginController::class, "authenticate"])->name("siswa.login");
 Route::get('/getcurrentauthsiswa', [LoginController::class, "getcurrentauthsiswa"])->name("siswa.authdata");
-
-
+Route::post("/updatepp", [LoginController::class, "updatepp"]);
+Route::put("/updateemailandpasswordsiswa", [LoginController::class, "updateemailandpasswordsiswa"]);
 
 
 Route::get('/teshash', function () {

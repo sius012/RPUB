@@ -14,10 +14,28 @@ export default class LaporanDetailModal {
     }
 
     load(id) {
-        let laporan = Versi.find(id);
+        let laporan;
+        if (pageSetup.getLaporanCache(id) != null) {
+            laporan = pageSetup.getLaporanCache(id);
+        } else {
+            laporan = Versi.find(id);
+        }
+
         let tugas = pageSetup.getTugasCache(laporan.id_tugas);
-        let siswa = Siswa.find(laporan.id_siswa);
-        let projek = Projek.find(tugas.id_projek);
+
+        let siswa;
+        if (pageSetup.getCacheSiswa(laporan.id_siswa) == null) {
+            siswa = Siswa.find(laporan.id_siswa);
+        } else {
+            siswa = pageSetup.getCacheSiswa(laporan.id_siswa);
+        }
+        let projek;
+        if (pageSetup.getCacheProjek(tugas.id_projek) == null) {
+            projek = Projek.find(tugas.id_projek);
+        } else {
+            projek = pageSetup.getCacheProjek(tugas.id_projek);
+        }
+
         this.container.find("#dibuat-oleh").text(siswa.nama);
         this.container
             .find("#tanggal-laporan")

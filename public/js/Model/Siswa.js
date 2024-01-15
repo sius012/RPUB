@@ -2,6 +2,7 @@ import Projek from "../Model/Projek.js";
 import Jurusan from "../Model/Jurusan.js";
 import PenilaianProjek from "./PenilaianProjek.js";
 import Penugasan from "./Penugasan.js";
+import Angkatan from "./Angkatan.js";
 export default class Siswa {
     constructor() {
         this.id;
@@ -99,6 +100,10 @@ export default class Siswa {
 
         if (json["jurusan"] != undefined) {
             siswa.jurusan = Jurusan.parse(json["jurusan"]);
+        }
+
+        if (json["angkatan"] != undefined) {
+            siswa.angkatan = Angkatan.parse(json["angkatan"]);
         }
 
         if (json["penilaianProjek"] != undefined) {

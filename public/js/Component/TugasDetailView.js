@@ -100,7 +100,7 @@ export default class TugasDetailView {
         <div class='card mb-2 versi-card row-laporan' data-id='${versi.id}'>
         <div class='row  p-3' >
         <div class='col-3'>
-            <img style="width: 100%; height: 100%; object-fit: cover;" src='${
+            <img style="width: 100%; aspect-ratio:1/1; object-fit: cover;" src='${
                 versi.lampiran != null
                     ? "/versi/" + versi.lampiran
                     : "/img/logo/logo1.svg"

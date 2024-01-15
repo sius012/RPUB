@@ -16,6 +16,7 @@ import LaporanDetailModal from "../Component/LaporanDetailModal.js";
 import LaporanListModal from "../Component/LaporanListModal.js";
 import Tugas from "../Model/Tugas.js";
 import VersiModal from "../Component/VersiModal.js";
+import ImportProjekModal from "../Component/ImportProjekModal.js";
 
 $(document).ready(function () {
     var breadcrumb = new Breadcrumb($("#breadcrumb"));
@@ -35,6 +36,7 @@ $(document).ready(function () {
     var laporanDetailModal = new LaporanDetailModal($("#laporan-detail-modal"));
     var laporanListModal = new LaporanListModal($("#laporan-list-modal"));
     var versiModal = new VersiModal($("#versi-modal"));
+    var importProjekModal = new ImportProjekModal($("#import-projek-modal"));
 
     //ContextMenu
     var contextMenuTugas = new ContextMenu();
@@ -63,8 +65,20 @@ $(document).ready(function () {
             "Hapus",
             function (id) {
                 console.log(pageSetup.getTugasCache(id));
-                pageSetup.getTugasCache(id).hapus(function () {
-                    detailProjekView.loadTugas();
+                Swal.fire({
+                    title: "Apakah anda yakin ingin menghapus?",
+                    showCancelButton: true,
+                    confirmButtonText: "Hapus",
+                    cancelButtonText: "Batalkan",
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        pageSetup.getTugasCache(id).hapus(function () {
+                            detailProjekView.loadTugas();
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire("Data batal dihapus", "", "info");
+                    }
                 });
             },
         ],
@@ -222,6 +236,7 @@ $(document).ready(function () {
     pageSetup.add(laporanListModal);
     pageSetup.add(contextMenuStatusLaporan);
     pageSetup.add(versiModal);
+    pageSetup.add(importProjekModal);
 
     //Check jika ada projek yang redirect
     if (Helper.exurl().length == 3) {

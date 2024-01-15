@@ -45,7 +45,7 @@ export default class Projek {
         projek.nama = json["nama"];
         projek.tanggal_awal = json["tanggal_awal"];
         projek.tanggal_akhir = json["tanggal_akhir"];
-        projek.penanggung_jawab = json["penanggung_jawab"];
+        projek.penanggung_jawab = User.parse(json["penanggung_jawab"]);
         projek.jenis_projek = json["jenis_projek"];
         projek.klien = json["klien"];
         projek.deskripsi = json["deskripsi"];

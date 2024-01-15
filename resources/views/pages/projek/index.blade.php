@@ -8,11 +8,13 @@
 @include("pages.projek.components.projek_list_view")
 @include("pages.projek.components.laporan_list_modal")
 @include("pages.projek.components.laporan_detail_modal")
+@include("pages.projek.components.assignment_siswa_modal")
+@include("pages.projek.components.import_projek_modal");
 
 @include("pages.projek.components.tugas_modal")
 @include("pages.projek.components.tugas_detail_view")
 @include("pages.projek.components.versi_modal");
-@include("pages.projek.components.assignment_siswa_modal")
+
 
 
 
