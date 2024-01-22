@@ -1,3 +1,12 @@
+//TUGAS DETAIL VIEW
+
+//FUNGSI
+//1. MENAMPILKAN TUGAS DETAIL, PARTISIPAN DAN LAPORANNYA
+
+//RELASI FILE
+//VIEW: siswa_list_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/siswa
+
 import pageSetup from "./PageSetup.js";
 import Versi from "../Model/Versi.js";
 import Helper from "../Helper/Helper.js";
@@ -122,14 +131,10 @@ export default class TugasDetailView {
             type: "button",
         })}
         ${
-            Helper.getCurrentAuthSiswa().id == versi.id_siswa ||
-            Helper.checkGuard(null, { async: false }) == "admin"
-                ? `<button type="button" class="btn btn-sm btn-danger btn-hapus-laporan"><i class='fa fa-trash'></i></button>
-        <button type="button" class="btn btn-sm btn-warning btn-edit-laporan"><i class='fa fa-edit'></i></button>
-        <button type="button" class="btn btn-sm btn-info btn-info-laporan"><i class='fa fa-info'></i></button>`
+            versi.controlled == true
+                ? `<button class='btn btn-warning btn-edit-laporan btn-sm'><i class='fa fa-edit'></i></button><button class='btn btn-danger btn-hapus-laporan btn-sm'><i class='fa fa-trash'></i></button>`
                 : ""
         }
-
 </div>
         </div>
 
@@ -162,7 +167,7 @@ export default class TugasDetailView {
         this.container.delegate(".btn-hapus-laporan", "click", function () {
             let id = $(this).closest(".row-laporan").data("id");
             Swal.fire({
-                title: "Apakah anda yakin ingin menghapus versi?",
+                title: "Apakah anda yakin ingin menghapus laporan?",
                 showCancelButton: true,
                 confirmButtonText: "Hapus",
                 target: ctx.container[0],

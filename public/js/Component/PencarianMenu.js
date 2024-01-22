@@ -1,3 +1,5 @@
+//PENCARIAN INI DINONAKTIFKAN SEMENTARA
+
 import Projek from "../Model/Projek.js";
 import Siswa from "../Model/Siswa.js";
 import Tugas from "../Model/Tugas.js";
@@ -8,12 +10,14 @@ export default class PencarianMenu {
     constructor(container) {
         this.container = container;
         this.nama_component = "PencarianMenu";
+        this.isLayout = true;
     }
 
     globalEventListener() {
         const ctx = this;
         this.container.find(".cari-sesuatu").keyup(function () {
             let kw = $(this).val();
+            console.log(kw);
             if (kw.length > 0) {
                 $.ajax({
                     url: "/pencarian",
@@ -74,6 +78,11 @@ export default class PencarianMenu {
                             laporan += "</ul></li>";
                             containerPencarian.append(laporan);
                         }
+
+                        containerPencarian.show();
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
                     },
                 });
             }

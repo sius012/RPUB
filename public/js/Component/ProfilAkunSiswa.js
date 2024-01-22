@@ -1,3 +1,12 @@
+//PROFIL AKUN SISWA
+
+//FUNGSI
+//1. MELIHAT PROFIL MASING - MASING (SEBAGAI SISWA)
+//2. MENGUBAH FOTO PROFIL
+
+//RELASI FILE
+//VIEW: profil_akun_siswa.blade.php;
+
 import Helper from "../Helper/Helper.js";
 import Siswa from "../Model/Siswa.js";
 
@@ -9,6 +18,7 @@ export default class ProfilAkunSiswa {
     }
 
     load() {
+        //menampilkan halaman akun siswa
         this.profil = Helper.getCurrentAuthSiswa();
         console.log(this.profil);
         this.container.find(".field-nama").text(this.profil.nama);
@@ -37,6 +47,7 @@ export default class ProfilAkunSiswa {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJALAN DI DALAM CONTAINER
         let ctx = this;
         this.container.find("#btn-change-image").click(function () {
             ctx.container.find("#pp-img")[0].click();

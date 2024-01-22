@@ -1,3 +1,12 @@
+//JURUSAN LIST VIEW
+
+//FUNGSI
+//1. MENAMBAH, MENGEDIT DAN MENGHAPUS DATA JURUSAN
+
+//RELASI FILE
+//VIEW: projek_list_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/projek
+
 import pageSetup from "./PageSetup.js";
 import Projek from "../Model/Projek.js";
 import ProjekCard from "./Card/ProjekCard.js";
@@ -6,9 +15,8 @@ import Helper from "../Helper/Helper.js";
 
 export default class ProjekListView {
     constructor(container) {
-        this.container = container;
-        this.projekList = [];
-        this.page_setup;
+        this.container = container; // ELEMEN PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU (ID)
+        this.projekList = []; //DATA PROJEK (SESUAI UB JURUSAN) (MULTIPLE DATA)
         this.nama_component = "ProjekListView";
         this.mode = "card";
         this.id_jurusan;
@@ -16,6 +24,7 @@ export default class ProjekListView {
     }
 
     load(id_jurusan = null) {
+        //MENAMPILKAN DATA PROJEK
         const ctx = this;
 
         pageSetup.componentList.forEach((element) => {
@@ -51,9 +60,30 @@ export default class ProjekListView {
             switch (ctx.mode) {
                 case "card":
                     ctx.container.find(".row-view")
-                        .html(`<div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>`);
+                        .html(`<div class='row justify-content-center' style='width: 100%'><div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-secondary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-dark" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div></div>`);
                     this.projekList = Projek.byRole(function (data) {
                         console.log(data);
                         ctx.container.find(".row-view").html("");
@@ -91,7 +121,9 @@ export default class ProjekListView {
                                     <td>${Helper.status(element.status)}</td>
                                     <td>${element.tanggal_awal}</td>
                                     <td>${element.tanggal_akhir}</td>
-                                    <td><button class='btn btn-info btn-sm'><i class='fa fa-info'></i></button></td>
+                                    <td><button class='btn btn-info btn-sm projek-card' data-id='${
+                                        element.id
+                                    }'><i class='fa fa-info'></i></button></td>
                                 </tr>`);
                         });
 
@@ -111,6 +143,7 @@ export default class ProjekListView {
     }
 
     globalEventListener() {
+        // MENDETEKSI EVENT YANG SEDANG BERJALAN DI DALAM CONTAINER
         //GlobalEventListener
         var ctx = this;
 

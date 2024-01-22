@@ -1,12 +1,24 @@
+//BREADCRUMB
+
+//FUNGSI
+//1. MEMUDAHKAN NAVIGASI KE HALAMAN LAIN
+
+//TERLETAK DIBAWAH PENCARIAN
+
+//RELASI FILE
+//VIEW: breadcrumb.blade.php;
+//TERSIMPAN DIHALAMAN = maincomponent
+
+
+
 import pageSetup from "./PageSetup.js";
 
 export default class Breadcrumb {
     constructor(container) {
-        this.container = container;
-        this.route = [];
+        this.container = container; //ELEMENT BREADCRUMB
+        this.route = []; //ROUTENYA (DIISI OLEH FUNCTION)
 
-        this.page_setup;
-        this.nama_component = "Breadcrumb";
+        this.nama_component = "Breadcrumb"; //NAMA COMPONENT (WAJIB ADA DISETIAP COMPONENT)
 
         this.isLayout = true;
         this.load();
@@ -14,7 +26,7 @@ export default class Breadcrumb {
         //sthis.container.closest(".row").hide();
     }
 
-    globalEventListener() {
+    globalEventListener() { //MENDETEKSI EVENT YANG SEDANG BERLANGSUNG BREADCRUMB
         var ctx = this;
         this.container.delegate("li", "click", function () {
             let index = $(this).data("index");
@@ -36,7 +48,7 @@ export default class Breadcrumb {
         });
     }
 
-    load() {
+    load() {// MENAMPILKAN BREADCRUMB
         var ctx = this;
         this.container.find("ol").html("");
         this.route.forEach(function (e, i) {
@@ -50,7 +62,7 @@ export default class Breadcrumb {
         });
     }
 
-    add(component) {
+    add(component) {//MENAMBAHKAN HALAMAN BARU DIBREADCRUMB
         let count = this.route.filter((element) => element[0] == component[0]);
         if (count.length < 1) {
             //alert(count.length);

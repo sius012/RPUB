@@ -26,7 +26,7 @@
             </ul>
             <div class="tab-content p-0" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-card-projek" role="tabpanel" aria-labelledby="pills-home-tab">
-                    <div class="row row-view">
+                    <div class="row row-view" style="width: 100%;">
 
                     </div>
                 </div>

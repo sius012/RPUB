@@ -1,17 +1,27 @@
+//SISWA MODAL
+
+//FUNGSI
+//1. MENAMBAHKAN, MENGEDIT, DATA SISWA
+
+//RELASI FILE
+//VIEW: siswa_modal.blade.php;
+//TERSIMPAN DIHALAMAN = pages/konfigurasi
+
 import Angkatan from "../Model/Angkatan.js";
 import Jurusan from "../Model/Jurusan.js";
 import Siswa from "../Model/Siswa.js";
 
 export default class SiswaModal {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMENT PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU ID(#)
         this.modal = new bootstrap.Modal(container);
-        this.siswa = new Siswa();
-        this.mode = "simpan";
-        this.nama_component = "SiswaModal";
+        this.siswa = new Siswa(); //DATA SISWA KOSONG
+        this.mode = "simpan"; //MODE MODAL
+        this.nama_component = "SiswaModal"; //NAMA COMPONENT WAJIB DISETIAP COMPONENT
     }
 
     init(load = false) {
+        //INISIALSASI SISWA MODAL
         const ctx = this;
         ctx.reset();
         this.mode = "simpan";
@@ -37,6 +47,7 @@ export default class SiswaModal {
     }
 
     load(id) {
+        //MENAMPILKAN DATA SISWA DARI ID
         this.init();
         this.mode = "edit";
         this.siswa = Siswa.find(id);
@@ -56,6 +67,7 @@ export default class SiswaModal {
     }
 
     reset() {
+        //MERESET MODAL
         this.getElement("nama").val("");
         this.getElement("email").val("");
         this.getElement("id_jurusan", "select").val("");
@@ -67,6 +79,7 @@ export default class SiswaModal {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJALAN DI DALAM CONTAINER
         const ctx = this;
         this.container.find("form").submit(function (e) {
             e.preventDefault();

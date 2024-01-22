@@ -9,10 +9,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="">Kompetensi Keahlian</label>
-                        <div class="row container-jurusan"></div>
-                    </div>
+
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Jurusan</th>
+                                <th>K3</th>
+                            </tr>
+                        </thead>
+                        <tbody class="container-jurusan"></tbody>
+                    </table>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

@@ -29,7 +29,6 @@ export default class ProjekCard {
     
         
             <h4 class="card-title mx-0 my-2">${this.projek.nama}</h4>
-            <p class="card-text m-0">${this.projek.deskripsi}</p>
             <p class="card-text m-0">
                 <small class="text-muted m-0">${
                     this.projek.jenis_projek

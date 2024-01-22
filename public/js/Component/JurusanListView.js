@@ -1,3 +1,8 @@
+//JURUSAN LIST VIEW
+
+//COMPONENT INI SUDAH TIDAK TERPAKAI(19/01/2024)
+
+
 import pageSetup from "./PageSetup.js";
 import JurusanCard from "./Card/JurusanCard.js";
 export default class JurusanListView {

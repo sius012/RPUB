@@ -143,10 +143,10 @@ export default class Siswa {
             },
             type: "get",
             success: function (data) {
+                console.log(data);
                 ctx.list_projek = data.map(function (e) {
                     return Projek.parse(e, { withEtc: true });
                 });
-                console.log(data);
 
                 cb(ctx.list_projek);
             },

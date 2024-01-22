@@ -12,7 +12,7 @@ export default class Versi {
         this.status;
         this.timestamp;
         this.siswa;
-
+        this.controlled;
         this.tugas;
     }
 
@@ -49,7 +49,10 @@ export default class Versi {
         if (json["siswa"] != undefined) {
             versi.siswa = Siswa.parse(json["siswa"]);
         }
-        versi.siswa = Siswa.find(versi.id_siswa);
+        if (json["controlled"] != undefined) {
+            versi.controlled = json["controlled"];
+        }
+        //versi.siswa = Siswa.find(versi.id_siswa);
         return versi;
     }
     static all(cb = null) {

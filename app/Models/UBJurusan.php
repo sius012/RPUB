@@ -9,7 +9,7 @@ class UBJurusan extends Model
 {
     use HasFactory;
     protected $table = "ub_jurusan";
-    protected $fillable = ["id_pengguna", "id_jurusan"];
+    protected $fillable = ["id_pengguna", "id_jurusan", "k3"];
 
     public function jurusan()
     {

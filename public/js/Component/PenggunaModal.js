@@ -1,3 +1,12 @@
+//PENGGUNA MODAL
+
+//FUNGSI
+//1. MENAMBAH, MENGEDIT DAN MENGHAPUS DATA PENGGUNA
+
+//RELASI FILE
+//VIEW: pengguna_modal_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/konfigurasi
+
 import Jurusan from "../Model/Jurusan.js";
 import Role from "../Model/Role.js";
 import User from "../Model/User.js";
@@ -5,14 +14,16 @@ import pageSetup from "./PageSetup.js";
 
 export default class PenggunaModal {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMEN MODAL BISA BERUPA CLASS(.) ATAU (ID)
         this.modal = new bootstrap.Modal(container);
-        this.mode = "simpan";
+        this.mode = "simpan"; //MODE MODAL (SIMPAN ATAU EDIT)
         this.nama_component = "PenggunaModal";
         this.pengguna = new User();
     }
 
     load(id = null) {
+        //MENAMPILKAN DATA BERDASARKAN ID, JIKA ID NULL MAKA HANYA MENAMPILKAN MODAL SAJA, TANPA MELOAD DATA
+
         const ctx = this;
         this.getElement("role", "select").html("");
         Role.all(function (data) {
@@ -35,6 +46,7 @@ export default class PenggunaModal {
     }
 
     reset() {
+        // MERESET  MODAL
         this.pengguna = new User();
         this.mode = "simpan";
         this.getElement("name").val("");
@@ -44,6 +56,7 @@ export default class PenggunaModal {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJALAN DI DALAM CONTAINER
         const ctx = this;
         this.container.find("form").submit(function (e) {
             e.preventDefault();
@@ -75,6 +88,7 @@ export default class PenggunaModal {
     }
 
     parseFromElement(id = null) {
+        //MENGISI MODEL PENGGUNA DARI INPUTAN YANG TELAH DIISI OLEH USER
         this.pengguna.nama = this.getElement("name").val();
         this.pengguna.email = this.getElement("email").val();
         if (this.getElement("password").val().length > 0) {
@@ -89,6 +103,7 @@ export default class PenggunaModal {
     }
 
     getElement(name, type = "input") {
+        //MENPATKAN INPUTAN DARI FIELD INPUTAN
         return this.container.find(`${type}[name=${name}]`);
     }
 }

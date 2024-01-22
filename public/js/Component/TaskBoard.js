@@ -1,3 +1,12 @@
+//TAKSBOARD
+
+//FUNGSI
+//1. MENAMPILKAN JOBDESK SISWA
+
+//RELASI FILE
+//VIEW: taskboard.blade.php;
+//TERSIMPAN DIHALAMAN = pages/taskboard
+
 import TugasCard from "./Card/TugasCard.js";
 import Tugas from "../Model/Tugas.js";
 import pageSetup from "./PageSetup.js";
@@ -6,14 +15,14 @@ import Helper from "../Helper/Helper.js";
 
 export default class TaskBoard {
     constructor(container) {
-        this.container = container;
-        this.listBoard = [];
-        this.page_setup;
-        this.nama_component = "TasKBoard";
+        this.container = container; //ELEMEN PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU ID(#)
+        this.listBoard = []; //LIST BOARD (PER STATUS)
+        this.nama_component = "TaskBoard";
         this.id_siswa = null;
     }
 
     load(id_siswa = null) {
+        //TAMPILKAN BERDASARKAN ID SISWA
         if (id_siswa != null) {
             this.id_siswa = id_siswa;
         } else {
@@ -77,6 +86,7 @@ export default class TaskBoard {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJLAN DI CONTAINER
         let ctx = this;
 
         this.container.delegate(".tugas-card", "click", function () {

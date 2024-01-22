@@ -1,3 +1,10 @@
+//JENIS MODAL 
+
+//KOMPONENT INI SUDAH TIDAK TERPAKAI LAGI (19/01/2024)
+
+
+
+
 import Jenis from "../Model/Jenis.js";
 import Jurusan from "../Model/Jurusan.js";
 import pageSetup from "./PageSetup.js";

@@ -1,14 +1,24 @@
+//KONFIGURASI VIEW
+
+//FUNGSI
+//1. MENAMPILKAN MENU UTAMA KONFIGURAS
+//2. SEBAGAI JALAN UNTUK KE MENU KONFIGURASI YANG LEBIH DETAI;
+
+//RELASI FILE
+//VIEW: konfigurasi_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/konfigurasi
+
 import Helper from "../Helper/Helper.js";
 import pageSetup from "./PageSetup.js";
 
 export default class KonfigurasiView {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMENT PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU (ID)
 
         this.nama_component = "KonfigurasiView";
     }
 
-    load() {
+    load() {//MENAMPILKAN MENU KONFIGURASI
         const ctx = this;
         pageSetup.componentList.forEach((element) => {
             //Menyembunyikan element yang lainnya
@@ -16,6 +26,7 @@ export default class KonfigurasiView {
                 element.container.hide();
             }
         });
+        
         Helper.isSuperAdmin(
             function () {
                 let breadcrumb = pageSetup.getComponent("Breadcrumb");
@@ -30,7 +41,7 @@ export default class KonfigurasiView {
         );
     }
 
-    globalEventListener() {
+    globalEventListener() {// MENDETEKSI EVENT YANG SEDANG BERLANGSUNG DIDALAM CONTAINER
         const ctx = this;
 
         this.container.find(".konfigurasi-pengguna").click(function () {

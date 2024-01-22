@@ -1,3 +1,14 @@
+//DETAIL PROJEK VIEW
+
+//FUNGSI
+//1. MENAMPILKAN DETAIL PROJEK YANG DIPILIH
+
+//TERLETAK DI MENU PROJEK
+
+//RELASI FILE
+//VIEW: detail_projek_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/projek
+
 import pageSetup from "./PageSetup.js";
 import Projek from "../Model/Projek.js";
 import Tugas from "../Model/Tugas.js";
@@ -11,15 +22,14 @@ import Jurusan from "../Model/Jurusan.js";
 
 export default class DetailProjekView {
     constructor(container) {
-        this.container = container;
-        this.projek;
-        this.tugasList;
-
-        this.page_setup;
-        this.nama_component = "DetailProjekView";
+        this.container = container; //ELEMENT DETAIL PROJEK VIEW
+        this.projek; //DATA PROJEK (SINGLE DATA)
+        this.tugasList; //TUGAS TUGAS YANG ADA DIDALAM PROJEK
+        this.nama_component = "DetailProjekView"; //NAMA KOMPONENT (WAJIB ADA DISETIAP COMPONENT)
     }
 
     load(id) {
+        //MEMUAT SEMUA DATA PROJEK BERDASARKAN ID PROJEK
         const ctx = this;
 
         //curl
@@ -28,11 +38,14 @@ export default class DetailProjekView {
         //Caching
 
         Helper.permissionProjek(id, function (result) {
+            //MENENGECEK APAKAH AKUN MEMILIKI HAK AKSES
+
             if (result) {
+                //JIKA IYA
                 let breadcrumb = pageSetup.getComponent("Breadcrumb");
                 breadcrumb.add([ctx.nama_component, "active"]);
 
-                ctx.page_setup.componentList.forEach((element) => {
+                pageSetup.componentList.forEach((element) => {
                     //Menyembunyikan element yang lainnya
                     if (
                         element.isLayout == undefined &&
@@ -49,6 +62,7 @@ export default class DetailProjekView {
                 ctx.loadPartisipan();
                 ctx.loadTugas();
             } else {
+                //JIKA TIDAK
                 Swal.fire(
                     "Gagal",
                     "Anda tidak memiliki hak akses untuk projek ini"
@@ -58,12 +72,14 @@ export default class DetailProjekView {
     }
 
     loadData(id) {
+        //MEMUAT DATA UTAMA PROJEK (TANPA TUGAS, PARTISIPAN DLL)
         this.projek = Projek.find(id);
         pageSetup.tambahCacheProjek(this.projek);
         this.tugasList = Tugas.byProjek(id);
     }
 
     loadInfoProjek() {
+        //MENAMPILKAN INFORMASI PROJEK
         const ctx = this;
         var infoprojek = this.container.find("#informasi-projek");
         //ubah semua kolom inputan menjadi readonly
@@ -108,7 +124,7 @@ export default class DetailProjekView {
             infoprojek
                 .find("input[name=nominal]")
                 .closest(".form-group")
-                .hide();
+                .show();
         } else {
             infoprojek.find("input[name=klien]").closest(".form-group").hide();
             infoprojek
@@ -152,6 +168,7 @@ export default class DetailProjekView {
         ctx.initPj();
     }
     loadTugas() {
+        //MENAMPILKAN DATA TUGAS (KOMPETENSI) YANG ADA PROJEK YANG DIPILIH
         var ctx = this;
         //simpan posisi terakhir
         var previousScroll = $(window).scrollTop();
@@ -183,6 +200,7 @@ export default class DetailProjekView {
     }
 
     loadTimeliner() {
+        //MENAMPILKAN TIMELINER (BELUM TERPAKAI)
         let data = Tugas.byProjek(this.projek.id, { rekursif: false });
 
         let timeliner = new Timechart(this.container.find("#canvas")[0], data);
@@ -196,6 +214,7 @@ export default class DetailProjekView {
     }
 
     loadPartisipan() {
+        //MENAMPILKAN PARTISIPAN (SISWA) YANG IKUT MENGERJAKAN PROJEK
         let partisipan = Projek.find(this.projek.id, { partisipan: true });
         partisipan.partisipan.forEach(function (event) {
             pageSetup.tambahSiswaLaporan(event);
@@ -210,13 +229,13 @@ export default class DetailProjekView {
     }
 
     loadLaporan() {
+        // MEMUAT DATA LAPORAN PROJEK (VERSI) YANG DIKIRIMKAN SISWA (PARTISIPAN)
         const ctx = this;
-
         if (pageSetup.cache.laporan.length < 1) {
-            Swal.showLoading();
+            // Swal.showLoading();
             Versi.byProjek(ctx.projek.id, function (data) {
                 ctx.renderLaporan(data);
-                Swal.hideLoading();
+                //Swal.hideLoading();
             });
         } else {
             ctx.renderLaporan(pageSetup.cache.laporan);
@@ -224,6 +243,7 @@ export default class DetailProjekView {
     }
 
     renderLaporan(data) {
+        // MENAMPILKAN DATA LAPORAN PROJEK (VERSI) YANG DIKIRIMKAN SISWA (PARTISIPAN)
         let ctx = this;
         let table = ctx.container.find("#laporan").find("tbody");
         table.empty("");
@@ -245,6 +265,7 @@ export default class DetailProjekView {
     }
 
     #rekursifTugas(tugas, index) {
+        // MENAMPILKAN DATA TUGAS SECARA REKURSIF
         var barStr = "<div class='progress position-relative'>";
         console.log(tugas);
         for (var i in tugas.statusArr) {
@@ -297,6 +318,7 @@ export default class DetailProjekView {
     }
 
     loadPenugasan(id) {
+        // MENAMPILKAN FOTO SISWA YANG MENGERJAKAN TUGAS (KOMPETENSI) DI TAB TUGAS
         let ctx = this;
 
         let container = ctx.container
@@ -336,8 +358,8 @@ export default class DetailProjekView {
     }
 
     validasiInformasi() {
+        // MENGECEK APAKAH DATA INFORMASI YANG DIEDIT SUDAH VALID, SEBELUM DIKIRIM KEDALAM SERVER UNTUK DIPERBARUI
         let ctx = this;
-
         let jurusanCount = 0;
         let inputFieldCheck = true;
         let selectFieldCheck = true;
@@ -365,7 +387,6 @@ export default class DetailProjekView {
                             projekEksternalField.includes($(this).attr("name"))
                         ) {
                         } else {
-                            alert(ctx.projek.jenis_projek);
                             inputFieldCheck = false;
                         }
                     }
@@ -384,7 +405,6 @@ export default class DetailProjekView {
                     selectFieldCheck = false;
                 }
             });
-
         if (jurusanCount > 0 && inputFieldCheck && selectFieldCheck) {
             return true;
         } else {
@@ -393,6 +413,7 @@ export default class DetailProjekView {
     }
 
     globalEventListener() {
+        // MENDETEKSI EVENT YANG SEDANG BERLANGSUNG (TOMBOL KIRIM,KEYUP INPUTAN DLL)
         var ctx = this;
         this.container.delegate(".pp-item", "click", function (e) {
             e.preventDefault();
@@ -416,7 +437,7 @@ export default class DetailProjekView {
             //e.preventDefault();
             e.stopPropagation();
 
-            var ctxmenu = ctx.page_setup.getComponent("ContextMenuTugas");
+            var ctxmenu = pageSetup.getComponent("ContextMenuTugas");
             ctxmenu.trigger($(this), $(this).closest("tr").attr("data-id"));
         });
 
@@ -440,8 +461,8 @@ export default class DetailProjekView {
             .delegate(".partisipan", "click", function (e) {
                 e.preventDefault();
                 let id = $(this).closest("tr").attr("data-id");
-                let aSM = ctx.page_setup.getComponent("AssignmentSiswaModal");
-                console.log(ctx.page_setup);
+                let aSM = pageSetup.getComponent("AssignmentSiswaModal");
+                console.log(pageSetup);
                 aSM.init(
                     ctx.projek.jurusan.map(function (e) {
                         return e.id;
@@ -512,6 +533,13 @@ export default class DetailProjekView {
                     .attr("disabled", function (index, attr) {
                         return attr == "disabled" ? null : "disabled";
                     });
+
+                infoprojek
+                    .find(".nominal")
+                    .attr("readonly", function (index, attr) {
+                        return attr == "readonly" ? null : "readonly";
+                    });
+
                 infoprojek
                     .find(".lokasi-projek")
                     .attr("readonly", function (index, attr) {
@@ -580,10 +608,12 @@ export default class DetailProjekView {
                         }
                     });
                     console.log("the params");
-                    console.log(params);
+
                     let projek = Projek.parse(params);
+                    console.log(params);
                     projek.simpan({
-                        cb: function () {
+                        cb: function (data) {
+                            console.log(data);
                             Swal.fire({
                                 icon: "success",
                                 title: "Data berhasil diperbarui",
@@ -641,6 +671,7 @@ export default class DetailProjekView {
     }
 
     initPj() {
+        // INISIALISASI PENANGGUNG JAWAB PROJEK
         const ctx = this;
         let jurusanList = [];
         let container = ctx.getElement("id_penanggung_jawab", "select");
@@ -669,25 +700,8 @@ export default class DetailProjekView {
         $(this).parent().find(".pj-list");
     }
 
-    filterLaporan() {
-        var table, rows, switching, i, x, y, shouldSwitch;
-        table = this.container.find("#laporan").find("table").find("tbody");
-        switching = true;
-
-        while (switching) {
-            switching = false;
-            rows = table.children("tr");
-
-            for (i = 0; i < rows.length; i++) {}
-
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-            }
-        }
-    }
-
     getElement(name, type = "input") {
+        //MENDAPATKAN NILAI INPUTAN BERDASARKAN NAMA
         return this.container.find(`${type}[name=${name}]`);
     }
 }

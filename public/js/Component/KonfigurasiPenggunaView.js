@@ -1,18 +1,29 @@
+//KONFIGURASI PENGGUNA VIEW
+
+//FUNGSI
+//1. MENAMPILKAN LIST PENGGUNA DIAPLIKASI RUBI
+//2. MENAMBAHKAN DAN MENGEDIT DATA PENGGUNA
+//3. MENAMBAHKAN HAK AKSES
+
+//RELASI FILE
+//VIEW: konfigurasi_pengguna_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/konfigurasi
+
 import Helper from "../Helper/Helper.js";
 import User from "../Model/User.js";
 import pageSetup from "./PageSetup.js";
 
 export default class KonfigurasiPenggunaView {
     constructor(container) {
-        this.container = container;
-        this.userList = [];
-        this.nama_component = "KonfigurasiPenggunaView";
+        this.container = container;//ELEMEN CONTAINER PEMBUNGKUS (BERUPA CLASS(.) ATAU ID(#))
+        this.userList = [];//LIST PENGGUNA (MULTIPLE DATA)
+        this.nama_component = "KonfigurasiPenggunaView"; //NAMA KOMPONENT WAJIB ADA DISETIP KOMPONENT AGAR BISA DIPANGGIL OLEH KOMPONENT LAIN
     }
 
-    load() {
+    load() {//MENAMPILKAN DATA PENGGUNA
         const ctx = this;
 
-        let breadcrumb = pageSetup.getComponent("Breadcrumb");
+        let breadcrumb = pageSetup.getComponent("Breadcrumb");//MEMPERBARUI BREADCRUMB
         breadcrumb.add([this.nama_component, "active"]);
 
         pageSetup.componentList.forEach((element) => {
@@ -49,18 +60,18 @@ export default class KonfigurasiPenggunaView {
         this.container.show();
     }
 
-    globalEventListener() {
+    globalEventListener() {//MENDETEKSI EVENT YANG SEDANG BERJALAN DIDALAM KONTAINER PEMBUNGKUS
         const ctx = this;
-        const modal = pageSetup.getComponent("PenggunaModal");
-        this.container.find("#btn-pengguna").click(function () {
+        const modal = pageSetup.getComponent("PenggunaModal");//MEMANGGIL KOMPONEN MODAL
+        this.container.find("#btn-pengguna").click(function () {//KETIKA TOMBOL TAMBAH PENGGUNA DITEKAN
             modal.load();
         });
 
-        this.container.delegate(".edit-user", "click", function () {
+        this.container.delegate(".edit-user", "click", function () {//KETIKA TOMBOL EDIT DITEKAN
             modal.load($(this).data("id"));
         });
 
-        this.container.delegate(".hapus-user", "click", function () {
+        this.container.delegate(".hapus-user", "click", function () {//KETIKA TOMBOL HAPUS DITEKAN
             Swal.fire({
                 title: "Apakah yakin ingin menghapus akun?",
                 showCancelButton: true,
@@ -78,7 +89,7 @@ export default class KonfigurasiPenggunaView {
             });
         });
 
-        this.container.delegate(".btn-ubjurusan", "click", function (e) {
+        this.container.delegate(".btn-ubjurusan", "click", function (e) {//KETIKA UB JURUSAN DITEKAN
             e.preventDefault();
             let id = $(this).data("id");
             let modalUB = pageSetup.getComponent("UBJurusanModal").load(id);

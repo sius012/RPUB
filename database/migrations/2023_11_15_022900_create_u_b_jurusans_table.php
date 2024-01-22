@@ -17,6 +17,7 @@ class CreateUBJurusansTable extends Migration
             $table->id();
             $table->bigInteger("id_jurusan");
             $table->bigInteger("id_pengguna");
+            $table->boolean("k3")->default(false);
             $table->timestamps();
         });
     }

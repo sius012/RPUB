@@ -39,7 +39,9 @@ class JurusanController extends Controller
                         break;
                 }
             }
-            $jurusan[$j]->jumlah_projek = ProjekJurusan::where("id_jurusan", $jrs->id)->get()->count();
+            $jurusan[$j]->jumlah_projek = Projek::whereHas("projek_jurusan", function ($q) use ($jrs) {
+                $q->where("id_jurusan", $jrs->id);
+            })->get()->count();
         }
         return response()->json($jurusan);
     }

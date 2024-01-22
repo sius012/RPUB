@@ -106,6 +106,10 @@ Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
     Route::get('/pages/projek/tugas/{id}', function ($id) {
         return view("pages.projek.index");
     });
+
+    Route::get('/getcurrentauthuser', function () {
+        return response()->json(Auth::user());
+    })->name("user.authdata");
 });
 
 Route::resource('pencarian', PencarianController::class);

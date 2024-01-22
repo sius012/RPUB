@@ -1,3 +1,12 @@
+//LAPORAN DETAIL VIEW
+
+//FUNGSI
+//1. MENAMPILKAN DETAIL LAPORAN SISWA SECARA PRESENTATIF
+
+//RELASI FILE
+//VIEW: laporan_detail_modal.blade.php;
+//TERSIMPAN DIHALAMAN = pages/konfigurasi
+
 import Helper from "../Helper/Helper.js";
 import Projek from "../Model/Projek.js";
 import Siswa from "../Model/Siswa.js";
@@ -6,14 +15,13 @@ import pageSetup from "./PageSetup.js";
 
 export default class LaporanDetailModal {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMEN CONTAINER MODAL BISA BERUPA CLASS(.) ATAU ID(#)
         this.modal = new bootstrap.Modal(container);
-        this.laporan;
-        this.isLayout = true;
-        this.nama_component = "LaporanDetailModal";
+        this.laporan;//DATA LAPORAN (SINGLE DATA)
+        this.nama_component = "LaporanDetailModal"; //NAMA COMPONENT WAJIB ADA DISETIAP KOMPONENT AGAR BISA DIPANGGIL DICOMPONENT LAIN
     }
 
-    load(id) {
+    load(id) {// MENAMPILKAN LAPORAN
         let laporan;
         if (pageSetup.getLaporanCache(id) != null) {
             laporan = pageSetup.getLaporanCache(id);

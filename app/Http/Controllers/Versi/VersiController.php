@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Versi;
 use App\Http\Controllers\Controller;
 use App\Models\Versi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VersiController extends Controller
 {
@@ -15,14 +16,30 @@ class VersiController extends Controller
      */
     public function index(Request $req)
     {
-        $versi = Versi::with(["tugas", "siswa"]);
+        $versi = Versi::with(["tugas", "siswa.angkatan"]);
         if ($req->has("id_projek")) {
             $versi = $versi->whereHas("tugas.projek", function ($q) use ($req) {
                 $q->where("id_projek", $req->id_projek);
             });
+            return response()->json($versi->get());
         }
         if ($req->has("id_tugas")) {
+            $checkGuard = Auth::guard('web')->check() == true ? "admin" : "guard";
+
             $versi = $versi->where("id_tugas", $req->id_tugas);
+
+            $authId = $checkGuard == "admin" ? Auth::user()->id : Auth::guard("student")->user()->id;
+
+
+            $versi = $versi->orderBy("created_at", "desc");
+
+
+            $versi = $versi->get()->map(function ($e) use ($checkGuard, $authId) {
+                $e->siswa->$e->controlled = $checkGuard != "admin" ? $e->id_siswa == $authId ? true : false : true;
+                return $e;
+            });
+
+            return response()->json($versi);
         }
         if ($req->has("byTugasDanSiswa")) {
             $versi = Versi::where("id_siswa", $req->id_siswa)->where("id_tugas", $req->id_tugas)->get();

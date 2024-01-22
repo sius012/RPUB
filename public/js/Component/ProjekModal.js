@@ -1,17 +1,27 @@
+//PROJEK MODAL
+
+//FUNGSI
+//1. MENAMBAH, MENGEDIT DATA PROJEK
+
+//RELASI FILE
+//VIEW: projek_modal.blade.php;
+//TERSIMPAN DIHALAMAN = pages/projek
+
 import Projek from "../Model/Projek.js";
 import Jurusan from "../Model/Jurusan.js";
 import User from "../Model/User.js";
 import Helper from "../Helper/Helper.js";
+import pageSetup from "./PageSetup.js";
 export default class ProjekModal {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMENT PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU ID(#)
         this.modal = new bootstrap.Modal(container);
-        this.ProjekData;
-        this.page_setup;
+        this.ProjekData; //DATA PROJEK (SINGLE DATA)
         this.nama_component = "ProjekModal";
     }
 
     init() {
+        // INISIALISASI DATA (MENDAPATKAN JURUSAN YANG TERSEDIA)
         let cjr = this.container.find(".container-jurusan-row");
         cjr.empty();
         Jurusan.all({ ubjurusan: true }, function (jurusan) {
@@ -33,6 +43,7 @@ export default class ProjekModal {
     }
 
     parse() {
+        //MENGISI MODEL PROJEK DARI INPUTAN YANG ADA DIDALAM KOMPONENT
         var projek = new Projek();
         projek.nama = this.getElement("nama").val();
         projek.tanggal_awal = this.getElement("tanggal_awal").val();
@@ -49,6 +60,7 @@ export default class ProjekModal {
     }
 
     fastParse(json) {
+        //MENGISI MODEL PROJEK DARI INPUTAN YANG ADA DIDALAM KOMPONENT
         var projek = new Projek();
         projek.nama = json["nama"];
         projek.tanggal_awal = json["tanggal_awal"];
@@ -61,10 +73,12 @@ export default class ProjekModal {
         projek.id_pembuat = 0;
         projek.id_jurusan = json["id_jurusan"];
         projek.lokasi = json["lokasi_projek"];
+        projek.nominal = json["nominal"];
         this.ProjekData = projek;
     }
 
     load(id_projek = null) {
+        //MENAMPILKAN DATA PROJEK BERDASARKAN ID
         if ((id_projek = null)) {
             this.ProjekData = Projek.find(id_projek);
         }
@@ -83,6 +97,7 @@ export default class ProjekModal {
     }
 
     reset() {
+        // MERESET MODAL
         this.getElement("id").val("");
         this.getElement("nama").val("nama");
         this.getElement("tanggal_awal").val("");
@@ -97,19 +112,21 @@ export default class ProjekModal {
     }
 
     kirim() {
+        // KIRIM PROJEK
         //  this.parse();
         console.log("Datanya adalah:");
         console.log(this.ProjekData);
         this.ProjekData.simpan();
         this.modal.hide();
-        var pLV = this.page_setup.getComponent("ProjekListView");
+        var pLV = pageSetup.getComponent("ProjekListView");
         pLV.load(pLV.id_jurusan);
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJALAN DI DALAM CONTAINER
         var ctx = this;
         this.container.find("#clear-Jurusan").click(function () {
-            var jLV = ctx.page_setup.getComponent("JurusanListView").container;
+            var jLV = pageSetup.getComponent("JurusanListView").container;
         });
 
         this.container.find("form").submit(function (e) {
@@ -144,7 +161,7 @@ export default class ProjekModal {
             }
             // Display form data (you can also send it to the server via AJAX)
 
-            var pLV = ctx.page_setup.getComponent("ProjekListView");
+            var pLV = pageSetup.getComponent("ProjekListView");
         });
 
         ctx.getElement("nilai_projek").closest(".row").hide();
@@ -222,6 +239,7 @@ export default class ProjekModal {
     }
 
     getElement(name, type = "input") {
+        // MENDAPATKAN INPUTAN YANG ADA DIDALAM KOMPONENT BERDASARKAN NAME
         return this.container.find(`${type}[name=${name}]`);
     }
 

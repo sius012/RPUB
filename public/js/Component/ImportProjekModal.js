@@ -1,3 +1,4 @@
+//IMPORT PROJEK MODAL
 export default class ImportProjekModal {
     constructor(container) {
         this.container = container;
@@ -5,7 +6,7 @@ export default class ImportProjekModal {
         this.nama_component = "ImportProjekModal";
     }
 
-    load() {
+    load() {// MENAMPILKAN MODAL
         this.modal.show();
     }
 }

@@ -1,3 +1,13 @@
+//ASSIGNMENT SISWA MODAL
+
+//FUNGSI
+//1. MENAMBAHKAN PENUGASAN KEPADA SISWA
+//2. MENGEDIT PENUGASAN KEPADA SISWA
+
+//RELASI FILE
+//VIEW: assignment_siswa_modal.blade;
+//TERSIMPAN DIHALAMAN = pages/projek/
+
 import pageSetup from "./PageSetup.js";
 import Siswa from "../Model/Siswa.js";
 import Penugasan from "../Model/Penugasan.js";
@@ -5,18 +15,17 @@ import Angkatan from "../Model/Angkatan.js";
 
 export default class AssigmentSiswaModal {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMEN MODAL
         this.modal = new bootstrap.Modal(container);
-        this.siswaList;
-        this.id_jurusan;
-        this.projek;
-        this.tugas;
-        this.page_setup;
-        this.params = { kelas: [], kw: null };
-        this.nama_component = "AssignmentSiswaModal";
+        this.siswaList; //BERISI DATA SISWA (MULTIPLE ADATA)
+        this.id_jurusan; //ID DARI JURUSAN YANG MENGIKUTI PROJEK
+        this.projek; // DATA PROJEK TERKAIT
+        this.tugas; // DATA TUGAS TERKAIT
+        this.params = { kelas: [], kw: null }; //FILTER BERDASARKAN NAMA DAN KELAS
+        this.nama_component = "AssignmentSiswaModal"; //NAMA KOMPONEN (WAJIB ADA DISETIAP KOMPONEN)
     }
 
-    init(id_jurusan, tugas) {
+    init(id_jurusan, tugas) { //INISIALISI MODAL (MENGISI ID_JURUSAN DAN TUGASNYA APA)
         let ctx = this;
         this.id_jurusan = id_jurusan;
         this.tugas = tugas;
@@ -39,7 +48,7 @@ export default class AssigmentSiswaModal {
         });
     }
 
-    loadContext() {
+    loadContext() { //MENAMPILKAN DATA
         var ctx = this;
         let datas = {
             id_jurusan: this.id_jurusan,
@@ -84,11 +93,11 @@ export default class AssigmentSiswaModal {
         });
     }
 
-    show() {
+    show() {// MENAMPILKAN MODAL
         this.modal.show();
     }
 
-    globalEventListener() {
+    globalEventListener() { //MENDETEKSI EVENT YANG TERJADI DIDALAM MODAL (SEPERTI TOMBOL KIRIM,DLL)
         var ctx = this;
         this.container.find(".input-siswa").keyup(function () {
             ctx.params.kw = $(this).val();
@@ -143,7 +152,7 @@ export default class AssigmentSiswaModal {
         });
     }
 
-    tambahPartisipan(id) {
+    tambahPartisipan(id) {//MENAMBAHKAN PARTISIPAN KEDALAM TUGAS
         let input = this.container
             .find(".siswa-container")
             .find("input[value=" + id + "]").length;
@@ -155,7 +164,7 @@ export default class AssigmentSiswaModal {
         }
     }
 
-    kirimPartisipan() {
+    kirimPartisipan() { //MENGIRIM PARTISIPAN KEDALAM DATABASE
         let ctx = this;
         let listSiswa = [];
         this.container
@@ -178,7 +187,7 @@ export default class AssigmentSiswaModal {
         });
     }
 
-    siswaListCard(element, input) {
+    siswaListCard(element, input) { //SISWA LIST CARD
         console.log("tes: " + element.ikut_penugasan);
         return `
         <div class='row' data-id="${element.id}" data-penugasan='${

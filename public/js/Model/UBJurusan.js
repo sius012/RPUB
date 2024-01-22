@@ -5,6 +5,7 @@ export default class UBJurusan {
         this.id;
         this.id_jurusan;
         this.id_pengguna;
+        this.k3;
         this.timestamps = {};
         this.jurusan;
     }
@@ -35,6 +36,9 @@ export default class UBJurusan {
         if (json["jurusan"] != undefined) {
             ubjurusan.jurusan = Jurusan.parse(json["jurusan"]);
         }
+        if (json["k3"] != undefined) {
+            ubjurusan.k3 = json["k3"];
+        }
         return ubjurusan;
     }
 
@@ -42,6 +46,7 @@ export default class UBJurusan {
         let json = {};
         json["id_pengguna"] = this.id_pengguna;
         json["id_jurusan"] = this.id_jurusan;
+        json["k3"] = this.k3;
         return json;
     }
 

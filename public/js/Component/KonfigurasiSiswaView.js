@@ -1,14 +1,25 @@
+//KONFIGURASI SISWA VIEW
+
+//FUNGSI
+//1. MENAMPILKAN LIST SISWA DIAPLIKASI RUBI
+//2. MENAMBAHKAN DAN MENGEDIT DATA PENGGUNA
+
+//RELASI FILE
+//VIEW: konfigurasi_siswa_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/konfigurasi
+
 import Siswa from "../Model/Siswa.js";
 import pageSetup from "./PageSetup.js";
 
 export default class KonfigurasiSiswaView {
     constructor(container) {
-        this.container = container;
-        this.siswaList = [];
-        this.nama_component = "KonfigurasiSiswaView";
+        this.container = container; //ELEMENT PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU ID(#)
+        this.siswaList = []; //LIST SISWA (MULTIPLE DATA)
+        this.nama_component = "KonfigurasiSiswaView"; //NAMA KOMPONENT WAJIB ADA DISETIAP COMPONENT
     }
 
     load(params = {}) {
+        //MENAMPILKAN DATA SISWA
         const ctx = this;
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
         breadcrumb.add([ctx.nama_component, "active"]);
@@ -44,6 +55,7 @@ export default class KonfigurasiSiswaView {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJALAN DIDALAM CONTAINER
         const ctx = this;
         ctx.container.find(".btn-tambah-siswa").click(function () {
             let siswaModal = pageSetup.getComponent("SiswaModal");
@@ -72,6 +84,7 @@ export default class KonfigurasiSiswaView {
         });
 
         ctx.container.find("#searchForm").submit(function (e) {
+            //
             e.preventDefault();
             let angkatan = ctx.container.find("#angkatan").val();
             let jurusan = ctx.container.find("#jurusan").val();

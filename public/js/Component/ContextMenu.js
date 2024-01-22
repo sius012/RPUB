@@ -1,21 +1,29 @@
+//CONTEXT MENU
+
+//FUNGSI
+//1. MEMUDAHKAN MELAKUKAN AKSI KETIKA MENEKAN ELEMENT
+
+//MUNCUL KETIKA DIKLIK KANAN ATAU KIRI
+
+//RELASI FILE
+//TERSIMPAN DIHALAMAN = maincomponent
+
 export default class ContextMenu {
     constructor() {
         this.container; //Berisikan element DOM contextMenu (diisi saat menjalankan function init)
         this.list; //Berikan list / opsi yang ada disetiap ContextMenu (nama aksi,fungsi)
         this.data_id = null; //Berisikan data id dari setiap data yang diselect
-
-        this.page_setup;
-        this.nama_component = "ContextMenu";
+        this.nama_component = "ContextMenu"; //NAMA COMPONENT (WAJIB ADA DISETIAP KOMPONENT)
         this.afterClick;
     }
 
-    init(list, afterClick = function (ctx) {}) {
+    init(list, afterClick = function (ctx) {}) {//INISIALISI CONTEXT MENU
         this.list = list;
         this.afterClick = afterClick;
         this.#renderElement();
     }
 
-    #renderElement() {
+    #renderElement() { //MERENDER KONTEKS MENU
         var ctx = this;
         var contextMenuStr = `
         <div class="dropdown-menu show " style="position:absolute" aria-labelledby="dropdownMenuButton">`;
@@ -35,7 +43,7 @@ export default class ContextMenu {
             .html(contextMenuStr)
             .addClass("dropdown dropdown-cm");
     }
-    trigger(ctr, id) {
+    trigger(ctr, id) { //MEMACU KONTEX MENU (DIISI ID YANG DITENTUKAN DAN TEMPAT UNTUK MELETAKAN CONTEXT MENUNYA)
         $(".dropdown-cm").hide();
         this.data_id = id;
         this.#renderElement();
@@ -44,7 +52,7 @@ export default class ContextMenu {
         this.globalEventListener();
     }
 
-    globalEventListener() {
+    globalEventListener() { //MENDETEKSI EVENT YANG SEDANG BERLAKU DI DALAM CONTEXT MENU (SEPERTI TOMBOL DIKLIK DLL)
         var ctx = this;
         this.container.find(".dropdown-item").click(function (e) {
             e.stopPropagation();

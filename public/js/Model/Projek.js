@@ -45,7 +45,6 @@ export default class Projek {
         projek.nama = json["nama"];
         projek.tanggal_awal = json["tanggal_awal"];
         projek.tanggal_akhir = json["tanggal_akhir"];
-        projek.penanggung_jawab = User.parse(json["penanggung_jawab"]);
         projek.jenis_projek = json["jenis_projek"];
         projek.klien = json["klien"];
         projek.deskripsi = json["deskripsi"];
@@ -53,7 +52,7 @@ export default class Projek {
         projek.pembuat = json["pembuat"];
         projek.id_jurusan = json["id_jurusan"];
         projek.lokasi_projek = json["lokasi_projek"];
-        if (json["penanggung_jawab"]) {
+        if (json["penanggung_jawab"] != undefined) {
             projek.penanggung_jawab = User.parse(json["penanggung_jawab"]);
         }
 
@@ -62,7 +61,7 @@ export default class Projek {
         }
 
         if (params.withEtc == true) {
-            projek.etc["jumlah_tugas"] = json["jumlah_tugas"];
+            projek.etc["jumlah_tugas"] = json["xjumlah_tugas"];
             projek.etc["tugas_selesai"] = json["tugas_selesai"];
             projek.etc["proses"] = json["proses"];
         }
@@ -82,13 +81,17 @@ export default class Projek {
         if (json["id_penanggung_jawab"] != undefined) {
             projek.id_penanggung_jawab = json["id_penanggung_jawab"];
         }
+
+        if (json["nominal"] != undefined) {
+            projek.nominal = json["nominal"];
+        }
         return projek;
     }
     static all(params) {
         var projek = [];
         $.ajax({
             url: "/projek",
-            type: "GET",
+            type: " ",
             async: params.cb == undefined ? false : true,
             success: function (data) {
                 projek = data.map(function (e) {
@@ -118,10 +121,14 @@ export default class Projek {
         json["id_jurusan"] = this.id_jurusan;
         json["id_pembuat"] = 0;
         json["lokasi_projek"] = this.lokasi_projek;
+        if (json["jenis_projek"] == "Projek Eksternal") {
+            json["nominal"] = this.nominal;
+        }
         return json;
     }
 
     simpan(params = null) {
+        console.log(this.toJson());
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $("meta[name=csrf-token]").attr("content"),
@@ -133,7 +140,7 @@ export default class Projek {
             success: function (response) {
                 console.log(response);
                 if (params.cb != undefined) {
-                    params.cb();
+                    params.cb(response);
                 }
             },
             error: function (err) {

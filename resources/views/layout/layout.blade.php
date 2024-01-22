@@ -214,13 +214,21 @@ body {
 
 
       .container-pencarian{
-        width: 70%;
+        
         top: 90px;
+      }
+
+      .container-pencarian ul{
+        display: block;
+      }
+
+      .container-pencarian li{
+        display: block;
       }
     </style>
 
     
-
+      @stack("css")
   </head>
 
   <body>
@@ -333,7 +341,7 @@ body {
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Akun</div>
+                <div data-i18n="Account Settings" id='name-account'></div>
               </a>
               <ul class="menu-sub">
               @if(Auth::guard('student')->check())
@@ -451,7 +459,7 @@ body {
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{{ asset('js/Helper/Helper.js') }}"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       $(document).ready(function(){
 
@@ -470,6 +478,7 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @stack('script')
     <script src="{{ asset('js/Pages/layout.js') }}" type="module"></script>
     <script src="{{asset('js/lib/Timeliner.js')}}"></script>

@@ -1,3 +1,12 @@
+//SISWA DETAIL VIEW
+
+//FUNGSI
+//1. MELIHAT DATA SISWA DAN DATA LAINNYA YANG BERKAITAN DENGAN SISWA
+
+//RELASI FILE
+//VIEW: siswa_detail_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/siswa
+
 import Helper from "../Helper/Helper.js";
 import Siswa from "../Model/Siswa.js";
 import pageSetup from "./PageSetup.js";
@@ -5,11 +14,12 @@ import pageSetup from "./PageSetup.js";
 export default class SiswaDetailView {
     constructor(container) {
         this.container = container;
-        this.siswa;
+        this.siswa; //DATA SISWA (SINGLE DATA)
         this.nama_component = "SiswaDetailView";
     }
 
     load(id_siswa) {
+        // MENAMPILKAN DATA SISWA
         this.siswa = Siswa.find(id_siswa);
         Helper.curl(
             "/pages/siswa/" +
@@ -27,6 +37,7 @@ export default class SiswaDetailView {
             }
         });
         this.siswa = Siswa.find(id_siswa);
+
         this.siswa.getListProjek(function (data) {
             ctx.container.find(".container-projek").empty();
 
@@ -68,6 +79,7 @@ export default class SiswaDetailView {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG BERJALAN DIDALAM CONTAINER
         const ctx = this;
         ctx.container.delegate(".raportcard", "click", function (e) {
             e.preventDefault();

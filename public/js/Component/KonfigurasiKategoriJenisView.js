@@ -1,3 +1,7 @@
+//KONFIGURASI KATEGORI JENIS
+
+//KOMPONENT INI TIDAK TERPAKAI LAGI(19/01/2024) 
+
 import Helper from "../Helper/Helper.js";
 import Jenis from "../Model/Jenis.js";
 import pageSetup from "./PageSetup.js";

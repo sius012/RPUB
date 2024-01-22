@@ -1,12 +1,22 @@
+//SISWA JURUSAN VIEW
+
+//FUNGSI
+//1. MENAMPILKAN 3 KELAS BERDASARKAN ANGKATAN AKTIF
+
+//RELASI FILE
+//VIEW: siswa_kelas_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/siswa
+
 import Angkatan from "../Model/Angkatan.js";
 import pageSetup from "./PageSetup.js";
 export default class SiswaKelasView {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMENT PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU ID(.)
         this.nama_component = "SiswaKelasView";
     }
 
     load(id_jurusan) {
+        // MENAMPILKAN KELAS
         const ctx = this;
 
         let breadcrumb = pageSetup.getComponent("Breadcrumb");
@@ -41,7 +51,7 @@ export default class SiswaKelasView {
         });
     }
 
-    globalEventListener() {
+    globalEventListener() {// MENDETEKSI EVENT YANG SEDANG BERJALAN DIDALAM CONTAINER 
         const ctx = this;
         ctx.container.delegate(".card-class", "click", function () {
             let sLV = pageSetup.getComponent("SiswaListView");

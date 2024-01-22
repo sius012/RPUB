@@ -46,6 +46,7 @@ class UBJurusanController extends Controller
                 UBJurusan::create([
                     "id_pengguna" => $request->id_pengguna,
                     "id_jurusan" => $ubj['id_jurusan'],
+                    "k3" => $ubj["k3"]
                 ]);
             }
         }

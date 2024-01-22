@@ -1,5 +1,6 @@
 import Siswa from "../Model/Siswa.js";
 import pageSetup from "../Component/PageSetup.js";
+import User from "../Model/User.js";
 
 export default class Helper {
     static status(
@@ -46,6 +47,20 @@ export default class Helper {
             return `<button class='btn btn-sm ${params.class} ${statusStr}'>${status}</button>`;
         }
         return `<span class='badge ${statusStr} ${params.class}'>${status}</span>`;
+    }
+
+    static getCurrentAuthUser() {
+        let user = new User();
+        $.ajax({
+            url: "/getcurrentauthuser",
+            type: "get",
+            async: false,
+            success: function (data) {
+                
+                user = User.parse(data);
+            },
+        });
+        return user;
     }
 
     static getCurrentAuthSiswa() {

@@ -21,9 +21,7 @@ export default class UBJurusanModal {
         Jurusan.all(null, function (e) {
             e.forEach((element) => {
                 contjurusan.append(
-                    `<div class='col-md-2'>${element.jurusan}
-                    <input class='form-check inp-jurusan' type='checkbox' value='${element.id}'>
-                    </div>`
+                    `<tr data-id='${element.id}'><td><input class='form-check inp-jurusan' type='checkbox' value='${element.id}'></td><td>${element.jurusan}</td><td><input type='checkbox' class='form-check inp-k3-row' ></td></tr>`
                 );
             });
 
@@ -32,7 +30,14 @@ export default class UBJurusanModal {
                 $(".inp-jurusan").each(function () {
                     if ($(this).val() == e.id_jurusan) {
                         $(this).attr("checked", "checked");
+                        if (e.k3 == 1) {
+                            $(this)
+                                .closest("tr")
+                                .find(".inp-k3-row")
+                                .attr("checked", "checked");
+                        }
                     }
+                    //console.log(e);
                 });
             });
 
@@ -50,8 +55,14 @@ export default class UBJurusanModal {
                 let ubj = new UBJurusan();
                 ubj.id_pengguna = ctx.pengguna.id;
                 ubj.id_jurusan = val;
+                if ($(this).closest("tr").find(".inp-k3-row").is(":checked")) {
+                    ubj.k3 = 1;
+                } else {
+                    ubj.k3 = 0;
+                }
                 ubJurusan.push(ubj);
             }
+            //check k3
         });
 
         this.pengguna.ub_jurusan = ubJurusan;
@@ -62,6 +73,7 @@ export default class UBJurusanModal {
         this.container.find("form").submit(function (e) {
             e.preventDefault();
             ctx.parseFromElement();
+            console.log(ctx.pengguna.ub_jurusan);
             ctx.pengguna.storeUBJurusan();
             ctx.modal.hide();
             pageSetup.getComponent("KonfigurasiPenggunaView").load();

@@ -1,3 +1,13 @@
+//PENILAIAN PROJEK MODAL
+
+//FUNGSI
+//1. MEMBERI NILAI DISETIAP TUGAS (KOMPETENSI) YANG SISWA KERJAKAN
+//2. MELIHAT LAPORAN TUGASNYA
+
+//RELASI FILE
+//VIEW: penilaian_projek_modal.blade.php;
+//TERSIMPAN DIHALAMAN = pages/projek
+
 import PenilaianProjek from "../Model/PenilaianProjek.js";
 import pageSetup from "./PageSetup.js";
 import Siswa from "../Model/Siswa.js";
@@ -5,18 +15,19 @@ import Penugasan from "../Model/Penugasan.js";
 
 export default class PenilaianProjekModal {
     constructor(container) {
-        this.container = container;
+        this.container = container; //ELEMENT PENAMPUNG (CONTAINER) BISA BERUPA CLASS(.) ATAU ID(#)
         this.modal = new bootstrap.Modal(container);
         this.nama_component = "PenilaianProjekModal";
         this.isLayout = true;
         //this.penilaianProjek = new PenilaianProjek();
         this.id_siswa;
         this.id_tugas;
-        this.mode = "simpan";
+        this.mode = "simpan"; //MODE MODAL (SIMPAN/EDIT)
         this.editable = false;
     }
 
     init(id_projek, id_siswa) {
+        //MENGINISIALSI MODAL, MENGISI ID PROJEK DAN ID SISWA
         const ctx = this;
         let containerTugas = ctx.container.find(".container-tugas");
         let containerPenilaian = ctx.container.find(".container-penilaian");
@@ -81,6 +92,7 @@ export default class PenilaianProjekModal {
     }
 
     load(id_penilaian) {
+        // MENAMPILKAN DATA PENILAIAN
         this.mode = "edit";
         let penilaianProjek = PenilaianProjek.find(id_penilaian);
 
@@ -151,6 +163,7 @@ export default class PenilaianProjekModal {
     }
 
     reset() {
+        //MERESET MODAL
         this.getElement("id_projek").val("");
         this.getElement("id_siswa").val("");
         this.getElement("id_penilai").val("");
@@ -168,6 +181,7 @@ export default class PenilaianProjekModal {
     }
 
     loadPenilaian(id_tugas) {
+        // MENAMPILKAN DATA PENILAIAN BERDASARKAN ID TUGAS
         const ctx = this;
         this.id_tugas = id_tugas;
 
@@ -199,6 +213,7 @@ export default class PenilaianProjekModal {
     }
 
     parsing() {
+        //MENGISI MODEL PENILAIAN PROJEK BERDASARKAN INPUTAN YANG TELAH DIISI
         let penilaian = new PenilaianProjek();
         penilaian.id_siswa = this.id_siswa;
         penilaian.id_tugas = this.id_tugas;
@@ -243,6 +258,7 @@ export default class PenilaianProjekModal {
     }
 
     globalEventListener() {
+        //MENDETEKSI EVENT YANG SEDANG BERJALAN DI DALAM CONTAINER
         const ctx = this;
         this.container.find("form").submit(function (e) {
             e.preventDefault();
@@ -353,6 +369,7 @@ export default class PenilaianProjekModal {
     }
 
     validasi() {
+        // VALIDASO LAPORAN
         let ctx = this;
         //mengecek apakah penilaian non formal sudah terisi semua
         let validasiPenilaianNonFormal = true;
@@ -388,10 +405,12 @@ export default class PenilaianProjekModal {
     }
 
     getElement(name, type = "input") {
+        //MENDAPATKAN INPUTAN BERDASARKAN NAMA
         return this.container.find(`${type}[name=${name}]`);
     }
 
     parseFromElement() {
+        //SEPERTI SCRIPT TADI
         this.penilaianProjek.id_projek = this.getElement("id_projek").val();
         this.penilaianProjek.id_siswa = this.getElement("id_siswa").val();
         this.penilaianProjek.id_penilai = this.getElement("id_penilai").val();

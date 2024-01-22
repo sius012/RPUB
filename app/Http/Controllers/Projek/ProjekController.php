@@ -160,6 +160,7 @@ class ProjekController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $projek = Projek::find($id);
         $projek->nama = $request->nama;
         $projek->deskripsi = $request->deskripsi;
@@ -170,6 +171,9 @@ class ProjekController extends Controller
         $projek->jenis_projek = $request->jenis_projek;
         $projek->status = $request->status;
         $projek->lokasi_projek = $request->lokasi_projek;
+        if ($request->has("nominal")) {
+            $projek->nominal = $request->nominal;
+        }
         $projek->save();
 
         //clear projekJurusan
@@ -200,8 +204,7 @@ class ProjekController extends Controller
     {
         $file = $req->file('file-excel');
 
-        $nama_file = rand() . $file->getClientOriginalName();
-
+        $nama_file = rand() . $file->getClientOriginalName();;
         // upload ke folder file_siswa di dalam folder public
         $file->move(public_path("/projekdata"), $nama_file);
         $data = Excel::toArray(new ImportProjek, public_path("/projekdata/" . $nama_file));

@@ -1,3 +1,7 @@
+//RAPOR MODAL
+
+//BELUM SELESAI
+
 import Siswa from "../Model/Siswa.js";
 
 export default class RaportModal {

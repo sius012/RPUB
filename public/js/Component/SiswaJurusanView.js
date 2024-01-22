@@ -1,15 +1,25 @@
+//SISWA JURUSAN VIEW
+
+//FUNGSI
+//1. MENAMPILKAN JURUSAN SISWA BERDASARKAN ROLE
+
+//RELASI FILE
+//VIEW: siswa_jurusan_view.blade.php;
+//TERSIMPAN DIHALAMAN = pages/siswa
+
 import Jurusan from "../Model/Jurusan.js";
 import pageSetup from "./PageSetup.js";
 import JurusanCard from "./Card/JurusanCard.js";
 
 export default class SiswaJurusanView {
     constructor(container) {
-        this.container = container;
-        this.jurusanList = Jurusan.all();
-        this.nama_component = "SiswaJurusanView";
+        this.container = container; //ELEMENT PENAMPUNG CONTAINER BISA BERUPA CLASS(.) ATAU (#)
+        this.jurusanList = [];
+        this.nama_component = "SiswaJurusanView"; //NAMA COMPONENT WAJIB ADA DISETIAP COMPONENT
     }
 
     load() {
+        //MENAMPILKAN LIST JURUSAN;
         const ctx = this;
 
         pageSetup.componentList.forEach((element) => {
@@ -24,12 +34,15 @@ export default class SiswaJurusanView {
 
         this.container.find(".row").empty();
 
-        this.jurusanList.forEach(function (e) {
-            let jurusan = new JurusanCard(e);
+        Jurusan.all({ ubjurusan: 1 }, function (data) {
+            data.forEach(function (e) {
+                let jurusan = new JurusanCard(e);
 
-            ctx.container.find(".row").append(jurusan.load());
+                ctx.container.find(".row").append(jurusan.load());
+            });
+            ctx.jurusanList = data;
+            ctx.container.show();
         });
-        this.container.show();
     }
 
     globalEventListener() {
