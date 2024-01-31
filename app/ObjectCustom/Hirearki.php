@@ -1,9 +1,9 @@
-<?php
-namespace App\ObjectCustom;
-
-class Hirearki {
-    public $data;
-    public $children = [];
-}
-
+<?php
+namespace App\ObjectCustom;
+
+class Hirearki {
+    public $data;
+    public $children = [];
+}
+
 ?>
