@@ -1,6 +1,8 @@
 <?php
 
+use App\Exports\ExportRaportInformalNonformal;
 use App\Http\Controllers\Angkatan\AngkatanController;
+use App\Http\Controllers\ExportRaportController;
 use App\Http\Controllers\Jenis\JenisController;
 use App\Http\Controllers\Jurusan\JurusanController;
 use App\Http\Controllers\Login\LoginController;
@@ -24,8 +26,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Models\Projek;
+use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -182,6 +187,13 @@ Route::get("/dangerzone/init", function () {
     Artisan::call(("db:seed"));
     return redirect("/");
 });
+
+Route::get("/test-view", function () {
+    $date = Carbon::now()->addMonth()->year;
+    dd($date);
+});
+
+Route::post("/exportraport", [ExportRaportController::class, "download"]);
 
 Route::view("/test", "output.output");
 

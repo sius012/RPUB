@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use App\Exports\ExportLPPIF;
 use App\Exports\ExportLPPNF;
 
-class ExportLPP implements WithMultipleSheets
+class ExportLPPS implements WithMultipleSheets
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -26,10 +26,14 @@ class ExportLPP implements WithMultipleSheets
 
         // Add sheets as needed
 
-        $sheets["projek"] = new ExportLPPNF($this->data);
-        $sheets["tugas"] = new ExportLPPIF($this->data);
-
-
+        $sheets["projek"] = new ExportRaportInformalNonformal($this->data["projek"], $this->data["siswa"]);
+        //    / dd($this->data["projek"]);
+        foreach ($this->data["projek"] as $prjk) {
+            foreach ($prjk->tugas as $i => $tugas) {
+                $sheets["nonformal" . $i] = new ExportLPPNF($tugas->penilaianProjek->first());
+                $sheets["informal" . $i] = new ExportLPPIF($tugas->penilaianProjek->first());
+            }
+        }
 
         return $sheets;
     }
