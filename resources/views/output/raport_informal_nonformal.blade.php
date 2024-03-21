@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FRP - Kompetensi</title>
 
     <style>
         table {
@@ -20,21 +20,29 @@
         .vertical-td {
             writing-mode: vertical-lr;
         }
+
+        .bordered{
+            border: 2px solid black;
+        }
+
+        .headerin{
+            background: rgb(93, 55, 55);
+        }
     </style>
 </head>
 
 <body>
     <table>
         <tr>
-            <td colspan="15" align="center" style="font-weight: bold;">RAPOR INFORMAL DAN NON FORMAL SISWA BISNIS KONSTRUKSI DAN PROPERTI
+            <td colspan="15" align="center" style="font-weight: bold; font-size: 12pt">RAPOR INFORMAL {{"&"}} NON FORMAL SISWA {{ strtoupper($siswa->jurusan->keterangan) }}
             </td>
         </tr>
         <tr>
-            <td colspan="15" align="center" style="font-weight: bold;">SMK BAGIMU NEGERIKU
+            <td colspan="15" align="center" style="font-weight: bold; font-size: 12pt">SMK BAGIMU NEGERIKU
             </td>
         </tr>
         <tr>
-            <td colspan="15" align="center" style="font-weight: bold;">TAHUN PELAJARAN 2023/2024
+            <td colspan="15" align="center" style="font-weight: bold; font-size: 12pt">TAHUN PELAJARAN {{schoolYearFromSemesterAndEntry($semester,$siswa->angkatan->dari)}}
 
             </td>
         </tr>
@@ -56,7 +64,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="3">Nama</td>
+            <td colspan="3" >Nama</td>
             <td>:</td>
             <td colspan="2">{{$siswa->nama}}</td>
             <td></td>
@@ -72,7 +80,7 @@
         <tr>
             <td colspan="3">NIS/NISN</td>
             <td>:</td>
-            <td colspan="2">{{$siswa->nis}}</td>
+            <td colspan="2" align="left">{{$siswa->nis}}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -86,7 +94,7 @@
         <tr>
             <td colspan="3">Kelas</td>
             <td>:</td>
-            <td colspan="2">{{$siswa->angkatan->kelas()." ".$siswa->jurusan->jurusan}}</td>
+            <td colspan="2">{{toRoman($siswa->angkatan->kelas())." ".$siswa->jurusan->jurusan}}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -114,7 +122,7 @@
         <tr>
             <td colspan="3">Semester/Tahun Pelajaran</td>
             <td>:</td>
-            <td colspan="2">III / 2023-2024</td>
+            <td colspan="2">{{toRoman($semester)}} / {{schoolYearFromSemesterAndEntry($semester,$siswa->angkatan->dari)}}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -141,37 +149,37 @@
             <td></td>
         </tr>
         <tr>
-            <td rowspan="2">No</td>
-            <td rowspan="2">Kelas</td>
-            <td rowspan="2">Mata Pelajaran</td>
-            <td rowspan="2" colspan="2">Materi Pelajaran</td>
-            <td rowspan="2">Nilai Non Formal (Kompeten/Tidak Kompeten)</td>
-            <td colspan="8">Penilaian Informal</td>
-            <td rowspan="2">Keterangan</td>
+            <td rowspan="2" class="bordered " style="background: #F2F2F2; border: 2px solid black; text-align:center" valign='center'>No</td>
+            <td rowspan="2" class="bordered " style="background: #F2F2F2;border: 2px solid black; text-align:center" valign='center'>Kelas</td>
+            <td rowspan="2" class="bordered " style="background: #F2F2F2;border: 2px solid black; text-align:center" valign='center'>Mata Pelajaran</td>
+            <td rowspan="2"  colspan="2" class="bordered " style="background: #F2F2F2;border: 1px solid black;text-align:center" valign='center'>Materi Pelajaran</td>
+            <td rowspan="2" class="bordered " style="background: #F2F2F2;border: 2px solid black;text-align:center" valign='center'>Nilai Non Formal (Kompeten/Tidak Kompeten)</td>
+            <td colspan="8" class="bordered " style="background: #F2F2F2;border: 2px solid black;text-align:center" valign='center'>Penilaian Informal</td>
+            <td rowspan="2" class="bordered " style="background: #F2F2F2;border: 2px solid black;text-align:center" valign='center'>Keterangan</td>
         </tr>
         <tr>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black" >
                 Inisiatif
             </td>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">
                 Antusias
             </td>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">
                 Kreativitas
             </td>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">
                 Kedisiplinan
             </td>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">
                 Tanggung jawab
             </td>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">
                 Komunikasi
             </td>
-            <td class='vertical-td'>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">
                 Etika dan Sopan,santun
             </td>
-            <td class='vertical-td'>Kecepatan, Ketepatan dan Kerapian</td>
+            <td class='vertical-td bordered' style="background: #F2F2F2; border: 1px solid black">Kecepatan, Ketepatan dan Kerapian</td>
         </tr>
         @foreach($data as $i => $row)
         @foreach($row->tugas as $j => $tugas)
@@ -180,22 +188,22 @@
         @endphp
         <tr>
             @if($j == 0)
-            <td rowspan="{{$row->tugas->count()}}">{{$i+1}}</td>
-            <td rowspan="{{$row->tugas->count()}}">{{"X DKV 2"}}</td>
-            <td rowspan="{{$row->tugas->count()}}">{{$row->nama}}</td>
+            <td rowspan="{{$row->tugas->count()}}" style="border: 1px solid black">{{$i+1}}</td>
+            <td rowspan="{{$row->tugas->count()}}" style="border: 1px solid black">{{classFromProject($siswa->angkatan->dari,$row->tanggal_awal)}}</td>
+            <td rowspan="{{$row->tugas->count()}}" style="border: 1px solid black">{{$row->nama}}</td>
             @endif
-            <td>{{ 1+(($j+1)/10)}}</td>
-            <td>{{$tugas->nama}}</td>
-            <td>{{$nonformal}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->inisiatif}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->antusias}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->kreativitas}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->kedisiplinan}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->tanggung_jawab}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->komunikasi}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->etika_sopansantun}}</td>
-            <td>{{$tugas->penilaianProjek[0]->penilaian_informal->k3}}</td>
-            <td>{{nilaiTulisan($nonformal)}}</td>
+            <td class="bordered" style="border: 1px solid black">{{ 1+(($j+1)/10)}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->nama}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$nonformal}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->inisiatif}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->antusias}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->kreativitas}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->kedisiplinan}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->tanggung_jawab}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->komunikasi}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->etika_sopansantun}}</td>
+            <td class="bordered" style="border: 1px solid black">{{$tugas->penilaianProjek[0]->penilaian_informal->k3}}</td>
+            <td class="bordered" style="border: 1px solid black">{{nilaiTulisan($nonformal)}}</td>
         </tr>
         @endforeach
         @endforeach
@@ -245,7 +253,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>Ketua Kompetens Keahlian</td>
+            <td>Ketua Kompetensi Keahlian</td>
             <td></td>
             <td></td>
             <td></td>
@@ -371,10 +379,10 @@
         </tr>
         <tr>
             <td></td>
-            <td style="font-weight: bold;">Nilai Non Formal</td>
+            <td style="font-weight: bold;">Nilai Non Formal :</td>
             <td></td>
             <td></td>
-            <td>Penilaian Informal</td>
+            <td style="font-weight: bold;">Penilaian Informal :</td>
             <td></td>
             <td></td>
             <td></td>
@@ -388,9 +396,9 @@
         </tr>
         <tr>
             <td></td>
-            <td>86 sampai 100</td>
+            <td>86 - 100</td>
             <td>Sangat Kompeten</td>
-            <td></td>
+
             <td>3</td>
             <td>Baik</td>
             <td></td>
@@ -402,12 +410,13 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         <tr>
             <td></td>
-            <td>71 sampai 85</td>
+            <td>71 - 85</td>
             <td>Kompeten</td>
-            <td></td>
+      
             <td>2</td>
             <td>Cukup</td>
             <td></td>
@@ -419,14 +428,16 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         <tr>
             <td></td>
-            <td>61 sampai 70</td>
+            <td>61 - 70</td>
             <td>Cukup Kompeten</td>
-            <td></td>
+
             <td>1</td>
             <td>Kurang </td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -440,7 +451,7 @@
         <tr>
             <td></td>
             <td>
-                kurang dari 61</td>
+                {{"<"}} 61</td>
             <td>Belum Kompeten</td>
             <td></td>
             <td></td>

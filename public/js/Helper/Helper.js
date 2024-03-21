@@ -268,4 +268,48 @@ export default class Helper {
 
         return str;
     }
+
+    static getMainUrl(){
+        
+    }
+
+    static  generateString(length) {
+        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = ' ';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+    
+        return result;
+    }
+    
+    static randomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+    static SwalDelete(cb, params = {}){
+        Swal.fire({
+            title: "Apakah anda yakin?",
+            text: "Data akan dihapus",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            target: params.target != undefined ? params.target : $("body")[0],
+          }).then((result) => {
+            cb()
+          });   
+    }
+
+    static BerhasilHapusSwal(){
+        Swal.fire({
+            position: "bottom-center",
+            icon: "success",
+            title: "Data Berhasil dihapus",
+            showConfirmButton: false,
+            timer: 1500
+          });
+    }
 }

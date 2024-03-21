@@ -146,7 +146,7 @@ export default class ProjekModal {
 
         projek.id_jurusan = json["id_jurusan"];
 
-        projek.lokasi = json["lokasi_projek"];
+        projek.lokasi_projek = json["lokasi_projek"];
 
         projek.nominal = json["nominal"];
 

@@ -20,8 +20,8 @@ class CreateTugasTable extends Migration
             $table->text("keterangan");
             $table->bigInteger("id_projek");
             $table->bigInteger("id_parent")->nullable();
-            $table->date("tanggal_awal");
-            $table->date("tanggal_akhir");
+            $table->date("tanggal_awal")->nullable();
+            $table->date("tanggal_akhir")->nullable();
             $table->enum('status', ['Belum Dimulai', 'Siap Dikerjakan', 'Dalam Pengerjaan', 'Revisi', 'Ditunda', 'Ditinjau', 'Selesai']);
             //$table->bigInteger("id_jenis");
             $table->enum("tipe", ["indikator", "tugas"])->default("tugas");

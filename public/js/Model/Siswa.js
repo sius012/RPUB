@@ -7,6 +7,7 @@ import PenilaianProjek from "./PenilaianProjek.js";
 import Penugasan from "./Penugasan.js";
 
 import Angkatan from "./Angkatan.js";
+import pageSetup from "../Component/PageSetup.js";
 
 export default class Siswa {
     constructor() {
@@ -176,6 +177,7 @@ export default class Siswa {
             siswa.penilaian_projek_rapor = json["penilaian_projek_rapor"];
         }
 
+        pageSetup.tambahSiswaLaporan(siswa);
         return siswa;
     }
 

@@ -2,11 +2,15 @@
 
 use App\Exports\ExportRaportInformalNonformal;
 use App\Http\Controllers\Angkatan\AngkatanController;
+use App\Http\Controllers\DuniaIndustriController;
 use App\Http\Controllers\ExportRaportController;
+use App\Http\Controllers\FormPenilaianMagang\FormPenilaianMagangController;
 use App\Http\Controllers\Jenis\JenisController;
 use App\Http\Controllers\Jurusan\JurusanController;
+use App\Http\Controllers\KloterDudiController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Pencarian\PencarianController;
+use App\Http\Controllers\PenilaianMagang\PenilaianMagangController;
 use App\Http\Controllers\PenilaianProjek\PenilaianProjekController;
 use App\Http\Controllers\Penugasan\PenugasanController;
 use App\Http\Controllers\Projek\ProjekController;
@@ -14,10 +18,17 @@ use App\Http\Controllers\Register\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Siswa\API_SiswaController;
 use App\Http\Controllers\Siswa\SiswaController;
+use App\Http\Controllers\SiswaMagangDudi\SiswaMagangDudi;
+use App\Http\Controllers\SiswaMagangDudiController\SiswaMagangDudiController;
+use App\Http\Controllers\SiswaMagangDudiController\SiswaMagangDudiController as SiswaMagangDudiControllerSiswaMagangDudiController;
+use App\Http\Controllers\TemplateMagang\TemplateMagangController;
 use App\Http\Controllers\Tugas\TugasController;
 use App\Http\Controllers\UBJurusan\UBJurusanController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Versi\VersiController;
+
+use App\Models\DuniaIndustri;
+use App\Models\PenilaianMagang;
 use App\Models\PenilaianProjek;
 use App\Models\Penugasan;
 use App\Models\UBJurusan;
@@ -80,7 +91,12 @@ Route::resource('/user', UserController::class);
 Route::resource('/ubjurusan', UBJurusanController::class);
 Route::resource('/role', RoleController::class);
 Route::resource('/penilaianprojek', PenilaianProjekController::class);
-
+Route::resource('/duniaindustri', DuniaIndustriController::class);
+Route::resource('/kloterdudi', KloterDudiController::class);
+Route::resource('/siswamagangdudi', SiswaMagangDudiController::class);
+Route::resource('/templatemagang', TemplateMagangController::class);
+Route::resource("/formpenilaianmagang",FormPenilaianMagangController::class);
+Route::resource("/penilaianmagang", PenilaianMagangController::class);
 Route::get("/penilairaport", [SiswaController::class, "cetakraport"]);
 
 
@@ -115,6 +131,8 @@ Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
     Route::get('/getcurrentauthuser', function () {
         return response()->json(Auth::user());
     })->name("user.authdata");
+
+    Route::view('/pages/duniaindustri', "pages.dunia_industri.index");
 });
 
 Route::resource('pencarian', PencarianController::class);
@@ -199,3 +217,16 @@ Route::view("/test", "output.output");
 
 
 Route::view("/LPP", "output.lembar_penilaian_projek");
+
+
+
+Route::get('/getdatasiswa', [API_SiswaController::class, "store"]);
+
+
+Route::view("formpenilaian","pages.form_penilaian.index");
+
+
+Route::get("/dudi/{url}",[FormPenilaianMagangController::class,"showpenilaian"]);
+Route::post("/penilaianmagangpublik", [PenilaianMagangController::class,"store"] );
+
+Route::get("/errorlink",[FormPenilaianMagangController::class,"showerror"]);

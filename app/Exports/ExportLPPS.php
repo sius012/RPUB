@@ -26,12 +26,13 @@ class ExportLPPS implements WithMultipleSheets
 
         // Add sheets as needed
 
-        $sheets["projek"] = new ExportRaportInformalNonformal($this->data["projek"], $this->data["siswa"]);
+        $sheets["projek"] = new ExportRaportInformalNonformal($this->data["projek"], $this->data["siswa"], $this->data["semester"]);
         //    / dd($this->data["projek"]);
         foreach ($this->data["projek"] as $prjk) {
             foreach ($prjk->tugas as $i => $tugas) {
-                $sheets["nonformal" . $i] = new ExportLPPNF($tugas->penilaianProjek->first());
-                $sheets["informal" . $i] = new ExportLPPIF($tugas->penilaianProjek->first());
+
+                $sheets[$tugas->nama . " Non Formal"] = new ExportLPPNF($tugas->penilaianProjek->first(), 1 + (($i + 1) / 10));
+                $sheets[$tugas->nama . " Informals"] = new ExportLPPIF($tugas->penilaianProjek->first(), 1 + (($i + 1) / 10));
             }
         }
 
